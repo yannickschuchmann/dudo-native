@@ -1,0 +1,25 @@
+<Icon
+    style={styles.diceTypeSaid}
+    name={`dice-${this.state.cup.dice1}`}
+    type="MaterialCommunityIcons"
+/>
+<Icon
+    style={styles.diceTypeSaid}
+    name={`dice-${this.state.cup.dice2}`}
+    type="MaterialCommunityIcons"
+/>
+<Icon
+    style={styles.diceTypeSaid}
+    name={`dice-${this.state.cup.dice3}`}
+    type="MaterialCommunityIcons"
+/>
+<Icon
+    style={styles.diceTypeSaid}
+    name={`dice-${this.state.cup.dice4}`}
+    type="MaterialCommunityIcons"
+/>
+<Icon
+    style={styles.diceTypeSaid}
+    name={`dice-${this.state.cup.dice5}`}
+    type="MaterialCommunityIcons"
+/>
