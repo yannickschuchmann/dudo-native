@@ -1,5 +1,10 @@
 # dudo-native
 
+THIS IS GOING TO BE SO AWESOME!!!!!!!!
+
+...
+
+
 Missing functionality:
 
 1.- TableList.js --> navigation, user experience: click (touch) listItem and go that Table game.
