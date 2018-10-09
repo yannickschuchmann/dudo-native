@@ -27,7 +27,6 @@ export default class PlayDisplay extends Component {
     pressingPlay = () => {
         this.setState({ pressedPlay: true });
     }
-
     render() {
         return (
             <Grid>
