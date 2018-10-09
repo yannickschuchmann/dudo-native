@@ -12,7 +12,20 @@ export default class GameStatsComplete extends Component {
             "rounds_count": 1,
             "active_players_count": 2,
             "total_die": 10,
-            "winner": null
+            "winner": null,
+            "last_move": {
+                "initiator": {
+                    "name": "Sergio",
+                    "is_current": false,
+                    "is_active": true
+                },
+                "die": 3,
+                "eyes": 5
+            },
+            "lang_dice": 'Dados',
+            "lang_round": 'Ronda',
+            "lang_players": 'Jugando',
+            "lang_says": 'Dice:'
         }
     }
     render() {
@@ -20,23 +33,29 @@ export default class GameStatsComplete extends Component {
             <Grid style={styles.statsContainer}>
                 <Col style={styles.leftStatsContainer}>
                     <Col style={styles.leftColStyle}>
-                        <Text style={styles.topStatText}>Dice</Text>
-                        <Text style={styles.statText}>Players</Text>
+                        <Text style={styles.topStatText}>{this.state.lang_dice}</Text>
+                        <Text style={styles.topStatText}>{this.state.lang_round}</Text>
+                        <Text style={styles.topStatText}>{this.state.lang_players}</Text>
                     </Col>
                     <Col style={styles.rightColStyle}>
                         <Text style={styles.topStatText}>{this.state.total_die}</Text>
-                        <Text style={styles.statText}>{this.state.active_players_count}</Text>
+                        <Text style={styles.topStatText}>{this.state.rounds_count}</Text>
+                        <Text style={styles.topStatText}>{this.state.active_players_count}</Text>
                     </Col>
                 </Col>
                 <Col style={styles.rightStatsContainer}>
-                    <Col style={styles.leftColStyle}>
-                        <Text style={styles.topStatText}>Round</Text>
-
-                    </Col>
-                    <Col style={styles.rightColStyle}>
-                        <Text style={styles.topStatText}>{this.state.rounds_count}</Text>
-
-                    </Col>
+                    <Row size={40}>
+                        <Text style={styles.textSays}>{this.state.last_move.initiator.name}</Text>
+                        <Text style={styles.textSays}>{this.state.lang_says}</Text>
+                    </Row>
+                    <Row size={60} style={styles.playSays}>
+                        <Text style={styles.playTextSays}>{this.state.last_move.die}</Text>
+                        <Icon
+                            style={styles.playDiceSays}
+                            name={`dice-${this.state.last_move.eyes}`}
+                            type="MaterialCommunityIcons"
+                        />
+                    </Row>
                 </Col>
             </Grid>
         );
@@ -53,11 +72,6 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row'
     },
-    rightStatsContainer: {
-        backgroundColor: '#C8B273',
-        flex: 1,
-        flexDirection: 'row'
-    },
     leftColStyle: {
         flex: 1,
         flexDirection: 'column',
@@ -70,25 +84,36 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    statText: {
-        marginTop: '15%',
-        fontSize: 30,
-        fontFamily: "MyriadPro-BoldCond"
+    rightStatsContainer: {
+        backgroundColor: '#C8B273',
+        flex: 1,
+        flexDirection: 'column'
     },
     topStatText: {
-        marginBottom: '15%',
         fontSize: 30,
         fontFamily: "MyriadPro-BoldCond"
     },
-    timerIcon: {
-        marginTop: '10%',
-        backgroundColor: "transparent",
-        color: "rgba(0,0,0,1)",
-        fontSize: 40
-    },
-    timer: {
-        marginTop: '10%',
+    textSays: {
+        marginTop: '7%',
+        marginLeft: '7%',
+        color: 'black',
         fontSize: 30,
-        fontFamily: "MyriadPro-BoldCond"
+        fontFamily: "MyriadPro-BoldCond",
+        textAlign: 'center'
+    },
+    playSays: {
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    playTextSays: {
+        marginTop: 10,
+        color: 'black',
+        fontSize: 60,
+        fontFamily: "MyriadPro-BoldCond",
+        textAlign: 'center'
+    },
+    playDiceSays: {
+        fontSize: 50,
+        textAlign: 'center'
     }
 });

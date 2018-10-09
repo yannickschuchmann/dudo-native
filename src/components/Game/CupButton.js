@@ -3,18 +3,6 @@ import { StyleSheet, Text, Image, TouchableOpacity, ImageBackground, View } from
 import { Col, Row, Grid } from 'react-native-easy-grid';
 
 export default class CupButton extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state= {
-            "cup": {
-                "1": 1,
-                "3": 2,
-                "4": 1,
-                "6": 1
-            }
-        }
-    }
     render() {
         return (
             <Grid>

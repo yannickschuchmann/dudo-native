@@ -5,11 +5,22 @@ import { Button } from 'native-base';
 import { Col, Row } from 'react-native-easy-grid';
 
 export default class CreateTableSection extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            "tables": 'Mesas',
+            "create": 'Crear +'
+         }
+    }
+
+
+
     render() {
         return (
             <Row>
                 <Col style={styles.topRowContainer}>
-                    <Text style={styles.text}>Tables</Text>
+                    <Text style={styles.text}>{this.state.tables}</Text>
                 </Col>
                 <Col style={styles.topRowContainer}>
                     <Button
@@ -19,7 +30,7 @@ export default class CreateTableSection extends Component {
                             this.props.navigation.push("CreateTable");
                         }}
                         >
-                        <Text style={styles.createButtonText}>Create +</Text>
+                        <Text style={styles.createButtonText}>{this.state.create}</Text>
                     </Button>
                 </Col>
             </Row>

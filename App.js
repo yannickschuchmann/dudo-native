@@ -18,10 +18,6 @@ const DrawerNavigation = createDrawerNavigator({
     GameTable: {
         screen: GameTable
     },
-
-    GameTable: {
-        screen: GameTable
-    },
     Home: {
         screen: Home
     },
@@ -92,8 +88,8 @@ async componentDidMount() {
         "Roboto-MediumItalic": require("./src/assets/fonts/Roboto-MediumItalic.ttf"),
         "Roboto-Bold": require("./src/assets/fonts/Roboto-Bold.ttf"),
         "RobotoCondensed-LightItalic": require("./src/assets/fonts/RobotoCondensed-LightItalic.ttf"),
-        "Roboto": require('native-base/Fonts/Roboto.ttf'),
-        "Roboto_medium": require('native-base/Fonts/Roboto_medium.ttf'),
+        "Roboto": require("native-base/Fonts/Roboto.ttf"),
+        "Roboto_medium": require("native-base/Fonts/Roboto_medium.ttf"),
     });
     this.setState({ fontLoaded: true });
     }

@@ -8,6 +8,15 @@ import DiceTypePicker from './DiceTypePicker';
 
 
 export default class PlayPicker extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            "button_play": 'Jugar'
+        }
+    }
+
+
     render() {
         return (
             <Col style={styles.rootContainer}>
@@ -23,7 +32,7 @@ export default class PlayPicker extends Component {
                         primary
                         style={styles.buttonContainer}
                     >
-                        <Text style={styles.buttonText}>Play</Text>
+                        <Text style={styles.buttonText}>{this.state.button_play}</Text>
                     </Button>
                 </Row>
             </Col>
@@ -37,10 +46,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     pickerRow: {
-        flex: 1,
-        padding: 10,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
+        marginTop: '3%',
+        marginLeft: '5%',
+        marginRight: '5%',
+        height: '27%'
+
     },
     buttonContainer: {
         flex: 1,

@@ -41,8 +41,9 @@ export default class DiceAmountPicker extends Component {
     }
     render() {
         return (
-            <Col>
-                <Row>
+            <Row>
+                <Col size={10}/>
+                <Col size={25}>
                     <TouchableOpacity
                         onPress={this.decreaseAmount}
                         disabled={!this.decreaseAllowed()}
@@ -52,12 +53,16 @@ export default class DiceAmountPicker extends Component {
                             style={styles.pickerContainerLeft}
                         />
                     </TouchableOpacity>
+                </Col>
+                <Col size={25}>
                     <ImageBackground
                         source={require('../../../assets/pickerContainer.png')}
                         style={styles.pickerContainerLeft}
                         >
                         <Text style={styles.picketAmountText}>{this.state.picked_amount}</Text>
                     </ImageBackground>
+                </Col>
+                <Col size={25}>
                     <TouchableOpacity
                         onPress={this.incrementAmount}
                         disabled={!this.increaseAllowed()}
@@ -67,8 +72,9 @@ export default class DiceAmountPicker extends Component {
                             style={styles.pickerContainerRight}
                         />
                     </TouchableOpacity>
-                </Row>
-            </Col>
+                </Col>
+                <Col />
+            </Row>
         );
     }
 }

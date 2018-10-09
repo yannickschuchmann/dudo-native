@@ -6,12 +6,20 @@ import { Row } from 'react-native-easy-grid';
 
 
 export default class CreateTable extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            "table_name_placeholder": 'Escribe el nombre de tu Mesa',
+            "start_game": 'Comenzar'
+        }
+    }
     render() {
         return (
             <View style={{ width: '100%' }}>
                 <Row style={styles.inputContainer}>
                     <Input
-                        placeholder='Input the Name for your Table'
+                        placeholder={this.state.table_name_placeholder}
                         placeholderTextColor='#95792a'
                         style={styles.textInput}
                     />
@@ -24,7 +32,7 @@ export default class CreateTable extends Component {
                             this.props.navigation.push("GameTable");
                         }}
                     >
-                        <Text style={styles.StartGameButtonText}>Start Game</Text>
+                        <Text style={styles.StartGameButtonText}>{this.state.start_game}</Text>
                     </Button>
                 </Row>
             </View>

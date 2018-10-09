@@ -154,9 +154,10 @@ export default class TableList extends Component {
                 "picture": "https://ngin-food.com/wp-content/uploads/45/69/45697527de561eabbe38e8de876547d1.jpg",
                 "selected": false
             }],
+            "searchBar_placeholder": 'Busca en tu Lista de Amigos'
         };
-
         this.filteredData = [];
+
     }
     //Managing Search Logic
     //handleSearch = (text) => {
@@ -180,7 +181,7 @@ export default class TableList extends Component {
     renderHeader = () => {
         return <SearchBar
             round
-            placeholder="Search your Friends List"
+            placeholder={this.state.searchBar_placeholder}
             placeholderTextColor={'#95792A'}
             containerStyle={styles.searchContainer}
             inputContainerStyle={styles.searchInputContainer}
