@@ -10,7 +10,7 @@ export default class GameEnd extends Component {
             <Container style={styles.root}>
                 <StatusBar hidden />
                 <Grid>
-
+                    <Text style={{ color: 'white' }}>Hello</Text>
                 </Grid>
             </Container>
         );

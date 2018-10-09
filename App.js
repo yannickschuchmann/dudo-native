@@ -9,10 +9,13 @@ import PlayerProfile from './src/screens/PlayerProfile';
 import CreateTable from './src/screens/CreateTable';
 import GameTable from './src/screens/GameTable';
 import AddToTable from './src/screens/AddToTable';
-import GameEnd from '.src/screens/GameEnd;'
+
+
+
 
 
 const DrawerNavigation = createDrawerNavigator({
+
     Login: {
         screen: Login
     },
@@ -38,6 +41,7 @@ const StackNavigation = createStackNavigator({
     DrawerNavigation: {
         screen: DrawerNavigation
     },
+
     AddToTable: {
         screen: AddToTable
     },

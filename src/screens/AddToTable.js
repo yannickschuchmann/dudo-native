@@ -7,7 +7,7 @@ import { Grid, Col } from 'react-native-easy-grid';
 import BackHeader from '../components/Headers/BackHeader';
 import FriendsList from '../components/Management/FriendsList';
 
-export default class PlayerProfile extends Component {
+export default class AddToTable extends Component {
     render() {
         return (
             <Container style={styles.root}>
