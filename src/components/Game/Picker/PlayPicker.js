@@ -1,58 +1,72 @@
-import React, { Component } from "react";
-import { View, StyleSheet, Text, Image, ImageBackground } from "react-native";
-import { Icon, Button } from "native-base";
-import { Col, Row, Grid } from "react-native-easy-grid";
+import React, {Component} from 'react'
+import {
+  View,
+  StyleSheet,
+  Text,
+  Image,
+  ImageBackground,
+  Dimensions
+} from 'react-native'
+import {Icon, Button} from 'native-base'
+import {Col, Row, Grid} from 'react-native-easy-grid'
 
-import DiceAmountPicker from "./DiceAmountPicker";
-import DiceTypePicker from "./DiceTypePicker";
+import DiceAmountPicker from './DiceAmountPicker'
+import DiceTypePicker from './DiceTypePicker'
 
 export default class PlayPicker extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
-      button_play: "Jugar"
-    };
+      button_play: 'Jugar'
+    }
   }
 
   render() {
     return (
       <Col style={styles.rootContainer}>
-        <Row style={styles.pickerRow}>
+        <Row>
           <DiceAmountPicker />
         </Row>
-        <Row fluidWidth style={styles.pickerRow}>
+        <Row>
           <DiceTypePicker />
         </Row>
-        <Row style={styles.pickerRow}>
+        <Row>
           <Button block primary style={styles.buttonContainer}>
             <Text style={styles.buttonText}>{this.state.button_play}</Text>
           </Button>
         </Row>
       </Col>
-    );
+    )
   }
+}
+
+SCREEN_WIDTH = Dimensions.get('window').width // get current width
+SCALE = 375 // constant, 375 is standard width of  iphone 6 / 7 / 8
+
+const scaleFontSize = fontSize => {
+  const ratio = fontSize / SCALE // get ratio based on your standard scale
+  const newSize = Math.round(ratio * SCREEN_WIDTH)
+  return newSize
 }
 const styles = StyleSheet.create({
   rootContainer: {
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "space-between"
+    padding: '3%'
   },
   pickerRow: {
-    marginTop: "3%",
-    marginLeft: "5%",
-    marginRight: "5%",
-    height: "27%"
+    marginTop: '3%',
+    marginLeft: '5%',
+    marginRight: '5%'
   },
   buttonContainer: {
     flex: 1,
-    marginTop: "3%",
-    marginRight: "5%"
+    alignItems: 'center',
+    marginBottom: '1%',
+    height: '80%'
   },
   buttonText: {
-    fontSize: 30,
-    fontFamily: "MyriadPro-BoldCond",
-    color: "white"
+    fontSize: scaleFontSize(30),
+    fontFamily: 'MyriadPro-BoldCond',
+    color: 'white'
   }
-});
+})

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Constants} from 'expo'
-import {StyleSheet, StatusBar} from 'react-native'
+import {StyleSheet, StatusBar, Dimensions} from 'react-native'
 import {Header, Left, Button, Icon, Title, Right, Body} from 'native-base'
 import {Grid, Col, Row} from 'react-native-easy-grid'
 
@@ -30,6 +30,14 @@ export default class BackHeader extends Component {
     )
   }
 }
+SCREEN_WIDTH = Dimensions.get('window').width // get current width
+SCALE = 375 // constant, 375 is standard width of  iphone 6 / 7 / 8
+
+const scaleFontSize = fontSize => {
+  const ratio = fontSize / SCALE // get ratio based on your standard scale
+  const newSize = Math.round(ratio * SCREEN_WIDTH)
+  return newSize
+}
 
 const styles = StyleSheet.create({
   homeHeader: {
@@ -40,7 +48,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontFamily: 'MyriadPro-BoldCond',
     color: '#c8b273',
-    fontSize: 30
+    fontSize: scaleFontSize(30)
   },
   columnStyle: {
     flex: 1,
@@ -53,7 +61,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   icon: {
-    fontSize: 30,
+    fontSize: scaleFontSize(30),
     color: '#c8b273'
   }
 })

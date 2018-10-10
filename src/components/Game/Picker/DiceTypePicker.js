@@ -1,19 +1,20 @@
-import React, { Component } from "react";
-import { Constants } from "expo";
+import React, {Component} from 'react'
+import {Constants} from 'expo'
 import {
   StyleSheet,
   Text,
   Image,
   TouchableOpacity,
   ImageBackground,
-  View
-} from "react-native";
-import { Col, Row, Grid } from "react-native-easy-grid";
-import { Icon } from "native-base";
+  View,
+  Dimensions
+} from 'react-native'
+import {Col, Row, Grid} from 'react-native-easy-grid'
+import {Icon} from 'native-base'
 
 export default class DiceTypePicker extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       rounds_count: 1,
@@ -23,7 +24,7 @@ export default class DiceTypePicker extends Component {
       min_play_amount: 2,
       last_move: {
         initiator: {
-          name: "Yannick",
+          name: 'Yannick',
           is_current: false,
           is_active: true
         },
@@ -31,41 +32,41 @@ export default class DiceTypePicker extends Component {
         eyes: 5
       },
       picked_eyes: 1
-    };
+    }
   }
   componentDidMount() {
-    this.setState({ picked_eyes: this.state.last_move.eyes });
+    this.setState({picked_eyes: this.state.last_move.eyes})
   }
   increaseAllowed = () => {
-    return this.state.picked_eyes < 6;
-  };
+    return this.state.picked_eyes < 6
+  }
   decreaseAllowed = () => {
-    return this.state.picked_eyes > 1;
-  };
+    return this.state.picked_eyes > 1
+  }
   incrementAmount = () => {
-    this.setState({ picked_eyes: this.state.picked_eyes + 1 });
-  };
+    this.setState({picked_eyes: this.state.picked_eyes + 1})
+  }
   decreaseAmount = () => {
-    this.setState({ picked_eyes: this.state.picked_eyes - 1 });
-  };
+    this.setState({picked_eyes: this.state.picked_eyes - 1})
+  }
   render() {
     return (
       <Row>
-        <Col size={10} />
+        <Col size={11} />
         <Col size={25}>
           <TouchableOpacity
             onPress={this.decreaseAmount}
             disabled={!this.decreaseAllowed()}
           >
             <Image
-              source={require("../../../assets/pickerArrow.png")}
+              source={require('../../../assets/pickerArrow.png')}
               style={styles.pickerContainerLeft}
             />
           </TouchableOpacity>
         </Col>
         <Col size={25}>
           <ImageBackground
-            source={require("../../../assets/pickerContainer.png")}
+            source={require('../../../assets/pickerContainer.png')}
             style={styles.pickerContainerLeft}
           >
             <Icon
@@ -81,30 +82,38 @@ export default class DiceTypePicker extends Component {
             disabled={!this.increaseAllowed()}
           >
             <Image
-              source={require("../../../assets/pickerArrow.png")}
+              source={require('../../../assets/pickerArrow.png')}
               style={styles.pickerContainerRight}
             />
           </TouchableOpacity>
         </Col>
         <Col />
       </Row>
-    );
+    )
   }
+}
+SCREEN_WIDTH = Dimensions.get('window').width // get current width
+SCALE = 375 // constant, 375 is standard width of  iphone 6 / 7 / 8
+
+const scaleFontSize = fontSize => {
+  const ratio = fontSize / SCALE // get ratio based on your standard scale
+  const newSize = Math.round(ratio * SCREEN_WIDTH)
+  return newSize
 }
 const styles = StyleSheet.create({
   pickerContainerLeft: {
-    height: 65,
-    width: 65,
-    alignItems: "center",
-    justifyContent: "center"
+    height: scaleFontSize(65),
+    width: scaleFontSize(65),
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   pickerContainerRight: {
-    height: 65,
-    width: 65,
-    transform: [{ rotateZ: "180deg" }]
+    height: scaleFontSize(65),
+    width: scaleFontSize(65),
+    transform: [{rotateZ: '180deg'}]
   },
   diceTypeSaid: {
-    color: "#95792A",
+    color: '#95792A',
     fontSize: 50
   }
-});
+})

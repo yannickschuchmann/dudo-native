@@ -7,7 +7,8 @@ import {
   StatusBar,
   Image,
   TouchableOpacity,
-  FlatList
+  FlatList,
+  Dimensions
 } from 'react-native'
 import {Icon, Container, Content, Footer} from 'native-base'
 import {ListItem} from 'react-native-elements'
@@ -43,7 +44,7 @@ export default class GameTable extends Component {
       for (let i = 0; i < this.state.cup[type]; i++) {
         diceIcons.push(
           <Icon
-            style={styles.diceTypeSaid}
+            style={styles.diceInCup}
             name={`dice-${type}`}
             type="MaterialCommunityIcons"
             key={`${type}-${i}`}
@@ -63,17 +64,31 @@ export default class GameTable extends Component {
         </Modal>
         <StatusBar hidden />
         <GameTableHeader navigation={this.props.navigation} />
-        <Content bounces={false} contentContainerStyle={styles.root}>
-          <PlayerCarousel />
-          <GameStatsComplete />
-          <PlayDisplay />
-        </Content>
+        <Grid>
+          <Row size={27}>
+            <PlayerCarousel />
+          </Row>
+          <Row size={25}>
+            <GameStatsComplete />
+          </Row>
+          <Row size={48}>
+            <PlayDisplay />
+          </Row>
+        </Grid>
         <Footer style={styles.CupViewButtonContainer}>
           <CupButton onPress={() => this.refs.modal3.open()} />
         </Footer>
       </Container>
     )
   }
+}
+SCREEN_WIDTH = Dimensions.get('window').width // get current width
+SCALE = 375 // constant, 375 is standard width of  iphone 6 / 7 / 8
+
+const scaleFontSize = fontSize => {
+  const ratio = fontSize / SCALE // get ratio based on your standard scale
+  const newSize = Math.round(ratio * SCREEN_WIDTH)
+  return newSize
 }
 const styles = StyleSheet.create({
   root: {
@@ -98,8 +113,8 @@ const styles = StyleSheet.create({
     height: '70%',
     width: '90%'
   },
-  diceTypeSaid: {
+  diceInCup: {
     color: 'rgba(200,178,115,1)',
-    fontSize: 65
+    fontSize: scaleFontSize(65)
   }
 })

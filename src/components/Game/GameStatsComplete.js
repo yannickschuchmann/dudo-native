@@ -31,39 +31,39 @@ export default class GameStatsComplete extends Component {
 
   render() {
     return (
-      <Grid style={styles.statsContainer}>
+      <Grid>
         <Col style={styles.leftStatsContainer}>
           <Col style={styles.leftColStyle}>
-            <Text style={styles.topStatText}>{this.state.lang_dice}</Text>
-            <Text style={styles.topStatText}>{this.state.lang_round}</Text>
-            <Text style={styles.topStatText}>{this.state.lang_players}</Text>
+            <Text style={styles.statText}>{this.state.lang_dice}</Text>
+            <Text style={styles.statText}>{this.state.lang_round}</Text>
+            <Text style={styles.statText}>{this.state.lang_players}</Text>
           </Col>
           <Col style={styles.rightColStyle}>
-            <Text style={styles.topStatText}>{this.state.total_die}</Text>
-            <Text style={styles.topStatText}>{this.state.rounds_count}</Text>
-            <Text style={styles.topStatText}>
+            <Text style={styles.statText}>{this.state.total_die}</Text>
+            <Text style={styles.statText}>{this.state.rounds_count}</Text>
+            <Text style={styles.statText}>
               {this.state.active_players_count}
             </Text>
           </Col>
         </Col>
         <Col style={styles.rightStatsContainer}>
           <Row size={40}>
-            <Col>
-              <Text style={styles.topStatText}>
+            <Col style={{alignItems: 'center', justifyContent: 'center'}}>
+              <Text style={styles.statText}>
                 {this.state.last_move.initiator.name}
               </Text>
             </Col>
-            <Col>
-              <Text style={styles.topStatText}>{this.state.lang_says}</Text>
+            <Col style={styles.alignLeftItems}>
+              <Text style={styles.statText}>{this.state.lang_says}</Text>
             </Col>
           </Row>
           <Row size={60}>
-            <Col>
-              <Text style={styles.topStatText}>{this.state.last_move.die}</Text>
+            <Col style={styles.centerItems}>
+              <Text style={styles.diceStyle}>{this.state.last_move.die}</Text>
             </Col>
-            <Col>
+            <Col style={{alignItems: 'flex-start', justifyContent: 'center'}}>
               <Icon
-                style={styles.topStatText}
+                style={styles.diceStyle}
                 name={`dice-${this.state.last_move.eyes}`}
                 type="MaterialCommunityIcons"
               />
@@ -83,15 +83,15 @@ const scaleFontSize = fontSize => {
   return newSize
 }
 const styles = StyleSheet.create({
-  statsContainer: {
-    marginTop: '2%',
-    minHeight: '25%',
-    maxHeight: '25%'
-  },
   leftStatsContainer: {
     backgroundColor: '#95792A',
     flex: 1,
     flexDirection: 'row'
+  },
+  rightStatsContainer: {
+    backgroundColor: '#C8B273',
+    flex: 1,
+    flexDirection: 'column'
   },
   leftColStyle: {
     flex: 1,
@@ -105,13 +105,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  topStatText: {
+  statText: {
     fontSize: scaleFontSize(30),
     fontFamily: 'MyriadPro-BoldCond'
   },
-  rightStatsContainer: {
-    backgroundColor: '#C8B273',
-    flex: 1,
-    flexDirection: 'column'
+  diceStyle: {
+    fontSize: scaleFontSize(60),
+    fontFamily: 'MyriadPro-BoldCond',
+    marginBottom: '4%'
+  },
+  centerItems: {
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  alignLeftItems: {
+    alignItems: 'flex-start',
+    justifyContent: 'center'
   }
 })

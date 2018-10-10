@@ -3,6 +3,7 @@ import React from 'react'
 import {YellowBox} from 'react-native'
 import {Font} from 'expo'
 import {createStackNavigator, createDrawerNavigator} from 'react-navigation'
+import 'es6-symbol/implement'
 import axios from 'axios'
 axios.defaults.baseURL = 'https://dudo-backend.furfm.de'
 
