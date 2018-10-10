@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from 'react'
 import {
   StyleSheet,
   Text,
@@ -6,8 +6,8 @@ import {
   TouchableOpacity,
   ImageBackground,
   View
-} from "react-native";
-import { Col, Row, Grid } from "react-native-easy-grid";
+} from 'react-native'
+import {Col, Row, Grid} from 'react-native-easy-grid'
 
 export default class CupButton extends Component {
   render() {
@@ -15,19 +15,19 @@ export default class CupButton extends Component {
       <Grid>
         <Row>
           <Col size={33} />
-          <Col size={34} style={styles.cupIconContainer}>
-            <TouchableOpacity onPress={this.props.onPress}>
+          <TouchableOpacity onPress={this.props.onPress}>
+            <Col size={34} style={styles.cupIconContainer}>
               <Image
                 style={styles.cupIcon}
                 resizeMode="contain"
-                source={require("../../assets/cup.png")}
+                source={require('../../assets/cup.png')}
               />
-            </TouchableOpacity>
-          </Col>
+            </Col>
+          </TouchableOpacity>
           <Col size={33} />
         </Row>
       </Grid>
-    );
+    )
   }
 }
 const styles = StyleSheet.create({
@@ -37,8 +37,8 @@ const styles = StyleSheet.create({
   },
   cupIconContainer: {
     flex: 1,
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center"
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
-});
+})
