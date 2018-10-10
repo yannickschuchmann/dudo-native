@@ -1,41 +1,44 @@
-import React, { Component } from "react";
-import { Constants } from "expo";
-import { Text, StyleSheet, Image, StatusBar } from "react-native";
-import { Container, Content, Button, Footer } from "native-base";
-import { Grid, Row, Col } from "react-native-easy-grid";
+import React, {Component} from 'react'
+import {Constants} from 'expo'
+import {Text, StyleSheet, Image, StatusBar} from 'react-native'
+import {Container, Content, Button, Footer} from 'native-base'
+import {Grid, Row, Col} from 'react-native-easy-grid'
+import AuthService from '../services/auth'
+import {withUser} from '../components/user_provider'
 
-import BackHeader from "../components/Headers/BackHeader";
+import BackHeader from '../components/Headers/BackHeader'
 
-export default class PlayerProfile extends Component {
+class PlayerProfile extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
-      lang_spanish: "Español",
-      lang_german: "Deutsch",
-      lang_english: "English",
-      logout_button: "Salir"
-    };
+      lang_spanish: 'Español',
+      lang_german: 'Deutsch',
+      lang_english: 'English',
+      logout_button: 'Salir'
+    }
   }
   render() {
+    const {name, pic} = this.props.user
     return (
       <Container style={styles.root}>
         <StatusBar hidden />
         <BackHeader navigation={this.props.navigation} />
-        <Grid style={{ alignItems: "center" }}>
-          <Row size={40}>
-            <Image
-              source={require("../assets/UserProfilePlaceholder.png")}
-              style={styles.image}
-            />
+        <Grid style={{alignItems: 'center'}}>
+          <Row size={30}>
+            <Image source={{uri: pic}} style={styles.image} />
           </Row>
-          <Row size={45} style={{ marginLeft: "5%" }}>
+          <Row size={10}>
+            <Text style={{color: 'white'}}>{name}</Text>
+          </Row>
+          <Row size={45} style={{marginLeft: '5%'}}>
             <Col>
               <Button
                 primary
                 style={styles.LangButtonSpanish}
                 onPress={() => {
-                  this.props.navigation.push("Home");
+                  this.props.navigation.push('Home')
                 }}
               >
                 <Text style={styles.LogoutButtonText}>
@@ -48,7 +51,7 @@ export default class PlayerProfile extends Component {
                 primary
                 style={styles.LangButtonGerman}
                 onPress={() => {
-                  this.props.navigation.push("Home");
+                  this.props.navigation.push('Home')
                 }}
               >
                 <Text style={styles.LogoutButtonText}>
@@ -61,7 +64,7 @@ export default class PlayerProfile extends Component {
                 primary
                 style={styles.LangButtonEnglish}
                 onPress={() => {
-                  this.props.navigation.push("Home");
+                  this.props.navigation.push('Home')
                 }}
               >
                 <Text style={styles.LogoutButtonText}>
@@ -74,8 +77,9 @@ export default class PlayerProfile extends Component {
             <Button
               primary
               style={styles.LogoutButton}
-              onPress={() => {
-                this.props.navigation.push("Login");
+              onPress={async () => {
+                await AuthService.logout()
+                this.props.navigation.push('Login')
               }}
             >
               <Text style={styles.LogoutButtonText}>
@@ -85,47 +89,52 @@ export default class PlayerProfile extends Component {
           </Row>
         </Grid>
       </Container>
-    );
+    )
   }
 }
+
 const styles = StyleSheet.create({
   root: {
-    backgroundColor: "black"
+    backgroundColor: 'black'
   },
   image: {
     marginTop: 10,
     maxHeight: 200,
-    maxWidth: 200
+    maxWidth: 200,
+    width: 150,
+    height: 150
   },
   LogoutButton: {
-    alignSelf: "center",
-    justifyContent: "center",
+    alignSelf: 'center',
+    justifyContent: 'center',
     height: 50,
     width: 200,
     opacity: 1,
     borderWidth: 1,
     borderRadius: 2,
-    backgroundColor: "red",
-    borderColor: "rgba(255,255,255,1)"
+    backgroundColor: 'red',
+    borderColor: 'rgba(255,255,255,1)'
   },
   LangButtonSpanish: {
-    backgroundColor: "blue",
-    width: "85%",
-    justifyContent: "center"
+    backgroundColor: 'blue',
+    width: '85%',
+    justifyContent: 'center'
   },
   LangButtonGerman: {
-    backgroundColor: "green",
-    width: "85%",
-    justifyContent: "center"
+    backgroundColor: 'green',
+    width: '85%',
+    justifyContent: 'center'
   },
   LangButtonEnglish: {
-    backgroundColor: "purple",
-    width: "85%",
-    justifyContent: "center"
+    backgroundColor: 'purple',
+    width: '85%',
+    justifyContent: 'center'
   },
   LogoutButtonText: {
     fontSize: 20,
-    fontFamily: "Roboto-Bold",
-    color: "white"
+    fontFamily: 'Roboto-Bold',
+    color: 'white'
   }
-});
+})
+
+export default withUser(PlayerProfile)

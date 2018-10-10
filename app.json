@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "dudo-react-native",
+    "name": "dudo",
     "description": "This project is really great.",
-    "slug": "dudo-react-native",
+    "slug": "dudo",
     "privacy": "public",
     "sdkVersion": "30.0.0",
     "platforms": ["ios", "android"],
@@ -20,8 +20,15 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "facebookScheme": "fb836664836537019",
+    "facebookAppId": "836664836537019",
+    "facebookDisplayName": "Dudo",
     "ios": {
+      "bundleIdentifier": "de.furfm.dudo",
       "supportsTablet": true
+    },
+    "android": {
+      "package": "de.furfm.dudo"
     }
   }
 }
