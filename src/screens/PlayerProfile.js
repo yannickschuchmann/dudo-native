@@ -1,12 +1,13 @@
 import React, {Component} from 'react'
 import {Constants} from 'expo'
-import {Text, StyleSheet, Image, StatusBar} from 'react-native'
-import {Container, Content, Button, Footer} from 'native-base'
+import {Text, StyleSheet, Image, StatusBar, Dimensions} from 'react-native'
+import {Container, Button} from 'native-base'
 import {Grid, Row, Col} from 'react-native-easy-grid'
 import AuthService from '../services/auth'
 import {withUser} from '../components/user_provider'
 
 import BackHeader from '../components/Headers/BackHeader'
+import LanguageSelector from '../components/Management/LanguageSelector'
 
 class PlayerProfile extends Component {
   constructor(props) {
@@ -25,55 +26,19 @@ class PlayerProfile extends Component {
       <Container style={styles.root}>
         <StatusBar hidden />
         <BackHeader navigation={this.props.navigation} />
-        <Grid style={{alignItems: 'center'}}>
-          <Row size={30}>
-            <Image source={{uri: pic}} style={styles.image} />
+        <Grid>
+          <Col size={60} style={{alignItems: 'center'}}>
+            <Row>
+              <Image source={{uri: pic}} style={styles.image} />
+            </Row>
+            <Row>
+              <Text style={styles.nameText}>{name}</Text>
+            </Row>
+          </Col>
+          <Row size={20} style={{justifyContent: 'center'}}>
+            <LanguageSelector />
           </Row>
-          <Row size={10}>
-            <Text style={{color: 'white'}}>{name}</Text>
-          </Row>
-          <Row size={45} style={{marginLeft: '5%'}}>
-            <Col>
-              <Button
-                primary
-                style={styles.LangButtonSpanish}
-                onPress={() => {
-                  this.props.navigation.push('Home')
-                }}
-              >
-                <Text style={styles.LogoutButtonText}>
-                  {this.state.lang_spanish}
-                </Text>
-              </Button>
-            </Col>
-            <Col>
-              <Button
-                primary
-                style={styles.LangButtonGerman}
-                onPress={() => {
-                  this.props.navigation.push('Home')
-                }}
-              >
-                <Text style={styles.LogoutButtonText}>
-                  {this.state.lang_german}
-                </Text>
-              </Button>
-            </Col>
-            <Col>
-              <Button
-                primary
-                style={styles.LangButtonEnglish}
-                onPress={() => {
-                  this.props.navigation.push('Home')
-                }}
-              >
-                <Text style={styles.LogoutButtonText}>
-                  {this.state.lang_english}
-                </Text>
-              </Button>
-            </Col>
-          </Row>
-          <Row size={15}>
+          <Row size={20} style={{justifyContent: 'center'}}>
             <Button
               primary
               style={styles.LogoutButton}
@@ -92,47 +57,42 @@ class PlayerProfile extends Component {
     )
   }
 }
+SCREEN_WIDTH = Dimensions.get('window').width // get current width
+SCALE = 375 // constant, 375 is standard width of  iphone 6 / 7 / 8
 
+const scaleFontSize = fontSize => {
+  const ratio = fontSize / SCALE // get ratio based on your standard scale
+  const newSize = Math.round(ratio * SCREEN_WIDTH)
+  return newSize
+}
 const styles = StyleSheet.create({
   root: {
     backgroundColor: 'black'
   },
   image: {
-    marginTop: 10,
-    maxHeight: 200,
-    maxWidth: 200,
-    width: 150,
-    height: 150
+    marginTop: scaleFontSize(10),
+    height: scaleFontSize(150),
+    width: scaleFontSize(150),
+    borderRadius: scaleFontSize(75)
   },
   LogoutButton: {
     alignSelf: 'center',
     justifyContent: 'center',
-    height: 50,
-    width: 200,
-    opacity: 1,
+    height: scaleFontSize(50),
+    width: scaleFontSize(200),
     borderWidth: 1,
     borderRadius: 2,
     backgroundColor: 'red',
     borderColor: 'rgba(255,255,255,1)'
   },
-  LangButtonSpanish: {
-    backgroundColor: 'blue',
-    width: '85%',
-    justifyContent: 'center'
-  },
-  LangButtonGerman: {
-    backgroundColor: 'green',
-    width: '85%',
-    justifyContent: 'center'
-  },
-  LangButtonEnglish: {
-    backgroundColor: 'purple',
-    width: '85%',
-    justifyContent: 'center'
-  },
   LogoutButtonText: {
-    fontSize: 20,
-    fontFamily: 'Roboto-Bold',
+    fontSize: scaleFontSize(20),
+    fontFamily: 'MyriadPro-BoldCond',
+    color: 'white'
+  },
+  nameText: {
+    fontSize: scaleFontSize(30),
+    fontFamily: 'MyriadPro-BoldCond',
     color: 'white'
   }
 })

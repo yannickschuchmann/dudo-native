@@ -18,6 +18,10 @@ import AddToTable from './src/screens/AddToTable'
 import GameEnd from './src/screens/GameEnd'
 
 const DrawerNavigation = createDrawerNavigator({
+  //  GameEnd: {
+  //    screen: GameEnd
+  //  },
+
   Login: {
     screen: Login
   },

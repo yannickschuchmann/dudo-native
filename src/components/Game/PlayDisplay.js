@@ -1,20 +1,19 @@
-import React, { Component } from "react";
-import { Contents } from "expo";
-import { View, StyleSheet, Text } from "react-native";
-import { Icon, Button } from "native-base";
-import { Col, Row, Grid } from "react-native-easy-grid";
+import React, {Component} from 'react'
+import {Contents} from 'expo'
+import {StyleSheet} from 'react-native'
+import {Col, Grid} from 'react-native-easy-grid'
 
-import PlayPicker from "./Picker/PlayPicker";
-import PlayDecision from "./PlayDecision";
+import PlayPicker from './Picker/PlayPicker'
+import PlayDecision from './PlayDecision'
 
 export default class PlayDisplay extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       last_move: {
         initiator: {
-          name: "Sergio",
+          name: 'Sergio',
           is_current: false,
           is_active: true
         },
@@ -22,11 +21,11 @@ export default class PlayDisplay extends Component {
         eyes: 5
       },
       pressedPlay: false
-    };
+    }
   }
   pressingPlay = () => {
-    this.setState({ pressedPlay: true });
-  };
+    this.setState({pressedPlay: true})
+  }
   render() {
     return (
       <Grid>
@@ -38,12 +37,12 @@ export default class PlayDisplay extends Component {
           )}
         </Col>
       </Grid>
-    );
+    )
   }
 }
 const styles = StyleSheet.create({
   rightStatsContainer: {
-    backgroundColor: "black",
+    backgroundColor: 'black',
     flex: 1
   }
-});
+})

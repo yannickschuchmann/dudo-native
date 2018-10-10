@@ -9,17 +9,28 @@
     <list default="true" id="4ddb4374-ea61-4a94-95be-063696dc9fb8" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Game/CupButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Game/CupButton.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Game/GameStatsComplete.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Game/GameStatsComplete.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Game/Picker/DiceAmountPicker.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Game/Picker/DiceAmountPicker.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Game/Picker/DiceTypePicker.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Game/Picker/DiceTypePicker.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Game/Picker/PlayPicker.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Game/Picker/PlayPicker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Game/PlayDecision.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Game/PlayDecision.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Game/PlayDisplay.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Game/PlayDisplay.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Game/PlayerCarousel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Game/PlayerCarousel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Headers/BackHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Headers/BackHeader.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Headers/GameTableHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Headers/GameTableHeader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Headers/HomeHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Headers/HomeHeader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Management/CreateTableSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Management/CreateTableSection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Management/FriendsList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Management/FriendsList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Management/TableList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Management/TableList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Management/TableSetupSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Management/TableSetupSection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/AddToTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/AddToTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/CreateTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/CreateTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/GameEnd.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/GameEnd.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/GameTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/GameTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/PlayerProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/PlayerProfile.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -31,7 +42,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="1440" />
     <option name="y" value="-124" />
     <option name="width" value="1280" />
@@ -42,8 +53,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
@@ -56,6 +65,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -149,7 +160,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1440" y="-124" width="1280" height="1024" extended-state="1" />
+    <frame x="1440" y="-124" width="1280" height="1024" extended-state="0" />
     <layout>
       <window_info anchor="bottom" id="Android Profiler" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="TODO" order="6" />

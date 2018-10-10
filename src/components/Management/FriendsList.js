@@ -1,187 +1,187 @@
-import React, { Component } from "react";
-import { Constants } from "expo";
-import { StyleSheet, FlatList, View, ActivityIndicator } from "react-native";
-import { ListItem, SearchBar, CheckBox } from "react-native-elements";
-import _ from "lodash";
+import React, {Component} from 'react'
+import {Constants} from 'expo'
+import {StyleSheet, FlatList, View, Dimensions} from 'react-native'
+import {ListItem, SearchBar} from 'react-native-elements'
+import _ from 'lodash'
 
 export default class TableList extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       data: [
         {
-          name: "Yannick",
+          name: 'Yannick',
           player_id: 1,
           picture:
-            "https://scontent.fham1-1.fna.fbcdn.net/v/t1.0-1/c0.13.160.160/p160x160/10013506_783540128324222_6920844401721358352_n.jpg?_nc_cat=102&oh=eb030be13293f9de19f31145990f7da0&oe=5C2053F9",
+            'https://scontent.fham1-1.fna.fbcdn.net/v/t1.0-1/c0.13.160.160/p160x160/10013506_783540128324222_6920844401721358352_n.jpg?_nc_cat=102&oh=eb030be13293f9de19f31145990f7da0&oe=5C2053F9',
           selected: false
         },
         {
-          name: "Sergio",
+          name: 'Sergio',
           player_id: 2,
           picture:
-            "https://scontent.fham1-1.fna.fbcdn.net/v/t1.0-1/p160x160/26231447_10154919482157587_2724721708290940515_n.jpg?_nc_cat=108&oh=597f636a7738be6d0d25ae1b17b51255&oe=5C1D5FDC",
+            'https://scontent.fham1-1.fna.fbcdn.net/v/t1.0-1/p160x160/26231447_10154919482157587_2724721708290940515_n.jpg?_nc_cat=108&oh=597f636a7738be6d0d25ae1b17b51255&oe=5C1D5FDC',
           selected: false
         },
         {
-          name: "John",
+          name: 'John',
           player_id: 3,
           picture:
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/John_Oliver_November_2016.jpg/220px-John_Oliver_November_2016.jpg",
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/John_Oliver_November_2016.jpg/220px-John_Oliver_November_2016.jpg',
           selected: false
         },
         {
-          name: "Andrea",
+          name: 'Andrea',
           player_id: 4,
           picture:
-            "https://www.wilsoncenter.org/sites/default/files/andrea_tanco_0.jpg",
+            'https://www.wilsoncenter.org/sites/default/files/andrea_tanco_0.jpg',
           selected: false
         },
         {
-          name: "Timo",
+          name: 'Timo',
           player_id: 5,
           picture:
-            "https://tmssl.akamaized.net/images/portrait/originals/170527-1471002206.jpg",
+            'https://tmssl.akamaized.net/images/portrait/originals/170527-1471002206.jpg',
           selected: false
         },
         {
-          name: "Janina",
+          name: 'Janina',
           player_id: 6,
           picture:
-            "https://ngin-food.com/wp-content/uploads/45/69/45697527de561eabbe38e8de876547d1.jpg",
+            'https://ngin-food.com/wp-content/uploads/45/69/45697527de561eabbe38e8de876547d1.jpg',
           selected: false
         },
         {
-          name: "José",
+          name: 'José',
           player_id: 7,
           picture:
-            "https://scontent.fham1-1.fna.fbcdn.net/v/t1.0-1/c0.13.160.160/p160x160/10013506_783540128324222_6920844401721358352_n.jpg?_nc_cat=102&oh=eb030be13293f9de19f31145990f7da0&oe=5C2053F9",
+            'https://scontent.fham1-1.fna.fbcdn.net/v/t1.0-1/c0.13.160.160/p160x160/10013506_783540128324222_6920844401721358352_n.jpg?_nc_cat=102&oh=eb030be13293f9de19f31145990f7da0&oe=5C2053F9',
           selected: false
         },
         {
-          name: "Tomás",
+          name: 'Tomás',
           player_id: 8,
           picture:
-            "https://scontent.fham1-1.fna.fbcdn.net/v/t1.0-1/p160x160/26231447_10154919482157587_2724721708290940515_n.jpg?_nc_cat=108&oh=597f636a7738be6d0d25ae1b17b51255&oe=5C1D5FDC",
+            'https://scontent.fham1-1.fna.fbcdn.net/v/t1.0-1/p160x160/26231447_10154919482157587_2724721708290940515_n.jpg?_nc_cat=108&oh=597f636a7738be6d0d25ae1b17b51255&oe=5C1D5FDC',
           selected: false
         },
         {
-          name: "Felipe",
+          name: 'Felipe',
           player_id: 9,
           picture:
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/John_Oliver_November_2016.jpg/220px-John_Oliver_November_2016.jpg",
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/John_Oliver_November_2016.jpg/220px-John_Oliver_November_2016.jpg',
           selected: false
         },
         {
-          name: "Mariela",
+          name: 'Mariela',
           player_id: 10,
           picture:
-            "https://www.wilsoncenter.org/sites/default/files/andrea_tanco_0.jpg",
+            'https://www.wilsoncenter.org/sites/default/files/andrea_tanco_0.jpg',
           selected: false
         },
         {
-          name: "Alejandra",
+          name: 'Alejandra',
           player_id: 11,
           picture:
-            "https://tmssl.akamaized.net/images/portrait/originals/170527-1471002206.jpg",
+            'https://tmssl.akamaized.net/images/portrait/originals/170527-1471002206.jpg',
           selected: false
         },
         {
-          name: "Anika",
+          name: 'Anika',
           player_id: 12,
           picture:
-            "https://ngin-food.com/wp-content/uploads/45/69/45697527de561eabbe38e8de876547d1.jpg",
+            'https://ngin-food.com/wp-content/uploads/45/69/45697527de561eabbe38e8de876547d1.jpg',
           selected: false
         },
         {
-          name: "Alfonso",
+          name: 'Alfonso',
           player_id: 13,
           picture:
-            "https://scontent.fham1-1.fna.fbcdn.net/v/t1.0-1/c0.13.160.160/p160x160/10013506_783540128324222_6920844401721358352_n.jpg?_nc_cat=102&oh=eb030be13293f9de19f31145990f7da0&oe=5C2053F9",
+            'https://scontent.fham1-1.fna.fbcdn.net/v/t1.0-1/c0.13.160.160/p160x160/10013506_783540128324222_6920844401721358352_n.jpg?_nc_cat=102&oh=eb030be13293f9de19f31145990f7da0&oe=5C2053F9',
           selected: false
         },
         {
-          name: "Sebastian",
+          name: 'Sebastian',
           player_id: 14,
           picture:
-            "https://scontent.fham1-1.fna.fbcdn.net/v/t1.0-1/p160x160/26231447_10154919482157587_2724721708290940515_n.jpg?_nc_cat=108&oh=597f636a7738be6d0d25ae1b17b51255&oe=5C1D5FDC",
+            'https://scontent.fham1-1.fna.fbcdn.net/v/t1.0-1/p160x160/26231447_10154919482157587_2724721708290940515_n.jpg?_nc_cat=108&oh=597f636a7738be6d0d25ae1b17b51255&oe=5C1D5FDC',
           selected: false
         },
         {
-          name: "Braulio",
+          name: 'Braulio',
           player_id: 15,
           picture:
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/John_Oliver_November_2016.jpg/220px-John_Oliver_November_2016.jpg",
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/John_Oliver_November_2016.jpg/220px-John_Oliver_November_2016.jpg',
           selected: false
         },
         {
-          name: "Lucía",
+          name: 'Lucía',
           player_id: 16,
           picture:
-            "https://www.wilsoncenter.org/sites/default/files/andrea_tanco_0.jpg",
+            'https://www.wilsoncenter.org/sites/default/files/andrea_tanco_0.jpg',
           selected: false
         },
         {
-          name: "Luis",
+          name: 'Luis',
           player_id: 17,
           picture:
-            "https://tmssl.akamaized.net/images/portrait/originals/170527-1471002206.jpg",
+            'https://tmssl.akamaized.net/images/portrait/originals/170527-1471002206.jpg',
           selected: false
         },
         {
-          name: "Loreto",
+          name: 'Loreto',
           player_id: 18,
           picture:
-            "https://ngin-food.com/wp-content/uploads/45/69/45697527de561eabbe38e8de876547d1.jpg",
+            'https://ngin-food.com/wp-content/uploads/45/69/45697527de561eabbe38e8de876547d1.jpg',
           selected: false
         },
         {
-          name: "Antonio",
+          name: 'Antonio',
           player_id: 19,
           picture:
-            "https://scontent.fham1-1.fna.fbcdn.net/v/t1.0-1/c0.13.160.160/p160x160/10013506_783540128324222_6920844401721358352_n.jpg?_nc_cat=102&oh=eb030be13293f9de19f31145990f7da0&oe=5C2053F9",
+            'https://scontent.fham1-1.fna.fbcdn.net/v/t1.0-1/c0.13.160.160/p160x160/10013506_783540128324222_6920844401721358352_n.jpg?_nc_cat=102&oh=eb030be13293f9de19f31145990f7da0&oe=5C2053F9',
           selected: false
         },
         {
-          name: "Miguel",
+          name: 'Miguel',
           player_id: 20,
           picture:
-            "https://scontent.fham1-1.fna.fbcdn.net/v/t1.0-1/p160x160/26231447_10154919482157587_2724721708290940515_n.jpg?_nc_cat=108&oh=597f636a7738be6d0d25ae1b17b51255&oe=5C1D5FDC",
+            'https://scontent.fham1-1.fna.fbcdn.net/v/t1.0-1/p160x160/26231447_10154919482157587_2724721708290940515_n.jpg?_nc_cat=108&oh=597f636a7738be6d0d25ae1b17b51255&oe=5C1D5FDC',
           selected: false
         },
         {
-          name: "Rolando",
+          name: 'Rolando',
           player_id: 21,
           picture:
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/John_Oliver_November_2016.jpg/220px-John_Oliver_November_2016.jpg",
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/John_Oliver_November_2016.jpg/220px-John_Oliver_November_2016.jpg',
           selected: false
         },
         {
-          name: "Carolina",
+          name: 'Carolina',
           player_id: 22,
           picture:
-            "https://www.wilsoncenter.org/sites/default/files/andrea_tanco_0.jpg",
+            'https://www.wilsoncenter.org/sites/default/files/andrea_tanco_0.jpg',
           selected: false
         },
         {
-          name: "María José",
+          name: 'María José',
           player_id: 23,
           picture:
-            "https://tmssl.akamaized.net/images/portrait/originals/170527-1471002206.jpg",
+            'https://tmssl.akamaized.net/images/portrait/originals/170527-1471002206.jpg',
           selected: false
         },
         {
-          name: "Lorena",
+          name: 'Lorena',
           player_id: 24,
           picture:
-            "https://ngin-food.com/wp-content/uploads/45/69/45697527de561eabbe38e8de876547d1.jpg",
+            'https://ngin-food.com/wp-content/uploads/45/69/45697527de561eabbe38e8de876547d1.jpg',
           selected: false
         }
       ],
-      searchBar_placeholder: "Busca en tu Lista de Amigos"
-    };
-    this.filteredData = [];
+      searchBar_placeholder: 'Busca en tu Lista de Amigos'
+    }
+    this.filteredData = []
   }
   //Managing Search Logic
   //handleSearch = (text) => {
@@ -196,10 +196,10 @@ export default class TableList extends Component {
   //};
   //Managing Selected Switch
   toggleSwitch = item => {
-    item.selectd
-      ? this.setState({ selected: false })
-      : this.setState({ selected: true });
-  };
+    item.selected
+      ? this.setState({selected: false})
+      : this.setState({selected: true})
+  }
 
   //Rendering all list Components
   renderHeader = () => {
@@ -207,32 +207,32 @@ export default class TableList extends Component {
       <SearchBar
         round
         placeholder={this.state.searchBar_placeholder}
-        placeholderTextColor={"#95792A"}
+        placeholderTextColor={'#95792A'}
         containerStyle={styles.searchContainer}
         inputContainerStyle={styles.searchInputContainer}
         inputStyle={styles.searchInputText}
         //onChangeText={(text) => this.handleSearch(text)}
         autoCorrect={false}
       />
-    );
-  };
+    )
+  }
 
-  renderItem = ({ item }) => (
+  renderItem = ({item}) => (
     <ListItem
       roundAvatar
       title={`${item.name}`}
       titleStyle={styles.tableNameText}
-      avatar={{ uri: item.picture }}
+      avatar={{uri: item.picture}}
       hideChevron={true}
       containerStyle={styles.container}
       switchButton
-      switchOnTintColor={"#95792A"}
+      switchOnTintColor={'#95792A'}
       onSwitch={item => this.toggleSwitch(item)}
     />
-  );
+  )
   renderSeparator = () => {
-    return <View style={styles.itemSeparator} />;
-  };
+    return <View style={styles.itemSeparator} />
+  }
   //Main Render
   render() {
     return (
@@ -243,37 +243,38 @@ export default class TableList extends Component {
         renderItem={this.renderItem}
         ItemSeparatorComponent={this.renderSeparator}
       />
-    );
+    )
   }
 }
+SCREEN_WIDTH = Dimensions.get('window').width // get current width
+SCALE = 375 // constant, 375 is standard width of  iphone 6 / 7 / 8
 
+const scaleFontSize = fontSize => {
+  const ratio = fontSize / SCALE // get ratio based on your standard scale
+  const newSize = Math.round(ratio * SCREEN_WIDTH)
+  return newSize
+}
 const styles = StyleSheet.create({
   container: {
     borderBottomWidth: 0,
     borderTopWidth: 0
   },
   searchContainer: {
-    backgroundColor: "#95792A"
+    backgroundColor: '#95792A'
   },
-  searchInputContainer: {},
   searchInputText: {
-    color: "black",
-    backgroundColor: "#C8B273"
+    color: 'black',
+    backgroundColor: '#C8B273'
   },
   tableNameText: {
-    color: "#c8b273",
-    fontFamily: "MyriadPro-BoldCond",
-    fontSize: 25
+    color: '#c8b273',
+    fontFamily: 'MyriadPro-BoldCond',
+    fontSize: scaleFontSize(25)
   },
   itemSeparator: {
     height: 1,
-    width: "86%",
-    backgroundColor: "#c8b273",
-    marginLeft: "14%"
-  },
-  activityIndicator: {
-    paddingVertical: 20,
-    borderTopWidth: 1,
-    borderTopColor: "#C8B273"
+    width: '86%',
+    backgroundColor: '#c8b273',
+    marginLeft: '14%'
   }
-});
+})

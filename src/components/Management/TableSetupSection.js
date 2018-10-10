@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Constants} from 'expo'
-import {StyleSheet, View, Text} from 'react-native'
+import {StyleSheet, View, Text, Dimensions} from 'react-native'
 import {Button, Input} from 'native-base'
 import {Row} from 'react-native-easy-grid'
 
@@ -26,12 +26,12 @@ export default class CreateTable extends Component {
         <Row style={styles.buttonContainer}>
           <Button
             primary
-            style={styles.StartGameButton}
+            style={styles.startGameButton}
             onPress={() => {
               this.props.navigation.push('GameTable')
             }}
           >
-            <Text style={styles.StartGameButtonText}>
+            <Text style={styles.startGameButtonText}>
               {this.state.start_game}
             </Text>
           </Button>
@@ -40,14 +40,21 @@ export default class CreateTable extends Component {
     )
   }
 }
+SCREEN_WIDTH = Dimensions.get('window').width // get current width
+SCALE = 375 // constant, 375 is standard width of  iphone 6 / 7 / 8
 
+const scaleFontSize = fontSize => {
+  const ratio = fontSize / SCALE // get ratio based on your standard scale
+  const newSize = Math.round(ratio * SCREEN_WIDTH)
+  return newSize
+}
 const styles = StyleSheet.create({
   root: {
     backgroundColor: 'black',
     flex: 1
   },
   inputContainer: {
-    marginTop: 15,
+    marginTop: scaleFontSize(15),
     marginLeft: '5%'
   },
   buttonContainer: {
@@ -60,13 +67,13 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     color: 'rgba(200,178,115,1)'
   },
-  StartGameButton: {
+  startGameButton: {
     backgroundColor: 'rgba(149,121,42,1)',
     paddingLeft: '2%',
     paddingRight: '2%'
   },
-  StartGameButtonText: {
-    fontSize: 30,
+  startGameButtonText: {
+    fontSize: scaleFontSize(30),
     fontFamily: 'MyriadPro-BoldCond',
     color: 'white'
   }

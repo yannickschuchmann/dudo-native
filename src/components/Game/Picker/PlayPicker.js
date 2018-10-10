@@ -1,14 +1,7 @@
 import React, {Component} from 'react'
-import {
-  View,
-  StyleSheet,
-  Text,
-  Image,
-  ImageBackground,
-  Dimensions
-} from 'react-native'
-import {Icon, Button} from 'native-base'
-import {Col, Row, Grid} from 'react-native-easy-grid'
+import {StyleSheet, Text, Dimensions} from 'react-native'
+import {Button} from 'native-base'
+import {Col, Row} from 'react-native-easy-grid'
 
 import DiceAmountPicker from './DiceAmountPicker'
 import DiceTypePicker from './DiceTypePicker'
@@ -52,11 +45,6 @@ const scaleFontSize = fontSize => {
 const styles = StyleSheet.create({
   rootContainer: {
     padding: '3%'
-  },
-  pickerRow: {
-    marginTop: '3%',
-    marginLeft: '5%',
-    marginRight: '5%'
   },
   buttonContainer: {
     flex: 1,

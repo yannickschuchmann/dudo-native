@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import { View, StyleSheet, Text } from "react-native";
-import { Icon, Button } from "native-base";
-import { Col, Row, Grid } from "react-native-easy-grid";
+import React, {Component} from 'react'
+import {View, StyleSheet, Text, Dimensions} from 'react-native'
+import {Button} from 'native-base'
+import {Col} from 'react-native-easy-grid'
 
 export default class PlayDecision extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
-      button_play: "Jugar",
-      button_dudo: "Dudo",
-      button_spotOn: "Calzo!"
-    };
+      button_play: 'Jugar',
+      button_dudo: 'Dudo',
+      button_spotOn: 'Calzo!'
+    }
   }
 
   render() {
@@ -34,19 +34,27 @@ export default class PlayDecision extends Component {
           </Button>
         </Col>
       </Col>
-    );
+    )
   }
+}
+SCREEN_WIDTH = Dimensions.get('window').width // get current width
+SCALE = 375 // constant, 375 is standard width of  iphone 6 / 7 / 8
+
+const scaleFontSize = fontSize => {
+  const ratio = fontSize / SCALE // get ratio based on your standard scale
+  const newSize = Math.round(ratio * SCREEN_WIDTH)
+  return newSize
 }
 const styles = StyleSheet.create({
   buttonContainer: {
-    marginTop: "3%",
-    marginLeft: "5%",
-    marginRight: "5%",
-    height: "27%"
+    marginTop: '3%',
+    marginLeft: '5%',
+    marginRight: '5%',
+    height: '27%'
   },
   buttonText: {
-    fontSize: 30,
-    fontFamily: "MyriadPro-BoldCond",
-    color: "white"
+    fontSize: scaleFontSize(30),
+    fontFamily: 'MyriadPro-BoldCond',
+    color: 'white'
   }
-});
+})

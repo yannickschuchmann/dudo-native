@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import {View, Text, FlatList, StyleSheet} from 'react-native'
-import {List, Avatar} from 'react-native-elements'
+import {View, Text, FlatList, StyleSheet, Dimensions} from 'react-native'
+import {Avatar} from 'react-native-elements'
 import {Card} from 'native-base'
 
 class PlayerCarousel extends Component {
@@ -60,7 +60,7 @@ class PlayerCarousel extends Component {
       ]
     }
   }
-  _renderItem = ({item}) => (
+  renderItem = ({item}) => (
     <Card
       style={[
         item.is_current ? styles.selectedPlayer : styles.notSelectedPlayer
@@ -91,45 +91,52 @@ class PlayerCarousel extends Component {
           horizontal
           data={this.state.data}
           keyExtractor={item => item.player_id.toString()}
-          renderItem={this._renderItem}
+          renderItem={this.renderItem}
         />
       </View>
     )
   }
 }
+SCREEN_WIDTH = Dimensions.get('window').width // get current width
+SCALE = 375 // constant, 375 is standard width of  iphone 6 / 7 / 8
 
+const scaleFontSize = fontSize => {
+  const ratio = fontSize / SCALE // get ratio based on your standard scale
+  const newSize = Math.round(ratio * SCREEN_WIDTH)
+  return newSize
+}
 const styles = StyleSheet.create({
   listContiner: {
     flex: 1,
     backgroundColor: 'black'
   },
+  notSelectedPlayer: {
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    minWidth: scaleFontSize(80),
+    maxWidth: scaleFontSize(100),
+    backgroundColor: 'black',
+    borderColor: 'rgba(200,178,114,1)'
+  },
   notSelectedPlayerTitleText: {
     fontFamily: 'MyriadPro-BoldCond',
     textAlign: 'center',
     color: 'rgba(200,178,114,1)',
-    fontSize: 20
+    fontSize: scaleFontSize(20)
+  },
+  selectedPlayer: {
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    minWidth: scaleFontSize(80),
+    maxWidth: scaleFontSize(100),
+    backgroundColor: 'rgba(200,178,114,1)',
+    borderColor: '#95792A'
   },
   selectedPlayerTitleText: {
     fontFamily: 'MyriadPro-BoldCond',
     textAlign: 'center',
     color: 'black',
-    fontSize: 20
-  },
-  notSelectedPlayer: {
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    minWidth: 80,
-    maxWidth: 100,
-    backgroundColor: 'black',
-    borderColor: 'rgba(200,178,114,1)'
-  },
-  selectedPlayer: {
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    minWidth: 80,
-    maxWidth: 100,
-    backgroundColor: 'rgba(200,178,114,1)',
-    borderColor: '#95792A'
+    fontSize: scaleFontSize(20)
   }
 })
 

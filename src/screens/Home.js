@@ -1,13 +1,12 @@
-import React, { Component } from "react";
-import { Constants } from "expo";
-import { View, StyleSheet, StatusBar, Text, FlatList } from "react-native";
-import { Container, Content } from "native-base";
-import { Grid, Row } from "react-native-easy-grid";
-import { List, ListItem } from "react-native-elements";
+import React, {Component} from 'react'
+import {Constants} from 'expo'
+import {StyleSheet, StatusBar} from 'react-native'
+import {Container} from 'native-base'
+import {Grid, Row} from 'react-native-easy-grid'
 
-import HomeHeader from "../components/Headers/HomeHeader";
-import CreateTableSection from "../components/Management/CreateTableSection";
-import TableList from "../components/Management/TableList";
+import HomeHeader from '../components/Headers/HomeHeader'
+import CreateTableSection from '../components/Management/CreateTableSection'
+import TableList from '../components/Management/TableList'
 
 export default class Home extends Component {
   render() {
@@ -24,12 +23,12 @@ export default class Home extends Component {
           </Row>
         </Grid>
       </Container>
-    );
+    )
   }
 }
 
 const styles = StyleSheet.create({
   screenStyle: {
-    backgroundColor: "black"
+    backgroundColor: 'black'
   }
-});
+})

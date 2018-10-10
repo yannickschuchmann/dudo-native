@@ -2,14 +2,12 @@ import React, {Component} from 'react'
 import {Constants} from 'expo'
 import {
   StyleSheet,
-  Text,
   Image,
   TouchableOpacity,
   ImageBackground,
-  View,
   Dimensions
 } from 'react-native'
-import {Col, Row, Grid} from 'react-native-easy-grid'
+import {Col, Row} from 'react-native-easy-grid'
 import {Icon} from 'native-base'
 
 export default class DiceTypePicker extends Component {
@@ -59,15 +57,15 @@ export default class DiceTypePicker extends Component {
             disabled={!this.decreaseAllowed()}
           >
             <Image
-              source={require('../../../assets/pickerArrow.png')}
               style={styles.pickerContainerLeft}
+              source={require('../../../assets/pickerArrow.png')}
             />
           </TouchableOpacity>
         </Col>
         <Col size={25}>
           <ImageBackground
-            source={require('../../../assets/pickerContainer.png')}
             style={styles.pickerContainerLeft}
+            source={require('../../../assets/pickerContainer.png')}
           >
             <Icon
               style={styles.diceTypeSaid}
@@ -82,8 +80,8 @@ export default class DiceTypePicker extends Component {
             disabled={!this.increaseAllowed()}
           >
             <Image
-              source={require('../../../assets/pickerArrow.png')}
               style={styles.pickerContainerRight}
+              source={require('../../../assets/pickerArrow.png')}
             />
           </TouchableOpacity>
         </Col>

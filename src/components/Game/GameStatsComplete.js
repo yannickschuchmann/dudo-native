@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Contents} from 'expo'
-import {View, Text, StyleSheet, Dimensions} from 'react-native'
+import {Text, StyleSheet, Dimensions} from 'react-native'
 import {Col, Row, Grid} from 'react-native-easy-grid'
 import {Icon} from 'native-base'
 
@@ -48,7 +48,7 @@ export default class GameStatsComplete extends Component {
         </Col>
         <Col style={styles.rightStatsContainer}>
           <Row size={40}>
-            <Col style={{alignItems: 'center', justifyContent: 'center'}}>
+            <Col style={styles.centerItems}>
               <Text style={styles.statText}>
                 {this.state.last_move.initiator.name}
               </Text>
@@ -61,7 +61,7 @@ export default class GameStatsComplete extends Component {
             <Col style={styles.centerItems}>
               <Text style={styles.diceStyle}>{this.state.last_move.die}</Text>
             </Col>
-            <Col style={{alignItems: 'flex-start', justifyContent: 'center'}}>
+            <Col style={styles.alignLeftItems}>
               <Icon
                 style={styles.diceStyle}
                 name={`dice-${this.state.last_move.eyes}`}

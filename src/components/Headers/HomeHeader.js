@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Constants} from 'expo'
-import {StyleSheet, TextInput, StatusBar} from 'react-native'
-import {Header, Left, Body, Title, Right, Button, Icon} from 'native-base'
+import {StyleSheet, Dimensions} from 'react-native'
+import {Header, Title, Button, Icon} from 'native-base'
 import {Grid, Col, Row} from 'react-native-easy-grid'
 
 export default class HomeHeader extends Component {
@@ -30,7 +30,14 @@ export default class HomeHeader extends Component {
     )
   }
 }
+SCREEN_WIDTH = Dimensions.get('window').width // get current width
+SCALE = 375 // constant, 375 is standard width of  iphone 6 / 7 / 8
 
+const scaleFontSize = fontSize => {
+  const ratio = fontSize / SCALE // get ratio based on your standard scale
+  const newSize = Math.round(ratio * SCREEN_WIDTH)
+  return newSize
+}
 const styles = StyleSheet.create({
   homeHeader: {
     backgroundColor: 'black',
@@ -40,7 +47,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontFamily: 'MyriadPro-BoldCond',
     color: '#c8b273',
-    fontSize: 30
+    fontSize: scaleFontSize(30)
   },
   columnStyle: {
     flex: 1,
@@ -53,7 +60,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end'
   },
   icon: {
-    fontSize: 40,
+    fontSize: scaleFontSize(40),
     color: '#c8b273'
   }
 })

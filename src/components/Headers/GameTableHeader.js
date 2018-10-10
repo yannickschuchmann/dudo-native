@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Constants} from 'expo'
-import {StyleSheet, TextInput, StatusBar, Dimensions} from 'react-native'
-import {Header, Left, Button, Icon, Body, Title, Right} from 'native-base'
+import {StyleSheet, Dimensions} from 'react-native'
+import {Header, Button, Icon, Title} from 'native-base'
 import {Grid, Col, Row} from 'react-native-easy-grid'
 
 export default class GameTableHeader extends Component {

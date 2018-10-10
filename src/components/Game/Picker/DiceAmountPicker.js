@@ -5,10 +5,9 @@ import {
   Image,
   TouchableOpacity,
   ImageBackground,
-  View,
   Dimensions
 } from 'react-native'
-import {Col, Row, Grid} from 'react-native-easy-grid'
+import {Col, Row} from 'react-native-easy-grid'
 
 export default class DiceAmountPicker extends Component {
   constructor(props) {
@@ -57,15 +56,15 @@ export default class DiceAmountPicker extends Component {
             disabled={!this.decreaseAllowed()}
           >
             <Image
-              source={require('../../../assets/pickerArrow.png')}
               style={styles.pickerContainerLeft}
+              source={require('../../../assets/pickerArrow.png')}
             />
           </TouchableOpacity>
         </Col>
         <Col size={25}>
           <ImageBackground
-            source={require('../../../assets/pickerContainer.png')}
             style={styles.pickerContainerLeft}
+            source={require('../../../assets/pickerContainer.png')}
           >
             <Text style={styles.picketAmountText}>
               {this.state.picked_amount}

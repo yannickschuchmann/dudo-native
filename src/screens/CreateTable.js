@@ -1,15 +1,7 @@
 import React, {Component} from 'react'
 import {Constants} from 'expo'
-import {StyleSheet, TextInput, StatusBar, Text} from 'react-native'
-import {
-  Container,
-  Content,
-  Card,
-  CardItem,
-  Button,
-  Icon,
-  Input
-} from 'native-base'
+import {StyleSheet, StatusBar} from 'react-native'
+import {Container} from 'native-base'
 import {Grid, Row} from 'react-native-easy-grid'
 
 import BackHeader from '../components/Headers/BackHeader'

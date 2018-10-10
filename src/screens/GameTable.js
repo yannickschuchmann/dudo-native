@@ -1,19 +1,9 @@
 import React, {Component} from 'react'
 import {Constants} from 'expo'
-import {
-  Text,
-  View,
-  StyleSheet,
-  StatusBar,
-  Image,
-  TouchableOpacity,
-  FlatList,
-  Dimensions
-} from 'react-native'
-import {Icon, Container, Content, Footer} from 'native-base'
-import {ListItem} from 'react-native-elements'
+import {StyleSheet, StatusBar, Dimensions} from 'react-native'
+import {Icon, Container, Footer} from 'native-base'
 
-import {Col, Row, Grid} from 'react-native-easy-grid'
+import {Row, Grid} from 'react-native-easy-grid'
 import Modal from 'react-native-modalbox'
 
 import GameTableHeader from '../components/Headers/GameTableHeader'
@@ -75,7 +65,7 @@ export default class GameTable extends Component {
             <PlayDisplay />
           </Row>
         </Grid>
-        <Footer style={styles.CupViewButtonContainer}>
+        <Footer style={styles.cupViewButtonContainer}>
           <CupButton onPress={() => this.refs.modal3.open()} />
         </Footer>
       </Container>
@@ -91,13 +81,7 @@ const scaleFontSize = fontSize => {
   return newSize
 }
 const styles = StyleSheet.create({
-  root: {
-    backgroundColor: 'black',
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between'
-  },
-  CupViewButtonContainer: {
+  cupViewButtonContainer: {
     backgroundColor: 'black',
     borderTopColor: '#c8b273',
     borderTopWidth: 4,

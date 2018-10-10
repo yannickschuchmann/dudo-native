@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Constants} from 'expo'
-import {StyleSheet, StatusBar, Dimensions} from 'react-native'
-import {Header, Left, Button, Icon, Title, Right, Body} from 'native-base'
+import {StyleSheet, Dimensions} from 'react-native'
+import {Header, Button, Title, Icon} from 'native-base'
 import {Grid, Col, Row} from 'react-native-easy-grid'
 
 export default class BackHeader extends Component {

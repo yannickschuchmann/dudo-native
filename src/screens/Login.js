@@ -52,7 +52,7 @@ export default class Login extends Component {
   }
 
   render() {
-    const loading = <ActivityIndicator size="small" color="#00ff00" />
+    const loading = <ActivityIndicator size="small" color="#c8b273" />
     const loginButton = (
       <Button primary style={styles.FacebookLoginButton} onPress={this.onLogin}>
         <Text style={styles.FacebookLoginButtonText}>Facebook Login</Text>
