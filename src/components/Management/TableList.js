@@ -71,7 +71,7 @@ export default class TableList extends Component {
         },
         {
           id: 62,
-          name: 'I neede to make another Table with a super long name',
+          name: 'I needed to make another Table with a super long name',
           players: 125
         }
       ]

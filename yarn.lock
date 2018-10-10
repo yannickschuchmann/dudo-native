@@ -3012,6 +3012,16 @@ http-errors@~1.6.2:
     setprototypeof "1.1.0"
     statuses ">= 1.4.0 < 2"
 
+i18next-react-native-language-detector@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/i18next-react-native-language-detector/-/i18next-react-native-language-detector-1.0.2.tgz#5c47482611a44262302a363d5be34a42b11ddfc6"
+  integrity sha1-XEdIJhGkQmIwKjY9W+NKQrEd38Y=
+
+i18next@^11.9.1:
+  version "11.9.1"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-11.9.1.tgz#f2718b11da2460e29e2dbd3dd8dea05dfc88e2dc"
+  integrity sha512-sUAfCdKYi8EufO6B8aY5RF/hqweCpRKvbxUhlzlmlAr+LgJQ2kXe/5y02kaPu6ApFIiW5WOz8+3ehoy97LUtMw==
+
 iconv-lite@^0.4.17, iconv-lite@^0.4.4, iconv-lite@~0.4.13:
   version "0.4.24"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"

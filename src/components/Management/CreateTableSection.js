@@ -4,21 +4,16 @@ import {StyleSheet, Text, Dimensions} from 'react-native'
 import {Button} from 'native-base'
 import {Col, Row} from 'react-native-easy-grid'
 
-export default class CreateTableSection extends Component {
-  constructor(props) {
-    super(props)
+import {withNamespaces} from 'react-i18next'
 
-    this.state = {
-      tables: 'Mesas',
-      create: 'Crear +'
-    }
-  }
-
+export class CreateTableSection extends Component {
   render() {
+    const {t, i18n} = this.props
+
     return (
       <Row>
         <Col style={styles.topRowContainer}>
-          <Text style={styles.textTables}>{this.state.tables}</Text>
+          <Text style={styles.textTables}>{t('common:tablesText')}</Text>
         </Col>
         <Col style={styles.topRowContainer}>
           <Button
@@ -28,13 +23,18 @@ export default class CreateTableSection extends Component {
               this.props.navigation.push('CreateTable')
             }}
           >
-            <Text style={styles.createButtonText}>{this.state.create}</Text>
+            <Text style={styles.createButtonText}>
+              {t('common:createText')}
+            </Text>
           </Button>
         </Col>
       </Row>
     )
   }
 }
+
+export default withNamespaces(['common'], {wait: true})(CreateTableSection)
+
 SCREEN_WIDTH = Dimensions.get('window').width // get current width
 SCALE = 375 // constant, 375 is standard width of  iphone 6 / 7 / 8
 

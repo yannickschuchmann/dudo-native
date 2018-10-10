@@ -4,21 +4,16 @@ import {StyleSheet, View, Text, Dimensions} from 'react-native'
 import {Button, Input} from 'native-base'
 import {Row} from 'react-native-easy-grid'
 
-export default class CreateTable extends Component {
-  constructor(props) {
-    super(props)
+import {withNamespaces} from 'react-i18next'
 
-    this.state = {
-      table_name_placeholder: 'Escribe el nombre de tu Mesa',
-      start_game: 'Comenzar'
-    }
-  }
+export class TableSetupSection extends Component {
   render() {
+    const {t, i18n} = this.props
     return (
       <View style={{width: '100%'}}>
         <Row style={styles.inputContainer}>
           <Input
-            placeholder={this.state.table_name_placeholder}
+            placeholder={t('common:tableNamePlaceholder')}
             placeholderTextColor="#95792a"
             style={styles.textInput}
           />
@@ -32,7 +27,7 @@ export default class CreateTable extends Component {
             }}
           >
             <Text style={styles.startGameButtonText}>
-              {this.state.start_game}
+              {t('common:startGame')}
             </Text>
           </Button>
         </Row>
@@ -40,6 +35,9 @@ export default class CreateTable extends Component {
     )
   }
 }
+
+export default withNamespaces(['common'], {wait: true})(TableSetupSection)
+
 SCREEN_WIDTH = Dimensions.get('window').width // get current width
 SCALE = 375 // constant, 375 is standard width of  iphone 6 / 7 / 8
 

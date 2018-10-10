@@ -6,21 +6,14 @@ import {Grid, Row, Col} from 'react-native-easy-grid'
 import AuthService from '../services/auth'
 import {withUser} from '../components/user_provider'
 
+import {withNamespaces} from 'react-i18next'
+
 import BackHeader from '../components/Headers/BackHeader'
 import LanguageSelector from '../components/Management/LanguageSelector'
 
 class PlayerProfile extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      lang_spanish: 'Español',
-      lang_german: 'Deutsch',
-      lang_english: 'English',
-      logout_button: 'Salir'
-    }
-  }
   render() {
+    const {t, i18n} = this.props
     const {name, pic} = this.props.user
     return (
       <Container style={styles.root}>
@@ -48,7 +41,7 @@ class PlayerProfile extends Component {
               }}
             >
               <Text style={styles.LogoutButtonText}>
-                {this.state.logout_button}
+                {t('common:logoutText')}
               </Text>
             </Button>
           </Row>
@@ -97,4 +90,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withUser(PlayerProfile)
+export default withNamespaces(['common'], {wait: true})(withUser(PlayerProfile))

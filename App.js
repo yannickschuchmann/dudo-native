@@ -9,6 +9,9 @@ axios.defaults.baseURL = 'https://dudo-backend.furfm.de'
 
 import UserProvider from './src/components/user_provider'
 
+import {withNamespaces} from 'react-i18next'
+import i18n from './src/i18n/i18n'
+
 import Login from './src/screens/Login'
 import Home from './src/screens/Home'
 import PlayerProfile from './src/screens/PlayerProfile'
@@ -73,6 +76,12 @@ const StackNavigation = createStackNavigator(
   }
 )
 
+const WrappedStack = ({t}) => <StackNavigation screenProps={{t}} />
+const ReloadAppOnLanguageChange = withNamespaces('common', {
+  bindI18n: 'languageChanged',
+  bindStore: false
+})(WrappedStack)
+
 export default class App extends React.Component {
   constructor() {
     super()
@@ -108,7 +117,11 @@ export default class App extends React.Component {
   render() {
     return (
       <UserProvider>
-        {this.state.fontLoaded ? <StackNavigation /> : <Expo.AppLoading />}
+        {this.state.fontLoaded ? (
+          <ReloadAppOnLanguageChange />
+        ) : (
+          <Expo.AppLoading />
+        )}
       </UserProvider>
     )
   }

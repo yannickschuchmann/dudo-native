@@ -1,66 +1,68 @@
 import React, {Component} from 'react'
 import {Constants} from 'expo'
-import {Text, StyleSheet, Image, StatusBar, Dimensions} from 'react-native'
-import {Container, Button, Footer} from 'native-base'
+import {
+  Text,
+  StyleSheet,
+  Image,
+  StatusBar,
+  Dimensions,
+  Button,
+  View,
+  TouchableOpacity
+} from 'react-native'
 import {Grid, Row, Col} from 'react-native-easy-grid'
 
-export default class LanguageSelector extends Component {
-  constructor(props) {
-    super(props)
+import {withNamespaces} from 'react-i18next'
 
-    this.state = {
-      lang_spanish: 'Español',
-      lang_german: 'Deutsch',
-      lang_english: 'English',
-      logout_button: 'Salir'
-    }
-  }
+export class LanguageSelector extends Component {
   render() {
+    const {t, i18n} = this.props
+
     return (
       <Row style={styles.centerButtons}>
         <Col>
-          <Button
-            primary
+          <TouchableOpacity
             style={styles.LangButtonSpanish}
             onPress={() => {
-              this.props.navigation.push('Home')
+              i18n.changeLanguage('es')
             }}
           >
             <Text style={styles.languageButtonText}>
-              {this.state.lang_spanish}
+              {t('common:actions.toggleToSpanish')}
             </Text>
-          </Button>
+          </TouchableOpacity>
         </Col>
         <Col>
-          <Button
-            primary
+          <TouchableOpacity
             style={styles.LangButtonGerman}
             onPress={() => {
-              this.props.navigation.push('Home')
+              i18n.changeLanguage('de')
             }}
           >
             <Text style={styles.languageButtonText}>
-              {this.state.lang_german}
+              {t('common:actions.toggleToGerman')}
             </Text>
-          </Button>
+          </TouchableOpacity>
         </Col>
         <Col>
-          <Button
-            primary
+          <TouchableOpacity
             style={styles.LangButtonEnglish}
             onPress={() => {
-              this.props.navigation.push('Home')
+              i18n.changeLanguage('en')
             }}
           >
             <Text style={styles.languageButtonText}>
-              {this.state.lang_english}
+              {t('common:actions.toggleToEnglish')}
             </Text>
-          </Button>
+          </TouchableOpacity>
         </Col>
       </Row>
     )
   }
 }
+
+export default withNamespaces(['common'], {wait: true})(LanguageSelector)
+
 SCREEN_WIDTH = Dimensions.get('window').width // get current width
 SCALE = 375 // constant, 375 is standard width of  iphone 6 / 7 / 8
 
@@ -71,6 +73,7 @@ const scaleFontSize = fontSize => {
 }
 const styles = StyleSheet.create({
   LangButtonSpanish: {
+    height: scaleFontSize(50),
     backgroundColor: 'blue',
     width: '85%',
     justifyContent: 'center',
@@ -79,6 +82,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,255,255,1)'
   },
   LangButtonGerman: {
+    height: scaleFontSize(50),
     backgroundColor: 'green',
     width: '85%',
     justifyContent: 'center',
@@ -87,6 +91,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,255,255,1)'
   },
   LangButtonEnglish: {
+    height: scaleFontSize(50),
     backgroundColor: 'purple',
     width: '85%',
     justifyContent: 'center',
@@ -95,9 +100,10 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,255,255,1)'
   },
   languageButtonText: {
-    color: 'white',
     fontSize: scaleFontSize(20),
-    fontFamily: 'MyriadPro-BoldCond'
+    fontFamily: 'MyriadPro-BoldCond',
+    color: 'white',
+    textAlign: 'center'
   },
   centerButtons: {
     paddingLeft: '5%'

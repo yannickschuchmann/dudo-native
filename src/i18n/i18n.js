@@ -1,0 +1,123 @@
+import i18n from 'i18next'
+import {reactI18nextModule} from 'react-i18next'
+import Expo from 'expo'
+
+// creating a language detection plugin using expo
+// http://i18next.com/docs/ownplugin/#languagedetector
+const languageDetector = {
+  type: 'languageDetector',
+  async: true, // flags below detection to be async
+  detect: callback => {
+    return /*'es'; */ Expo.DangerZone.Localization.getCurrentLocaleAsync().then(
+      lng => {
+        callback(lng.replace('_', '-'))
+      }
+    )
+  },
+  init: () => {},
+  cacheUserLanguage: () => {}
+}
+
+i18n
+  .use(languageDetector)
+  .use(reactI18nextModule)
+  .init({
+    fallbackLng: 'es',
+
+    resources: {
+      es: {
+        common: {
+          tablesText: 'Mesas',
+          createText: 'Crear',
+          logoutText: 'Cerrar Sesión',
+          tableNamePlaceholder: 'Escribe el nombre de tu Mesa',
+          startGame: 'Comenzar',
+          searchBarText: 'Busca en tu Lista de Amigos',
+          gameText: {
+            diceAmount: 'Dados',
+            roundNumber: 'Ronda',
+            playerAmount: 'Jugando',
+            playerSays: 'dice:'
+          },
+          playButtons: {
+            playButtonText: 'Jugar',
+            dudoButtonText: 'Dudo',
+            spotOnButtonText: 'Calzo!'
+          },
+          actions: {
+            toggleToSpanish: 'Español',
+            toggleToGerman: 'Alemán',
+            toggleToEnglish: 'Inglés'
+          }
+        }
+      },
+      en: {
+        common: {
+          tablesText: 'Tables',
+          createText: 'Create',
+          logoutText: 'Log Out',
+          tableNamePlaceholder: 'Write the name of your Table',
+          startGame: 'Start',
+          searchBarText: 'Search your Friends List',
+          gameText: {
+            diceAmount: 'Dice',
+            roundNumber: 'Round',
+            playerAmount: 'Players',
+            playerSays: 'says:'
+          },
+          playButtons: {
+            playButtonText: 'Play',
+            dudoButtonText: 'Doubt It',
+            spotOnButtonText: 'Spot On!'
+          },
+          actions: {
+            toggleToSpanish: 'Spanish',
+            toggleToGerman: 'German',
+            toggleToEnglish: 'English'
+          }
+        }
+      },
+      de: {
+        common: {
+          tablesText: 'Tische',
+          createText: 'Erstellen',
+          logoutText: 'Ausloggen',
+          tableNamePlaceholder: 'Schreibe den Namen deiner Tisch',
+          startGame: 'Beginnen',
+          searchBarText: 'Suche deine Freundesliste',
+          gameText: {
+            diceAmount: 'Würfel',
+            roundNumber: 'Runden',
+            playerAmount: 'Spieler',
+            playerSays: 'sagt:'
+          },
+          playButtons: {
+            playButtonText: 'Spiel',
+            dudoButtonText: 'Bezweifel es',
+            spotOnButtonText: 'Spot On!'
+          },
+          actions: {
+            toggleToSpanish: 'Spanisch',
+            toggleToGerman: 'Deutsch',
+            toggleToEnglish: 'Englisch'
+          }
+        }
+      }
+    },
+
+    // have a common namespace used around the full app
+    ns: ['common'],
+    defaultNS: 'common',
+
+    debug: true,
+
+    // cache: {
+    //   enabled: true
+    // },
+
+    interpolation: {
+      escapeValue: false // not needed for react as it does escape per default to prevent xss!
+    }
+  })
+
+export default i18n

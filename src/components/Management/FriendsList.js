@@ -4,7 +4,9 @@ import {StyleSheet, FlatList, View, Dimensions} from 'react-native'
 import {ListItem, SearchBar} from 'react-native-elements'
 import _ from 'lodash'
 
-export default class TableList extends Component {
+import {withNamespaces} from 'react-i18next'
+
+export class TableList extends Component {
   constructor(props) {
     super(props)
 
@@ -178,8 +180,7 @@ export default class TableList extends Component {
             'https://ngin-food.com/wp-content/uploads/45/69/45697527de561eabbe38e8de876547d1.jpg',
           selected: false
         }
-      ],
-      searchBar_placeholder: 'Busca en tu Lista de Amigos'
+      ]
     }
     this.filteredData = []
   }
@@ -203,10 +204,11 @@ export default class TableList extends Component {
 
   //Rendering all list Components
   renderHeader = () => {
+    const {t, i18n} = this.props
     return (
       <SearchBar
         round
-        placeholder={this.state.searchBar_placeholder}
+        placeholder={t('common:searchBarText')}
         placeholderTextColor={'#95792A'}
         containerStyle={styles.searchContainer}
         inputContainerStyle={styles.searchInputContainer}
@@ -246,6 +248,9 @@ export default class TableList extends Component {
     )
   }
 }
+
+export default withNamespaces(['common'], {wait: true})(TableList)
+
 SCREEN_WIDTH = Dimensions.get('window').width // get current width
 SCALE = 375 // constant, 375 is standard width of  iphone 6 / 7 / 8
 

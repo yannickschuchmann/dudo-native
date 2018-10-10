@@ -4,7 +4,9 @@ import {Text, StyleSheet, Dimensions} from 'react-native'
 import {Col, Row, Grid} from 'react-native-easy-grid'
 import {Icon} from 'native-base'
 
-export default class GameStatsComplete extends Component {
+import {withNamespaces} from 'react-i18next'
+
+export class GameStatsComplete extends Component {
   constructor(props) {
     super(props)
 
@@ -21,22 +23,25 @@ export default class GameStatsComplete extends Component {
         },
         die: 3,
         eyes: 5
-      },
-      lang_dice: 'Dados',
-      lang_round: 'Ronda',
-      lang_players: 'Jugando',
-      lang_says: 'Dice:'
+      }
     }
   }
 
   render() {
+    const {t, i18n} = this.props
     return (
       <Grid>
         <Col style={styles.leftStatsContainer}>
           <Col style={styles.leftColStyle}>
-            <Text style={styles.statText}>{this.state.lang_dice}</Text>
-            <Text style={styles.statText}>{this.state.lang_round}</Text>
-            <Text style={styles.statText}>{this.state.lang_players}</Text>
+            <Text style={styles.statText}>
+              {t('common:gameText.diceAmount')}
+            </Text>
+            <Text style={styles.statText}>
+              {t('common:gameText.roundNumber')}
+            </Text>
+            <Text style={styles.statText}>
+              {t('common:gameText.playerAmount')}
+            </Text>
           </Col>
           <Col style={styles.rightColStyle}>
             <Text style={styles.statText}>{this.state.total_die}</Text>
@@ -54,7 +59,9 @@ export default class GameStatsComplete extends Component {
               </Text>
             </Col>
             <Col style={styles.alignLeftItems}>
-              <Text style={styles.statText}>{this.state.lang_says}</Text>
+              <Text style={styles.statText}>
+                {t('common:gameText.playerSays')}
+              </Text>
             </Col>
           </Row>
           <Row size={60}>
@@ -74,6 +81,9 @@ export default class GameStatsComplete extends Component {
     )
   }
 }
+
+export default withNamespaces(['common'], {wait: true})(GameStatsComplete)
+
 SCREEN_WIDTH = Dimensions.get('window').width // get current width
 SCALE = 375 // constant, 375 is standard width of  iphone 6 / 7 / 8
 
