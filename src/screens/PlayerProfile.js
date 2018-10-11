@@ -1,12 +1,13 @@
 import React, {Component} from 'react'
 import {Constants} from 'expo'
-import {Text, StyleSheet, Image, StatusBar, Dimensions} from 'react-native'
+import {Text, StyleSheet, Image, StatusBar} from 'react-native'
 import {Container, Button} from 'native-base'
 import {Grid, Row, Col} from 'react-native-easy-grid'
 import AuthService from '../services/auth'
 import {withUser} from '../components/user_provider'
 
 import {withNamespaces} from 'react-i18next'
+import {scaleFontSize} from '../helpers/responsive'
 
 import BackHeader from '../components/Headers/BackHeader'
 import LanguageSelector from '../components/Management/LanguageSelector'
@@ -50,14 +51,7 @@ class PlayerProfile extends Component {
     )
   }
 }
-SCREEN_WIDTH = Dimensions.get('window').width // get current width
-SCALE = 375 // constant, 375 is standard width of  iphone 6 / 7 / 8
 
-const scaleFontSize = fontSize => {
-  const ratio = fontSize / SCALE // get ratio based on your standard scale
-  const newSize = Math.round(ratio * SCREEN_WIDTH)
-  return newSize
-}
 const styles = StyleSheet.create({
   root: {
     backgroundColor: 'black'

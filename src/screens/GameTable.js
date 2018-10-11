@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Constants} from 'expo'
-import {StyleSheet, StatusBar, Dimensions} from 'react-native'
+import {StyleSheet, StatusBar} from 'react-native'
 import {Icon, Container, Footer} from 'native-base'
 
 import {Row, Grid} from 'react-native-easy-grid'
@@ -11,6 +11,8 @@ import PlayerCarousel from '../components/Game/PlayerCarousel'
 import GameStatsComplete from '../components/Game/GameStatsComplete'
 import PlayDisplay from '../components/Game/PlayDisplay'
 import CupButton from '../components/Game/CupButton'
+
+import {scaleFontSize} from '../helpers/responsive'
 
 export default class GameTable extends Component {
   constructor(props) {
@@ -72,14 +74,7 @@ export default class GameTable extends Component {
     )
   }
 }
-SCREEN_WIDTH = Dimensions.get('window').width // get current width
-SCALE = 375 // constant, 375 is standard width of  iphone 6 / 7 / 8
 
-const scaleFontSize = fontSize => {
-  const ratio = fontSize / SCALE // get ratio based on your standard scale
-  const newSize = Math.round(ratio * SCREEN_WIDTH)
-  return newSize
-}
 const styles = StyleSheet.create({
   cupViewButtonContainer: {
     backgroundColor: 'black',
@@ -88,7 +83,7 @@ const styles = StyleSheet.create({
     flex: 0.2
   },
   modal: {
-    flexDirection: 'column',
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'black'

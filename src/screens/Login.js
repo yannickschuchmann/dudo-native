@@ -12,6 +12,8 @@ import {Grid, Col, Row} from 'react-native-easy-grid'
 import AuthService from '../services/auth'
 import deviceStorage from '../services/deviceStorage'
 
+import {scaleFontSize} from '../helpers/responsive'
+
 export default class Login extends Component {
   state = {
     loading: true
@@ -107,7 +109,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,255,255,1)'
   },
   FacebookLoginButtonText: {
-    fontSize: 20,
+    fontSize: scaleFontSize(20),
     fontFamily: 'Roboto-Bold',
     color: 'white'
   }

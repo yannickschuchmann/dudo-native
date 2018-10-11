@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
-import {View, StyleSheet, Text, Dimensions} from 'react-native'
+import {View, StyleSheet, Text} from 'react-native'
 import {Button} from 'native-base'
 import {Col} from 'react-native-easy-grid'
 
 import {withNamespaces} from 'react-i18next'
+import {scaleFontSize} from '../../helpers/responsive'
 
 export class PlayDecision extends Component {
   render() {
@@ -39,14 +40,6 @@ export class PlayDecision extends Component {
 
 export default withNamespaces(['common'], {wait: true})(PlayDecision)
 
-SCREEN_WIDTH = Dimensions.get('window').width // get current width
-SCALE = 375 // constant, 375 is standard width of  iphone 6 / 7 / 8
-
-const scaleFontSize = fontSize => {
-  const ratio = fontSize / SCALE // get ratio based on your standard scale
-  const newSize = Math.round(ratio * SCREEN_WIDTH)
-  return newSize
-}
 const styles = StyleSheet.create({
   buttonContainer: {
     marginTop: '3%',

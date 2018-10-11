@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
 import {Constants} from 'expo'
-import {StyleSheet, View, Text, Dimensions} from 'react-native'
+import {StyleSheet, View, Text} from 'react-native'
 import {Button, Input} from 'native-base'
 import {Row} from 'react-native-easy-grid'
 
 import {withNamespaces} from 'react-i18next'
+import {scaleFontSize} from '../../helpers/responsive'
 
 export class TableSetupSection extends Component {
   render() {
@@ -38,14 +39,6 @@ export class TableSetupSection extends Component {
 
 export default withNamespaces(['common'], {wait: true})(TableSetupSection)
 
-SCREEN_WIDTH = Dimensions.get('window').width // get current width
-SCALE = 375 // constant, 375 is standard width of  iphone 6 / 7 / 8
-
-const scaleFontSize = fontSize => {
-  const ratio = fontSize / SCALE // get ratio based on your standard scale
-  const newSize = Math.round(ratio * SCREEN_WIDTH)
-  return newSize
-}
 const styles = StyleSheet.create({
   root: {
     backgroundColor: 'black',

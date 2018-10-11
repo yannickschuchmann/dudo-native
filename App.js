@@ -21,15 +21,15 @@ import AddToTable from './src/screens/AddToTable'
 import GameEnd from './src/screens/GameEnd'
 
 const DrawerNavigation = createDrawerNavigator({
-  //  GameEnd: {
-  //    screen: GameEnd
-  //  },
+  GameEnd: {
+    screen: GameEnd
+  },
 
   Login: {
     screen: Login
   },
-  GameTable: {
-    screen: GameTable
+  GameEnd: {
+    screen: GameEnd
   },
   Home: {
     screen: Home

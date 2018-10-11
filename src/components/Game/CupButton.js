@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
-import {StyleSheet, Image, TouchableOpacity, Dimensions} from 'react-native'
+import {StyleSheet, Image, TouchableOpacity} from 'react-native'
 import {Col, Row, Grid} from 'react-native-easy-grid'
+
+import {scaleFontSize} from '../../helpers/responsive'
 
 export default class CupButton extends Component {
   render() {
@@ -23,14 +25,7 @@ export default class CupButton extends Component {
     )
   }
 }
-SCREEN_WIDTH = Dimensions.get('window').width // get current width
-SCALE = 375 // constant, 375 is standard width of  iphone 6 / 7 / 8
 
-const scaleFontSize = fontSize => {
-  const ratio = fontSize / SCALE // get ratio based on your standard scale
-  const newSize = Math.round(ratio * SCREEN_WIDTH)
-  return newSize
-}
 const styles = StyleSheet.create({
   cupIcon: {
     height: scaleFontSize(70),

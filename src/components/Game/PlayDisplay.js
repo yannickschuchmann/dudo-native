@@ -6,6 +6,8 @@ import {Col, Grid} from 'react-native-easy-grid'
 import PlayPicker from './Picker/PlayPicker'
 import PlayDecision from './PlayDecision'
 
+import {scaleFontSize} from '../../helpers/responsive'
+
 export default class PlayDisplay extends Component {
   constructor(props) {
     super(props)

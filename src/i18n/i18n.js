@@ -8,11 +8,9 @@ const languageDetector = {
   type: 'languageDetector',
   async: true, // flags below detection to be async
   detect: callback => {
-    return /*'es'; */ Expo.DangerZone.Localization.getCurrentLocaleAsync().then(
-      lng => {
-        callback(lng.replace('_', '-'))
-      }
-    )
+    return Expo.DangerZone.Localization.getCurrentLocaleAsync().then(lng => {
+      callback(lng.replace('_', '-'))
+    })
   },
   init: () => {},
   cacheUserLanguage: () => {}
@@ -44,6 +42,13 @@ i18n
             dudoButtonText: 'Dudo',
             spotOnButtonText: 'Calzo!'
           },
+          gameDecisions: {
+            spotOnText: 'Calzó',
+            doubtItText: 'Dodó',
+            winnerText: 'Ganó',
+            loserText: 'Pierde',
+            totalText: 'Total'
+          },
           actions: {
             toggleToSpanish: 'Español',
             toggleToGerman: 'Alemán',
@@ -70,6 +75,13 @@ i18n
             dudoButtonText: 'Doubt It',
             spotOnButtonText: 'Spot On!'
           },
+          gameDecisions: {
+            spotOnText: 'Believes',
+            doubtItText: 'Doubts',
+            winnerText: 'Wins',
+            loserText: 'Loses',
+            totalText: 'Total'
+          },
           actions: {
             toggleToSpanish: 'Spanish',
             toggleToGerman: 'German',
@@ -95,6 +107,13 @@ i18n
             playButtonText: 'Spiel',
             dudoButtonText: 'Bezweifel es',
             spotOnButtonText: 'Spot On!'
+          },
+          gameDecisions: {
+            spotOnText: 'Glaubt',
+            doubtItText: 'Bezweifelt',
+            winnerText: 'Gewinnt',
+            loserText: 'Verliert',
+            totalText: 'Gesamt'
           },
           actions: {
             toggleToSpanish: 'Spanisch',
