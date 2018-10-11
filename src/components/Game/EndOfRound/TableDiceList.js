@@ -22,7 +22,7 @@ export default class TableDiceList extends Component {
           }
         },
         {
-          id: 1,
+          id: 2,
           name: 'Sergio',
           cup: {
             '1': 1,

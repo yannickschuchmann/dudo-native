@@ -12,7 +12,9 @@ const languageDetector = {
       callback(lng.replace('_', '-'))
     })
   },
-  init: () => {},
+  init: () => {
+    lng: 'en-US'
+  },
   cacheUserLanguage: () => {}
 }
 
@@ -20,7 +22,8 @@ i18n
   .use(languageDetector)
   .use(reactI18nextModule)
   .init({
-    fallbackLng: 'es',
+    lng: 'es',
+    fallbackLng: 'en',
 
     resources: {
       es: {
@@ -44,7 +47,7 @@ i18n
           },
           gameDecisions: {
             spotOnText: 'Calzó',
-            doubtItText: 'Dodó',
+            doubtItText: 'Dudó',
             winnerText: 'Ganó',
             loserText: 'Pierde',
             totalText: 'Total'
