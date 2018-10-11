@@ -12,9 +12,7 @@ const languageDetector = {
       callback(lng.replace('_', '-'))
     })
   },
-  init: () => {
-    lng: 'en-US'
-  },
+  init: () => {},
   cacheUserLanguage: () => {}
 }
 

@@ -20,7 +20,7 @@ export class resultContinue extends Component {
       real_dice: {
         die: 5,
         eyes: 5,
-        wins: true
+        wins: false
       },
       winner: 'common:gameDecisions.winnerText',
       loser: 'common:gameDecisions.loserText'

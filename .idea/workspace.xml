@@ -9,9 +9,9 @@
     <list default="true" id="4ddb4374-ea61-4a94-95be-063696dc9fb8" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Game/EndOfRound/ResultContinue.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Game/EndOfRound/ResultContinue.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Game/Picker/PlayPicker.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Game/Picker/PlayPicker.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/i18n/i18n.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/i18n/i18n.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/GameEnd.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/GameEnd.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/GameTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/GameTable.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,8 +35,8 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane" />
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <expand>

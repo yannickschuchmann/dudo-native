@@ -21,12 +21,11 @@ import AddToTable from './src/screens/AddToTable'
 import GameEnd from './src/screens/GameEnd'
 
 const DrawerNavigation = createDrawerNavigator({
-  GameEnd: {
-    screen: GameEnd
-  },
-
   Login: {
     screen: Login
+  },
+  GameTable: {
+    screen: GameTable
   },
   GameEnd: {
     screen: GameEnd
@@ -51,7 +50,9 @@ const StackNavigation = createStackNavigator(
     DrawerNavigation: {
       screen: DrawerNavigation
     },
-
+    GameEnd: {
+      screen: GameEnd
+    },
     AddToTable: {
       screen: AddToTable
     },
