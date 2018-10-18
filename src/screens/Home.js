@@ -8,8 +8,32 @@ import HomeHeader from '../components/Headers/HomeHeader'
 import CreateTableSection from '../components/Management/CreateTableSection'
 import TableList from '../components/Management/TableList'
 
+import api from '../services/api'
+
 export default class Home extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      tables: []
+    }
+  }
+
+  componentDidMount() {
+    this.fetchTables()
+  }
+
+  fetchTables = () => {
+    api.get(`/api/tables`).then(res => {
+      const tables = res.data
+      this.setState({
+        tables
+      })
+    })
+  }
+
   render() {
+    console.log(this.state.tables)
     return (
       <Container style={styles.screenStyle}>
         <StatusBar hidden />
@@ -19,7 +43,10 @@ export default class Home extends Component {
             <CreateTableSection navigation={this.props.navigation} />
           </Row>
           <Row Row size={80}>
-            <TableList navigation={this.props.navigation} />
+            <TableList
+              data={this.state.tables}
+              navigation={this.props.navigation}
+            />
           </Row>
         </Grid>
       </Container>

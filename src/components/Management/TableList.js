@@ -6,79 +6,6 @@ import {ListItem} from 'react-native-elements'
 import {scaleFontSize} from '../../helpers/responsive'
 
 export default class TableList extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      data: [
-        {
-          id: 50,
-          name: "Yannick's Table",
-          players: 2
-        },
-        {
-          id: 51,
-          name: "Sergio's Table",
-          players: 5
-        },
-        {
-          id: 52,
-          name: 'Hamburg',
-          players: 45
-        },
-        {
-          id: 53,
-          name: 'That time in a Bar',
-          players: 3
-        },
-        {
-          id: 54,
-          name: 'Viña',
-          players: 23
-        },
-        {
-          id: 55,
-          name: 'Amigos',
-          players: 99
-        },
-        {
-          id: 56,
-          name: 'Family',
-          players: 5
-        },
-        {
-          id: 57,
-          name: 'People I met at the Airport',
-          players: 12
-        },
-        {
-          id: 58,
-          name: 'Christmas Game',
-          players: 7
-        },
-        {
-          id: 59,
-          name: "At Alan's Place",
-          players: 8
-        },
-        {
-          id: 60,
-          name: 'Puerto Varas',
-          players: 3
-        },
-        {
-          id: 61,
-          name: 'The Floyd Table',
-          players: 76
-        },
-        {
-          id: 62,
-          name: 'I needed to make another Table with a super long name',
-          players: 125
-        }
-      ]
-    }
-  }
   renderItem = ({item}) => (
     <ListItem
       containerStyle={styles.container}
@@ -90,7 +17,7 @@ export default class TableList extends Component {
         this.props.navigation.push('GameTable')
       }}
       badge={{
-        value: item.players,
+        value: item.players.length,
         textStyle: {color: 'black'},
         containerStyle: {backgroundColor: '#95792A'}
       }}
@@ -102,7 +29,7 @@ export default class TableList extends Component {
   render() {
     return (
       <FlatList
-        data={this.state.data}
+        data={this.props.data}
         keyExtractor={item => item.id.toString()}
         renderItem={this.renderItem}
         ItemSeparatorComponent={this.renderSeparator}

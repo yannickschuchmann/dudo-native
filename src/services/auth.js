@@ -3,6 +3,7 @@ import deviceStorage from './deviceStorage'
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 
+import api from './api'
 const config = require('../../app.json')
 
 const singleton = Symbol()
@@ -84,7 +85,7 @@ class AuthService {
     const {jwt} = res.data
     deviceStorage.saveItem('jwt', jwt)
     const data = jwt_decode(jwt)
-    // api.setJWT(jwt)
+    api.setJWT(jwt)
 
     this.subscriptions.forEach(callback => {
       callback(data)
