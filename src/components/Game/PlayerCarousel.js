@@ -75,7 +75,8 @@ class PlayerCarousel extends Component {
         rounded
       />
       <Text
-        adjustsFontSizeToFit
+        // TODO: reenable once https://github.com/expo/expo/issues/2382 is fixed
+        // adjustsFontSizeToFit
         style={[
           item.is_current
             ? styles.selectedPlayerTitleText
