@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Constants} from 'expo'
 import {StyleSheet, FlatList, View} from 'react-native'
 import {ListItem, SearchBar} from 'react-native-elements'
-import _ from 'lodash'
+import {assoc, compose, curry, filter, map, pluck, propEq, when} from 'ramda'
 
 import {withNamespaces} from 'react-i18next'
 import {scaleFontSize} from '../../helpers/responsive'
@@ -42,14 +42,21 @@ export class FriendsList extends Component {
   //data: newData
   //});
   //};
-  //Managing Selected Switch
-  toggleSwitch = item => {
-    item.selected
-      ? this.setState({selected: false})
-      : this.setState({selected: true})
+
+  toggleSwitch = ({item, selected}) => {
+    const alter = curry((selected, id, items) =>
+      map(when(propEq('id', id), assoc('selected', selected)), items)
+    )
+    const users = alter(selected, item.id, this.state.users)
+    this.setState({users})
+    this.props.onChange(
+      compose(
+        pluck('id'),
+        filter(propEq('selected', true))
+      )(users)
+    )
   }
 
-  //Rendering all list Components
   renderHeader = () => {
     const {t, i18n} = this.props
     return (
@@ -76,13 +83,15 @@ export class FriendsList extends Component {
       containerStyle={styles.container}
       switchButton
       switchOnTintColor={'#95792A'}
-      onSwitch={item => this.toggleSwitch(item)}
+      switched={item.selected}
+      onSwitch={selected => this.toggleSwitch({item, selected})}
     />
   )
+
   renderSeparator = () => {
     return <View style={styles.itemSeparator} />
   }
-  //Main Render
+
   render() {
     return (
       <FlatList

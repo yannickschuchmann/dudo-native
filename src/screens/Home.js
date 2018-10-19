@@ -20,7 +20,16 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-    this.fetchTables()
+    this.willFocusListener = this.props.navigation.addListener(
+      'willFocus',
+      () => {
+        this.fetchTables()
+      }
+    )
+  }
+
+  componentWillUnmount() {
+    this.willFocusListener.remove()
   }
 
   fetchTables = () => {
@@ -33,7 +42,6 @@ export default class Home extends Component {
   }
 
   render() {
-    console.log(this.state.tables)
     return (
       <Container style={styles.screenStyle}>
         <StatusBar hidden />

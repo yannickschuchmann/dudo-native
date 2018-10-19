@@ -17,15 +17,15 @@ export class TableSetupSection extends Component {
             placeholder={t('common:tableNamePlaceholder')}
             placeholderTextColor="#95792a"
             style={styles.textInput}
+            onChangeText={this.props.onNameChange}
+            value={this.props.name}
           />
         </Row>
         <Row style={styles.buttonContainer}>
           <Button
             primary
             style={styles.startGameButton}
-            onPress={() => {
-              this.props.navigation.push('GameTable')
-            }}
+            onPress={this.props.onStart}
           >
             <Text style={styles.startGameButtonText}>
               {t('common:startGame')}
@@ -46,7 +46,8 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     marginTop: scaleFontSize(15),
-    marginLeft: '5%'
+    marginLeft: '5%',
+    marginRight: '5%'
   },
   buttonContainer: {
     marginTop: '1%',
