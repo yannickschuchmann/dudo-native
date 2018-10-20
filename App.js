@@ -19,18 +19,20 @@ import PlayerProfile from './src/screens/PlayerProfile'
 import CreateTable from './src/screens/CreateTable'
 import GameTable from './src/screens/GameTable'
 import AddToTable from './src/screens/AddToTable'
-import GameEnd from './src/screens/GameEnd'
+import RoundEnd from './src/screens/RoundEnd'
 
 const DrawerNavigation = createDrawerNavigator({
+  RoundEnd: {
+    screen: RoundEnd
+  },
+
   Login: {
     screen: Login
   },
   GameTable: {
     screen: GameTable
   },
-  GameEnd: {
-    screen: GameEnd
-  },
+
   Home: {
     screen: Home
   },
@@ -51,8 +53,8 @@ const StackNavigation = createStackNavigator(
     DrawerNavigation: {
       screen: DrawerNavigation
     },
-    GameEnd: {
-      screen: GameEnd
+    RoundEnd: {
+      screen: RoundEnd
     },
     AddToTable: {
       screen: AddToTable

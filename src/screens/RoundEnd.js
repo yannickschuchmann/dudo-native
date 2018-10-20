@@ -8,7 +8,7 @@ import DecisionMade from '../components/Game/EndOfRound/DecisionMade'
 import ResultContinue from '../components/Game/EndOfRound/ResultContinue'
 import TableDiceList from '../components/Game/EndOfRound/TableDiceList'
 
-export default class GameEnd extends Component {
+export default class RoundEnd extends Component {
   render() {
     return (
       <Container style={styles.root}>

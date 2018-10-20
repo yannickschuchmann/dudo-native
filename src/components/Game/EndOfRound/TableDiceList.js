@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import {Constants} from 'expo'
-import {StyleSheet, FlatList, View} from 'react-native'
+import {StyleSheet, FlatList, View, Text} from 'react-native'
 import {ListItem} from 'react-native-elements'
+import {Icon} from 'native-base'
+import {Col, Row} from 'react-native-easy-grid'
 
 import {scaleFontSize} from '../../../helpers/responsive'
 
@@ -55,27 +57,11 @@ export default class TableDiceList extends Component {
     }
   }
 
-  renderItem = ({item}) => (
-    <ListItem
-      style={{
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center'
-      }}
-      title={`${item.name}`}
-      titleStyle={styles.tableNameText}
-      hideChevron={true}
-      containerStyle={styles.container}
-    >
-      {this.diceIcons}
-    </ListItem>
-  )
-
-  render() {
+  renderItem = ({item}) => {
     const diceIcons = []
 
-    for (let type in this.state.data.cup) {
-      for (let i = 0; i < this.state.data.cup[type]; i++) {
+    for (let type in item.cup) {
+      for (let i = 0; i < item.cup[type]; i++) {
         diceIcons.push(
           <Icon
             style={styles.diceInCup}
@@ -87,8 +73,21 @@ export default class TableDiceList extends Component {
       }
     }
     return (
+      <Row>
+        <Col>
+          <Text style={styles.tableNameText}>{item.name}</Text>
+        </Col>
+        <Col>
+          <Row>{diceIcons}</Row>
+        </Col>
+      </Row>
+    )
+  }
+
+  render() {
+    return (
       <FlatList
-        style={{backgroundColor: 'blue'}}
+        style={{backgroundColor: '#c8b273'}}
         data={this.state.data}
         keyExtractor={item => item.id.toString()}
         renderItem={this.renderItem}
@@ -96,11 +95,12 @@ export default class TableDiceList extends Component {
     )
   }
 }
-
 const styles = StyleSheet.create({
   container: {
-    borderBottomWidth: 0,
-    borderTopWidth: 0
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderColor: 'red',
+    borderTopWidth: 1
   },
   searchContainer: {
     backgroundColor: '#95792A'
@@ -110,9 +110,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#C8B273'
   },
   tableNameText: {
-    color: '#c8b273',
+    color: 'black',
     fontFamily: 'MyriadPro-BoldCond',
-    fontSize: scaleFontSize(25)
+    fontSize: scaleFontSize(40),
+    textAlign: 'center'
   },
   itemSeparator: {
     height: 1,
@@ -121,7 +122,7 @@ const styles = StyleSheet.create({
     marginLeft: '14%'
   },
   diceInCup: {
-    color: 'rgba(200,178,115,1)',
-    fontSize: scaleFontSize(20)
+    color: 'black',
+    fontSize: scaleFontSize(40)
   }
 })
