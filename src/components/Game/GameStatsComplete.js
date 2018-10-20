@@ -8,28 +8,9 @@ import {withNamespaces} from 'react-i18next'
 import {scaleFontSize} from '../../helpers/responsive'
 
 export class GameStatsComplete extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      rounds_count: 1,
-      active_players_count: 2,
-      total_die: 10,
-      winner: null,
-      last_move: {
-        initiator: {
-          name: 'Sergio',
-          is_current: false,
-          is_active: true
-        },
-        die: 3,
-        eyes: 5
-      }
-    }
-  }
-
   render() {
-    const {t, i18n} = this.props
+    const {game, lastMove, t, i18n} = this.props
+
     return (
       <Grid>
         <Col style={styles.leftStatsContainer}>
@@ -45,19 +26,15 @@ export class GameStatsComplete extends Component {
             </Text>
           </Col>
           <Col style={styles.rightColStyle}>
-            <Text style={styles.statText}>{this.state.total_die}</Text>
-            <Text style={styles.statText}>{this.state.rounds_count}</Text>
-            <Text style={styles.statText}>
-              {this.state.active_players_count}
-            </Text>
+            <Text style={styles.statText}>{game.total_die}</Text>
+            <Text style={styles.statText}>{game.rounds_count}</Text>
+            <Text style={styles.statText}>{game.active_players_count}</Text>
           </Col>
         </Col>
         <Col style={styles.rightStatsContainer}>
           <Row size={40}>
             <Col style={styles.centerItems}>
-              <Text style={styles.statText}>
-                {this.state.last_move.initiator.name}
-              </Text>
+              <Text style={styles.statText}>{lastMove.initiator.name}</Text>
             </Col>
             <Col style={styles.alignLeftItems}>
               <Text style={styles.statText}>
@@ -66,16 +43,20 @@ export class GameStatsComplete extends Component {
             </Col>
           </Row>
           <Row size={60}>
-            <Col style={styles.centerItems}>
-              <Text style={styles.diceStyle}>{this.state.last_move.die}</Text>
-            </Col>
-            <Col style={styles.alignLeftItems}>
-              <Icon
-                style={styles.diceStyle}
-                name={`dice-${this.state.last_move.eyes}`}
-                type="MaterialCommunityIcons"
-              />
-            </Col>
+            {lastMove.eyes && (
+              <React.Fragment>
+                <Col style={styles.centerItems}>
+                  <Text style={styles.diceStyle}>{lastMove.die}</Text>
+                </Col>
+                <Col style={styles.alignLeftItems}>
+                  <Icon
+                    style={styles.diceStyle}
+                    name={`dice-${lastMove.eyes}`}
+                    type="MaterialCommunityIcons"
+                  />
+                </Col>
+              </React.Fragment>
+            )}
           </Row>
         </Col>
       </Grid>

@@ -14,7 +14,7 @@ export default class TableList extends Component {
       hideChevron={true}
       chevronColor={'#C8B273'}
       onPress={() => {
-        this.props.navigation.push('GameTable')
+        this.props.navigation.push('GameTable', {table: item})
       }}
       badge={{
         value: item.players.length,

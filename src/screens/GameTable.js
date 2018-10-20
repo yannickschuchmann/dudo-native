@@ -1,10 +1,13 @@
 import React, {Component} from 'react'
 import {Constants} from 'expo'
-import {StyleSheet, StatusBar} from 'react-native'
+import {StyleSheet, StatusBar, Text, View} from 'react-native'
 import {Icon, Container, Footer} from 'native-base'
 
 import {Row, Grid} from 'react-native-easy-grid'
 import Modal from 'react-native-modalbox'
+import {withNamespaces} from 'react-i18next'
+
+import {find, path, propEq} from 'ramda'
 
 import GameTableHeader from '../components/Headers/GameTableHeader'
 import PlayerCarousel from '../components/Game/PlayerCarousel'
@@ -12,28 +15,35 @@ import GameStatsComplete from '../components/Game/GameStatsComplete'
 import PlayDisplay from '../components/Game/PlayDisplay'
 import CupButton from '../components/Game/CupButton'
 
+import api from '../services/api'
+
 import {scaleFontSize} from '../helpers/responsive'
 
-export default class GameTable extends Component {
+class GameTable extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
       isOpen: false,
       isDisabled: false,
-      cup: {
-        '1': 1,
-        '3': 2,
-        '4': 1,
-        '6': 1
-      }
+      table: path(['navigation', 'state', 'params', 'table'])(this.props)
     }
   }
-  render() {
+
+  componentWillMount() {
+    if (!this.state.table) {
+      this.props.navigation.goBack()
+    }
+  }
+
+  updateTable = () => {}
+
+  renderDices() {
+    const {cup} = this.state.table
     const diceIcons = []
 
-    for (let type in this.state.cup) {
-      for (let i = 0; i < this.state.cup[type]; i++) {
+    for (let type in cup) {
+      for (let i = 0; i < cup[type]; i++) {
         diceIcons.push(
           <Icon
             style={styles.diceInCup}
@@ -44,27 +54,71 @@ export default class GameTable extends Component {
         )
       }
     }
+    return diceIcons
+  }
+
+  onUpdateTable = table => {
+    this.setState({table})
+  }
+
+  onAddToTable = () => {
+    this.props.navigation.push('AddToTable', {
+      updateTable: this.onUpdateTable,
+      table: this.state.table
+    })
+  }
+
+  onMove = async value => {
+    const res = await api.post(`/api/tables/${this.state.table.id}/moves`, {
+      value
+    })
+    this.onUpdateTable(res.data)
+  }
+
+  render() {
+    const {isDisabled, table} = this.state
+    const {t} = this.props
+    const currentPlayer = find(propEq('is_current', true), table.players)
+
     return (
       <Container>
         <Modal
           style={[styles.modal, styles.modal3]}
           position={'center'}
           ref={'modal3'}
-          isDisabled={this.state.isDisabled}
+          isDisabled={isDisabled}
         >
-          {diceIcons}
+          {this.renderDices()}
         </Modal>
         <StatusBar hidden />
-        <GameTableHeader navigation={this.props.navigation} />
+        <GameTableHeader
+          onAddToTable={this.onAddToTable}
+          onBack={() => this.props.navigation.goBack()}
+          table={table}
+        />
         <Grid>
           <Row size={27}>
-            <PlayerCarousel />
+            <PlayerCarousel data={table.players} />
           </Row>
           <Row size={25}>
-            <GameStatsComplete />
+            <GameStatsComplete game={table.game} lastMove={table.last_move} />
           </Row>
           <Row size={48}>
-            <PlayDisplay />
+            {table.meta.allowed_to_place_move ? (
+              <PlayDisplay
+                onMove={this.onMove}
+                game={table.game}
+                lastMove={table.last_move}
+              />
+            ) : (
+              <View style={styles.waitingContainer}>
+                <Text style={styles.waitingText}>
+                  {t('common:gameText:waitingFor', {
+                    player: currentPlayer.name
+                  })}
+                </Text>
+              </View>
+            )}
           </Row>
         </Grid>
         <Footer style={styles.cupViewButtonContainer}>
@@ -75,7 +129,20 @@ export default class GameTable extends Component {
   }
 }
 
+export default withNamespaces(['common'], {wait: true})(GameTable)
+
 const styles = StyleSheet.create({
+  waitingContainer: {
+    backgroundColor: 'black',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  waitingText: {
+    color: '#c8b273',
+    fontSize: scaleFontSize(25),
+    textAlign: 'center'
+  },
   cupViewButtonContainer: {
     backgroundColor: 'black',
     borderTopColor: '#c8b273',

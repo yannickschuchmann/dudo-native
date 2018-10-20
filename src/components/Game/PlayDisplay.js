@@ -9,33 +9,29 @@ import PlayDecision from './PlayDecision'
 import {scaleFontSize} from '../../helpers/responsive'
 
 export default class PlayDisplay extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      last_move: {
-        initiator: {
-          name: 'Sergio',
-          is_current: false,
-          is_active: true
-        },
-        die: 3,
-        eyes: 5
-      },
-      pressedPlay: false
-    }
+  state = {
+    pressedPlay: false
   }
-  pressingPlay = () => {
+
+  onPressPlay = () => {
     this.setState({pressedPlay: true})
   }
+
   render() {
     return (
       <Grid>
         <Col style={styles.rightStatsContainer}>
           {this.state.pressedPlay ? (
-            <PlayPicker />
+            <PlayPicker
+              onMove={this.props.onMove}
+              game={this.props.game}
+              lastMove={this.props.lastMove}
+            />
           ) : (
-            <PlayDecision onPress={this.pressingPlay} />
+            <PlayDecision
+              onPlay={this.onPressPlay}
+              onMove={this.props.onMove}
+            />
           )}
         </Col>
       </Grid>

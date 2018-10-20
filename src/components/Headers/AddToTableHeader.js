@@ -1,20 +1,20 @@
 import React, {Component} from 'react'
 import {Constants} from 'expo'
-import {StyleSheet} from 'react-native'
+import {StyleSheet, Text} from 'react-native'
 import {Header, Button, Icon, Title} from 'native-base'
 import {Grid, Col, Row} from 'react-native-easy-grid'
 
 import {scaleFontSize} from '../../helpers/responsive'
 
-export default class GameTableHeader extends Component {
+export default class AddToTableHeader extends Component {
   render() {
-    const {onAddToTable, onBack, table} = this.props
+    const {onAdd, navigation, selectedUsers, table} = this.props
     return (
       <Header style={styles.homeHeader}>
         <Grid>
           <Row>
             <Col size={20}>
-              <Button transparent onPress={onBack}>
+              <Button transparent onPress={() => navigation.goBack()}>
                 <Icon style={styles.icon} name="arrow-back" />
               </Button>
             </Col>
@@ -22,12 +22,12 @@ export default class GameTableHeader extends Component {
               <Title style={styles.headerTitle}>{table.name}</Title>
             </Col>
             <Col size={25}>
-              <Button transparent onPress={onAddToTable}>
-                <Icon
-                  style={styles.icon}
-                  name="account-plus-outline"
-                  type="MaterialCommunityIcons"
-                />
+              <Button
+                disabled={selectedUsers.length === 0}
+                transparent
+                onPress={onAdd}
+              >
+                <Text style={styles.addText}>Add ({selectedUsers.length})</Text>
               </Button>
             </Col>
           </Row>
@@ -49,7 +49,11 @@ const styles = StyleSheet.create({
     fontSize: scaleFontSize(30)
   },
   icon: {
-    fontSize: scaleFontSize(30),
-    color: '#c8b273'
+    color: '#c8b273',
+    fontSize: scaleFontSize(30)
+  },
+  addText: {
+    color: '#c8b273',
+    fontSize: scaleFontSize(20)
   }
 })

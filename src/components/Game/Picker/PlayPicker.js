@@ -11,18 +11,37 @@ import DiceTypePicker from './DiceTypePicker'
 import {scaleFontSize} from '../../../helpers/responsive'
 
 export class PlayPicker extends Component {
+  state = {
+    die: this.props.lastMove.die || 1,
+    eyes: this.props.lastMove.eyes || 2
+  }
+
   render() {
-    const {t, i18n} = this.props
+    const {game, lastMove, t, i18n} = this.props
+    const {die, eyes} = this.state
     return (
       <Col style={styles.rootContainer}>
         <Row>
-          <DiceAmountPicker />
+          <DiceAmountPicker
+            die={die}
+            onChange={die => this.setState({die})}
+            totalDie={game.total_die}
+          />
         </Row>
         <Row>
-          <DiceTypePicker />
+          <DiceTypePicker
+            eyes={eyes}
+            lastMove={lastMove}
+            onChange={eyes => this.setState({eyes})}
+          />
         </Row>
         <Row>
-          <Button block primary style={styles.buttonContainer}>
+          <Button
+            block
+            primary
+            style={styles.buttonContainer}
+            onPress={() => this.props.onMove({type: 'raise', die, eyes})}
+          >
             <Text style={styles.buttonText}>
               {t('common:playButtons.playButtonText')}
             </Text>

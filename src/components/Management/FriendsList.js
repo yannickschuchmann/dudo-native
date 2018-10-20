@@ -2,20 +2,29 @@ import React, {Component} from 'react'
 import {Constants} from 'expo'
 import {StyleSheet, FlatList, View} from 'react-native'
 import {ListItem, SearchBar} from 'react-native-elements'
-import {assoc, compose, curry, filter, map, pluck, propEq, when} from 'ramda'
+import {
+  assoc,
+  compose,
+  curry,
+  filter,
+  map,
+  path,
+  pluck,
+  propEq,
+  when
+} from 'ramda'
 
 import {withNamespaces} from 'react-i18next'
 import {scaleFontSize} from '../../helpers/responsive'
 import api from '../../services/api'
 
 export class FriendsList extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      users: []
-    }
-    this.filteredData = []
+  filteredData = []
+  static defaultProps = {
+    players: []
+  }
+  state = {
+    users: []
   }
 
   componentDidMount() {
@@ -24,7 +33,9 @@ export class FriendsList extends Component {
 
   fetchUsers = () => {
     api.get(`/api/users`).then(res => {
-      const users = res.data
+      const skippingIds = pluck('id', this.props.players)
+      const users = filter(user => !skippingIds.includes(user.id), res.data)
+
       this.setState({
         users
       })

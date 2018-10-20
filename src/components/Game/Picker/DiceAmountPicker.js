@@ -12,42 +12,22 @@ import {Col, Row} from 'react-native-easy-grid'
 import {scaleFontSize} from '../../../helpers/responsive'
 
 export default class DiceAmountPicker extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      rounds_count: 1,
-      active_players_count: 2,
-      total_die: 10,
-      winner: null,
-      last_move: {
-        initiator: {
-          name: 'Yannick',
-          is_current: false,
-          is_active: true
-        },
-        die: 3,
-        eyes: 5
-      },
-      picked_amount: null
-    }
-  }
-
-  componentDidMount() {
-    this.setState({picked_amount: this.state.last_move.die})
-  }
   increaseAllowed = () => {
-    return this.state.picked_amount < this.state.total_die
+    return this.props.die < this.props.totalDie
   }
+
   decreaseAllowed = () => {
-    return this.state.picked_amount > 1
+    return this.props.die > 1
   }
+
   incrementAmount = () => {
-    this.setState({picked_amount: this.state.picked_amount + 1})
+    this.props.onChange(this.props.die + 1)
   }
+
   decreaseAmount = () => {
-    this.setState({picked_amount: this.state.picked_amount - 1})
+    this.props.onChange(this.props.die - 1)
   }
+
   render() {
     return (
       <Row>
@@ -68,9 +48,7 @@ export default class DiceAmountPicker extends Component {
             style={styles.pickerContainerLeft}
             source={require('../../../assets/pickerContainer.png')}
           >
-            <Text style={styles.picketAmountText}>
-              {this.state.picked_amount}
-            </Text>
+            <Text style={styles.picketAmountText}>{this.props.die}</Text>
           </ImageBackground>
         </Col>
         <Col size={25}>

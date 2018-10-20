@@ -16,18 +16,28 @@ export class PlayDecision extends Component {
             block
             primary
             style={styles.buttonContainer}
-            onPress={this.props.onPress}
+            onPress={this.props.onPlay}
           >
             <Text style={styles.buttonText}>
               {t('common:playButtons.playButtonText')}
             </Text>
           </Button>
-          <Button block danger style={styles.buttonContainer}>
+          <Button
+            block
+            danger
+            onPress={() => this.props.onMove({type: 'dudo'})}
+            style={styles.buttonContainer}
+          >
             <Text style={styles.buttonText}>
               {t('common:playButtons.dudoButtonText')}
             </Text>
           </Button>
-          <Button block success style={styles.buttonContainer}>
+          <Button
+            block
+            success
+            onPress={() => this.props.onMove({type: 'calzo'})}
+            style={styles.buttonContainer}
+          >
             <Text style={styles.buttonText}>
               {t('common:playButtons.spotOnButtonText')}
             </Text>

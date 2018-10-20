@@ -3,19 +3,52 @@ import {Constants} from 'expo'
 import {StyleSheet, StatusBar} from 'react-native'
 import {Container} from 'native-base'
 import {Grid, Col} from 'react-native-easy-grid'
+import {path} from 'ramda'
 
-import BackHeader from '../components/Headers/BackHeader'
+import AddToTableHeader from '../components/Headers/AddToTableHeader'
 import FriendsList from '../components/Management/FriendsList'
+import api from '../services/api'
 
 export default class AddToTable extends Component {
+  state = {
+    user_ids: []
+  }
+
+  getTable = () => path(['navigation', 'state', 'params', 'table'])(this.props)
+
+  onSubmit = async () => {
+    const {user_ids} = this.state
+    try {
+      const res = await api.patch(
+        `/api/tables/${this.getTable().id}/add_users`,
+        {
+          table: {user_ids}
+        }
+      )
+      this.props.navigation.state.params.updateTable(res.data)
+      this.props.navigation.goBack()
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   render() {
+    const table = this.getTable()
     return (
       <Container style={styles.root}>
         <StatusBar hidden />
-        <BackHeader navigation={this.props.navigation} />
+        <AddToTableHeader
+          selectedUsers={this.state.user_ids}
+          table={table}
+          onAdd={this.onSubmit}
+          navigation={this.props.navigation}
+        />
         <Grid>
           <Col>
-            <FriendsList />
+            <FriendsList
+              onChange={user_ids => this.setState({user_ids})}
+              players={table.players}
+            />
           </Col>
         </Grid>
       </Container>

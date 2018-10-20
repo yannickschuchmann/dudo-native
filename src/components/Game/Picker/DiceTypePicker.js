@@ -13,42 +13,22 @@ import {Icon} from 'native-base'
 import {scaleFontSize} from '../../../helpers/responsive'
 
 export default class DiceTypePicker extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      rounds_count: 1,
-      active_players_count: 2,
-      total_die: 10,
-      winner: null,
-      min_play_amount: 2,
-      last_move: {
-        initiator: {
-          name: 'Yannick',
-          is_current: false,
-          is_active: true
-        },
-        die: 3,
-        eyes: 5
-      },
-      picked_eyes: 1
-    }
-  }
-  componentDidMount() {
-    this.setState({picked_eyes: this.state.last_move.eyes})
-  }
   increaseAllowed = () => {
-    return this.state.picked_eyes < 6
+    return this.props.eyes < 6
   }
+
   decreaseAllowed = () => {
-    return this.state.picked_eyes > 1
+    return this.props.eyes > 1
   }
+
   incrementAmount = () => {
-    this.setState({picked_eyes: this.state.picked_eyes + 1})
+    this.props.onChange(this.props.eyes + 1)
   }
+
   decreaseAmount = () => {
-    this.setState({picked_eyes: this.state.picked_eyes - 1})
+    this.props.onChange(this.props.eyes - 1)
   }
+
   render() {
     return (
       <Row>
@@ -71,7 +51,7 @@ export default class DiceTypePicker extends Component {
           >
             <Icon
               style={styles.diceTypeSaid}
-              name={`dice-${this.state.picked_eyes}`}
+              name={`dice-${this.props.eyes}`}
               type="MaterialCommunityIcons"
             />
           </ImageBackground>

@@ -35,7 +35,8 @@ i18n
             diceAmount: 'Dados',
             roundNumber: 'Ronda',
             playerAmount: 'Jugando',
-            playerSays: 'dice:'
+            playerSays: 'dice:',
+            waitingFor: 'Esperando a  {{player}}'
           },
           playButtons: {
             playButtonText: 'Jugar',
@@ -69,7 +70,8 @@ i18n
             diceAmount: 'Dice',
             roundNumber: 'Round',
             playerAmount: 'Players',
-            playerSays: 'says:'
+            playerSays: 'says:',
+            waitingFor: 'Waiting for {{player}}'
           },
           playButtons: {
             playButtonText: 'Play',
@@ -103,7 +105,8 @@ i18n
             diceAmount: 'Würfel',
             roundNumber: 'Runden',
             playerAmount: 'Spieler',
-            playerSays: 'sagt:'
+            playerSays: 'sagt:',
+            waitingFor: 'Warten auf {{player}}'
           },
           playButtons: {
             playButtonText: 'Spiel',
