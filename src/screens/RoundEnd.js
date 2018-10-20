@@ -14,14 +14,14 @@ export default class RoundEnd extends Component {
       <Container style={styles.root}>
         <StatusBar hidden />
         <Grid>
-          <Row>
+          <Row size={15}>
             <DecisionMade />
           </Row>
-          <Row>
+          <Row size={55}>
             <TableDiceList />
           </Row>
-          <Row>
-            <ResultContinue />
+          <Row size={30}>
+            <ResultContinue navigation={this.props.navigation} />
           </Row>
         </Grid>
       </Container>

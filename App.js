@@ -22,24 +22,21 @@ import AddToTable from './src/screens/AddToTable'
 import RoundEnd from './src/screens/RoundEnd'
 
 const DrawerNavigation = createDrawerNavigator({
-  RoundEnd: {
-    screen: RoundEnd
-  },
-
   Login: {
     screen: Login
   },
   GameTable: {
     screen: GameTable
   },
-
+  RoundEnd: {
+    screen: RoundEnd
+  },
   Home: {
     screen: Home
   },
   CreateTable: {
     screen: CreateTable
   },
-
   AddToTable: {
     screen: AddToTable
   },

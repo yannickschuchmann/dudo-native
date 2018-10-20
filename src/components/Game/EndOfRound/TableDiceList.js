@@ -3,7 +3,7 @@ import {Constants} from 'expo'
 import {StyleSheet, FlatList, View, Text} from 'react-native'
 import {ListItem} from 'react-native-elements'
 import {Icon} from 'native-base'
-import {Col, Row} from 'react-native-easy-grid'
+import {Grid, Col} from 'react-native-easy-grid'
 
 import {scaleFontSize} from '../../../helpers/responsive'
 
@@ -52,6 +52,46 @@ export default class TableDiceList extends Component {
             '4': 1,
             '5': 2
           }
+        },
+        {
+          id: 5,
+          name: 'Angeles',
+          cup: {
+            '1': 1,
+            '3': 2,
+            '4': 1,
+            '6': 1
+          }
+        },
+        {
+          id: 6,
+          name: 'Felipe',
+          cup: {
+            '1': 1,
+            '2': 2,
+            '4': 1,
+            '5': 1
+          }
+        },
+        {
+          id: 7,
+          name: 'Benjamin',
+          cup: {
+            '1': 1,
+            '3': 2,
+            '5': 1,
+            '6': 1
+          }
+        },
+        {
+          id: 8,
+          name: 'Macarena',
+          cup: {
+            '1': 1,
+            '2': 1,
+            '4': 1,
+            '5': 2
+          }
         }
       ]
     }
@@ -73,14 +113,10 @@ export default class TableDiceList extends Component {
       }
     }
     return (
-      <Row>
-        <Col>
-          <Text style={styles.tableNameText}>{item.name}</Text>
-        </Col>
-        <Col>
-          <Row>{diceIcons}</Row>
-        </Col>
-      </Row>
+      <View style={styles.container}>
+        <Text style={styles.playerNameText}>{item.name}</Text>
+        <View style={styles.diceContainer}>{diceIcons}</View>
+      </View>
     )
   }
 
@@ -97,32 +133,25 @@ export default class TableDiceList extends Component {
 }
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderColor: 'red',
-    borderTopWidth: 1
+    borderColor: 'black',
+    borderTopWidth: 1,
+    justifyContent: 'flex-start',
+    flexDirection: 'row'
   },
-  searchContainer: {
-    backgroundColor: '#95792A'
-  },
-  searchInputText: {
-    color: 'black',
-    backgroundColor: '#C8B273'
-  },
-  tableNameText: {
+  playerNameText: {
     color: 'black',
     fontFamily: 'MyriadPro-BoldCond',
     fontSize: scaleFontSize(40),
-    textAlign: 'center'
-  },
-  itemSeparator: {
-    height: 1,
-    width: '86%',
-    backgroundColor: '#c8b273',
-    marginLeft: '14%'
+    marginLeft: '2%'
   },
   diceInCup: {
     color: 'black',
     fontSize: scaleFontSize(40)
+  },
+  diceContainer: {
+    flex: 1,
+    marginRight: '2%',
+    flexDirection: 'row',
+    justifyContent: 'flex-end'
   }
 })

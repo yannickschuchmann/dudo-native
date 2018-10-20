@@ -66,11 +66,11 @@ export class resultContinue extends Component {
           <TouchableOpacity
             style={styles.LangButtonSpanish}
             onPress={() => {
-              i18n.changeLanguage('de')
+              this.props.navigation.push('GameTable')
             }}
           >
             <Text style={styles.languageButtonText}>
-              {t('common:actions.toggleToGerman')}
+              {t('common:gameDecisions.continueGame')}
             </Text>
           </TouchableOpacity>
         </Row>

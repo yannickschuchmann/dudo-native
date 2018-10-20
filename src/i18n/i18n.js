@@ -47,7 +47,8 @@ i18n
             doubtItText: 'Dudó',
             winnerText: 'Ganó',
             loserText: 'Pierde',
-            totalText: 'Total'
+            totalText: 'Total',
+            continueGame: 'Continuar'
           },
           actions: {
             toggleToSpanish: 'Español',
@@ -80,7 +81,8 @@ i18n
             doubtItText: 'Doubts',
             winnerText: 'Wins',
             loserText: 'Loses',
-            totalText: 'Total'
+            totalText: 'Total',
+            continueGame: 'Continue'
           },
           actions: {
             toggleToSpanish: 'Spanish',
@@ -113,7 +115,8 @@ i18n
             doubtItText: 'Bezweifelt',
             winnerText: 'Gewinnt',
             loserText: 'Verliert',
-            totalText: 'Gesamt'
+            totalText: 'Gesamt',
+            continueGame: 'Fortsetzen'
           },
           actions: {
             toggleToSpanish: 'Spanisch',
