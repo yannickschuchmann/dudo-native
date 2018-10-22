@@ -11,6 +11,7 @@ import {Container, Button} from 'native-base'
 import {Grid, Col, Row} from 'react-native-easy-grid'
 import AuthService from '../services/auth'
 import deviceStorage from '../services/deviceStorage'
+import {registerPushNotifications} from '../services/pushNotifications'
 
 import {scaleFontSize} from '../helpers/responsive'
 
@@ -50,6 +51,7 @@ export default class Login extends Component {
 
   onAuth = async token => {
     const auth = await AuthService.authenticate(token)
+    await registerPushNotifications()
     this.props.navigation.push('Home')
   }
 

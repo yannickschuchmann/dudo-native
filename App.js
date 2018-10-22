@@ -8,7 +8,7 @@ import 'es6-symbol/implement'
 import axios from 'axios'
 axios.defaults.baseURL = 'https://dudo-backend.furfm.de'
 
-import UserProvider from './src/components/user_provider'
+import UserProvider from './src/components/userProvider'
 
 import {withNamespaces} from 'react-i18next'
 import i18n from './src/i18n/i18n'

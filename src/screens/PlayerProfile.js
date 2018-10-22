@@ -4,7 +4,7 @@ import {Text, StyleSheet, Image, StatusBar} from 'react-native'
 import {Container, Button} from 'native-base'
 import {Grid, Row, Col} from 'react-native-easy-grid'
 import AuthService from '../services/auth'
-import {withUser} from '../components/user_provider'
+import {withUser} from '../components/userProvider'
 
 import {withNamespaces} from 'react-i18next'
 import {scaleFontSize} from '../helpers/responsive'
