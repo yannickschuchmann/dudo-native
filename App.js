@@ -20,6 +20,7 @@ import CreateTable from './src/screens/CreateTable'
 import GameTable from './src/screens/GameTable'
 import AddToTable from './src/screens/AddToTable'
 import RoundEnd from './src/screens/RoundEnd'
+import AppStateProvider from './src/components/appStateProvider'
 
 const DrawerNavigation = createDrawerNavigator({
   Login: {
@@ -119,7 +120,9 @@ export default class App extends React.Component {
     return (
       <UserProvider>
         {this.state.fontLoaded ? (
-          <ReloadAppOnLanguageChange />
+          <AppStateProvider>
+            <ReloadAppOnLanguageChange />
+          </AppStateProvider>
         ) : (
           <Expo.AppLoading />
         )}

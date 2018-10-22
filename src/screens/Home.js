@@ -7,18 +7,12 @@ import {Grid, Row} from 'react-native-easy-grid'
 import HomeHeader from '../components/Headers/HomeHeader'
 import CreateTableSection from '../components/Management/CreateTableSection'
 import TableList from '../components/Management/TableList'
+import {sortBy, prop} from 'ramda'
 
 import api from '../services/api'
+import {withAppState} from '../components/appStateProvider'
 
-export default class Home extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      tables: []
-    }
-  }
-
+class Home extends Component {
   componentDidMount() {
     this.willFocusListener = this.props.navigation.addListener(
       'willFocus',
@@ -32,16 +26,20 @@ export default class Home extends Component {
     this.willFocusListener.remove()
   }
 
-  fetchTables = () => {
-    api.get(`/api/tables`).then(res => {
-      const tables = res.data
-      this.setState({
-        tables
-      })
-    })
+  fetchTables = async () => {
+    try {
+      const res = await api.get(`/api/tables`)
+      this.props.actions.setTables(res.data)
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   render() {
+    const tables = sortBy(
+      prop('order'),
+      Object.values(this.props.appState.tables)
+    )
     return (
       <Container style={styles.screenStyle}>
         <StatusBar hidden />
@@ -51,16 +49,15 @@ export default class Home extends Component {
             <CreateTableSection navigation={this.props.navigation} />
           </Row>
           <Row Row size={80}>
-            <TableList
-              data={this.state.tables}
-              navigation={this.props.navigation}
-            />
+            <TableList data={tables} navigation={this.props.navigation} />
           </Row>
         </Grid>
       </Container>
     )
   }
 }
+
+export default withAppState(Home)
 
 const styles = StyleSheet.create({
   screenStyle: {

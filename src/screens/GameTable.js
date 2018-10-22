@@ -7,7 +7,7 @@ import {Row, Grid} from 'react-native-easy-grid'
 import Modal from 'react-native-modalbox'
 import {withNamespaces} from 'react-i18next'
 
-import {find, path, propEq} from 'ramda'
+import {compose, find, path, propEq} from 'ramda'
 
 import GameTableHeader from '../components/Headers/GameTableHeader'
 import PlayerCarousel from '../components/Game/PlayerCarousel'
@@ -18,19 +18,27 @@ import CupButton from '../components/Game/CupButton'
 import api from '../services/api'
 
 import {scaleFontSize} from '../helpers/responsive'
+import {withAppState} from '../components/appStateProvider'
 
 class GameTable extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      isOpen: false,
-      isDisabled: false,
-      table: path(['navigation', 'state', 'params', 'table'])(this.props)
-    }
+  state = {
+    isOpen: false,
+    isDisabled: false
   }
 
-  componentWillMount() {
+  static getDerivedStateFromProps(props, state) {
+    const {tableId} = props.navigation.state.params
+    const table = props.appState.tables[tableId]
+    if (table !== state.table) {
+      return {
+        table
+      }
+    }
+
+    return null
+  }
+
+  componentDidMount() {
     if (!this.state.table) {
       this.props.navigation.goBack()
     }
@@ -58,7 +66,7 @@ class GameTable extends Component {
   }
 
   onUpdateTable = table => {
-    this.setState({table})
+    this.props.actions.setTable(table)
   }
 
   onAddToTable = () => {
@@ -129,7 +137,10 @@ class GameTable extends Component {
   }
 }
 
-export default withNamespaces(['common'], {wait: true})(GameTable)
+export default compose(
+  withAppState,
+  withNamespaces(['common'], {wait: true})
+)(GameTable)
 
 const styles = StyleSheet.create({
   waitingContainer: {
