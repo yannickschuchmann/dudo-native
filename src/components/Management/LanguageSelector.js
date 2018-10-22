@@ -13,19 +13,23 @@ import {Grid, Row, Col} from 'react-native-easy-grid'
 
 import {withNamespaces} from 'react-i18next'
 import {scaleFontSize} from '../../helpers/responsive'
+import deviceStorage from '../../services/deviceStorage'
 
 export class LanguageSelector extends Component {
+  onPress = lng => () => {
+    this.props.i18n.changeLanguage(lng)
+    deviceStorage.saveItem('lng', lng)
+  }
+
   render() {
-    const {t, i18n} = this.props
+    const {t} = this.props
 
     return (
       <Row style={styles.centerButtons}>
         <Col>
           <TouchableOpacity
             style={styles.LangButtonSpanish}
-            onPress={() => {
-              i18n.changeLanguage('es')
-            }}
+            onPress={this.onPress('es')}
           >
             <Text style={styles.languageButtonText}>
               {t('common:actions.toggleToSpanish')}
@@ -35,9 +39,7 @@ export class LanguageSelector extends Component {
         <Col>
           <TouchableOpacity
             style={styles.LangButtonGerman}
-            onPress={() => {
-              i18n.changeLanguage('de')
-            }}
+            onPress={this.onPress('de')}
           >
             <Text style={styles.languageButtonText}>
               {t('common:actions.toggleToGerman')}
@@ -47,9 +49,7 @@ export class LanguageSelector extends Component {
         <Col>
           <TouchableOpacity
             style={styles.LangButtonEnglish}
-            onPress={() => {
-              i18n.changeLanguage('en')
-            }}
+            onPress={this.onPress('en')}
           >
             <Text style={styles.languageButtonText}>
               {t('common:actions.toggleToEnglish')}
