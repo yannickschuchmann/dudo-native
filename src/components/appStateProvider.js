@@ -1,30 +1,42 @@
 import React from 'react'
-import {Map} from 'core-js'
+import {compose} from 'ramda'
+import {Platform} from 'react-native'
+import {withNamespaces} from 'react-i18next'
+import {withNavigation} from 'react-navigation'
+import {Toast} from 'native-base'
 
 export const AppStateContext = React.createContext({})
 
-export default class AppStateProvider extends React.Component {
+class AppStateProvider extends React.Component {
   state = {
     tables: {}
   }
 
-  componentDidMount() {}
-
   setTables = tables => {
-    this.setState({
-      tables: tables.reduce((acc, current, index) => {
-        acc[current.id] = {...current, order: index}
-        return acc
-      }, {})
+    return new Promise(resolve => {
+      this.setState(
+        {
+          tables: tables.reduce((acc, current, index) => {
+            acc[current.id] = {...current, order: index}
+            return acc
+          }, {})
+        },
+        resolve
+      )
     })
   }
 
   setTable = table => {
-    this.setState({
-      tables: {
-        ...this.state.tables,
-        [table.id]: table
-      }
+    return new Promise(resolve => {
+      this.setState(
+        {
+          tables: {
+            ...this.state.tables,
+            [table.id]: table
+          }
+        },
+        resolve
+      )
     })
   }
 
@@ -43,6 +55,10 @@ export default class AppStateProvider extends React.Component {
     )
   }
 }
+
+export default compose(withNamespaces(['common'], {wait: true}))(
+  AppStateProvider
+)
 
 export const withAppState = Component => props => (
   <AppStateContext.Consumer>

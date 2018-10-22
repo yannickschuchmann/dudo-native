@@ -34,7 +34,7 @@ export default class Login extends Component {
         this.setState({loading: false})
       }
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
 

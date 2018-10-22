@@ -1,7 +1,7 @@
 import './src/reactotronConfig'
 import React from 'react'
-import {YellowBox} from 'react-native'
-import {Font} from 'expo'
+import {Platform, YellowBox} from 'react-native'
+import {Font, Notifications} from 'expo'
 import {createStackNavigator, createDrawerNavigator} from 'react-navigation'
 import 'es6-symbol/implement'
 
@@ -85,14 +85,18 @@ const ReloadAppOnLanguageChange = withNamespaces('common', {
 })(WrappedStack)
 
 export default class App extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      fontLoaded: false
-    }
+  state = {
+    fontLoaded: false
   }
 
   async componentDidMount() {
+    if (Platform.OS === 'android') {
+      Notifications.createChannelAndroidAsync('table-updates', {
+        name: 'Chat messages',
+        sound: true
+      })
+    }
+
     await Font.loadAsync({
       'MyriadPro-BoldCond': require('./src/assets/fonts/Myriad-Pro-Bold-Condensed.ttf'),
       'RobotoCondensed-Light': require('./src/assets/fonts/RobotoCondensed-Light.ttf'),

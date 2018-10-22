@@ -44,8 +44,6 @@ class GameTable extends Component {
     }
   }
 
-  updateTable = () => {}
-
   renderDices() {
     const {cup} = this.state.table
     const diceIcons = []
@@ -87,7 +85,6 @@ class GameTable extends Component {
     const {isDisabled, table} = this.state
     const {t} = this.props
     const currentPlayer = find(propEq('is_current', true), table.players)
-
     return (
       <Container>
         <Modal
