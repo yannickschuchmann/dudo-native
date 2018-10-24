@@ -3,7 +3,7 @@
     "name": "dudo",
     "description": "This project is really great.",
     "slug": "dudo",
-    "privacy": "public",
+    "privacy": "unlisted",
     "sdkVersion": "30.0.0",
     "platforms": ["ios", "android"],
     "version": "1.0.0",

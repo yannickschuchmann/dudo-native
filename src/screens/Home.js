@@ -17,6 +17,8 @@ import {withAppState} from '../components/appStateProvider'
 
 class Home extends Component {
   componentDidMount() {
+    this.fetchTables()
+
     this._notificationSubscription = Notifications.addListener(
       this.handleNotification
     )
