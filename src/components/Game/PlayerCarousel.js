@@ -9,7 +9,9 @@ class PlayerCarousel extends Component {
   renderItem = ({item}) => (
     <Card
       style={[
-        item.is_current ? styles.selectedPlayer : styles.notSelectedPlayer
+        styles.basePlayer,
+        item.is_current && styles.currentPlayer,
+        !item.is_active && styles.nonActivePlayer
       ]}
     >
       <Avatar
@@ -22,9 +24,9 @@ class PlayerCarousel extends Component {
         // TODO: reenable once https://github.com/expo/expo/issues/2382 is fixed
         // adjustsFontSizeToFit
         style={[
-          item.is_current
-            ? styles.selectedPlayerTitleText
-            : styles.notSelectedPlayerTitleText
+          styles.basePlayerText,
+          item.is_current && styles.currentPlayerText,
+          !item.is_active && styles.nonActivePlayerText
         ]}
       >
         {`${item.name}`}
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'black'
   },
-  notSelectedPlayer: {
+  basePlayer: {
     justifyContent: 'space-between',
     alignItems: 'center',
     minWidth: scaleFontSize(80),
@@ -59,13 +61,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     borderColor: 'rgba(200,178,114,1)'
   },
-  notSelectedPlayerTitleText: {
+  basePlayerText: {
     fontFamily: 'MyriadPro-BoldCond',
     textAlign: 'center',
     color: 'rgba(200,178,114,1)',
     fontSize: scaleFontSize(20)
   },
-  selectedPlayer: {
+  currentPlayer: {
     justifyContent: 'space-between',
     alignItems: 'center',
     minWidth: scaleFontSize(80),
@@ -73,10 +75,24 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(200,178,114,1)',
     borderColor: '#95792A'
   },
-  selectedPlayerTitleText: {
+  currentPlayerText: {
     fontFamily: 'MyriadPro-BoldCond',
     textAlign: 'center',
     color: 'black',
+    fontSize: scaleFontSize(20)
+  },
+  nonActivePlayer: {
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    minWidth: scaleFontSize(80),
+    maxWidth: scaleFontSize(100),
+    backgroundColor: 'grey',
+    borderColor: 'white'
+  },
+  nonActivePlayerText: {
+    fontFamily: 'MyriadPro-BoldCond',
+    textAlign: 'center',
+    color: 'white',
     fontSize: scaleFontSize(20)
   }
 })
