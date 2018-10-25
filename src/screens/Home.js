@@ -18,7 +18,14 @@ import {withAppState} from '../components/appStateProvider'
 class Home extends Component {
   componentDidMount() {
     this.fetchTables()
+    this.setupListeners()
+  }
 
+  componentWillUnmount() {
+    this._notificationSubscription.remove()
+  }
+
+  setupListeners = () => {
     this._notificationSubscription = Notifications.addListener(
       this.handleNotification
     )
@@ -30,31 +37,33 @@ class Home extends Component {
     )
   }
 
-  componentWillUnmount() {
-    this._notificationSubscription.remove()
-  }
-
   handleNotification = async ({data, origin, ...rest}) => {
     if (Platform.OS === 'ios') {
       Toast.show({
-        text: this.props.t(`common:toast.${data.msg}`),
+        text: data.title,
         buttonText: 'Ok',
-        duration: 3000
+        duration: 4000
       })
     }
 
+    await this.fetchTables()
+
+    if (true || origin === 'selected') {
+      this.navigateToTable(data)
+    }
+  }
+
+  navigateToTable = ({table}) => {
     const action = StackActions.reset({
       index: 1,
       actions: [
         NavigationActions.navigate({routeName: 'Home'}),
         NavigationActions.navigate({
           routeName: 'GameTable',
-          params: {tableId: data.table.id}
+          params: {tableId: table.id}
         })
       ]
     })
-
-    await this.fetchTables()
     this.props.navigation.dispatch(action)
   }
 

@@ -3,6 +3,7 @@ import React from 'react'
 import {Platform, YellowBox} from 'react-native'
 import {Font, Notifications} from 'expo'
 import {createStackNavigator, createDrawerNavigator} from 'react-navigation'
+import {Root} from 'native-base'
 import 'es6-symbol/implement'
 
 import axios from 'axios'
@@ -22,52 +23,25 @@ import AddToTable from './src/screens/AddToTable'
 import RoundEnd from './src/screens/RoundEnd'
 import AppStateProvider from './src/components/appStateProvider'
 
-const DrawerNavigation = createDrawerNavigator({
-  Login: {
-    screen: Login
-  },
-  GameTable: {
-    screen: GameTable
-  },
-  RoundEnd: {
-    screen: RoundEnd
-  },
-  Home: {
-    screen: Home
-  },
-  CreateTable: {
-    screen: CreateTable
-  },
-  AddToTable: {
-    screen: AddToTable
-  },
-  PlayerProfile: {
-    screen: PlayerProfile
-  }
-})
-
 const StackNavigation = createStackNavigator(
   {
-    DrawerNavigation: {
-      screen: DrawerNavigation
-    },
-    RoundEnd: {
-      screen: RoundEnd
-    },
-    AddToTable: {
-      screen: AddToTable
-    },
-    CreateTable: {
-      screen: CreateTable
+    Login: {
+      screen: Login
     },
     GameTable: {
       screen: GameTable
     },
+    RoundEnd: {
+      screen: RoundEnd
+    },
     Home: {
       screen: Home
     },
-    Login: {
-      screen: Login
+    CreateTable: {
+      screen: CreateTable
+    },
+    AddToTable: {
+      screen: AddToTable
     },
     PlayerProfile: {
       screen: PlayerProfile
@@ -122,15 +96,17 @@ export default class App extends React.Component {
   }
   render() {
     return (
-      <UserProvider>
-        {this.state.fontLoaded ? (
-          <AppStateProvider>
-            <ReloadAppOnLanguageChange />
-          </AppStateProvider>
-        ) : (
-          <Expo.AppLoading />
-        )}
-      </UserProvider>
+      <Root>
+        <UserProvider>
+          {this.state.fontLoaded ? (
+            <AppStateProvider>
+              <ReloadAppOnLanguageChange />
+            </AppStateProvider>
+          ) : (
+            <Expo.AppLoading />
+          )}
+        </UserProvider>
+      </Root>
     )
   }
 }
