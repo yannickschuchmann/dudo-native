@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Constants} from 'expo'
-import {StyleSheet, FlatList, View} from 'react-native'
+import {ActivityIndicator, StyleSheet, FlatList, View} from 'react-native'
 import {ListItem, SearchBar} from 'react-native-elements'
 import {
   assoc,
@@ -16,14 +16,17 @@ import {
 
 import {withNamespaces} from 'react-i18next'
 import {scaleFontSize} from '../../helpers/responsive'
+import {cacheImages} from '../../helpers/caching'
 import api from '../../services/api'
 
 export class FriendsList extends Component {
   filteredData = []
+  isUnmounted = false
   static defaultProps = {
     players: []
   }
   state = {
+    isLoading: true,
     users: []
   }
 
@@ -31,15 +34,22 @@ export class FriendsList extends Component {
     this.fetchUsers()
   }
 
-  fetchUsers = () => {
-    api.get(`/api/users`).then(res => {
-      const skippingIds = pluck('id', this.props.players)
-      const users = filter(user => !skippingIds.includes(user.id), res.data)
+  componentWillUnmount() {
+    this.isUnmounted = true
+  }
 
+  fetchUsers = async () => {
+    const res = await api.get(`/api/users`)
+    const skippingIds = pluck('id', this.props.players)
+    const users = filter(user => !skippingIds.includes(user.id), res.data)
+
+    await cacheImages(pluck('picture_url', users))
+    if (!this.isUnmounted) {
       this.setState({
+        isLoading: false,
         users
       })
-    })
+    }
   }
 
   //Managing Search Logic
@@ -104,9 +114,14 @@ export class FriendsList extends Component {
   }
 
   render() {
-    return (
+    const {isLoading, users} = this.state
+    return isLoading ? (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="small" color="#c8b273" />
+      </View>
+    ) : (
       <FlatList
-        data={this.state.users}
+        data={users}
         keyExtractor={item => item.id.toString()}
         ListHeaderComponent={this.renderHeader}
         renderItem={this.renderItem}
@@ -122,6 +137,11 @@ const styles = StyleSheet.create({
   container: {
     borderBottomWidth: 0,
     borderTopWidth: 0
+  },
+  loadingContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   searchContainer: {
     backgroundColor: '#95792A'

@@ -1,11 +1,38 @@
 import React, {Component} from 'react'
-import {View, Text, FlatList, StyleSheet} from 'react-native'
+import {ActivityIndicator, View, Text, FlatList, StyleSheet} from 'react-native'
 import {Avatar} from 'react-native-elements'
 import {Card} from 'native-base'
+import {pluck} from 'ramda'
 
+import {cacheImages} from '../../helpers/caching'
 import {scaleFontSize} from '../../helpers/responsive'
 
 class PlayerCarousel extends Component {
+  isUnmounted = false
+  state = {
+    isLoading: true
+  }
+
+  componentDidMount() {
+    this.prefetchImages()
+  }
+
+  componentDidUpdate() {
+    this.prefetchImages()
+  }
+
+  componentWillUnmount() {
+    this.isUnmounted = true
+  }
+
+  prefetchImages = async () => {
+    await cacheImages(pluck('picture_url', this.props.data))
+
+    if (!this.isUnmounted) {
+      this.setState({isLoading: false})
+    }
+  }
+
   renderItem = ({item}) => (
     <Card
       style={[
@@ -37,12 +64,16 @@ class PlayerCarousel extends Component {
   render() {
     return (
       <View style={styles.listContiner}>
-        <FlatList
-          horizontal
-          data={this.props.data}
-          keyExtractor={item => item.id.toString()}
-          renderItem={this.renderItem}
-        />
+        {this.state.isLoading ? (
+          <ActivityIndicator size="small" color="#c8b273" />
+        ) : (
+          <FlatList
+            horizontal
+            data={this.props.data}
+            keyExtractor={item => item.id.toString()}
+            renderItem={this.renderItem}
+          />
+        )}
       </View>
     )
   }
@@ -51,6 +82,8 @@ class PlayerCarousel extends Component {
 const styles = StyleSheet.create({
   listContiner: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: 'black'
   },
   basePlayer: {

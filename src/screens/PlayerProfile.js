@@ -1,6 +1,12 @@
 import React, {Component} from 'react'
 import {Constants} from 'expo'
-import {Text, StyleSheet, Image, StatusBar} from 'react-native'
+import {
+  ActivityIndicator,
+  Text,
+  StyleSheet,
+  Image,
+  StatusBar
+} from 'react-native'
 import {Container, Button} from 'native-base'
 import {Grid, Row, Col} from 'react-native-easy-grid'
 import AuthService from '../services/auth'
@@ -11,8 +17,23 @@ import {scaleFontSize} from '../helpers/responsive'
 
 import BackHeader from '../components/Headers/BackHeader'
 import LanguageSelector from '../components/Management/LanguageSelector'
+import {cacheImages} from '../helpers/caching'
 
 class PlayerProfile extends Component {
+  state = {
+    isLoading: true
+  }
+
+  componentDidMount() {
+    this.prefetchImage()
+  }
+
+  prefetchImage = async () => {
+    await cacheImages([this.props.user.pic])
+
+    this.setState({isLoading: false})
+  }
+
   render() {
     const {t, i18n} = this.props
     const {name, pic} = this.props.user
@@ -23,7 +44,11 @@ class PlayerProfile extends Component {
         <Grid>
           <Col size={60} style={{alignItems: 'center'}}>
             <Row>
-              <Image source={{uri: pic}} style={styles.image} />
+              {this.state.isLoading ? (
+                <ActivityIndicator size="small" color="#c8b273" />
+              ) : (
+                <Image source={{uri: pic}} style={styles.image} />
+              )}
             </Row>
             <Row>
               <Text style={styles.nameText}>{name}</Text>
