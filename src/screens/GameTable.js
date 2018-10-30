@@ -39,8 +39,22 @@ class GameTable extends Component {
   }
 
   componentDidMount() {
-    if (!this.state.table) {
+    const {table} = this.state
+    if (!table) {
       this.props.navigation.goBack()
+      return
+    }
+
+    this.handleHasSeen(table)
+  }
+
+  handleHasSeen = async table => {
+    if (!table.meta.has_seen) {
+      try {
+        await api.patch(`/api/tables/${table.id}/view`)
+      } catch (e) {
+        console.error(e)
+      }
     }
   }
 

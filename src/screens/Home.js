@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import {Constants, Notifications} from 'expo'
 
-import {Platform, StyleSheet, StatusBar} from 'react-native'
-import {Container, Toast} from 'native-base'
+import {Alert, Platform, StyleSheet, StatusBar} from 'react-native'
+import {Container} from 'native-base'
+import {withInAppNotification} from '../../lib/react-native-in-app-notification'
 import {Grid, Row} from 'react-native-easy-grid'
 import {StackActions, NavigationActions} from 'react-navigation'
 import {withNamespaces} from 'react-i18next'
@@ -10,7 +11,7 @@ import {withNamespaces} from 'react-i18next'
 import HomeHeader from '../components/Headers/HomeHeader'
 import CreateTableSection from '../components/Management/CreateTableSection'
 import TableList from '../components/Management/TableList'
-import {compose, sortBy, prop} from 'ramda'
+import {compose, pluck, sortBy, prop} from 'ramda'
 
 import api from '../services/api'
 import {withAppState} from '../components/appStateProvider'
@@ -38,17 +39,17 @@ class Home extends Component {
   }
 
   handleNotification = async ({data, origin, ...rest}) => {
-    if (Platform.OS === 'ios') {
-      Toast.show({
-        text: data.title,
-        buttonText: 'Ok',
-        duration: 4000
+    await this.fetchTables()
+
+    if (origin === 'received' && Platform.OS === 'ios') {
+      this.props.showNotification({
+        title: data.title,
+        message: 'The notification has been triggered',
+        onPress: () => this.navigateToTable(data)
       })
     }
 
-    await this.fetchTables()
-
-    if (true || origin === 'selected') {
+    if (origin === 'selected') {
       this.navigateToTable(data)
     }
   }
@@ -85,6 +86,7 @@ class Home extends Component {
       prop('order'),
       Object.values(this.props.appState.tables)
     )
+    console.log(pluck('meta', tables))
     return (
       <Container style={styles.screenStyle}>
         <StatusBar hidden />
@@ -104,7 +106,8 @@ class Home extends Component {
 
 export default compose(
   withAppState,
-  withNamespaces(['common'], {wait: true})
+  withNamespaces(['common'], {wait: true}),
+  withInAppNotification
 )(Home)
 
 const styles = StyleSheet.create({

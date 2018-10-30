@@ -3,7 +3,7 @@ import React from 'react'
 import {Platform, YellowBox} from 'react-native'
 import {Font, Notifications} from 'expo'
 import {createStackNavigator, createDrawerNavigator} from 'react-navigation'
-import {Root} from 'native-base'
+import {InAppNotificationProvider} from './lib/react-native-in-app-notification'
 import 'es6-symbol/implement'
 
 import axios from 'axios'
@@ -96,7 +96,7 @@ export default class App extends React.Component {
   }
   render() {
     return (
-      <Root>
+      <InAppNotificationProvider>
         <UserProvider>
           {this.state.fontLoaded ? (
             <AppStateProvider>
@@ -106,7 +106,7 @@ export default class App extends React.Component {
             <Expo.AppLoading />
           )}
         </UserProvider>
-      </Root>
+      </InAppNotificationProvider>
     )
   }
 }
