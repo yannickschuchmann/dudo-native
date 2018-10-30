@@ -3,6 +3,7 @@ import React from 'react'
 import {Platform, YellowBox} from 'react-native'
 import {Font, Notifications} from 'expo'
 import {createStackNavigator, createDrawerNavigator} from 'react-navigation'
+import Sentry from 'sentry-expo'
 import {InAppNotificationProvider} from './lib/react-native-in-app-notification'
 import 'es6-symbol/implement'
 
@@ -22,6 +23,10 @@ import GameTable from './src/screens/GameTable'
 import AddToTable from './src/screens/AddToTable'
 import RoundEnd from './src/screens/RoundEnd'
 import AppStateProvider from './src/components/appStateProvider'
+
+Sentry.config(
+  'https://13d5174d9ee5459fa21e720fc53ff6ad@sentry.io/1312521'
+).install()
 
 const StackNavigation = createStackNavigator(
   {

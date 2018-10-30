@@ -30,6 +30,18 @@
     "android": {
       "googleServicesFile": "./google-services.json",
       "package": "de.furfm.dudo"
+    },
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "yannick-schuchmann",
+            "project": "dudo",
+            "authToken": "fad96252d7d947e6ac731e16d0de8b329524e24f1ddf4321b6a5c3c7f31dc667"
+          }
+        }
+      ]
     }
   }
 }
