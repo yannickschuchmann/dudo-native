@@ -46,6 +46,7 @@ class GameTable extends Component {
     }
 
     this.handleHasSeen(table)
+    this.handleHasSeenLastRoundResult(this.state.table)
   }
 
   handleHasSeen = async table => {
@@ -55,6 +56,12 @@ class GameTable extends Component {
       } catch (e) {
         console.error(e)
       }
+    }
+  }
+
+  handleHasSeenLastRoundResult = table => {
+    if (!table.meta.has_seen_last_round_result) {
+      this.props.navigation.push('RoundEnd')
     }
   }
 

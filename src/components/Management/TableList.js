@@ -13,9 +13,7 @@ export default class TableList extends Component {
       title={item.name}
       hideChevron={true}
       leftIcon={this.renderAsterisk({item})}
-      onPress={() => {
-        this.props.navigation.push('GameTable', {tableId: item.id})
-      }}
+      onPress={() => this.props.onPress(item.id)}
       badge={{
         value: item.players.length,
         textStyle: {color: 'black'},

@@ -45,23 +45,23 @@ class Home extends Component {
       this.props.showNotification({
         title: data.title,
         message: 'The notification has been triggered',
-        onPress: () => this.navigateToTable(data)
+        onPress: () => this.resetToTable(data.table.id)
       })
     }
 
     if (origin === 'selected') {
-      this.navigateToTable(data)
+      this.resetToTable(data.table.id)
     }
   }
 
-  navigateToTable = ({table}) => {
+  resetToTable = tableId => {
     const action = StackActions.reset({
       index: 1,
       actions: [
         NavigationActions.navigate({routeName: 'Home'}),
         NavigationActions.navigate({
           routeName: 'GameTable',
-          params: {tableId: table.id}
+          params: {tableId}
         })
       ]
     })
@@ -82,21 +82,24 @@ class Home extends Component {
   }
 
   render() {
+    const {navigation} = this.props
     const tables = sortBy(
       prop('order'),
       Object.values(this.props.appState.tables)
     )
-    console.log(pluck('meta', tables))
     return (
       <Container style={styles.screenStyle}>
         <StatusBar hidden />
-        <HomeHeader navigation={this.props.navigation} />
+        <HomeHeader navigation={navigation} />
         <Grid>
           <Row size={20}>
-            <CreateTableSection navigation={this.props.navigation} />
+            <CreateTableSection navigation={navigation} />
           </Row>
           <Row Row size={80}>
-            <TableList data={tables} navigation={this.props.navigation} />
+            <TableList
+              onPress={id => navigation.push('GameTable', {tableId: id})}
+              data={tables}
+            />
           </Row>
         </Grid>
       </Container>
