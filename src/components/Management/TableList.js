@@ -8,16 +8,26 @@ import {scaleFontSize} from '../../helpers/responsive'
 export default class TableList extends Component {
   renderItem = ({item}) => (
     <ListItem
-      containerStyle={styles.container}
-      titleStyle={styles.tableNameText}
+      containerStyle={[
+        styles.container,
+        !item.meta.has_seen && styles.containerNotSeen
+      ]}
+      titleStyle={[
+        styles.tableNameText,
+        !item.meta.has_seen && styles.tableNameTextNotSeen
+      ]}
       title={item.name}
       hideChevron={true}
       leftIcon={this.renderAsterisk({item})}
       onPress={() => this.props.onPress(item.id)}
       badge={{
         value: item.players.length,
-        textStyle: {color: 'black'},
-        containerStyle: {backgroundColor: '#95792A'}
+        textStyle: {
+          color: 'black'
+        },
+        containerStyle: {
+          backgroundColor: '#95792A'
+        }
       }}
     />
   )
@@ -33,16 +43,13 @@ export default class TableList extends Component {
       )
     }
   }
-  renderSeparator = () => {
-    return <View style={styles.itemSeparator} />
-  }
+
   render() {
     return (
       <FlatList
         data={this.props.data}
         keyExtractor={item => item.id.toString()}
         renderItem={this.renderItem}
-        ItemSeparatorComponent={this.renderSeparator}
       />
     )
   }
@@ -51,18 +58,24 @@ export default class TableList extends Component {
 const styles = StyleSheet.create({
   container: {
     borderBottomWidth: 0,
-    borderTopWidth: 0
+    borderTopWidth: 2,
+    borderTopColor: '#c8b273'
+  },
+  containerNotSeen: {
+    borderBottomWidth: 0,
+    borderTopWidth: 2,
+    borderTopColor: '#c8b273',
+    backgroundColor: '#c8b273'
   },
   tableNameText: {
     color: '#c8b273',
     fontFamily: 'MyriadPro-BoldCond',
     fontSize: scaleFontSize(25)
   },
-  itemSeparator: {
-    height: 1,
-    width: '95%',
-    backgroundColor: '#c8b273',
-    marginLeft: '5%'
+  tableNameTextNotSeen: {
+    color: 'black',
+    fontFamily: 'MyriadPro-BoldCond',
+    fontSize: scaleFontSize(25)
   },
   allowedToMove: {
     color: 'red',

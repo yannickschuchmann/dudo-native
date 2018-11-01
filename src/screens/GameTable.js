@@ -60,9 +60,9 @@ class GameTable extends Component {
   }
 
   handleHasSeenLastRoundResult = table => {
-    if (!table.meta.has_seen_last_round_result) {
+    /* if (!table.meta.has_seen_last_round_result) {
       this.props.navigation.push('RoundEnd')
-    }
+    } */
   }
 
   renderDices() {
