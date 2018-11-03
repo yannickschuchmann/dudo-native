@@ -33,6 +33,10 @@ class GameTable extends Component {
     const {tableId} = props.navigation.state.params
     const table = props.appState.tables[tableId]
     if (table !== state.table) {
+      if (table.round_result) {
+        this.refs.modalRoundEnd.open()
+      }
+
       return {
         table
       }
@@ -49,7 +53,6 @@ class GameTable extends Component {
     }
 
     this.handleHasSeen(table)
-    this.handleHasSeenLastRoundResult(this.state.table)
   }
 
   handleHasSeen = async table => {
@@ -60,12 +63,6 @@ class GameTable extends Component {
         console.error(e)
       }
     }
-  }
-
-  handleHasSeenLastRoundResult = table => {
-    /* if (!table.meta.has_seen_last_round_result) {
-      this.props.navigation.push('RoundEnd')
-    } */
   }
 
   renderDices() {
@@ -104,8 +101,6 @@ class GameTable extends Component {
     })
     this.onUpdateTable(res.data)
   }
-
-  //onPress={() => this.refs.modalRoundEnd.open()}
 
   render() {
     const {isDisabled, table} = this.state
@@ -184,7 +179,7 @@ class GameTable extends Component {
           </Row>
         </Grid>
         <Footer style={styles.cupViewButtonContainer}>
-          <CupButton onPress={() => this.refs.modalDiceInCup.open()} />
+          <CupButton onPress={() => this.refs.modalRoundEnd.open()} />
         </Footer>
       </Container>
     )
