@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Constants} from 'expo'
-import {StyleSheet, Text} from 'react-native'
+import {StyleSheet, Text, View} from 'react-native'
 import {Icon} from 'native-base'
 import {Col, Row} from 'react-native-easy-grid'
 
@@ -23,7 +23,9 @@ export class DecisionMade extends Component {
         eyes: 5
       },
       playedDudo: 'common:gameDecisions.doubtItText',
-      playedSpotOn: 'common:gameDecisions.spotOnText'
+      playedSpotOn: 'common:gameDecisions.spotOnText',
+      winner: 'common:gameDecisions.winnerText',
+      loser: 'common:gameDecisions.loserText'
     }
   }
   render() {
@@ -35,23 +37,78 @@ export class DecisionMade extends Component {
         ? (result = this.state.playedDudo)
         : (result = this.state.playedSpotOn)
     }
+    {
+      this.state.real_dice.wins
+        ? (result = this.state.winner)
+        : (result = this.state.loser)
+    }
+
     return (
-      <Row>
-        <Col style={styles.playMade1}>
-          <Text style={styles.decisionText}>{this.state.last_move.player}</Text>
-        </Col>
-        <Col style={styles.playMade2}>
-          <Text style={styles.decisionText}>{t(result)}</Text>
-        </Col>
-        <Col style={styles.playMade1}>
-          <Text style={styles.decisionText}>{this.state.last_move.die}</Text>
-          <Icon
-            style={styles.diceStyle}
-            name={`dice-${this.state.last_move.eyes}`}
-            type="MaterialCommunityIcons"
-          />
-        </Col>
-      </Row>
+      <Col>
+        <Row style={styles.playMade1}>
+          <Text style={styles.decisionText}>
+            {this.state.last_move.player} {t(result)}
+          </Text>
+        </Row>
+        <Row>
+          <Col style={styles.playMade1}>
+            {this.state.last_move.dudo ? (
+              <Col>
+                <Row style={styles.playMade1}>
+                  <Text style={styles.decisionText}>
+                    {t('common:gameDecisions.doubtItText')}
+                  </Text>
+                </Row>
+                <Row style={styles.playMade1}>
+                  <Text style={styles.decisionText}>
+                    {this.state.last_move.die}
+                  </Text>
+                  <Icon
+                    style={styles.diceStyle}
+                    name={`dice-${this.state.last_move.eyes}`}
+                    type="MaterialCommunityIcons"
+                  />
+                </Row>
+              </Col>
+            ) : (
+              <Col>
+                <Row style={styles.playMade1}>
+                  <Text style={styles.decisionText}>
+                    {t('common:gameDecisions.spotOnText')}
+                  </Text>
+                </Row>
+                <Row style={styles.playMade1}>
+                  <Text style={styles.decisionText}>
+                    {this.state.last_move.die}
+                  </Text>
+                  <Icon
+                    style={styles.diceStyle}
+                    name={`dice-${this.state.last_move.eyes}`}
+                    type="MaterialCommunityIcons"
+                  />
+                </Row>
+              </Col>
+            )}
+          </Col>
+          <Col>
+            <Row style={styles.playMade1}>
+              <Text style={styles.decisionText}>
+                {t('common:gameDecisions.totalText')}
+              </Text>
+            </Row>
+            <Row style={styles.playMade1}>
+              <Text style={styles.decisionText}>
+                {this.state.real_dice.die}
+              </Text>
+              <Icon
+                style={styles.diceStyle}
+                name={`dice-${this.state.real_dice.eyes}`}
+                type="MaterialCommunityIcons"
+              />
+            </Row>
+          </Col>
+        </Row>
+      </Col>
     )
   }
 }
@@ -65,20 +122,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  playMade2: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center'
-  },
   decisionText: {
     color: 'white',
-    fontSize: scaleFontSize(30),
+    fontSize: scaleFontSize(40),
     fontFamily: 'MyriadPro-BoldCond',
     color: 'rgba(200,178,115,1)'
   },
   diceStyle: {
-    fontSize: scaleFontSize(30),
+    fontSize: scaleFontSize(40),
     color: 'rgba(200,178,115,1)'
   }
 })

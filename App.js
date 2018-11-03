@@ -20,7 +20,6 @@ import PlayerProfile from './src/screens/PlayerProfile'
 import CreateTable from './src/screens/CreateTable'
 import GameTable from './src/screens/GameTable'
 import AddToTable from './src/screens/AddToTable'
-import RoundEnd from './src/screens/RoundEnd'
 import AppStateProvider from './src/components/appStateProvider'
 
 const StackNavigation = createStackNavigator(
@@ -30,9 +29,6 @@ const StackNavigation = createStackNavigator(
     },
     GameTable: {
       screen: GameTable
-    },
-    RoundEnd: {
-      screen: RoundEnd
     },
     Home: {
       screen: Home
