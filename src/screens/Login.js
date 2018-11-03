@@ -96,14 +96,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue'
   },
   image: {
-    height: 170,
-    width: 300
+    height: scaleFontSize(170),
+    width: scaleFontSize(300)
   },
   FacebookLoginButton: {
     alignSelf: 'center',
     justifyContent: 'center',
-    height: 50,
-    width: 200,
+    height: scaleFontSize(50),
+    width: scaleFontSize(200),
     opacity: 1,
     borderWidth: 1,
     borderRadius: 2,

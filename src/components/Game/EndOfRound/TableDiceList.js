@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
   playerNameText: {
     color: 'black',
     fontFamily: 'MyriadPro-BoldCond',
-    fontSize: scaleFontSize(40),
+    fontSize: scaleFontSize(35),
     marginLeft: '2%'
   },
   diceInCup: {

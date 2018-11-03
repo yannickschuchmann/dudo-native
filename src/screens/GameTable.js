@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Constants} from 'expo'
-import {StyleSheet, StatusBar, Text, View} from 'react-native'
+import {StyleSheet, StatusBar, Text, View, TouchableOpacity} from 'react-native'
 import {Icon, Container, Footer} from 'native-base'
 
 import {Row, Grid} from 'react-native-easy-grid'
@@ -14,6 +14,9 @@ import PlayerCarousel from '../components/Game/PlayerCarousel'
 import GameStatsComplete from '../components/Game/GameStatsComplete'
 import PlayDisplay from '../components/Game/PlayDisplay'
 import CupButton from '../components/Game/CupButton'
+
+import DecisionMade from '../components/Game/EndOfRound/DecisionMade'
+import TableDiceList from '../components/Game/EndOfRound/TableDiceList'
 
 import api from '../services/api'
 
@@ -60,9 +63,9 @@ class GameTable extends Component {
   }
 
   handleHasSeenLastRoundResult = table => {
-    if (!table.meta.has_seen_last_round_result) {
-      // this.props.navigation.push('RoundEnd')
-    }
+    /* if (!table.meta.has_seen_last_round_result) {
+      this.props.navigation.push('RoundEnd')
+    } */
   }
 
   renderDices() {
@@ -102,6 +105,8 @@ class GameTable extends Component {
     this.onUpdateTable(res.data)
   }
 
+  //onPress={() => this.refs.modalRoundEnd.open()}
+
   render() {
     const {isDisabled, table} = this.state
     const {t} = this.props
@@ -109,12 +114,40 @@ class GameTable extends Component {
     return (
       <Container>
         <Modal
-          style={[styles.modal, styles.modal3]}
+          style={[styles.modal, styles.modalDiceInCup]}
           position={'center'}
-          ref={'modal3'}
+          ref={'modalDiceInCup'}
           isDisabled={isDisabled}
         >
           {this.renderDices()}
+        </Modal>
+        <Modal
+          style={[styles.modal, styles.modalRoundEnd]}
+          position={'center'}
+          ref={'modalRoundEnd'}
+          swipeToClose={false}
+          isDisabled={isDisabled}
+        >
+          <Grid>
+            <Row size={30}>
+              <DecisionMade />
+            </Row>
+            <Row size={55}>
+              <TableDiceList />
+            </Row>
+            <Row size={15}>
+              /*<TouchableOpacity
+                style={styles.LangButtonSpanish}
+                onPress={() => {
+                  this.props.navigation.push('GameTable')
+                }}
+              >
+                <Text style={styles.languageButtonText}>
+                  {t('common:gameDecisions.continueGame')}
+                </Text>
+              </TouchableOpacity>*/
+            </Row>
+          </Grid>
         </Modal>
         <StatusBar hidden />
         <GameTableHeader
@@ -148,7 +181,7 @@ class GameTable extends Component {
           </Row>
         </Grid>
         <Footer style={styles.cupViewButtonContainer}>
-          <CupButton onPress={() => this.refs.modal3.open()} />
+          <CupButton onPress={() => this.refs.modalDiceInCup.open()} />
         </Footer>
       </Container>
     )
@@ -184,12 +217,31 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'black'
   },
-  modal3: {
+  modalDiceInCup: {
     height: '70%',
+    width: '90%'
+  },
+  modalRoundEnd: {
+    height: '90%',
     width: '90%'
   },
   diceInCup: {
     color: 'rgba(200,178,115,1)',
     fontSize: scaleFontSize(65)
+  },
+  LangButtonSpanish: {
+    height: scaleFontSize(50),
+    backgroundColor: 'blue',
+    width: '50%',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderRadius: 2,
+    borderColor: 'rgba(255,255,255,1)'
+  },
+  languageButtonText: {
+    fontSize: scaleFontSize(20),
+    fontFamily: 'MyriadPro-BoldCond',
+    color: 'white',
+    textAlign: 'center'
   }
 })
