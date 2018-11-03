@@ -29,6 +29,7 @@ export default class PlayDisplay extends Component {
             />
           ) : (
             <PlayDecision
+              allowedToDudoCalzo={this.props.allowedToDudoCalzo}
               onPlay={this.onPressPlay}
               onMove={this.props.onMove}
             />

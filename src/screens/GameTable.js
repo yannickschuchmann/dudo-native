@@ -136,7 +136,8 @@ class GameTable extends Component {
               <TableDiceList />
             </Row>
             <Row size={15}>
-              /*<TouchableOpacity
+              /*
+              <TouchableOpacity
                 style={styles.LangButtonSpanish}
                 onPress={() => {
                   this.props.navigation.push('GameTable')
@@ -145,7 +146,8 @@ class GameTable extends Component {
                 <Text style={styles.languageButtonText}>
                   {t('common:gameDecisions.continueGame')}
                 </Text>
-              </TouchableOpacity>*/
+              </TouchableOpacity>
+              */
             </Row>
           </Grid>
         </Modal>
@@ -167,6 +169,7 @@ class GameTable extends Component {
               <PlayDisplay
                 onMove={this.onMove}
                 game={table.game}
+                allowedToDudoCalzo={table.meta.allowed_to_dudo_calzo}
                 lastMove={table.last_move}
               />
             ) : (
