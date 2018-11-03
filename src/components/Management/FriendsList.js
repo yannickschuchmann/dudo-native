@@ -20,14 +20,14 @@ import {cacheImages} from '../../helpers/caching'
 import api from '../../services/api'
 
 export class FriendsList extends Component {
-  filteredData = []
   isUnmounted = false
   static defaultProps = {
     players: []
   }
   state = {
     isLoading: true,
-    users: []
+    users: [],
+    query: ''
   }
 
   componentDidMount() {
@@ -53,16 +53,18 @@ export class FriendsList extends Component {
   }
 
   //Managing Search Logic
-  //handleSearch = (text) => {
-  //const newData = this.filteredData.filter(item => {
-  //const itemData = `${item.name.toUpperCase()}`;
-  //const textData = text.toUpperCase();
-  //return itemData.indexOf(textData) > -1;
-  //});
-  //this.setState({
-  //data: newData
-  //});
-  //};
+  handleSearch = query => {
+    this.setState({
+      query
+    })
+  }
+
+  filterByQuery = () =>
+    this.state.users.filter(user => {
+      const name = user.name.toLowerCase()
+      const query = this.state.query.toLowerCase()
+      return name.indexOf(query) > -1
+    })
 
   toggleSwitch = ({item, selected}) => {
     const alter = curry((selected, id, items) =>
@@ -88,7 +90,7 @@ export class FriendsList extends Component {
         containerStyle={styles.searchContainer}
         inputContainerStyle={styles.searchInputContainer}
         inputStyle={styles.searchInputText}
-        //onChangeText={(text) => this.handleSearch(text)}
+        onChangeText={this.handleSearch}
         autoCorrect={false}
       />
     )
@@ -121,7 +123,7 @@ export class FriendsList extends Component {
       </View>
     ) : (
       <FlatList
-        data={users}
+        data={this.filterByQuery(users)}
         keyExtractor={item => item.id.toString()}
         ListHeaderComponent={this.renderHeader}
         renderItem={this.renderItem}

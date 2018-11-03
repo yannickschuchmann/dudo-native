@@ -67,7 +67,7 @@ export default class App extends React.Component {
   async componentDidMount() {
     if (Platform.OS === 'android') {
       Notifications.createChannelAndroidAsync('table-updates', {
-        name: 'Chat messages',
+        name: 'Table updates',
         sound: true
       })
     }
