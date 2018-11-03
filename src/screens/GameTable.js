@@ -109,7 +109,7 @@ class GameTable extends Component {
     return (
       <Container>
         <Modal
-          style={[styles.modal, styles.modalDiceInCup]}
+          style={styles.modalDiceInCup}
           position={'center'}
           ref={'modalDiceInCup'}
           isDisabled={isDisabled}
@@ -117,7 +117,11 @@ class GameTable extends Component {
           {this.renderDices()}
         </Modal>
         <Modal
-          style={[styles.modal, styles.modalRoundEnd]}
+          style={[
+            styles.modalRoundEnd,
+            table.game.winner && styles.modalWin,
+            !table.game.winner && styles.modalLose
+          ]}
           position={'center'}
           ref={'modalRoundEnd'}
           swipeToClose={false}
@@ -130,19 +134,12 @@ class GameTable extends Component {
             <Row size={55}>
               <TableDiceList />
             </Row>
-            <Row size={15}>
-              /*
-              <TouchableOpacity
-                style={styles.LangButtonSpanish}
-                onPress={() => {
-                  this.props.navigation.push('GameTable')
-                }}
-              >
-                <Text style={styles.languageButtonText}>
+            <Row size={15} style={styles.buttonContainer}>
+              <TouchableOpacity style={styles.continueButton}>
+                <Text style={styles.continueButtonText}>
                   {t('common:gameDecisions.continueGame')}
                 </Text>
               </TouchableOpacity>
-              */
             </Row>
           </Grid>
         </Modal>
@@ -179,7 +176,7 @@ class GameTable extends Component {
           </Row>
         </Grid>
         <Footer style={styles.cupViewButtonContainer}>
-          <CupButton onPress={() => this.refs.modalRoundEnd.open()} />
+          <CupButton onPress={() => this.refs.modalDiceInCup.open()} />
         </Footer>
       </Container>
     )
@@ -209,34 +206,49 @@ const styles = StyleSheet.create({
     borderTopWidth: 4,
     flex: 0.2
   },
-  modal: {
+  modalRoundEnd: {
+    height: '90%',
+    width: '90%'
+  },
+  modalLose: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black'
+    backgroundColor: 'rgba(255,0,0,0.35)'
+  },
+  modalWin: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,255,0,0.35)'
   },
   modalDiceInCup: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'black',
     height: '70%',
-    width: '90%'
-  },
-  modalRoundEnd: {
-    height: '90%',
     width: '90%'
   },
   diceInCup: {
     color: 'rgba(200,178,115,1)',
     fontSize: scaleFontSize(65)
   },
-  LangButtonSpanish: {
-    height: scaleFontSize(50),
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  continueButton: {
+    height: scaleFontSize(40),
     backgroundColor: 'blue',
-    width: '50%',
+    width: '40%',
     justifyContent: 'center',
     borderWidth: 1,
-    borderRadius: 2,
+    borderRadius: 5,
     borderColor: 'rgba(255,255,255,1)'
   },
-  languageButtonText: {
+  continueButtonText: {
     fontSize: scaleFontSize(20),
     fontFamily: 'MyriadPro-BoldCond',
     color: 'white',

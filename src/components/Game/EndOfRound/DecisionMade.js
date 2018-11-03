@@ -16,14 +16,13 @@ export class DecisionMade extends Component {
         die: 3,
         eyes: 5,
         player: 'Sergio',
-        dudo: true
+        dudo: false
       },
       real_dice: {
         die: 5,
-        eyes: 5
+        eyes: 5,
+        wins: true
       },
-      playedDudo: 'common:gameDecisions.doubtItText',
-      playedSpotOn: 'common:gameDecisions.spotOnText',
       winner: 'common:gameDecisions.winnerText',
       loser: 'common:gameDecisions.loserText'
     }
@@ -32,11 +31,6 @@ export class DecisionMade extends Component {
     const {t, i18n} = this.props
     let result = null
 
-    {
-      this.state.last_move.dudo
-        ? (result = this.state.playedDudo)
-        : (result = this.state.playedSpotOn)
-    }
     {
       this.state.real_dice.wins
         ? (result = this.state.winner)
