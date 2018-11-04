@@ -49,7 +49,7 @@ class PlayerCarousel extends Component {
       />
       <Text
         // TODO: reenable once https://github.com/expo/expo/issues/2382 is fixed
-        // adjustsFontSizeToFit
+        adjustsFontSizeToFit
         style={[
           styles.basePlayerText,
           item.is_current && styles.currentPlayerText,

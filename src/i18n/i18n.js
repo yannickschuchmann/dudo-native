@@ -1,6 +1,6 @@
 import i18n from 'i18next'
 import {reactI18nextModule} from 'react-i18next'
-import Expo from 'expo'
+import {Localization} from 'expo-localization'
 import deviceStorage from '../services/deviceStorage'
 
 // creating a language detection plugin using expo
@@ -10,9 +10,7 @@ const languageDetector = {
   async: true, // flags below detection to be async
   detect: async callback => {
     // changed language if set by user otherwise device default language
-    const lng =
-      (await deviceStorage.getItem('lng')) ||
-      (await Expo.DangerZone.Localization.getCurrentLocaleAsync())
+    const lng = (await deviceStorage.getItem('lng')) || Localization.locale
     callback(lng.replace('_', '-'))
   },
   init: () => {},

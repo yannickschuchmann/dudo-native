@@ -6,6 +6,7 @@ import {createStackNavigator, createDrawerNavigator} from 'react-navigation'
 import Sentry from 'sentry-expo'
 import {InAppNotificationProvider} from './lib/react-native-in-app-notification'
 import 'es6-symbol/implement'
+import {cacheImages} from './src/helpers/caching'
 
 import axios from 'axios'
 axios.defaults.baseURL = 'https://dudo-backend.furfm.de'
@@ -72,6 +73,7 @@ export default class App extends React.Component {
       })
     }
 
+    await cacheImages([require('./src/assets/dudoLogo.png')])
     await Font.loadAsync({
       'MyriadPro-BoldCond': require('./src/assets/fonts/Myriad-Pro-Bold-Condensed.ttf'),
       'RobotoCondensed-Light': require('./src/assets/fonts/RobotoCondensed-Light.ttf'),

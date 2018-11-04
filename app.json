@@ -4,11 +4,9 @@
     "description": "This project is really great.",
     "slug": "dudo",
     "privacy": "unlisted",
-    "sdkVersion": "30.0.0",
+    "sdkVersion": "31.0.0",
     "platforms": ["ios", "android"],
     "version": "1.0.0",
-    "versionCode": 1,
-    "buildNumber": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -27,11 +25,13 @@
     "facebookDisplayName": "Dudo",
     "ios": {
       "bundleIdentifier": "de.furfm.dudo",
-      "supportsTablet": false
+      "supportsTablet": false,
+      "buildNumber": "1.0.0"
     },
     "android": {
       "googleServicesFile": "./google-services.json",
-      "package": "de.furfm.dudo"
+      "package": "de.furfm.dudo",
+      "versionCode": 1
     },
     "androidStatusBar": {
       "barStyle": "light-content",
