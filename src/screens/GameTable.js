@@ -33,10 +33,6 @@ class GameTable extends Component {
     const {tableId} = props.navigation.state.params
     const table = props.appState.tables[tableId]
     if (table !== state.table) {
-      if (table.round_result) {
-        this.refs.modalRoundEnd.open()
-      }
-
       return {
         table
       }
@@ -52,7 +48,22 @@ class GameTable extends Component {
       return
     }
 
+    this.handleRoundEnd(table)
     this.handleHasSeen(table)
+  }
+
+  componentDidUpdate() {
+    const {table} = this.state
+    console.log('componentDidUpdate', table)
+
+    this.handleHasSeen(table)
+    this.handleRoundEnd(table)
+  }
+
+  handleRoundEnd = table => {
+    if (table.round_result && this.refs.modalRoundEnd) {
+      this.refs.modalRoundEnd.open()
+    }
   }
 
   handleHasSeen = async table => {
@@ -108,41 +119,6 @@ class GameTable extends Component {
     const currentPlayer = find(propEq('is_current', true), table.players)
     return (
       <Container>
-        <Modal
-          style={styles.modalDiceInCup}
-          position={'center'}
-          ref={'modalDiceInCup'}
-          isDisabled={isDisabled}
-        >
-          {this.renderDices()}
-        </Modal>
-        <Modal
-          style={[
-            styles.modalRoundEnd,
-            table.game.winner && styles.modalWin,
-            !table.game.winner && styles.modalLose
-          ]}
-          position={'center'}
-          ref={'modalRoundEnd'}
-          swipeToClose={false}
-          isDisabled={isDisabled}
-        >
-          <Grid>
-            <Row size={30}>
-              <DecisionMade />
-            </Row>
-            <Row size={55}>
-              <TableDiceList />
-            </Row>
-            <Row size={15} style={styles.buttonContainer}>
-              <TouchableOpacity style={styles.continueButton}>
-                <Text style={styles.continueButtonText}>
-                  {t('common:gameDecisions.continueGame')}
-                </Text>
-              </TouchableOpacity>
-            </Row>
-          </Grid>
-        </Modal>
         <StatusBar hidden />
         <GameTableHeader
           onAddToTable={this.onAddToTable}
@@ -178,6 +154,48 @@ class GameTable extends Component {
         <Footer style={styles.cupViewButtonContainer}>
           <CupButton onPress={() => this.refs.modalDiceInCup.open()} />
         </Footer>
+        <Modal
+          style={styles.modalDiceInCup}
+          position={'center'}
+          ref={'modalDiceInCup'}
+          isDisabled={isDisabled}
+        >
+          {table.meta.is_active && table.cup ? (
+            this.renderDices()
+          ) : (
+            <Text style={styles.waitingText}>
+              {t('common:gameText:obligatedRound')}
+            </Text>
+          )}
+        </Modal>
+        {table.round_result && (
+          <Modal
+            style={styles.modalRoundEnd}
+            position={'center'}
+            ref={'modalRoundEnd'}
+            swipeToClose={false}
+            isDisabled={isDisabled}
+          >
+            <Grid>
+              <Row size={30}>
+                <DecisionMade {...table.round_result} />
+              </Row>
+              <Row size={55}>
+                <TableDiceList cups={table.round_result.cups} />
+              </Row>
+              <Row size={15} style={styles.buttonContainer}>
+                <TouchableOpacity
+                  onPress={() => this.refs.modalRoundEnd.close()}
+                  style={styles.continueButton}
+                >
+                  <Text style={styles.continueButtonText}>
+                    {t('common:gameDecisions.continueGame')}
+                  </Text>
+                </TouchableOpacity>
+              </Row>
+            </Grid>
+          </Modal>
+        )}
       </Container>
     )
   }
@@ -208,19 +226,17 @@ const styles = StyleSheet.create({
   },
   modalRoundEnd: {
     height: '90%',
-    width: '90%'
+    width: '90%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255,0,0,0.45)'
   },
   modalLose: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(255,0,0,0.35)'
+    backgroundColor: 'rgba(255,0,0,0.45)'
   },
   modalWin: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0,255,0,0.35)'
+    backgroundColor: 'rgba(0,255,0,0.45)'
   },
   modalDiceInCup: {
     flexDirection: 'row',

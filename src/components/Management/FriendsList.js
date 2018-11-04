@@ -105,7 +105,7 @@ export class FriendsList extends Component {
       hideChevron={true}
       containerStyle={styles.container}
       switchButton
-      switchOnTintColor={'#95792A'}
+      trackColor={'#95792A'}
       switched={item.selected}
       onSwitch={selected => this.toggleSwitch({item, selected})}
     />

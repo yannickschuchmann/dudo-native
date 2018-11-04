@@ -8,81 +8,40 @@ import {withNamespaces} from 'react-i18next'
 import {scaleFontSize} from '../../../helpers/responsive'
 
 export class DecisionMade extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      last_move: {
-        die: 3,
-        eyes: 5,
-        player: 'Sergio',
-        dudo: false
-      },
-      real_dice: {
-        die: 5,
-        eyes: 5,
-        wins: true
-      },
-      winner: 'common:gameDecisions.winnerText',
-      loser: 'common:gameDecisions.loserText'
-    }
-  }
   render() {
-    const {t, i18n} = this.props
-    let result = null
-
-    {
-      this.state.real_dice.wins
-        ? (result = this.state.winner)
-        : (result = this.state.loser)
-    }
+    const {
+      last_raise,
+      last_move_type,
+      real_die,
+      description,
+      t,
+      i18n
+    } = this.props
 
     return (
       <Col>
         <Row style={styles.playMade1}>
-          <Text style={styles.decisionText}>
-            {this.state.last_move.player} {t(result)}
-          </Text>
+          <Text style={styles.decisionText}>{description}</Text>
         </Row>
         <Row>
           <Col style={styles.playMade1}>
-            {this.state.last_move.dudo ? (
-              <Col>
-                <Row style={styles.playMade1}>
-                  <Text style={styles.decisionText}>
-                    {t('common:gameDecisions.doubtItText')}
-                  </Text>
-                </Row>
-                <Row style={styles.playMade1}>
-                  <Text style={styles.decisionText}>
-                    {this.state.last_move.die}
-                  </Text>
-                  <Icon
-                    style={styles.diceStyle}
-                    name={`dice-${this.state.last_move.eyes}`}
-                    type="MaterialCommunityIcons"
-                  />
-                </Row>
-              </Col>
-            ) : (
-              <Col>
-                <Row style={styles.playMade1}>
-                  <Text style={styles.decisionText}>
-                    {t('common:gameDecisions.spotOnText')}
-                  </Text>
-                </Row>
-                <Row style={styles.playMade1}>
-                  <Text style={styles.decisionText}>
-                    {this.state.last_move.die}
-                  </Text>
-                  <Icon
-                    style={styles.diceStyle}
-                    name={`dice-${this.state.last_move.eyes}`}
-                    type="MaterialCommunityIcons"
-                  />
-                </Row>
-              </Col>
-            )}
+            <Col>
+              <Row style={styles.playMade1}>
+                <Text style={styles.decisionText}>
+                  {last_move_type === 'dudo'
+                    ? t('common:gameDecisions.doubtItText')
+                    : t('common:gameDecisions.spotOnText')}
+                </Text>
+              </Row>
+              <Row style={styles.playMade1}>
+                <Text style={styles.decisionText}>{last_raise.die}</Text>
+                <Icon
+                  style={styles.diceStyle}
+                  name={`dice-${last_raise.eyes}`}
+                  type="MaterialCommunityIcons"
+                />
+              </Row>
+            </Col>
           </Col>
           <Col>
             <Row style={styles.playMade1}>
@@ -91,12 +50,10 @@ export class DecisionMade extends Component {
               </Text>
             </Row>
             <Row style={styles.playMade1}>
-              <Text style={styles.decisionText}>
-                {this.state.real_dice.die}
-              </Text>
+              <Text style={styles.decisionText}>{real_die.die}</Text>
               <Icon
                 style={styles.diceStyle}
-                name={`dice-${this.state.real_dice.eyes}`}
+                name={`dice-${real_die.eyes}`}
                 type="MaterialCommunityIcons"
               />
             </Row>

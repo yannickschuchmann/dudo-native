@@ -72,6 +72,7 @@ i18n
             roundNumber: 'Round',
             playerAmount: 'Players',
             playerSays: 'says:',
+            obligatedRound: "Obligated Round.\nYou can' see your dices",
             waitingFor: 'Waiting for {{player}}'
           },
           playButtons: {

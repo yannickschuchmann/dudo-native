@@ -8,95 +8,6 @@ import {Grid, Col} from 'react-native-easy-grid'
 import {scaleFontSize} from '../../../helpers/responsive'
 
 export default class TableDiceList extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      data: [
-        {
-          id: 1,
-          name: 'Yannick',
-          cup: {
-            '1': 1,
-            '3': 2,
-            '4': 1,
-            '6': 1
-          }
-        },
-        {
-          id: 2,
-          name: 'Sergio',
-          cup: {
-            '1': 1,
-            '2': 2,
-            '4': 1,
-            '5': 1
-          }
-        },
-        {
-          id: 3,
-          name: 'Paul',
-          cup: {
-            '1': 1,
-            '3': 2,
-            '5': 1,
-            '6': 1
-          }
-        },
-        {
-          id: 4,
-          name: 'José',
-          cup: {
-            '1': 1,
-            '2': 1,
-            '4': 1,
-            '5': 2
-          }
-        },
-        {
-          id: 5,
-          name: 'Angeles',
-          cup: {
-            '1': 1,
-            '3': 2,
-            '4': 1,
-            '6': 1
-          }
-        },
-        {
-          id: 6,
-          name: 'Felipe',
-          cup: {
-            '1': 1,
-            '2': 2,
-            '4': 1,
-            '5': 1
-          }
-        },
-        {
-          id: 7,
-          name: 'Benjamin',
-          cup: {
-            '1': 1,
-            '3': 2,
-            '5': 1,
-            '6': 1
-          }
-        },
-        {
-          id: 8,
-          name: 'Macarena',
-          cup: {
-            '1': 1,
-            '2': 1,
-            '4': 1,
-            '5': 2
-          }
-        }
-      ]
-    }
-  }
-
   renderItem = ({item}) => {
     const diceIcons = []
 
@@ -112,9 +23,10 @@ export default class TableDiceList extends Component {
         )
       }
     }
+
     return (
       <View style={styles.container}>
-        <Text style={styles.playerNameText}>{item.name}</Text>
+        <Text style={styles.playerNameText}>{item.player}</Text>
         <View style={styles.diceContainer}>{diceIcons}</View>
       </View>
     )
@@ -124,8 +36,8 @@ export default class TableDiceList extends Component {
     return (
       <FlatList
         style={{backgroundColor: '#c8b273'}}
-        data={this.state.data}
-        keyExtractor={item => item.id.toString()}
+        data={this.props.cups}
+        keyExtractor={(item, i) => `${item.name}-${i}`}
         renderItem={this.renderItem}
       />
     )

@@ -44,7 +44,6 @@ export class PlayDecision extends Component {
               {t('common:playButtons.spotOnButtonText')}
             </Text>
           </Button>
-          )}
         </Col>
       </Col>
     )

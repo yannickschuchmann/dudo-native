@@ -65,6 +65,11 @@ export default class App extends React.Component {
     fontLoaded: false
   }
 
+  constructor(props) {
+    super(props)
+    YellowBox.ignoreWarnings(['Require cycle'])
+  }
+
   async componentDidMount() {
     if (Platform.OS === 'android') {
       Notifications.createChannelAndroidAsync('table-updates', {
