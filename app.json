@@ -24,14 +24,14 @@
     "facebookDisplayName": "Dudo",
     "ios": {
       "buildNumber": "1.0.0",
-      "bundleIdentifier": "de.furfm.dudo",
+      "bundleIdentifier": "com.dudogame.dudo",
       "icon": "./assets/icon-ios.png",
       "supportsTablet": false
     },
     "android": {
       "icon": "./assets/icon-android.png",
       "googleServicesFile": "./google-services.json",
-      "package": "de.furfm.dudo",
+      "package": "com.dudogame.dudo",
       "versionCode": 1
     },
     "androidStatusBar": {

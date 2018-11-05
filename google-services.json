@@ -8,6 +8,37 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:829776130261:android:c6242b66529ed984",
+        "android_client_info": {
+          "package_name": "com.dudogame.dudo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "829776130261-rijjbnjnta3a8i0gl1dqklg85dhosjut.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFyBoPG92laaoLVmLOctQNC9L6YPDxkyY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:829776130261:android:3e015d8d8f3d7bc1",
         "android_client_info": {
           "package_name": "de.furfm.dudo"
