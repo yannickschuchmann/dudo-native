@@ -55,7 +55,7 @@ class Home extends Component {
     if (origin === 'received' && Platform.OS === 'ios') {
       this.props.showNotification({
         title: data.title,
-        message: 'The notification has been triggered',
+        message: '',
         onPress: () => this.resetToTable(data.table.id)
       })
     }
