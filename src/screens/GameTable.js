@@ -170,7 +170,11 @@ class GameTable extends Component {
         </Modal>
         {table.round_result && (
           <Modal
-            style={styles.modalRoundEnd}
+            style={[
+              styles.modalEndRound,
+              table.round_result.status === 'regained' && styles.modalWin,
+              table.round_result.status === 'lost' && styles.modalLose
+            ]}
             position={'center'}
             ref={'modalRoundEnd'}
             swipeToClose={false}
@@ -224,19 +228,19 @@ const styles = StyleSheet.create({
     borderTopWidth: 4,
     flex: 0.2
   },
-  modalRoundEnd: {
+  modalEndRound: {
     height: '90%',
     width: '90%',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(255,0,0,0.45)'
-  },
-  modalLose: {
-    backgroundColor: 'rgba(255,0,0,0.45)'
+    backgroundColor: 'blue'
   },
   modalWin: {
     backgroundColor: 'rgba(0,255,0,0.45)'
+  },
+  modalLose: {
+    backgroundColor: 'rgba(255,0,0,0.45)'
   },
   modalDiceInCup: {
     flexDirection: 'row',

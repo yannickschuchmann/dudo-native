@@ -17,6 +17,10 @@ export default class PlayDisplay extends Component {
     this.setState({pressedPlay: true})
   }
 
+  onClosePicker = () => {
+    this.setState({pressedPlay: false})
+  }
+
   render() {
     return (
       <Grid>
@@ -26,6 +30,7 @@ export default class PlayDisplay extends Component {
               onMove={this.props.onMove}
               game={this.props.game}
               lastMove={this.props.lastMove}
+              closePicker={this.onClosePicker}
             />
           ) : (
             <PlayDecision

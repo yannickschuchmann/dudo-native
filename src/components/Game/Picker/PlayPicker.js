@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {StyleSheet, Text} from 'react-native'
-import {Button} from 'native-base'
+import {Button, Icon} from 'native-base'
 import {Col, Row} from 'react-native-easy-grid'
 
 import {withNamespaces} from 'react-i18next'
@@ -36,16 +36,28 @@ export class PlayPicker extends Component {
           />
         </Row>
         <Row>
-          <Button
-            block
-            primary
-            style={styles.buttonContainer}
-            onPress={() => this.props.onMove({type: 'raise', die, eyes})}
-          >
-            <Text style={styles.buttonText}>
-              {t('common:playButtons.playButtonText')}
-            </Text>
-          </Button>
+          <Col size={20}>
+            <Button
+              block
+              danger
+              style={styles.backButtonContainer}
+              onPress={this.props.closePicker}
+            >
+              <Icon style={styles.icon} name="arrow-back" />
+            </Button>
+          </Col>
+          <Col size={80}>
+            <Button
+              block
+              primary
+              style={styles.buttonContainer}
+              onPress={() => this.props.onMove({type: 'raise', die, eyes})}
+            >
+              <Text style={styles.buttonText}>
+                {t('common:playButtons.playButtonText')}
+              </Text>
+            </Button>
+          </Col>
         </Row>
       </Col>
     )
@@ -59,14 +71,22 @@ const styles = StyleSheet.create({
     padding: '3%'
   },
   buttonContainer: {
-    flex: 1,
-    alignItems: 'center',
-    marginBottom: '1%',
-    height: '80%'
+    flex: 0.9,
+    alignItems: 'center'
   },
   buttonText: {
     fontSize: scaleFontSize(30),
     fontFamily: 'MyriadPro-BoldCond',
     color: 'white'
+  },
+  icon: {
+    fontSize: scaleFontSize(30),
+    color: 'white',
+    alignItems: 'center'
+  },
+  backButtonContainer: {
+    flex: 0.9,
+    alignItems: 'center',
+    marginRight: '5%'
   }
 })
