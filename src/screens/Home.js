@@ -7,6 +7,7 @@ import {
   Platform,
   StyleSheet,
   StatusBar,
+  Text,
   View
 } from 'react-native'
 import {Container} from 'native-base'
@@ -14,11 +15,12 @@ import {withInAppNotification} from '../../lib/react-native-in-app-notification'
 import {Grid, Row} from 'react-native-easy-grid'
 import {StackActions, NavigationActions} from 'react-navigation'
 import {withNamespaces} from 'react-i18next'
+import {compose, pluck, sortBy, prop} from 'ramda'
 
 import HomeHeader from '../components/Headers/HomeHeader'
 import CreateTableSection from '../components/Management/CreateTableSection'
 import TableList from '../components/Management/TableList'
-import {compose, pluck, sortBy, prop} from 'ramda'
+import {scaleFontSize} from '../helpers/responsive'
 
 import api from '../services/api'
 import {withAppState} from '../components/appStateProvider'
@@ -94,7 +96,7 @@ class Home extends Component {
   }
 
   render() {
-    const {navigation} = this.props
+    const {navigation, t} = this.props
     const tables = sortBy(
       prop('order'),
       Object.values(this.props.appState.tables)
@@ -109,8 +111,14 @@ class Home extends Component {
           </Row>
           <Row Row size={80}>
             {this.state.isLoading ? (
-              <View style={styles.loadingContainer}>
+              <View style={styles.centeredContainer}>
                 <ActivityIndicator size="small" color="#c8b273" />
+              </View>
+            ) : tables.length === 0 ? (
+              <View style={styles.centeredContainer}>
+                <Text style={styles.noTablesText}>
+                  {t('common:noTablesText')}
+                </Text>
               </View>
             ) : (
               <TableList
@@ -135,9 +143,14 @@ const styles = StyleSheet.create({
   screenStyle: {
     backgroundColor: 'black'
   },
-  loadingContainer: {
+  centeredContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  noTablesText: {
+    color: '#c8b273',
+    fontSize: scaleFontSize(15),
+    textAlign: 'center'
   }
 })

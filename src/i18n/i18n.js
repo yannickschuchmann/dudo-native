@@ -64,6 +64,7 @@ i18n
         common: {
           tablesText: 'Tables',
           createText: 'Create',
+          noTablesText: 'No tables yet.\nStart by creating a new table!',
           logoutText: 'Log Out',
           tableNamePlaceholder: 'Write the name of your Table',
           startGame: 'Start',
@@ -74,7 +75,8 @@ i18n
             playerAmount: 'Players',
             playerSays: 'says:',
             obligatedRound: "Obligated Round.\nYou can' see your dices",
-            waitingFor: 'Waiting for {{player}}'
+            waitingFor: 'Waiting for {{player}}',
+            wonTheGame: '{{player}} wins!'
           },
           playButtons: {
             playButtonText: 'Play',

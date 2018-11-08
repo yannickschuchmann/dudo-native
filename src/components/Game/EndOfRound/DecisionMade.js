@@ -14,6 +14,7 @@ export class DecisionMade extends Component {
       last_move_type,
       real_die,
       description,
+      winner,
       t,
       i18n
     } = this.props
@@ -21,7 +22,12 @@ export class DecisionMade extends Component {
     return (
       <Col>
         <Row style={styles.playMade1}>
-          <Text style={styles.decisionText}>{description}</Text>
+          <Text style={styles.headlineText}>
+            {winner
+              ? t('common:gameText.wonTheGame', {player: winner.name})
+              : description}
+          </Text>
+          {winner && <Text style={styles.sublineText}>{description}</Text>}
         </Row>
         <Row>
           <Col style={styles.playMade1}>
@@ -73,9 +79,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  decisionText: {
+  headlineText: {
     color: 'white',
-    fontSize: scaleFontSize(40),
+    fontSize: scaleFontSize(30),
+    fontFamily: 'MyriadPro-BoldCond',
+    color: 'rgba(200,178,115,1)'
+  },
+  sublineText: {
+    color: 'white',
+    fontSize: scaleFontSize(15),
     fontFamily: 'MyriadPro-BoldCond',
     color: 'rgba(200,178,115,1)'
   },
