@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
   tableNameText: {
     color: '#c8b273',
     fontFamily: 'MyriadPro-BoldCond',
-    fontSize: scaleFontSize(25)
+    fontSize: scaleFontSize(20)
   },
   itemSeparator: {
     height: 1,
