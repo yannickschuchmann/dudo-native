@@ -233,8 +233,7 @@ const styles = StyleSheet.create({
     width: '90%',
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'blue'
+    alignItems: 'center'
   },
   modalWin: {
     backgroundColor: 'rgba(0,255,0,0.45)'

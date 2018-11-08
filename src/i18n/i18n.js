@@ -28,7 +28,7 @@ i18n
         common: {
           tablesText: 'Mesas',
           createText: 'Crear',
-          noTablesText: 'Aún no hay mesas.\nEmpieza a crear una nueva mesa!',
+          noTablesText: 'Aún no hay mesas.\nEmpieza por crear una nueva mesa!',
           logoutText: 'Cerrar Sesión',
           tableNamePlaceholder: 'Escribe el nombre de tu Mesa',
           startGame: 'Comenzar',
@@ -39,7 +39,8 @@ i18n
             playerAmount: 'Jugando',
             playerSays: 'dice:',
             obligatedRound: 'Obligado.\nNo puedes ver tus dados',
-            waitingFor: 'Esperando a  {{player}}'
+            waitingFor: 'Esperando a  {{player}}',
+            wonTheGame: '{{player}} ganó!'
           },
           playButtons: {
             playButtonText: 'Jugar',
@@ -114,7 +115,8 @@ i18n
             playerAmount: 'Spieler',
             playerSays: 'sagt:',
             obligatedRound: 'Obligatorisch.\nDu kanst deine Würfel nichr sehen',
-            waitingFor: 'Warten auf {{player}}'
+            waitingFor: 'Warten auf {{player}}',
+            wonTheGame: '{{player}} hat gewonnen!'
           },
           playButtons: {
             playButtonText: 'Spiel',
