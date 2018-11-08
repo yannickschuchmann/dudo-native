@@ -28,6 +28,7 @@ i18n
         common: {
           tablesText: 'Mesas',
           createText: 'Crear',
+          noTablesText: 'Aún no hay mesas.\nEmpieza a crear una nueva mesa!',
           logoutText: 'Cerrar Sesión',
           tableNamePlaceholder: 'Escribe el nombre de tu Mesa',
           startGame: 'Comenzar',
@@ -102,6 +103,7 @@ i18n
         common: {
           tablesText: 'Tische',
           createText: 'Erstellen',
+          noTablesText: 'Keine Tische gefunden.\nErstelle einen Tisch!',
           logoutText: 'Ausloggen',
           tableNamePlaceholder: 'Schreibe den Namen deiner Tisch',
           startGame: 'Beginnen',
