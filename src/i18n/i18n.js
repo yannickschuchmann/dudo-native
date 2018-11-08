@@ -38,7 +38,7 @@ i18n
             roundNumber: 'Ronda',
             playerAmount: 'Jugando',
             playerSays: 'dice:',
-            obligatedRound: 'Obligado.\nNo puedes ver tus dados',
+            obligatedRound: 'Juego Obligado.\nNo puedes ver tus dados',
             waitingFor: 'Esperando a  {{player}}',
             wonTheGame: '{{player}} ganó!'
           },
@@ -114,7 +114,8 @@ i18n
             roundNumber: 'Runden',
             playerAmount: 'Spieler',
             playerSays: 'sagt:',
-            obligatedRound: 'Obligatorisch.\nDu kanst deine Würfel nichr sehen',
+            obligatedRound:
+              'Obligatorisch Runde.\nDu kanst deine Würfel nichr sehen',
             waitingFor: 'Warten auf {{player}}',
             wonTheGame: '{{player}} hat gewonnen!'
           },
