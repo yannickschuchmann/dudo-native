@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Constants} from 'expo'
-import {StyleSheet} from 'react-native'
+import {StyleSheet, SafeAreaView} from 'react-native'
 import {Header, Button, Icon, Title} from 'native-base'
 import {Grid, Col, Row} from 'react-native-easy-grid'
 
@@ -10,29 +10,31 @@ export default class GameTableHeader extends Component {
   render() {
     const {onAddToTable, onBack, table} = this.props
     return (
-      <Header style={styles.homeHeader}>
-        <Grid>
-          <Row>
-            <Col size={20}>
-              <Button transparent onPress={onBack}>
-                <Icon style={styles.icon} name="arrow-back" />
-              </Button>
-            </Col>
-            <Col size={55}>
-              <Title style={styles.headerTitle}>{table.name}</Title>
-            </Col>
-            <Col size={25}>
-              <Button transparent onPress={onAddToTable}>
-                <Icon
-                  style={styles.icon}
-                  name="account-plus-outline"
-                  type="MaterialCommunityIcons"
-                />
-              </Button>
-            </Col>
-          </Row>
-        </Grid>
-      </Header>
+      <SafeAreaView>
+        <Header style={styles.homeHeader}>
+          <Grid>
+            <Row>
+              <Col size={20}>
+                <Button transparent onPress={onBack}>
+                  <Icon style={styles.icon} name="arrow-back" />
+                </Button>
+              </Col>
+              <Col size={55}>
+                <Title style={styles.headerTitle}>{table.name}</Title>
+              </Col>
+              <Col size={25}>
+                <Button transparent onPress={onAddToTable}>
+                  <Icon
+                    style={styles.icon}
+                    name="account-plus-outline"
+                    type="MaterialCommunityIcons"
+                  />
+                </Button>
+              </Col>
+            </Row>
+          </Grid>
+        </Header>
+      </SafeAreaView>
     )
   }
 }

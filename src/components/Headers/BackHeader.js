@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Constants} from 'expo'
-import {StyleSheet} from 'react-native'
+import {StyleSheet, SafeAreaView} from 'react-native'
 import {Header, Button, Title, Icon} from 'native-base'
 import {Grid, Col, Row} from 'react-native-easy-grid'
 
@@ -9,26 +9,28 @@ import {scaleFontSize} from '../../helpers/responsive'
 export default class BackHeader extends Component {
   render() {
     return (
-      <Header style={styles.homeHeader}>
-        <Grid>
-          <Row>
-            <Col style={styles.columnStyle}>
-              <Button
-                transparent
-                onPress={() => {
-                  this.props.navigation.goBack()
-                }}
-              >
-                <Icon style={styles.icon} name="arrow-back" />
-              </Button>
-            </Col>
-            <Col style={styles.columnTitleStyle}>
-              <Title style={styles.headerTitle}>DUDO</Title>
-            </Col>
-            <Col />
-          </Row>
-        </Grid>
-      </Header>
+      <SafeAreaView>
+        <Header style={styles.homeHeader}>
+          <Grid>
+            <Row>
+              <Col style={styles.columnStyle}>
+                <Button
+                  transparent
+                  onPress={() => {
+                    this.props.navigation.goBack()
+                  }}
+                >
+                  <Icon style={styles.icon} name="arrow-back" />
+                </Button>
+              </Col>
+              <Col style={styles.columnTitleStyle}>
+                <Title style={styles.headerTitle}>DUDO</Title>
+              </Col>
+              <Col />
+            </Row>
+          </Grid>
+        </Header>
+      </SafeAreaView>
     )
   }
 }

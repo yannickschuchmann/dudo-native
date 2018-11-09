@@ -118,7 +118,7 @@ class GameTable extends Component {
     const {t} = this.props
     const currentPlayer = find(propEq('is_current', true), table.players)
     return (
-      <Container>
+      <Container style={styles.screenStyle}>
         <StatusBar hidden />
         <GameTableHeader
           onAddToTable={this.onAddToTable}
@@ -211,6 +211,9 @@ export default compose(
 )(GameTable)
 
 const styles = StyleSheet.create({
+  screenStyle: {
+    backgroundColor: 'black'
+  },
   waitingContainer: {
     backgroundColor: 'black',
     flex: 1,
