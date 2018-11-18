@@ -16,9 +16,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "facebookScheme": "fb836664836537019",
     "facebookAppId": "836664836537019",
     "facebookDisplayName": "Dudo",
@@ -39,6 +37,12 @@
       "backgroundColor": "#000000"
     },
     "primaryColor": "#000000",
+    "notification": {
+      "icon": "./assets/notification.png",
+      "color": "#000000",
+      "androidMode": "collapse",
+      "androidCollapsedTitle": "#{unread_notifications} new interactions"
+    },
     "hooks": {
       "postPublish": [
         {
