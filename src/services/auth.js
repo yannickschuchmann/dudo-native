@@ -43,7 +43,7 @@ class AuthService {
       } = await Expo.Facebook.logInWithReadPermissionsAsync(
         config.expo.facebookAppId,
         {
-          permissions: ['public_profile', 'email', 'user_gender']
+          permissions: ['public_profile', 'email']
         }
       )
 
