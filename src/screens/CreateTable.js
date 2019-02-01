@@ -14,6 +14,7 @@ export default class CreateTable extends Component {
     super(props)
 
     this.state = {
+      isCreating: false,
       name: '',
       user_ids: [],
       errors: {
@@ -28,6 +29,7 @@ export default class CreateTable extends Component {
 
     await this.validate()
     if (this.isValid()) {
+      this.setState({isCreating: true})
       await api.post('/api/tables', {table: {name, user_ids}})
       this.props.navigation.goBack()
     }
@@ -73,6 +75,7 @@ export default class CreateTable extends Component {
               onStart={this.onSubmit}
               onNameChange={this.onNameChange}
               navigation={this.props.navigation}
+              isCreating={this.state.isCreating}
             />
           </Row>
           <Row size={70}>

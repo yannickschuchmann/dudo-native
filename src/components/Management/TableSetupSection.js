@@ -26,9 +26,12 @@ export class TableSetupSection extends Component {
             primary
             style={styles.startGameButton}
             onPress={this.props.onStart}
+            disabled={this.props.isCreating}
           >
             <Text style={styles.startGameButtonText}>
-              {t('common:startGame')}
+              {this.props.isCreating
+                ? t('common:loadingGame')
+                : t('common:startGame')}
             </Text>
           </Button>
         </Row>

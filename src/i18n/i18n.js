@@ -32,6 +32,7 @@ i18n
           logoutText: 'Cerrar Sesión',
           tableNamePlaceholder: 'Escribe el nombre de tu Mesa',
           startGame: 'Comenzar',
+          loadingGame: 'Cargando',
           searchBarText: 'Busca en tu Lista de Amigos',
           gameText: {
             diceAmount: 'Dados',
@@ -70,6 +71,7 @@ i18n
           logoutText: 'Log Out',
           tableNamePlaceholder: 'Write the name of your Table',
           startGame: 'Start',
+          loadingGame: 'Loading',
           searchBarText: 'Search your Friends List',
           gameText: {
             diceAmount: 'Dice',
@@ -108,6 +110,7 @@ i18n
           logoutText: 'Ausloggen',
           tableNamePlaceholder: 'Schreibe den Namen deiner Tisch',
           startGame: 'Beginnen',
+          loadingGame: 'Speichern',
           searchBarText: 'Suche deine Freundesliste',
           gameText: {
             diceAmount: 'Würfel',
