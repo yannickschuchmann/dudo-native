@@ -21,8 +21,8 @@
     "facebookAppId": "836664836537019",
     "facebookDisplayName": "Dudo",
     "ios": {
-      "buildNumber": "1.0.1",
-      "bundleIdentifier": "com.dudogame.dudo",
+      "buildNumber": "1.0.0",
+      "bundleIdentifier": "com.dudogames.dudo",
       "icon": "./assets/icon-ios.png",
       "supportsTablet": false
     },
