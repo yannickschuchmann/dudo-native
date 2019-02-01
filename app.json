@@ -22,7 +22,7 @@
     "facebookDisplayName": "Dudo",
     "ios": {
       "buildNumber": "1.0.0",
-      "bundleIdentifier": "com.dudogames.dudo",
+      "bundleIdentifier": "de.furfm.dudo",
       "icon": "./assets/icon-ios.png",
       "supportsTablet": false
     },
