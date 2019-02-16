@@ -30,7 +30,8 @@
       "icon": "./assets/icon-android.png",
       "googleServicesFile": "./google-services.json",
       "package": "com.dudogame.dudo",
-      "versionCode": 2
+      "permissions": [],
+      "versionCode": 5
     },
     "androidStatusBar": {
       "barStyle": "light-content",

@@ -9,7 +9,7 @@ import 'es6-symbol/implement'
 import {cacheImages} from './src/helpers/caching'
 
 import axios from 'axios'
-axios.defaults.baseURL = 'https://dudo-backend.furfm.de'
+axios.defaults.baseURL = 'https://core.dudo.furfm.de'
 
 import UserProvider from './src/components/userProvider'
 
