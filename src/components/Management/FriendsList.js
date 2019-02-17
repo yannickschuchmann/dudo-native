@@ -1,23 +1,21 @@
 import React, {Component} from 'react'
-import {Constants} from 'expo'
 import {ActivityIndicator, StyleSheet, FlatList, View} from 'react-native'
-import {ListItem, SearchBar} from 'react-native-elements'
+import {SearchBar} from 'react-native-elements'
 import {
   assoc,
   compose,
   curry,
   filter,
   map,
-  path,
   pluck,
   propEq,
   when
 } from 'ramda'
 
 import {withNamespaces} from 'react-i18next'
-import {scaleFontSize} from '../../helpers/responsive'
 import {cacheImages} from '../../helpers/caching'
 import api from '../../services/api'
+import FriendsItem from './FriendsItem'
 
 export class FriendsList extends Component {
   isUnmounted = false
@@ -43,7 +41,6 @@ export class FriendsList extends Component {
     const skippingIds = pluck('id', this.props.players)
     const users = filter(user => !skippingIds.includes(user.id), res.data)
 
-    await cacheImages(pluck('picture_url', users))
     if (!this.isUnmounted) {
       this.setState({
         isLoading: false,
@@ -97,18 +94,7 @@ export class FriendsList extends Component {
   }
 
   renderItem = ({item}) => (
-    <ListItem
-      roundAvatar
-      title={`${item.name}`}
-      titleStyle={styles.tableNameText}
-      avatar={{uri: item.picture_url}}
-      hideChevron={true}
-      containerStyle={styles.container}
-      switchButton
-      trackColor={'#95792A'}
-      switched={item.selected}
-      onSwitch={selected => this.toggleSwitch({item, selected})}
-    />
+    <FriendsItem item={item} />
   )
 
   renderSeparator = () => {
@@ -136,10 +122,6 @@ export class FriendsList extends Component {
 export default withNamespaces(['common'], {wait: true})(FriendsList)
 
 const styles = StyleSheet.create({
-  container: {
-    borderBottomWidth: 0,
-    borderTopWidth: 0
-  },
   loadingContainer: {
     flex: 1,
     alignItems: 'center',
@@ -151,11 +133,6 @@ const styles = StyleSheet.create({
   searchInputText: {
     color: 'black',
     backgroundColor: '#C8B273'
-  },
-  tableNameText: {
-    color: '#c8b273',
-    fontFamily: 'MyriadPro-BoldCond',
-    fontSize: scaleFontSize(20)
   },
   itemSeparator: {
     height: 1,
