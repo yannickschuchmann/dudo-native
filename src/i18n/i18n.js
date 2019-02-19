@@ -34,6 +34,22 @@ i18n
           startGame: 'Comenzar',
           loadingGame: 'Cargando',
           searchBarText: 'Busca en tu Lista de Amigos',
+          login: {
+            continueWithFacebook: 'Continua con Facebook',
+            weDontPost: 'No posteamos en Facebook',
+            loginFriends:
+              'Haz login con Facebook para que puedas jugar con tus amigos'
+          },
+          userCommunication: {
+            dudoTitle: 'Dudo v1.0- Prueba Alpha',
+            buttonClick: 'Primero haz click en el Botón',
+            buttonText: 'Como Usar Dudo',
+            messageText:
+              'Por favor síguenos en Facebook y dejanos tu opinión. Lo bueno y en especial lo malo, todo nos ayuda a mejorar. Iremos comunicando mejoras y avances.',
+            thanksText: 'Gracias por la Ayuda!!',
+            continueButton: 'Continuar',
+            notShow: 'No mostar más este mensaje'
+          },
           gameText: {
             diceAmount: 'Dados',
             roundNumber: 'Ronda',
@@ -73,6 +89,21 @@ i18n
           startGame: 'Start',
           loadingGame: 'Loading',
           searchBarText: 'Search your Friends List',
+          login: {
+            continueWithFacebook: 'Continue with Facebook',
+            weDontPost: 'We don’t post to Facebook.',
+            loginFriends: 'Login with Facebook so you play with your friends.'
+          },
+          userCommunication: {
+            dudoTitle: 'Dudo v1.0- Alpha Test',
+            buttonClick: 'First click the button',
+            buttonText: 'How to use Dudo',
+            messageText:
+              'Please follow us on Facebook and give us your opinion. The good and especially the bad, anything helps us to improve. We will communicate improvements and progress.',
+            thanksText: 'Thanks for the help!!',
+            continueButton: 'Continue',
+            notShow: "Don't show this message again"
+          },
           gameText: {
             diceAmount: 'Dice',
             roundNumber: 'Round',
@@ -112,6 +143,22 @@ i18n
           startGame: 'Beginnen',
           loadingGame: 'Speichern',
           searchBarText: 'Suche deine Freundesliste',
+          login: {
+            continueWithFacebook: 'Weiter mit Facebook',
+            weDontPost: 'Wir posten keine Beiträge bei Facebook.',
+            loginFriends:
+              'Loggen Sie sich mit Facebook ein, um mit Ihren Freunden zu spielen.'
+          },
+          userCommunication: {
+            dudoTitle: 'Dudo v1.0- Alpha Test',
+            buttonClick: 'Klicken Sie zuerst auf die Taste',
+            buttonText: 'Wie benutze ich Dudo?',
+            messageText:
+              'Folgen Sie uns auf Facebook und lassen Sie uns Ihre Meinung wissen. Das Gute und vor allem das Schlechte hilft uns, uns zu verbessern. Wir werden Verbesserungen und Fortschritte kommunizieren.',
+            thanksText: 'Danke für die Hilfe!!',
+            continueButton: 'Weitermachen',
+            notShow: 'Diese Nachricht nicht mehr anzeigen'
+          },
           gameText: {
             diceAmount: 'Würfel',
             roundNumber: 'Runden',

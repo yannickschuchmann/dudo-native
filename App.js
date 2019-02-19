@@ -22,6 +22,7 @@ import PlayerProfile from './src/screens/PlayerProfile'
 import CreateTable from './src/screens/CreateTable'
 import GameTable from './src/screens/GameTable'
 import AddToTable from './src/screens/AddToTable'
+import UserCom from './src/screens/UserCom'
 import AppStateProvider from './src/components/appStateProvider'
 
 Sentry.config(
@@ -32,6 +33,9 @@ const StackNavigation = createStackNavigator(
   {
     Login: {
       screen: Login
+    },
+    UserCom: {
+      screen: UserCom
     },
     GameTable: {
       screen: GameTable

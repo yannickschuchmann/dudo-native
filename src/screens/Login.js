@@ -7,6 +7,7 @@ import {
   StatusBar,
   Text
 } from 'react-native'
+import {withNamespaces} from 'react-i18next'
 import {Container, Button} from 'native-base'
 import {Grid, Col, Row} from 'react-native-easy-grid'
 import AuthService from '../services/auth'
@@ -15,7 +16,7 @@ import {registerPushNotifications} from '../services/pushNotifications'
 
 import {scaleFontSize} from '../helpers/responsive'
 
-export default class Login extends Component {
+class Login extends Component {
   state = {
     loading: true
   }
@@ -52,14 +53,26 @@ export default class Login extends Component {
   onAuth = async token => {
     const auth = await AuthService.authenticate(token)
     await registerPushNotifications()
-    this.props.navigation.push('Home')
+    const messageRead = await deviceStorage.getItem('message1')
+    if (messageRead) {
+      this.props.navigation.push('Home')
+    } else {
+      this.props.navigation.push('UserCom')
+    }
   }
 
   render() {
+    const {t, i18n} = this.props
     const loading = <ActivityIndicator size="small" color="#c8b273" />
     const loginButton = (
-      <Button primary style={styles.FacebookLoginButton} onPress={this.onLogin}>
-        <Text style={styles.FacebookLoginButtonText}>Facebook Login</Text>
+      <Button primary style={styles.facebookLoginButton} onPress={this.onLogin}>
+        <Image
+          source={require('../assets/flogo.png')}
+          style={styles.buttonImage}
+        />
+        <Text style={styles.facebookLoginButtonText}>
+          {t('common:login.continueWithFacebook')}
+        </Text>
       </Button>
     )
 
@@ -67,24 +80,38 @@ export default class Login extends Component {
       <Container style={{backgroundColor: 'black'}}>
         <StatusBar hidden />
         <Grid>
-          <Row size={20} />
-          <Row size={60} style={{}}>
+          <Row size={10} />
+          <Row size={30}>
+            <Row style={styles.justifyAll}>
+              <Image
+                source={require('../assets/dudoLogo.png')}
+                style={styles.image}
+              />
+            </Row>
+          </Row>
+          <Row size={50}>
             <Col style={styles.justifyAll}>
-              <Row>
-                <Image
-                  source={require('../assets/dudoLogo.png')}
-                  style={styles.image}
-                />
-              </Row>
               <Row>{this.state.loading ? loading : loginButton}</Row>
+              <Row>
+                <Text style={styles.facebookLoginButtonText}>
+                  {t('common:login.weDontPost')}
+                </Text>
+              </Row>
+              <Row style={styles.friendsRow}>
+                <Text style={styles.friendsText}>
+                  {t('common:login.loginFriends')}
+                </Text>
+              </Row>
             </Col>
           </Row>
-          <Row size={20} />
+          <Row size={10} />
         </Grid>
       </Container>
     )
   }
 }
+
+export default withNamespaces(['common'], {wait: true})(Login)
 
 const styles = StyleSheet.create({
   justifyAll: {
@@ -92,27 +119,44 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  CardItemContainer: {
+  cardItemContainer: {
     backgroundColor: 'blue'
   },
   image: {
+    marginTop: 25,
     height: scaleFontSize(170),
     width: scaleFontSize(300)
   },
-  FacebookLoginButton: {
+  buttonImage: {
+    height: scaleFontSize(30),
+    width: scaleFontSize(30)
+  },
+  facebookLoginButton: {
+    flexDirection: 'row',
     alignSelf: 'center',
     justifyContent: 'center',
     height: scaleFontSize(50),
-    width: scaleFontSize(200),
+    width: scaleFontSize(300),
     opacity: 1,
     borderWidth: 1,
     borderRadius: 2,
-    backgroundColor: 'rgba(59,89,152,1)',
+    backgroundColor: '#4267B2',
     borderColor: 'rgba(255,255,255,1)'
   },
-  FacebookLoginButtonText: {
+  facebookLoginButtonText: {
     fontSize: scaleFontSize(20),
     fontFamily: 'Roboto-Bold',
-    color: 'white'
+    color: 'white',
+    padding: scaleFontSize(8)
+  },
+  friendsText: {
+    flex: 1,
+    textAlign: 'center',
+    fontSize: scaleFontSize(25),
+    fontFamily: 'Roboto-Bold',
+    fontFamily: 'MyriadPro-BoldCond',
+    color: '#C8B273',
+    paddingLeft: 15,
+    paddingRight: 15
   }
 })
