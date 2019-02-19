@@ -92,7 +92,8 @@ i18n
           login: {
             continueWithFacebook: 'Continue with Facebook',
             weDontPost: 'We don’t post to Facebook.',
-            loginFriends: 'Login with Facebook so you play with your friends.'
+            loginFriends:
+              'Login with Facebook so you can play with your friends.'
           },
           userCommunication: {
             dudoTitle: 'Dudo v1.0- Alpha Test',
