@@ -1,16 +1,7 @@
 import React, {Component} from 'react'
 import {ActivityIndicator, StyleSheet, FlatList, View} from 'react-native'
 import {SearchBar} from 'react-native-elements'
-import {
-  assoc,
-  compose,
-  curry,
-  filter,
-  map,
-  pluck,
-  propEq,
-  when
-} from 'ramda'
+import {assoc, compose, curry, filter, map, pluck, propEq, when} from 'ramda'
 
 import {withNamespaces} from 'react-i18next'
 import {cacheImages} from '../../helpers/caching'
@@ -94,7 +85,7 @@ export class FriendsList extends Component {
   }
 
   renderItem = ({item}) => (
-    <FriendsItem item={item} />
+    <FriendsItem item={item} toggleSwitch={this.toggleSwitch} />
   )
 
   renderSeparator = () => {
