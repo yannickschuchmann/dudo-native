@@ -17,7 +17,7 @@ export class PlayPicker extends Component {
   }
 
   render() {
-    const {game, lastMove, t, i18n} = this.props
+    const {game, lastMove, t, i18n, playIsLoading} = this.props
     const {die, eyes} = this.state
     return (
       <Col style={styles.rootContainer}>
@@ -40,6 +40,7 @@ export class PlayPicker extends Component {
             <Button
               block
               danger
+              disabled={!!playIsLoading}
               style={styles.backButtonContainer}
               onPress={this.props.closePicker}
             >
@@ -50,11 +51,14 @@ export class PlayPicker extends Component {
             <Button
               block
               primary
+              disabled={!!playIsLoading}
               style={styles.buttonContainer}
               onPress={() => this.props.onMove({type: 'raise', die, eyes})}
             >
               <Text style={styles.buttonText}>
-                {t('common:playButtons.playButtonText')}
+                {playIsLoading == 'raise'
+                  ? t('common:loadingGame')
+                  : t('common:playButtons.playButtonText')}
               </Text>
             </Button>
           </Col>

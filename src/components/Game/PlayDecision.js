@@ -8,13 +8,14 @@ import {scaleFontSize} from '../../helpers/responsive'
 
 export class PlayDecision extends Component {
   render() {
-    const {t, i18n, allowedToDudoCalzo} = this.props
+    const {t, i18n, allowedToDudoCalzo, playIsLoading} = this.props
     return (
       <Col>
         <Col>
           <Button
             block
             primary
+            disabled={!!playIsLoading}
             style={styles.buttonContainer}
             onPress={this.props.onPlay}
           >
@@ -25,23 +26,27 @@ export class PlayDecision extends Component {
           <Button
             block
             danger
-            disabled={!allowedToDudoCalzo}
+            disabled={!allowedToDudoCalzo || !!playIsLoading}
             onPress={() => this.props.onMove({type: 'dudo'})}
             style={styles.buttonContainer}
           >
             <Text style={styles.buttonText}>
-              {t('common:playButtons.dudoButtonText')}
+              {playIsLoading == 'dudo'
+                ? t('common:loadingGame')
+                : t('common:playButtons.dudoButtonText')}
             </Text>
           </Button>
           <Button
             block
             success
-            disabled={!allowedToDudoCalzo}
+            disabled={!allowedToDudoCalzo || !!playIsLoading}
             onPress={() => this.props.onMove({type: 'calzo'})}
             style={styles.buttonContainer}
           >
             <Text style={styles.buttonText}>
-              {t('common:playButtons.spotOnButtonText')}
+              {playIsLoading == 'calzo'
+                ? t('common:loadingGame')
+                : t('common:playButtons.spotOnButtonText')}
             </Text>
           </Button>
         </Col>

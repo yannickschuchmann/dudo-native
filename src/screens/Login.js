@@ -63,7 +63,11 @@ class Login extends Component {
 
   render() {
     const {t, i18n} = this.props
-    const loading = <ActivityIndicator size="small" color="#c8b273" />
+    const loading = (
+      <Button primary style={styles.facebookLoginButton}>
+        <ActivityIndicator size="small" color="#c8b273" />
+      </Button>
+    )
     const loginButton = (
       <Button primary style={styles.facebookLoginButton} onPress={this.onLogin}>
         <Image
