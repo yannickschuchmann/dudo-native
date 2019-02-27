@@ -54,7 +54,6 @@ class GameTable extends Component {
 
   componentDidUpdate() {
     const {table} = this.state
-    console.log('componentDidUpdate', table)
 
     this.handleHasSeen(table)
     this.handleRoundEnd(table)

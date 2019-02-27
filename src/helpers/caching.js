@@ -9,7 +9,6 @@ export const cacheImages = list => Promise.all(
           ? Image.prefetch(image)
           : Asset.fromModule(image).downloadAsync()
       } catch (e) {
-        console.log(e)
         return Promise.resolve()
       }
     }
