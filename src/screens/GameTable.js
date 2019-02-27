@@ -109,10 +109,12 @@ class GameTable extends Component {
 
   onMove = async value => {
     this.setState({playIsLoading: value.type})
-    const res = await api.post(`/api/tables/${this.state.table.id}/moves`, {
-      value
-    })
-    this.onUpdateTable(res.data)
+    try {
+      const res = await api.post(`/api/tables/${this.state.table.id}/moves`, {
+        value
+      })
+      this.onUpdateTable(res.data)
+    } catch (e) {}
   }
 
   render() {
