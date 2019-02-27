@@ -26,7 +26,8 @@ import {withAppState} from '../components/appStateProvider'
 class GameTable extends Component {
   state = {
     isOpen: false,
-    isDisabled: false
+    isDisabled: false,
+    playIsLoading: null
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -106,10 +107,13 @@ class GameTable extends Component {
   }
 
   onMove = async value => {
-    const res = await api.post(`/api/tables/${this.state.table.id}/moves`, {
-      value
-    })
-    this.onUpdateTable(res.data)
+    this.setState({playIsLoading: value.type})
+    try {
+      const res = await api.post(`/api/tables/${this.state.table.id}/moves`, {
+        value
+      })
+      this.onUpdateTable(res.data)
+    } catch (e) {}
   }
 
   render() {
@@ -134,6 +138,7 @@ class GameTable extends Component {
           <Row size={48}>
             {table.meta.allowed_to_place_move ? (
               <PlayDisplay
+                playIsLoading={this.state.playIsLoading}
                 onMove={this.onMove}
                 game={table.game}
                 allowedToDudoCalzo={table.meta.allowed_to_dudo_calzo}

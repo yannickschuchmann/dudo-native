@@ -27,6 +27,7 @@ export default class PlayDisplay extends Component {
         <Col style={styles.rightStatsContainer}>
           {this.state.pressedPlay ? (
             <PlayPicker
+              playIsLoading={this.props.playIsLoading}
               onMove={this.props.onMove}
               game={this.props.game}
               lastMove={this.props.lastMove}
@@ -34,6 +35,7 @@ export default class PlayDisplay extends Component {
             />
           ) : (
             <PlayDecision
+              playIsLoading={this.props.playIsLoading}
               allowedToDudoCalzo={this.props.allowedToDudoCalzo}
               onPlay={this.onPressPlay}
               onMove={this.props.onMove}
