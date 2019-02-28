@@ -115,6 +115,7 @@ class GameTable extends Component {
       })
       this.onUpdateTable(res.data)
     } catch (e) {}
+    this.setState({playIsLoading: null})
   }
 
   render() {
