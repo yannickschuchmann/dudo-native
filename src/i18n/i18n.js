@@ -41,7 +41,7 @@ i18n
               'Haz login con Facebook para que puedas jugar con tus amigos'
           },
           userCommunication: {
-            dudoTitle: 'Dudo v1.0- Prueba Alpha',
+            dudoTitle: 'Dudo v1.0',
             buttonClick: 'Primero haz click en el Botón',
             buttonText: 'Como Usar Dudo',
             messageText:
@@ -96,7 +96,7 @@ i18n
               'Login with Facebook so you can play with your friends.'
           },
           userCommunication: {
-            dudoTitle: 'Dudo v1.0- Alpha Test',
+            dudoTitle: 'Dudo v1.0',
             buttonClick: 'First click the button',
             buttonText: 'How to use Dudo',
             messageText:
@@ -151,7 +151,7 @@ i18n
               'Loggen Sie sich mit Facebook ein, um mit Ihren Freunden zu spielen.'
           },
           userCommunication: {
-            dudoTitle: 'Dudo v1.0- Alpha Test',
+            dudoTitle: 'Dudo v1.0',
             buttonClick: 'Klicken Sie zuerst auf die Taste',
             buttonText: 'Wie benutze ich Dudo?',
             messageText:
