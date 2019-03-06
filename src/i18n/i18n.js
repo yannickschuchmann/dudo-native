@@ -26,6 +26,9 @@ i18n
     resources: {
       es: {
         common: {
+          noFriendsText:
+            'Al parecer ningún amigo tuyo tiene Dudo instalado. Invita a tus amigos por Whatsapp o Facebook',
+          inviteFriends: 'Invita Amigos',
           tablesText: 'Mesas',
           createText: 'Crear',
           noTablesText: 'Aún no hay mesas.\nEmpieza por crear una nueva mesa!',
@@ -81,6 +84,9 @@ i18n
       },
       en: {
         common: {
+          noFriendsText:
+            'It appears non of your friends have Dudo installed. Invite people through Whatsapp or Facebook',
+          inviteFriends: 'Invite Friends',
           tablesText: 'Tables',
           createText: 'Create',
           noTablesText: 'No tables yet.\nStart by creating a new table!',
@@ -136,6 +142,9 @@ i18n
       },
       de: {
         common: {
+          noFriendsText:
+            'Es scheint, dass keiner Ihrer Freunde Dudo installiert haben. Laden Sie Ihre Freunde zu WhatsApp oder Facebook ein',
+          inviteFriends: 'Freunde Einladen',
           tablesText: 'Tische',
           createText: 'Erstellen',
           noTablesText: 'Keine Tische gefunden.\nErstelle einen Tisch!',
