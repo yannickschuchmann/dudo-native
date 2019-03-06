@@ -160,7 +160,7 @@ export class FriendsList extends Component {
       <View style={styles.loadingContainer}>
         <ActivityIndicator size="small" color="#c8b273" />
       </View>
-    ) : users ? (
+    ) : users.length > 0 ? (
       this.renderList()
     ) : (
       this.renderNoFriends()
