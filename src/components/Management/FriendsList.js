@@ -112,7 +112,7 @@ export class FriendsList extends Component {
   onShare = async () => {
     try {
       const result = await Share.share({
-        message: 'playnow.dudogames.com'
+        message: 'play-now.dudogames.com'
       })
 
       if (result.action === Share.sharedAction) {
