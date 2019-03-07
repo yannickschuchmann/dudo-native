@@ -26,6 +26,8 @@ i18n
     resources: {
       es: {
         common: {
+          friendsListText:
+            'Acá están todos tus amigos de Facebook que tienen Dudo instalado',
           noFriendsText:
             'Al parecer ningún amigo tuyo tiene Dudo instalado. Invita a tus amigos por Whatsapp o Facebook',
           inviteFriends: 'Invita Amigos',
@@ -84,6 +86,8 @@ i18n
       },
       en: {
         common: {
+          friendsListText:
+            'Here are all your Facebook friends that also have Dudo installed',
           noFriendsText:
             'It appears non of your friends have Dudo installed. Invite people through Whatsapp or Facebook',
           inviteFriends: 'Invite Friends',
@@ -142,6 +146,8 @@ i18n
       },
       de: {
         common: {
+          friendsListText:
+            'Hier sind alle Ihre Facebook-Freunde, die auch Dudo installiert haben.',
           noFriendsText:
             'Es scheint, dass keiner Ihrer Freunde Dudo installiert haben. Laden Sie Ihre Freunde zu WhatsApp oder Facebook ein',
           inviteFriends: 'Freunde Einladen',

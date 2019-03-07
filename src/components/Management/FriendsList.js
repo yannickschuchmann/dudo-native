@@ -96,7 +96,12 @@ export class FriendsList extends Component {
 
   renderList = () => (
     <Grid>
-      <Row size={80}>
+      <Row size={20}>
+        <Text style={styles.friendsListText}>
+          {this.props.t('common:friendsListText')}
+        </Text>
+      </Row>
+      <Row size={65}>
         <FlatList
           data={this.filterByQuery(this.state.users)}
           keyExtractor={item => item.id.toString()}
@@ -105,14 +110,14 @@ export class FriendsList extends Component {
           ItemSeparatorComponent={this.renderSeparator}
         />
       </Row>
-      <Row size={20}>{this.renderInviteFriends()}</Row>
+      <Row size={15}>{this.renderInviteFriends()}</Row>
     </Grid>
   )
 
   onShare = async () => {
     try {
       const result = await Share.share({
-        message: 'play-now.dudogames.com'
+        message: 'dudogames.com/play-now'
       })
 
       if (result.action === Share.sharedAction) {
@@ -210,6 +215,15 @@ const styles = StyleSheet.create({
     color: '#C8B273',
     fontFamily: 'MyriadPro-BoldCond',
     padding: 5,
+    textAlign: 'center'
+  },
+  friendsListText: {
+    flex: 1,
+    flexWrap: 'wrap',
+    fontSize: scaleFontSize(15),
+    backgroundColor: 'transparent',
+    color: '#C8B273',
+    padding: '5%',
     textAlign: 'center'
   }
 })
