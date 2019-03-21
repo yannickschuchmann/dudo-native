@@ -108,7 +108,7 @@ class AuthService {
       expiresAt && 
       token && 
       expiresAtDate > nowInOneHour && 
-      this.checkFacebookPermissions(token)
+      await this.checkFacebookPermissions(token)
 
     return {
       token,
