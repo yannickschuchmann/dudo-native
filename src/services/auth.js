@@ -1,13 +1,16 @@
-import {Alert, Constants} from 'expo'
 import deviceStorage from './deviceStorage'
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 
 import api from './api'
+import {compose, equals, find, prop, propEq} from 'ramda';
+import Sentry from 'sentry-expo';
 const config = require('../../app.json')
 
 const singleton = Symbol()
 const singletonEnforcer = Symbol()
+
+const PERMISSIONS = ['public_profile', 'email', 'user_friends']
 
 class AuthService {
   subscriptions = []
@@ -43,7 +46,7 @@ class AuthService {
       } = await Expo.Facebook.logInWithReadPermissionsAsync(
         config.expo.facebookAppId,
         {
-          permissions: ['public_profile', 'email', 'user_friends']
+          permissions: PERMISSIONS
         }
       )
 
@@ -64,15 +67,52 @@ class AuthService {
     await deviceStorage.deleteItem('jwt')
   }
 
+  checkFacebookPermissions = async (token) => {
+    const isPermissionGranted = (permission, data) => compose(
+      equals('granted'),
+      prop('status'),
+      find(propEq('permission', permission))
+    )(data)
+
+    try {
+      const response = await axios.get(`https://graph.facebook.com/me/permissions`, {
+        params: {
+          access_token: token
+        }
+      })
+      const {data} = response.data
+
+      if (response.status == 200 && data) {
+        const allPermissionsGranted = PERMISSIONS.reduce((allGranted, permission) => {
+          return allGranted && isPermissionGranted(permission, data)
+        }, true)
+
+        return allPermissionsGranted
+      } else {
+        return false
+      }
+    } catch(e) {
+      Sentry.captureException(e)
+      return false
+    }
+  }
+
   checkFacebook = async () => {
     const expiresAt = await deviceStorage.getItem('fb_expires_at')
     const token = await deviceStorage.getItem('fb_access_token')
 
     const expiresAtDate = new Date(expiresAt * 1000)
     const nowInOneHour = new Date(new Date().getTime() + 1000 * 60 * 60)
+    
+    const isValid = 
+      expiresAt && 
+      token && 
+      expiresAtDate > nowInOneHour && 
+      this.checkFacebookPermissions(token)
+
     return {
       token,
-      isValid: expiresAt && token && expiresAtDate > nowInOneHour
+      isValid
     }
   }
 
