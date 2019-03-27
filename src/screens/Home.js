@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
-import {Constants, Notifications} from 'expo'
+import {Notifications} from 'expo'
 
 import {
   ActivityIndicator,
-  Alert,
   Platform,
   StyleSheet,
   StatusBar,
@@ -15,7 +14,7 @@ import {withInAppNotification} from '../../lib/react-native-in-app-notification'
 import {Grid, Row} from 'react-native-easy-grid'
 import {StackActions, NavigationActions} from 'react-navigation'
 import {withNamespaces} from 'react-i18next'
-import {compose, pluck, sortBy, prop} from 'ramda'
+import {compose, sortBy, prop} from 'ramda'
 
 import HomeHeader from '../components/Headers/HomeHeader'
 import CreateTableSection from '../components/Management/CreateTableSection'
@@ -23,7 +22,7 @@ import TableList from '../components/Management/TableList'
 import {scaleFontSize} from '../helpers/responsive'
 
 import api from '../services/api'
-import {withAppState} from '../components/appStateProvider'
+import {withGlobalState} from '../components/globalStateProvider'
 
 class Home extends Component {
   state = {
@@ -31,24 +30,29 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    if (Platform.OS === 'android') {
+      Notifications.dismissAllNotificationsAsync()
+    }
     this.fetchTables()
     this.setupListeners()
   }
 
   componentWillUnmount() {
-    this._notificationSubscription.remove()
+    this.listeners.forEach(listener => listener.remove())
   }
 
   setupListeners = () => {
-    this._notificationSubscription = Notifications.addListener(
-      this.handleNotification
-    )
-    this.willFocusListener = this.props.navigation.addListener(
-      'willFocus',
-      () => {
-        this.fetchTables()
-      }
-    )
+    this.listeners = [
+      Notifications.addListener(
+        this.handleNotification
+      ),
+      this.props.navigation.addListener(
+        'willFocus',
+        async () => {
+          await this.fetchTables()
+        }
+      )
+    ]
   }
 
   handleNotification = async ({data, origin, ...rest}) => {
@@ -81,10 +85,6 @@ class Home extends Component {
     this.props.navigation.dispatch(action)
   }
 
-  componentWillUnmount() {
-    this.willFocusListener.remove()
-  }
-
   fetchTables = async () => {
     try {
       const res = await api.get(`/api/tables`)
@@ -99,7 +99,7 @@ class Home extends Component {
     const {navigation, t} = this.props
     const tables = sortBy(
       prop('order'),
-      Object.values(this.props.appState.tables)
+      Object.values(this.props.globalState.tables)
     )
     return (
       <Container style={styles.screenStyle}>
@@ -134,7 +134,7 @@ class Home extends Component {
 }
 
 export default compose(
-  withAppState,
+  withGlobalState,
   withNamespaces(['common'], {wait: true}),
   withInAppNotification
 )(Home)

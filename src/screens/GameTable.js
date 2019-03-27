@@ -1,13 +1,12 @@
 import React, {Component} from 'react'
-import {Constants} from 'expo'
-import {StyleSheet, StatusBar, Text, View, TouchableOpacity} from 'react-native'
+import {ActivityIndicator, StyleSheet, StatusBar, Text, View, TouchableOpacity} from 'react-native'
 import {Icon, Container, Footer} from 'native-base'
 
 import {Row, Grid} from 'react-native-easy-grid'
 import Modal from 'react-native-modalbox'
 import {withNamespaces} from 'react-i18next'
 
-import {compose, find, path, propEq} from 'ramda'
+import {compose, find, propEq} from 'ramda'
 
 import GameTableHeader from '../components/Headers/GameTableHeader'
 import PlayerCarousel from '../components/Game/PlayerCarousel'
@@ -21,10 +20,11 @@ import TableDiceList from '../components/Game/EndOfRound/TableDiceList'
 import api from '../services/api'
 
 import {scaleFontSize} from '../helpers/responsive'
-import {withAppState} from '../components/appStateProvider'
+import {withGlobalState} from '../components/globalStateProvider'
 
 class GameTable extends Component {
   state = {
+    isLoading: false,
     isOpen: false,
     isDisabled: false,
     playIsLoading: null
@@ -32,7 +32,7 @@ class GameTable extends Component {
 
   static getDerivedStateFromProps(props, state) {
     const {tableId} = props.navigation.state.params
-    const table = props.appState.tables[tableId]
+    const table = props.globalState.tables[tableId]
     if (table !== state.table) {
       return {
         table
@@ -60,6 +60,16 @@ class GameTable extends Component {
     this.handleRoundEnd(table)
   }
 
+  fetchTables = async () => {
+    try {
+      const res = await api.get(`/api/tables`)
+      this.props.actions.setTables(res.data)
+      this.setState({isLoading: false})
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   handleRoundEnd = table => {
     if (table.round_result && this.refs.modalRoundEnd) {
       this.refs.modalRoundEnd.open()
@@ -69,7 +79,8 @@ class GameTable extends Component {
   handleHasSeen = async table => {
     if (!table.meta.has_seen) {
       try {
-        await api.patch(`/api/tables/${table.id}/view`)
+        response = await api.patch(`/api/tables/${table.id}/view`)
+        Notifications.setBadgeNumberAsync(response.data.unseen_table_views_count || 0)
       } catch (e) {
         console.error(e)
       }
@@ -137,22 +148,26 @@ class GameTable extends Component {
             <GameStatsComplete game={table.game} lastMove={table.last_move} />
           </Row>
           <Row size={48}>
-            {table.meta.allowed_to_place_move ? (
-              <PlayDisplay
-                playIsLoading={this.state.playIsLoading}
-                onMove={this.onMove}
-                game={table.game}
-                allowedToDudoCalzo={table.meta.allowed_to_dudo_calzo}
-                lastMove={table.last_move}
-              />
+            {this.props.globalState.isLoadingTables ? (
+              <ActivityIndicator size="small" color="#c8b273" />
             ) : (
-              <View style={styles.waitingContainer}>
-                <Text style={styles.waitingText}>
-                  {t('common:gameText:waitingFor', {
-                    player: currentPlayer.name
-                  })}
-                </Text>
-              </View>
+              table.meta.allowed_to_place_move ? (
+                <PlayDisplay
+                  playIsLoading={this.state.playIsLoading}
+                  onMove={this.onMove}
+                  game={table.game}
+                  allowedToDudoCalzo={table.meta.allowed_to_dudo_calzo}
+                  lastMove={table.last_move}
+                />
+              ) : (
+                <View style={styles.waitingContainer}>
+                  <Text style={styles.waitingText}>
+                    {t('common:gameText:waitingFor', {
+                      player: currentPlayer.name
+                    })}
+                  </Text>
+                </View>
+              )
             )}
           </Row>
         </Grid>
@@ -211,7 +226,7 @@ class GameTable extends Component {
 }
 
 export default compose(
-  withAppState,
+  withGlobalState,
   withNamespaces(['common'], {wait: true})
 )(GameTable)
 

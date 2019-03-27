@@ -1,13 +1,10 @@
 import React from 'react'
 import {compose} from 'ramda'
-import {Platform} from 'react-native'
 import {withNamespaces} from 'react-i18next'
-import {withNavigation} from 'react-navigation'
-import {Toast} from 'native-base'
 
-export const AppStateContext = React.createContext({})
+export const GlobalStateContext = React.createContext({})
 
-class AppStateProvider extends React.Component {
+class GlobalStateProvider extends React.Component {
   state = {
     tables: {}
   }
@@ -40,28 +37,35 @@ class AppStateProvider extends React.Component {
     })
   }
 
+  setIsLoadingTables = isLoadingTables => (
+    new Promise(resolve => (
+      this.setState({isLoadingTables}, resolve)
+    ))
+  )
+
   render() {
     const value = {
-      appState: this.state,
+      globalState: this.state,
       actions: {
         setTables: this.setTables,
-        setTable: this.setTable
+        setTable: this.setTable,
+        setIsLoadingTables: this.setIsLoadingTables
       }
     }
     return (
-      <AppStateContext.Provider value={value}>
+      <GlobalStateContext.Provider value={value}>
         {this.props.children}
-      </AppStateContext.Provider>
+      </GlobalStateContext.Provider>
     )
   }
 }
 
 export default compose(withNamespaces(['common'], {wait: true}))(
-  AppStateProvider
+  GlobalStateProvider
 )
 
-export const withAppState = Component => props => (
-  <AppStateContext.Consumer>
+export const withGlobalState = Component => props => (
+  <GlobalStateContext.Consumer>
     {context => <Component {...props} {...context} />}
-  </AppStateContext.Consumer>
+  </GlobalStateContext.Consumer>
 )

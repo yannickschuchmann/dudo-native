@@ -2,7 +2,7 @@ import './src/reactotronConfig'
 import React from 'react'
 import {Platform, YellowBox} from 'react-native'
 import {Font, Notifications} from 'expo'
-import {createStackNavigator, createDrawerNavigator} from 'react-navigation'
+import {createStackNavigator} from 'react-navigation'
 import Sentry from 'sentry-expo'
 import {InAppNotificationProvider} from './lib/react-native-in-app-notification'
 import 'es6-symbol/implement'
@@ -14,7 +14,7 @@ axios.defaults.baseURL = 'https://core.dudo.furfm.de'
 import UserProvider from './src/components/userProvider'
 
 import {withNamespaces} from 'react-i18next'
-import i18n from './src/i18n/i18n'
+import './src/i18n/i18n'
 
 import Login from './src/screens/Login'
 import Home from './src/screens/Home'
@@ -23,7 +23,8 @@ import CreateTable from './src/screens/CreateTable'
 import GameTable from './src/screens/GameTable'
 import AddToTable from './src/screens/AddToTable'
 import UserCom from './src/screens/UserCom'
-import AppStateProvider from './src/components/appStateProvider'
+import GlobalStateProvider from './src/components/globalStateProvider'
+import AppStateHandler from './src/appStateHandler'
 
 Sentry.config(
   'https://13d5174d9ee5459fa21e720fc53ff6ad@sentry.io/1312521'
@@ -58,7 +59,12 @@ const StackNavigation = createStackNavigator(
   }
 )
 
-const WrappedStack = ({t}) => <StackNavigation screenProps={{t}} />
+const WrappedStack = ({t}) => (
+  <AppStateHandler>
+    <StackNavigation screenProps={{t}} />
+  </AppStateHandler>
+)
+
 const ReloadAppOnLanguageChange = withNamespaces('common', {
   bindI18n: 'languageChanged',
   bindStore: false
@@ -78,7 +84,9 @@ export default class App extends React.Component {
     if (Platform.OS === 'android') {
       Notifications.createChannelAndroidAsync('table-updates', {
         name: 'Table updates',
-        sound: true
+        sound: true,
+        priority: 'max',
+        vibrate: [0, 100, 100, 250]
       })
     }
 
@@ -111,9 +119,9 @@ export default class App extends React.Component {
       <InAppNotificationProvider>
         <UserProvider>
           {this.state.fontLoaded ? (
-            <AppStateProvider>
+            <GlobalStateProvider>
               <ReloadAppOnLanguageChange />
-            </AppStateProvider>
+            </GlobalStateProvider>
           ) : (
             <Expo.AppLoading />
           )}
