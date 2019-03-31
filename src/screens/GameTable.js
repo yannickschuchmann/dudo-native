@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {ActivityIndicator, StyleSheet, StatusBar, Text, View, TouchableOpacity} from 'react-native'
 import {Icon, Container, Footer} from 'native-base'
+import {Notifications} from 'expo'
 
 import {Row, Grid} from 'react-native-easy-grid'
 import Modal from 'react-native-modalbox'
