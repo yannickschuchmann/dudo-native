@@ -41,7 +41,7 @@
     "notification": {
       "icon": "./assets/notification.png",
       "color": "#000000",
-      "androidMode": "collapse",
+      "androidMode": "default",
       "androidCollapsedTitle": "#{unread_notifications} new interactions"
     },
     "hooks": {
