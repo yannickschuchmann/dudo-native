@@ -45,6 +45,15 @@ i18n
             loginFriends:
               'Haz login con Facebook para que puedas jugar con tus amigos'
           },
+          lobby: {
+            welcomeText: 'Estás en el Lobby',
+            goToTables: 'A las Mesas',
+            goToBattle: 'Juegos Batalla',
+            vsOne: 'vs. 1',
+            vsTwo: 'vs. 2',
+            vsThree: 'vs .3',
+            goBattle: 'A Jugar'
+          },
           userCommunication: {
             dudoTitle: 'Dudo v1.0',
             buttonClick: 'Primero haz click en el Botón',
@@ -105,6 +114,15 @@ i18n
             loginFriends:
               'Login with Facebook so you can play with your friends.'
           },
+          lobby: {
+            welcomeText: "You're in the Lobby",
+            goToTables: 'To the Tables',
+            goToBattle: 'Battle Games',
+            vsOne: 'vs. 1',
+            vsTwo: 'vs. 2',
+            vsThree: 'vs .3',
+            goBattle: 'Go Play'
+          },
           userCommunication: {
             dudoTitle: 'Dudo v1.0',
             buttonClick: 'First click the button',
@@ -164,6 +182,15 @@ i18n
             weDontPost: 'Wir posten keine Beiträge bei Facebook.',
             loginFriends:
               'Loggen Sie sich mit Facebook ein, um mit Ihren Freunden zu spielen.'
+          },
+          lobby: {
+            welcomeText: 'Du bist in der Lobby',
+            goToTables: 'Zu den Tischen',
+            goToBattle: 'Kampfspiel',
+            vsOne: 'vs. 1',
+            vsTwo: 'vs. 2',
+            vsThree: 'vs .3',
+            goBattle: 'Geh Spielen'
           },
           userCommunication: {
             dudoTitle: 'Dudo v1.0',
