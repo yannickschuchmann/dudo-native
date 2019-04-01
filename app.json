@@ -4,9 +4,9 @@
     "description": "This project is really great.",
     "slug": "dudo",
     "privacy": "unlisted",
-    "sdkVersion": "31.0.0",
+    "sdkVersion": "32.0.0",
     "platforms": ["ios", "android"],
-    "version": "1.0.2",
+    "version": "1.1.0",
     "orientation": "portrait",
     "splash": {
       "image": "./assets/splash.png",
@@ -21,7 +21,7 @@
     "facebookAppId": "836664836537019",
     "facebookDisplayName": "Dudo",
     "ios": {
-      "buildNumber": "1.0.2",
+      "buildNumber": "1.1.0",
       "bundleIdentifier": "de.furfm.dudo",
       "icon": "./assets/icon-ios.png",
       "supportsTablet": false
@@ -31,7 +31,7 @@
       "googleServicesFile": "./google-services.json",
       "package": "com.dudogame.dudo",
       "permissions": [],
-      "versionCode": 7
+      "versionCode": 8
     },
     "androidStatusBar": {
       "barStyle": "light-content",
@@ -41,7 +41,7 @@
     "notification": {
       "icon": "./assets/notification.png",
       "color": "#000000",
-      "androidMode": "collapse",
+      "androidMode": "default",
       "androidCollapsedTitle": "#{unread_notifications} new interactions"
     },
     "hooks": {

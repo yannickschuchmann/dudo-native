@@ -1,6 +1,7 @@
 import React from 'react'
-import {compose} from 'ramda'
+import {compose, length, pathEq, reject, values} from 'ramda'
 import {withNamespaces} from 'react-i18next'
+import {Notifications} from 'expo'
 
 export const GlobalStateContext = React.createContext({})
 
@@ -10,6 +11,21 @@ class GlobalStateProvider extends React.Component {
   }
 
   setTables = tables => {
+    const setNotificationBadgeNumber = () => {
+      unseenTableCount = compose(
+        length,
+        reject(pathEq(['meta', 'has_seen'], true)),
+        values
+      )(this.state.tables)
+
+      Notifications.setBadgeNumberAsync(unseenTableCount)
+    }
+
+    const afterHook = (resolve) => () => {
+      setNotificationBadgeNumber()
+      resolve()
+    }
+
     return new Promise(resolve => {
       this.setState(
         {
@@ -18,7 +34,7 @@ class GlobalStateProvider extends React.Component {
             return acc
           }, {})
         },
-        resolve
+        afterHook(resolve)
       )
     })
   }
