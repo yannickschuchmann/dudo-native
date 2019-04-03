@@ -31,7 +31,7 @@
       "googleServicesFile": "./google-services.json",
       "package": "com.dudogame.dudo",
       "permissions": [],
-      "versionCode": 8
+      "versionCode": 9
     },
     "androidStatusBar": {
       "barStyle": "light-content",
