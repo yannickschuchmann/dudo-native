@@ -57,7 +57,7 @@ i18n
           userCommunication: {
             dudoTitle: 'Dudo v1.0',
             buttonClick: 'Primero haz click en el Botón',
-            buttonText: 'Como Usar Dudo',
+            buttonText: 'Facebook - Dudo',
             messageText:
               'Por favor síguenos en Facebook y dejanos tu opinión. Lo bueno y en especial lo malo, todo nos ayuda a mejorar. Iremos comunicando mejoras y avances.',
             thanksText: 'Gracias por la Ayuda!!',
@@ -126,7 +126,7 @@ i18n
           userCommunication: {
             dudoTitle: 'Dudo v1.0',
             buttonClick: 'First click the button',
-            buttonText: 'How to use Dudo',
+            buttonText: 'Facebook - Dudo',
             messageText:
               'Please follow us on Facebook and give us your opinion. The good and especially the bad, anything helps us to improve. We will communicate improvements and progress.',
             thanksText: 'Thanks for the help!!',
@@ -195,7 +195,7 @@ i18n
           userCommunication: {
             dudoTitle: 'Dudo v1.0',
             buttonClick: 'Klicken Sie zuerst auf die Taste',
-            buttonText: 'Wie benutze ich Dudo?',
+            buttonText: 'Facebook - Dudo',
             messageText:
               'Folgen Sie uns auf Facebook und lassen Sie uns Ihre Meinung wissen. Das Gute und vor allem das Schlechte hilft uns, uns zu verbessern. Wir werden Verbesserungen und Fortschritte kommunizieren.',
             thanksText: 'Danke für die Hilfe!!',

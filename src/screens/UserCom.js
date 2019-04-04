@@ -47,9 +47,9 @@ class UserCom extends Component {
                   {t('common:userCommunication.dudoTitle')}
                 </Text>
               </Row>
-              <Row size={10}>
-                <Text style={styles.textTest}>
-                  {t('common:userCommunication.buttonClick')}
+              <Row size={20}>
+                <Text style={styles.textParag}>
+                  {t('common:userCommunication.messageText')}
                 </Text>
               </Row>
               <Row size={10}>
@@ -57,7 +57,7 @@ class UserCom extends Component {
                   style={styles.buttonContainer}
                   onPress={() =>
                     Linking.openURL(
-                      'https://www.facebook.com/398225500942026/videos/321329241846462'
+                      'https://www.facebook.com/Dudo-Game-398225500942026'
                     )
                   }
                 >
@@ -65,12 +65,6 @@ class UserCom extends Component {
                     {t('common:userCommunication.buttonText')}
                   </Text>
                 </Button>
-              </Row>
-              <Row size={10} />
-              <Row size={30}>
-                <Text style={styles.textParag}>
-                  {t('common:userCommunication.messageText')}
-                </Text>
               </Row>
               <Row size={10}>
                 <Text style={styles.textTest}>
