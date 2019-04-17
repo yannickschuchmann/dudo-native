@@ -30,9 +30,6 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    if (Platform.OS === 'android') {
-      Notifications.dismissAllNotificationsAsync()
-    }
     this.fetchTables()
     this.setupListeners()
   }
@@ -50,6 +47,9 @@ class Home extends Component {
         'willFocus',
         async () => {
           await this.fetchTables()
+          if (Platform.OS === 'android') {
+            Notifications.dismissAllNotificationsAsync()
+          }
         }
       )
     ]

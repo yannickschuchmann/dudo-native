@@ -88,11 +88,29 @@ class GameTable extends Component {
   handleHasSeen = async table => {
     if (!table.meta.has_seen) {
       try {
-        response = await api.patch(`/api/tables/${table.id}/view`)
+        response = await api.patch(`/api/tables/${table.id}/view`, {
+          table_view: {
+            has_seen: true
+          }
+        })
         Notifications.setBadgeNumberAsync(
           response.data.unseen_table_views_count || 0
         )
       } catch (e) {}
+    }
+  }
+
+  handleHasSeenRoundResult = async table => {
+    if (table.round_result) {
+      try {
+        response = await api.patch(`/api/tables/${table.id}/view`, {
+          table_view: {
+            has_seen_last_round_result: true
+          }
+        })
+      } catch (e) {
+        console.error(e)
+      }
     }
   }
 
@@ -126,6 +144,10 @@ class GameTable extends Component {
     })
   }
 
+  onModalClose = async () => {
+    await this.handleHasSeenRoundResult(this.state.table)
+  }
+
   onMove = async value => {
     let isSuccess = false
     this.setState({playIsLoading: value.type})
@@ -141,7 +163,7 @@ class GameTable extends Component {
   }
 
   render() {
-    const {isDisabled, table} = this.state
+    const {table} = this.state
     const {t} = this.props
     const currentPlayer = find(propEq('is_current', true), table.players)
     return (
@@ -188,7 +210,6 @@ class GameTable extends Component {
           style={styles.modalDiceInCup}
           position={'center'}
           ref={'modalDiceInCup'}
-          isDisabled={isDisabled}
         >
           {table.meta.is_active && table.cup ? (
             this.renderDices()
@@ -206,9 +227,9 @@ class GameTable extends Component {
               table.round_result.status === 'lost' && styles.modalLose
             ]}
             position={'center'}
+            onClosed={this.onModalClose}
             ref={'modalRoundEnd'}
             swipeToClose={false}
-            isDisabled={isDisabled}
           >
             <Grid>
               <Row size={30}>
