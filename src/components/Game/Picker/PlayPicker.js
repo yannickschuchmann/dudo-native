@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
-import {StyleSheet, Text} from 'react-native'
-import {Button, Icon} from 'native-base'
+import {StyleSheet, Text, Vibration} from 'react-native'
+import {Icon} from 'native-base'
+import VibrateButton from '../../vibrateButton'
 import {Col, Row} from 'react-native-easy-grid'
 
 import {withNamespaces} from 'react-i18next'
@@ -20,6 +21,9 @@ export class PlayPicker extends Component {
   onCheckPlay = async () => {
     const {die, eyes} = this.state
     const isSuccess = await this.props.onMove({type: 'raise', die, eyes})
+    if (!isSuccess) {
+      Vibration.vibrate([0, 250])
+    }
     this.setState({isSuccess: isSuccess})
   }
 
@@ -47,7 +51,7 @@ export class PlayPicker extends Component {
         </Row>
         <Row>
           <Col size={20}>
-            <Button
+            <VibrateButton
               block
               danger
               disabled={!!playIsLoading}
@@ -55,10 +59,10 @@ export class PlayPicker extends Component {
               onPress={this.props.closePicker}
             >
               <Icon style={styles.icon} name="arrow-back" />
-            </Button>
+            </VibrateButton>
           </Col>
           <Col size={80}>
-            <Button
+            <VibrateButton
               block
               primary
               disabled={!!playIsLoading}
@@ -70,7 +74,7 @@ export class PlayPicker extends Component {
                   ? t('common:loadingGame')
                   : t('common:playButtons.playButtonText')}
               </Text>
-            </Button>
+            </VibrateButton>
           </Col>
         </Row>
       </Col>

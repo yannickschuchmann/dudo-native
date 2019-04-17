@@ -3,7 +3,8 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
-  ImageBackground
+  ImageBackground,
+  Vibration
 } from 'react-native'
 import {Col, Row} from 'react-native-easy-grid'
 import {Icon} from 'native-base'
@@ -12,12 +13,14 @@ import {scaleFontSize} from '../../../helpers/responsive'
 
 export default class DiceTypePicker extends Component {
   incrementAmount = () => {
+    Vibration.vibrate([0, 25])
     let nextAmount = this.props.eyes + 1
     nextAmount = nextAmount > 6 ? 1 : nextAmount
     this.props.onChange(nextAmount)
   }
 
   decreaseAmount = () => {
+    Vibration.vibrate([0, 25])
     let prevAmount = this.props.eyes - 1
     prevAmount = prevAmount < 1 ? 6 : prevAmount
     this.props.onChange(prevAmount)

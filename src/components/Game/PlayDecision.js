@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {View, StyleSheet, Text} from 'react-native'
-import {Button} from 'native-base'
+import VibrateButton from '../vibrateButton'
 import {Col} from 'react-native-easy-grid'
 
 import {withNamespaces} from 'react-i18next'
@@ -12,7 +12,7 @@ export class PlayDecision extends Component {
     return (
       <Col>
         <Col>
-          <Button
+          <VibrateButton
             block
             primary
             disabled={!!playIsLoading}
@@ -22,8 +22,8 @@ export class PlayDecision extends Component {
             <Text style={styles.buttonText}>
               {t('common:playButtons.playButtonText')}
             </Text>
-          </Button>
-          <Button
+          </VibrateButton>
+          <VibrateButton
             block
             danger
             disabled={!allowedToDudoCalzo || !!playIsLoading}
@@ -35,8 +35,8 @@ export class PlayDecision extends Component {
                 ? t('common:loadingGame')
                 : t('common:playButtons.dudoButtonText')}
             </Text>
-          </Button>
-          <Button
+          </VibrateButton>
+          <VibrateButton
             block
             success
             disabled={!allowedToDudoCalzo || !!playIsLoading}
@@ -48,7 +48,7 @@ export class PlayDecision extends Component {
                 ? t('common:loadingGame')
                 : t('common:playButtons.spotOnButtonText')}
             </Text>
-          </Button>
+          </VibrateButton>
         </Col>
       </Col>
     )
