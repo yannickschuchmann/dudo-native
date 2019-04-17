@@ -1,5 +1,12 @@
 import React, {Component} from 'react'
-import {ActivityIndicator, StyleSheet, StatusBar, Text, View, TouchableOpacity} from 'react-native'
+import {
+  ActivityIndicator,
+  StyleSheet,
+  StatusBar,
+  Text,
+  View,
+  TouchableOpacity
+} from 'react-native'
 import {Icon, Container, Footer} from 'native-base'
 import {Notifications} from 'expo'
 
@@ -28,7 +35,8 @@ class GameTable extends Component {
     isLoading: false,
     isOpen: false,
     isDisabled: false,
-    playIsLoading: null
+    playIsLoading: null,
+    moveError: false
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -81,10 +89,10 @@ class GameTable extends Component {
     if (!table.meta.has_seen) {
       try {
         response = await api.patch(`/api/tables/${table.id}/view`)
-        Notifications.setBadgeNumberAsync(response.data.unseen_table_views_count || 0)
-      } catch (e) {
-        console.error(e)
-      }
+        Notifications.setBadgeNumberAsync(
+          response.data.unseen_table_views_count || 0
+        )
+      } catch (e) {}
     }
   }
 
@@ -119,14 +127,17 @@ class GameTable extends Component {
   }
 
   onMove = async value => {
+    let isSuccess = false
     this.setState({playIsLoading: value.type})
     try {
       const res = await api.post(`/api/tables/${this.state.table.id}/moves`, {
         value
       })
       this.onUpdateTable(res.data)
+      isSuccess = true
     } catch (e) {}
     this.setState({playIsLoading: null})
+    return isSuccess
   }
 
   render() {
@@ -151,24 +162,22 @@ class GameTable extends Component {
           <Row size={48}>
             {this.props.globalState.isLoadingTables ? (
               <ActivityIndicator size="small" color="#c8b273" />
+            ) : table.meta.allowed_to_place_move ? (
+              <PlayDisplay
+                playIsLoading={this.state.playIsLoading}
+                onMove={this.onMove}
+                game={table.game}
+                allowedToDudoCalzo={table.meta.allowed_to_dudo_calzo}
+                lastMove={table.last_move}
+              />
             ) : (
-              table.meta.allowed_to_place_move ? (
-                <PlayDisplay
-                  playIsLoading={this.state.playIsLoading}
-                  onMove={this.onMove}
-                  game={table.game}
-                  allowedToDudoCalzo={table.meta.allowed_to_dudo_calzo}
-                  lastMove={table.last_move}
-                />
-              ) : (
-                <View style={styles.waitingContainer}>
-                  <Text style={styles.waitingText}>
-                    {t('common:gameText:waitingFor', {
-                      player: currentPlayer.name
-                    })}
-                  </Text>
-                </View>
-              )
+              <View style={styles.waitingContainer}>
+                <Text style={styles.waitingText}>
+                  {t('common:gameText:waitingFor', {
+                    player: currentPlayer.name
+                  })}
+                </Text>
+              </View>
             )}
           </Row>
         </Grid>

@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {Constants} from 'expo'
 import {StyleSheet, StatusBar} from 'react-native'
 import {Container} from 'native-base'
 import {Grid, Col} from 'react-native-easy-grid'

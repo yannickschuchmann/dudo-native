@@ -12,20 +12,16 @@ import {Col, Row} from 'react-native-easy-grid'
 import {scaleFontSize} from '../../../helpers/responsive'
 
 export default class DiceAmountPicker extends Component {
-  increaseAllowed = () => {
-    return this.props.die < this.props.totalDie
-  }
-
-  decreaseAllowed = () => {
-    return this.props.die > 1
-  }
-
   incrementAmount = () => {
-    this.props.onChange(this.props.die + 1)
+    let nextAmount = this.props.die + 1
+    nextAmount = nextAmount > this.props.totalDie ? 1 : nextAmount
+    this.props.onChange(nextAmount)
   }
 
   decreaseAmount = () => {
-    this.props.onChange(this.props.die - 1)
+    let prevAmount = this.props.die - 1
+    prevAmount = prevAmount < 1 ? this.props.totalDie : prevAmount
+    this.props.onChange(prevAmount)
   }
 
   render() {
@@ -33,12 +29,12 @@ export default class DiceAmountPicker extends Component {
       <Row>
         <Col size={11} />
         <Col size={25}>
-          <TouchableOpacity
-            onPress={this.decreaseAmount}
-            disabled={!this.decreaseAllowed()}
-          >
+          <TouchableOpacity onPress={this.decreaseAmount}>
             <Image
-              style={styles.pickerContainerLeft}
+              style={[
+                styles.pickerContainerLeft,
+                !this.props.isSuccess && styles.moveError
+              ]}
               source={require('../../../assets/pickerArrow.png')}
             />
           </TouchableOpacity>
@@ -46,18 +42,26 @@ export default class DiceAmountPicker extends Component {
         <Col size={25}>
           <ImageBackground
             style={styles.pickerContainerLeft}
+            imageStyle={!this.props.isSuccess && styles.moveError}
             source={require('../../../assets/pickerContainer.png')}
           >
-            <Text style={styles.picketAmountText}>{this.props.die}</Text>
+            <Text
+              style={[
+                styles.picketAmountText,
+                !this.props.isSuccess && styles.moveIconError
+              ]}
+            >
+              {this.props.die}
+            </Text>
           </ImageBackground>
         </Col>
         <Col size={25}>
-          <TouchableOpacity
-            onPress={this.incrementAmount}
-            disabled={!this.increaseAllowed()}
-          >
+          <TouchableOpacity onPress={this.incrementAmount}>
             <Image
-              style={styles.pickerContainerRight}
+              style={[
+                styles.pickerContainerRight,
+                !this.props.isSuccess && styles.moveError
+              ]}
               source={require('../../../assets/pickerArrow.png')}
             />
           </TouchableOpacity>
@@ -85,5 +89,11 @@ const styles = StyleSheet.create({
     fontFamily: 'MyriadPro-BoldCond',
     color: '#95792A',
     top: '5%'
+  },
+  moveError: {
+    tintColor: 'red'
+  },
+  moveIconError: {
+    color: 'red'
   }
 })

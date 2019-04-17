@@ -13,26 +13,36 @@ import {scaleFontSize} from '../../../helpers/responsive'
 export class PlayPicker extends Component {
   state = {
     die: this.props.lastMove.die || 1,
-    eyes: this.props.lastMove.eyes || 2
+    eyes: this.props.lastMove.eyes || 2,
+    isSuccess: true
+  }
+
+  onCheckPlay = async () => {
+    const {die, eyes} = this.state
+    const isSuccess = await this.props.onMove({type: 'raise', die, eyes})
+    this.setState({isSuccess: isSuccess})
   }
 
   render() {
     const {game, lastMove, t, i18n, playIsLoading} = this.props
-    const {die, eyes} = this.state
+    const {die, eyes, isSuccess} = this.state
+
     return (
       <Col style={styles.rootContainer}>
         <Row>
           <DiceAmountPicker
+            isSuccess={isSuccess}
             die={die}
-            onChange={die => this.setState({die})}
+            onChange={die => this.setState({die, isSuccess: true})}
             totalDie={game.total_die}
           />
         </Row>
         <Row>
           <DiceTypePicker
+            isSuccess={isSuccess}
             eyes={eyes}
             lastMove={lastMove}
-            onChange={eyes => this.setState({eyes})}
+            onChange={eyes => this.setState({eyes, isSuccess: true})}
           />
         </Row>
         <Row>
@@ -53,7 +63,7 @@ export class PlayPicker extends Component {
               primary
               disabled={!!playIsLoading}
               style={styles.buttonContainer}
-              onPress={() => this.props.onMove({type: 'raise', die, eyes})}
+              onPress={this.onCheckPlay}
             >
               <Text style={styles.buttonText}>
                 {playIsLoading == 'raise'

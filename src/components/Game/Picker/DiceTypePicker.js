@@ -1,11 +1,9 @@
 import React, {Component} from 'react'
-import {Constants} from 'expo'
 import {
   StyleSheet,
   Image,
   TouchableOpacity,
-  ImageBackground,
-  Dimensions
+  ImageBackground
 } from 'react-native'
 import {Col, Row} from 'react-native-easy-grid'
 import {Icon} from 'native-base'
@@ -13,20 +11,16 @@ import {Icon} from 'native-base'
 import {scaleFontSize} from '../../../helpers/responsive'
 
 export default class DiceTypePicker extends Component {
-  increaseAllowed = () => {
-    return this.props.eyes < 6
-  }
-
-  decreaseAllowed = () => {
-    return this.props.eyes > 1
-  }
-
   incrementAmount = () => {
-    this.props.onChange(this.props.eyes + 1)
+    let nextAmount = this.props.eyes + 1
+    nextAmount = nextAmount > 6 ? 1 : nextAmount
+    this.props.onChange(nextAmount)
   }
 
   decreaseAmount = () => {
-    this.props.onChange(this.props.eyes - 1)
+    let prevAmount = this.props.eyes - 1
+    prevAmount = prevAmount < 1 ? 6 : prevAmount
+    this.props.onChange(prevAmount)
   }
 
   render() {
@@ -34,12 +28,12 @@ export default class DiceTypePicker extends Component {
       <Row>
         <Col size={11} />
         <Col size={25}>
-          <TouchableOpacity
-            onPress={this.decreaseAmount}
-            disabled={!this.decreaseAllowed()}
-          >
+          <TouchableOpacity onPress={this.decreaseAmount}>
             <Image
-              style={styles.pickerContainerLeft}
+              style={[
+                styles.pickerContainerLeft,
+                !this.props.isSuccess && styles.moveError
+              ]}
               source={require('../../../assets/pickerArrow.png')}
             />
           </TouchableOpacity>
@@ -47,22 +41,26 @@ export default class DiceTypePicker extends Component {
         <Col size={25}>
           <ImageBackground
             style={styles.pickerContainerLeft}
+            imageStyle={!this.props.isSuccess && styles.moveError}
             source={require('../../../assets/pickerContainer.png')}
           >
             <Icon
-              style={styles.diceTypeSaid}
+              style={[
+                styles.diceTypeSaid,
+                !this.props.isSuccess && styles.moveIconError
+              ]}
               name={`dice-${this.props.eyes}`}
               type="MaterialCommunityIcons"
             />
           </ImageBackground>
         </Col>
         <Col size={25}>
-          <TouchableOpacity
-            onPress={this.incrementAmount}
-            disabled={!this.increaseAllowed()}
-          >
+          <TouchableOpacity onPress={this.incrementAmount}>
             <Image
-              style={styles.pickerContainerRight}
+              style={[
+                styles.pickerContainerRight,
+                !this.props.isSuccess && styles.moveError
+              ]}
               source={require('../../../assets/pickerArrow.png')}
             />
           </TouchableOpacity>
@@ -88,5 +86,11 @@ const styles = StyleSheet.create({
   diceTypeSaid: {
     color: '#95792A',
     fontSize: 50
+  },
+  moveError: {
+    tintColor: 'red'
+  },
+  moveIconError: {
+    color: 'red'
   }
 })
