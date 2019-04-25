@@ -15,16 +15,24 @@ export class PlayPicker extends Component {
   state = {
     die: this.props.lastMove.die || 1,
     eyes: this.props.lastMove.eyes || 2,
-    isSuccess: true
+    isSuccess: true,
+    _isMounted: false
   }
 
   onCheckPlay = async () => {
     const {die, eyes} = this.state
     const isSuccess = await this.props.onMove({type: 'raise', die, eyes})
-    if (!isSuccess) {
-      Vibration.vibrate([0, 250])
+    if (this._isMounted) {
+      this.setState({isSuccess: isSuccess})
     }
-    this.setState({isSuccess: isSuccess})
+  }
+
+  componentDidMount() {
+    this._isMounted = true
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false
   }
 
   render() {
