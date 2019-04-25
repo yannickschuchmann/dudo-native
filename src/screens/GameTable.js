@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {
   ActivityIndicator,
+  NativeModules,
   StyleSheet,
   StatusBar,
   Text,
@@ -8,6 +9,8 @@ import {
   TouchableOpacity,
   Vibration
 } from 'react-native'
+const {ExponentHaptic = {}} = NativeModules
+import {Haptic} from 'expo'
 import {Icon, Container, Footer} from 'native-base'
 import {Notifications} from 'expo'
 
@@ -146,7 +149,6 @@ class GameTable extends Component {
   }
 
   onModalClose = async () => {
-    Vibration.vibrate(100)
     await this.handleHasSeenRoundResult(this.state.table)
   }
 
@@ -206,10 +208,12 @@ class GameTable extends Component {
           </Row>
         </Grid>
         <Footer style={styles.cupViewButtonContainer}>
-          <CupButton onPress={() => {
-            Vibration.vibrate([0, 25])
-            this.refs.modalDiceInCup.open()
-          }} />
+          <CupButton
+            style={styles.cupButton}
+            onPress={() => {
+              this.refs.modalDiceInCup.open()
+            }}
+          />
         </Footer>
         <Modal
           style={styles.modalDiceInCup}

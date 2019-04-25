@@ -1,32 +1,29 @@
 import React, {Component} from 'react'
 import {StyleSheet, Image, TouchableOpacity} from 'react-native'
-import {Col, Row, Grid} from 'react-native-easy-grid'
+
+import VibrateButton from '../vibrateButton'
 
 import {scaleFontSize} from '../../helpers/responsive'
 
 export default class CupButton extends Component {
   render() {
     return (
-      <Grid>
-        <Row>
-          <Col size={33} />
-          <TouchableOpacity onPress={this.props.onPress}>
-            <Col size={34} style={styles.cupIconContainer}>
-              <Image
-                style={styles.cupIcon}
-                resizeMode="contain"
-                source={require('../../assets/cup.png')}
-              />
-            </Col>
-          </TouchableOpacity>
-          <Col size={33} />
-        </Row>
-      </Grid>
+      <VibrateButton style={styles.cupButton} onPress={this.props.onPress}>
+        <Image
+          style={styles.cupIcon}
+          resizeMode="contain"
+          source={require('../../assets/cup.png')}
+        />
+      </VibrateButton>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  cupButton: {
+    backgroundColor: 'black',
+    marginTop: '5%'
+  },
   cupIcon: {
     height: scaleFontSize(70),
     width: scaleFontSize(70)
