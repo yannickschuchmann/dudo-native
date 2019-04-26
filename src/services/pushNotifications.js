@@ -1,16 +1,17 @@
-import {Constants, Permissions, Notifications} from 'expo'
-import {Platform} from 'react-native'
+import { Constants, Permissions, Notifications } from 'expo'
+import { Platform } from 'react-native'
+import i18n from '../i18n/i18n'
 
 import api from '../services/api'
 
-export async function registerPushNotifications() {
-  const {status: existingStatus} = await Permissions.getAsync(
+export async function registerPushNotifications () {
+  const { status: existingStatus } = await Permissions.getAsync(
     Permissions.NOTIFICATIONS
   )
   let finalStatus = existingStatus
 
   if (existingStatus !== 'granted') {
-    const {status} = await Permissions.askAsync(Permissions.NOTIFICATIONS)
+    const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS)
     finalStatus = status
   }
 
@@ -25,7 +26,8 @@ export async function registerPushNotifications() {
       expo_token: token,
       device_id: Constants.deviceId,
       device_name: Constants.deviceName,
-      platform: Platform.OS
+      platform: Platform.OS,
+      language: i18n.language
     }
   })
 }
