@@ -8,9 +8,16 @@ import {scaleFontSize} from '../helpers/responsive'
 
 import {withNamespaces} from 'react-i18next'
 
+import BattleButtons from '../components/Lobby/BattleButtons'
+import InBattleLobby from '../components/Lobby/InBattleLobby'
+
 class Lobby extends Component {
+  state = {
+    inBattle: false
+  }
+
   render() {
-    const {t, i18n} = this.props
+    const {navigation, t, i18n} = this.props
     return (
       <Container style={{backgroundColor: 'black'}}>
         <StatusBar hidden />
@@ -31,31 +38,11 @@ class Lobby extends Component {
             </Col>
           </Row>
           <Row size={70}>
-            <Col style={styles.columnStyle}>
-              <Text style={styles.freeText}>
-                {t('common:lobby.goToBattle')}
-              </Text>
-              <VibrateButton
-                style={styles.buttonAlignment}
-                onPress={() => this.props.navigation.push('GameTable')}
-              >
-                <Text style={styles.buttonText}>{t('common:lobby.vsOne')}</Text>
-              </VibrateButton>
-              <VibrateButton
-                style={styles.buttonAlignment}
-                onPress={() => this.props.navigation.push('GameTable')}
-              >
-                <Text style={styles.buttonText}>{t('common:lobby.vsTwo')}</Text>
-              </VibrateButton>
-              <VibrateButton
-                style={styles.buttonAlignment}
-                onPress={() => this.props.navigation.push('GameTable')}
-              >
-                <Text style={styles.buttonText}>
-                  {t('common:lobby.vsThree')}
-                </Text>
-              </VibrateButton>
-            </Col>
+            {this.state.inBattle ? (
+              <BattleButtons navigation={navigation} />
+            ) : (
+              <InBattleLobby navigation={navigation} />
+            )}
           </Row>
         </Grid>
       </Container>
