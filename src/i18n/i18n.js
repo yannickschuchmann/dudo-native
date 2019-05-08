@@ -46,13 +46,12 @@ i18n
               'Haz login con Facebook para que puedas jugar con tus amigos'
           },
           lobby: {
-            welcomeText: 'Estás en el Lobby',
+            welcomeText: 'Juega con tus amigos',
             goToTables: 'A las Mesas',
             goToBattle: 'Juegos Batalla',
-            vsOne: 'vs. 1',
-            vsTwo: 'vs. 2',
-            vsThree: 'vs .3',
-            goBattle: 'A Jugar'
+            vsOne: 'vs. 1 Jugador',
+            vsTwo: 'vs. 2 Jugadores',
+            vsThree: 'vs .3 Jugadores'
           },
           userCommunication: {
             dudoTitle: 'Dudo v1.0',
@@ -115,13 +114,12 @@ i18n
               'Login with Facebook so you can play with your friends.'
           },
           lobby: {
-            welcomeText: "You're in the Lobby",
+            welcomeText: 'Play with your friends',
             goToTables: 'To the Tables',
             goToBattle: 'Battle Games',
-            vsOne: 'vs. 1',
-            vsTwo: 'vs. 2',
-            vsThree: 'vs .3',
-            goBattle: 'Go Play'
+            vsOne: 'vs. 1 Player',
+            vsTwo: 'vs. 2 Players',
+            vsThree: 'vs .3 Players'
           },
           userCommunication: {
             dudoTitle: 'Dudo v1.0',
@@ -184,13 +182,12 @@ i18n
               'Loggen Sie sich mit Facebook ein, um mit Ihren Freunden zu spielen.'
           },
           lobby: {
-            welcomeText: 'Du bist in der Lobby',
+            welcomeText: 'Spiel mit deinen Freunden',
             goToTables: 'Zu den Tischen',
-            goToBattle: 'Kampfspiel',
-            vsOne: 'vs. 1',
-            vsTwo: 'vs. 2',
-            vsThree: 'vs .3',
-            goBattle: 'Geh Spielen'
+            goToBattle: 'Kampfspiele',
+            vsOne: 'vs. 1 Spieler',
+            vsTwo: 'vs. 2 Spieler',
+            vsThree: 'vs .3 Spieler'
           },
           userCommunication: {
             dudoTitle: 'Dudo v1.0',
@@ -208,7 +205,7 @@ i18n
             playerAmount: 'Spieler',
             playerSays: 'sagt:',
             obligatedRound:
-              'Obligatorisch Runde.\nDu kanst deine Würfel nichr sehen',
+              'Obligatorisch Runde.\nDu kanst deine Würfel nicht sehen',
             waitingFor: 'Warten auf {{player}}',
             wonTheGame: '{{player}} hat gewonnen!'
           },

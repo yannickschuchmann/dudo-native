@@ -13,7 +13,16 @@ export default class HomeHeader extends Component {
         <Header style={styles.homeHeader}>
           <Grid>
             <Row>
-              <Col />
+              <Col style={styles.leftColumnStyle}>
+                <Button
+                  transparent
+                  onPress={() => {
+                    this.props.navigation.goBack()
+                  }}
+                >
+                  <Icon style={styles.icon} name="arrow-back" />
+                </Button>
+              </Col>
               <Col style={styles.columnStyle}>
                 <Title style={styles.headerTitle}>DUDO</Title>
               </Col>
@@ -46,6 +55,11 @@ const styles = StyleSheet.create({
     color: '#c8b273',
     fontSize: scaleFontSize(30)
   },
+  leftColumnStyle: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start'
+  },
   columnStyle: {
     flex: 1,
     flexDirection: 'column',
@@ -57,7 +71,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end'
   },
   icon: {
-    fontSize: scaleFontSize(40),
+    fontSize: scaleFontSize(30),
     color: '#c8b273'
   }
 })
