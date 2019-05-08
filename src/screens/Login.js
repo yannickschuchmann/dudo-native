@@ -51,7 +51,7 @@ class Login extends Component {
   }
 
   onAuth = async token => {
-    const auth = await AuthService.authenticate(token)
+    await AuthService.authenticate(token)
     await registerPushNotifications()
     const messageRead = await deviceStorage.getItem('message1')
     if (messageRead) {

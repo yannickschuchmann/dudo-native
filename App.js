@@ -13,6 +13,7 @@ import './src/i18n/i18n'
 import {cacheImages} from './src/helpers/caching'
 import UserProvider from './src/components/userProvider'
 import Login from './src/screens/Login'
+import Lobby from './src/screens/LobbyA'
 import Home from './src/screens/Home'
 import PlayerProfile from './src/screens/PlayerProfile'
 import CreateTable from './src/screens/CreateTable'
@@ -34,6 +35,9 @@ const StackNavigation = createStackNavigator(
     },
     UserCom: {
       screen: UserCom
+    },
+    Lobby: {
+      screen: Lobby
     },
     GameTable: {
       screen: GameTable
@@ -90,6 +94,7 @@ export default class App extends React.Component {
 
     await cacheImages([require('./src/assets/dudoLogo.png')])
     await Font.loadAsync({
+      Studio8H: require('./src/assets/fonts/Studio8H.otf'),
       'MyriadPro-BoldCond': require('./src/assets/fonts/Myriad-Pro-Bold-Condensed.ttf'),
       'RobotoCondensed-Light': require('./src/assets/fonts/RobotoCondensed-Light.ttf'),
       'RobotoCondensed-Regular': require('./src/assets/fonts/RobotoCondensed-Regular.ttf'),

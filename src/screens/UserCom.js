@@ -24,7 +24,7 @@ class UserCom extends Component {
     if (this.state.messageRead) {
       deviceStorage.saveItem('message1', true)
     }
-    this.props.navigation.push('Home')
+    this.props.navigation.push('Lobby')
   }
 
   render() {
