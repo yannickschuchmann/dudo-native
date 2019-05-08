@@ -51,7 +51,8 @@ i18n
             goToBattle: 'Juegos Batalla',
             vsOne: 'vs. 1 Jugador',
             vsTwo: 'vs. 2 Jugadores',
-            vsThree: 'vs .3 Jugadores'
+            vsThree: 'vs .3 Jugadores',
+            backToBattle: 'A la Batalla'
           },
           userCommunication: {
             dudoTitle: 'Dudo v1.0',
@@ -119,7 +120,8 @@ i18n
             goToBattle: 'Battle Games',
             vsOne: 'vs. 1 Player',
             vsTwo: 'vs. 2 Players',
-            vsThree: 'vs .3 Players'
+            vsThree: 'vs .3 Players',
+            backToBattle: 'Back to Battle'
           },
           userCommunication: {
             dudoTitle: 'Dudo v1.0',
@@ -187,7 +189,8 @@ i18n
             goToBattle: 'Kampfspiele',
             vsOne: 'vs. 1 Spieler',
             vsTwo: 'vs. 2 Spieler',
-            vsThree: 'vs .3 Spieler'
+            vsThree: 'vs .3 Spieler',
+            backToBattle: 'Bekämpfen'
           },
           userCommunication: {
             dudoTitle: 'Dudo v1.0',
