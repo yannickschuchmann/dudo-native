@@ -52,7 +52,8 @@ i18n
             vsOne: 'vs. 1 Jugador',
             vsTwo: 'vs. 2 Jugadores',
             vsThree: 'vs .3 Jugadores',
-            backToBattle: 'A la Batalla'
+            backToBattle: 'A la Batalla',
+            diceLeft: 'Dados Restantes: '
           },
           userCommunication: {
             dudoTitle: 'Dudo v1.0',
@@ -138,7 +139,8 @@ i18n
             vsOne: 'vs. 1 Player',
             vsTwo: 'vs. 2 Players',
             vsThree: 'vs .3 Players',
-            backToBattle: 'Back to Battle'
+            backToBattle: 'Back to Battle',
+            diceLeft: 'Dice Remaining: '
           },
           userCommunication: {
             dudoTitle: 'Dudo v1.0',
@@ -224,7 +226,8 @@ i18n
             vsOne: 'vs. 1 Spieler',
             vsTwo: 'vs. 2 Spieler',
             vsThree: 'vs .3 Spieler',
-            backToBattle: 'Bekämpfen'
+            backToBattle: 'Bekämpfen',
+            diceLeft: 'Verbleibende Würfel: '
           },
           userCommunication: {
             dudoTitle: 'Dudo v1.0',
