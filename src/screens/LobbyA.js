@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {StyleSheet, StatusBar, Text} from 'react-native'
-import {CheckBox} from 'react-native-elements'
 import {Container} from 'native-base'
 import {Grid, Col, Row} from 'react-native-easy-grid'
 import VibrateButton from '../components/vibrateButton'
@@ -13,7 +12,8 @@ import InBattleLobby from '../components/Lobby/InBattleLobby'
 
 class Lobby extends Component {
   state = {
-    inBattle: false
+    inBattle: true,
+    diceLeft: 3
   }
 
   render() {
@@ -39,9 +39,12 @@ class Lobby extends Component {
           </Row>
           <Row size={70}>
             {this.state.inBattle ? (
-              <BattleButtons navigation={navigation} />
+              <InBattleLobby
+                navigation={navigation}
+                diceLeft={this.state.diceLeft}
+              />
             ) : (
-              <InBattleLobby navigation={navigation} />
+              <BattleButtons navigation={navigation} />
             )}
           </Row>
         </Grid>
