@@ -20,6 +20,7 @@ import CreateTable from './src/screens/CreateTable'
 import GameTable from './src/screens/GameTable'
 import AddToTable from './src/screens/AddToTable'
 import UserCom from './src/screens/UserCom'
+import LoadingBattle from './src/screens/LoadingBattles'
 import GlobalStateProvider from './src/components/globalStateProvider'
 import AppStateHandler from './src/appStateHandler'
 axios.defaults.baseURL = 'https://api.dudogames.com'
@@ -41,6 +42,9 @@ const StackNavigation = createStackNavigator(
     },
     GameTable: {
       screen: GameTable
+    },
+    LoadingBattle: {
+      screen: LoadingBattle
     },
     Home: {
       screen: Home

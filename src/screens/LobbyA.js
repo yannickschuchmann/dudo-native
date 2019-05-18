@@ -13,10 +13,22 @@ import BottomProfileStats from '../components/Lobby/BottomProfileStats'
 
 class Lobby extends Component {
   state = {
+    friendBattle: true,
     inBattle: false,
     diceLeft: 3,
     playedBattles: '15',
     percWin: '55%'
+  }
+
+  friendBattleChoice = this.friendBattleChoice.bind(this)
+  anonBattleChoice = this.friendBattleChoice.bind(this)
+
+  friendBattleChoice() {
+    this.setState({friendBattle: true})
+  }
+
+  anonBattleChoice() {
+    this.setState({friendBattle: false})
   }
 
   render() {
@@ -47,7 +59,12 @@ class Lobby extends Component {
                 diceLeft={this.state.diceLeft}
               />
             ) : (
-              <BattleButtons navigation={navigation} />
+              <BattleButtons
+                navigation={navigation}
+                friendBattle={this.state.friendBattle}
+                friendBattleChoice={this.friendBattleChoice}
+                anonBattleChoice={this.anonBattleChoice}
+              />
             )}
           </Row>
           <Row size={15} style={styles.profileRowStyle}>

@@ -8,20 +8,24 @@ import {withNamespaces} from 'react-i18next'
 
 class BattleButtons extends Component {
   render() {
-    const {t, i18n} = this.props
+    const {t, i18n, friendBattle} = this.props
     return (
       <Col style={styles.columnStyle}>
         <Text style={styles.freeText}>{t('common:lobby.goToBattle')}</Text>
         <Row style={styles.rowStyle}>
           <VibrateButton
             style={styles.buttonAlignment}
-            onPress={() => this.props.navigation.push('GameTable')}
+            onPress={() =>
+              this.props.navigation.push('LoadingBattle', {friendBattle})
+            }
           >
             <Text style={styles.buttonText}>{t('common:lobby.vsFriends')}</Text>
           </VibrateButton>
           <VibrateButton
             style={styles.buttonAlignment}
-            onPress={() => this.props.navigation.push('GameTable')}
+            onPress={() =>
+              this.props.navigation.push('LoadingBattle', {friendBattle})
+            }
           >
             <Text style={styles.buttonText}>{t('common:lobby.vsOne')}</Text>
           </VibrateButton>
@@ -29,13 +33,17 @@ class BattleButtons extends Component {
         <Row style={styles.rowStyle}>
           <VibrateButton
             style={styles.buttonAlignment}
-            onPress={() => this.props.navigation.push('GameTable')}
+            onPress={() =>
+              this.props.navigation.push('LoadingBattle', {friendBattle})
+            }
           >
             <Text style={styles.buttonText}>{t('common:lobby.vsTwo')}</Text>
           </VibrateButton>
           <VibrateButton
             style={styles.buttonAlignment}
-            onPress={() => this.props.navigation.push('GameTable')}
+            onPress={() =>
+              this.props.navigation.push('LoadingBattle', {friendBattle})
+            }
           >
             <Text style={styles.buttonText}>{t('common:lobby.vsThree')}</Text>
           </VibrateButton>
