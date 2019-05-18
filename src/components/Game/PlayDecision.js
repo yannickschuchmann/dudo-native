@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
-import {View, StyleSheet, Text} from 'react-native'
+import {StyleSheet, Text} from 'react-native'
 import VibrateButton from '../vibrateButton'
+import VibrateButtonLongPress from '../vibrateButtonLongPress'
 import {Col} from 'react-native-easy-grid'
 
 import {withNamespaces} from 'react-i18next'
@@ -23,11 +24,11 @@ export class PlayDecision extends Component {
               {t('common:playButtons.playButtonText')}
             </Text>
           </VibrateButton>
-          <VibrateButton
+          <VibrateButtonLongPress
             block
             danger
             disabled={!allowedToDudoCalzo || !!playIsLoading}
-            onPress={() => this.props.onMove({type: 'dudo'})}
+            onLongPress={() => this.props.onMove({type: 'dudo'})}
             style={styles.buttonContainer}
           >
             <Text style={styles.buttonText}>
@@ -35,12 +36,12 @@ export class PlayDecision extends Component {
                 ? t('common:loadingGame')
                 : t('common:playButtons.dudoButtonText')}
             </Text>
-          </VibrateButton>
-          <VibrateButton
+          </VibrateButtonLongPress>
+          <VibrateButtonLongPress
             block
             success
             disabled={!allowedToDudoCalzo || !!playIsLoading}
-            onPress={() => this.props.onMove({type: 'calzo'})}
+            onLongPress={() => this.props.onMove({type: 'calzo'})}
             style={styles.buttonContainer}
           >
             <Text style={styles.buttonText}>
@@ -48,7 +49,7 @@ export class PlayDecision extends Component {
                 ? t('common:loadingGame')
                 : t('common:playButtons.spotOnButtonText')}
             </Text>
-          </VibrateButton>
+          </VibrateButtonLongPress>
         </Col>
       </Col>
     )
