@@ -53,6 +53,8 @@ i18n
             vsTwo: 'vs.\n2 Jugadores',
             vsThree: 'vs.\n3 Jugadores',
             vsFriends: 'vs.\nAmigos',
+            battlesPlayed: 'Batallas Jugadas: ',
+            winRatio: 'Ganado: ',
             backToBattle: 'A la Batalla',
             diceLeft: 'Dados Restantes: '
           },
@@ -124,6 +126,8 @@ i18n
             vsTwo: 'vs.\n2 Players',
             vsThree: 'vs.\n3 Players',
             vsFriends: 'vs.\nFriends',
+            battlesPlayed: 'Battles Played: ',
+            winRatio: 'Win Ratio: ',
             backToBattle: 'Back to Battle',
             diceLeft: 'Dice Remaining: '
           },
@@ -195,6 +199,8 @@ i18n
             vsTwo: 'vs.\n2 Spieler',
             vsThree: 'vs.\n3 Spieler',
             vsFriends: 'vs.\nFreunden',
+            battlesPlayed: 'Kampf gespielt: ',
+            winRatio: 'Gewinnen: ',
             backToBattle: 'Bekämpfen',
             diceLeft: 'Verbleibende Würfel: '
           },

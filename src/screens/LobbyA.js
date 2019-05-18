@@ -3,17 +3,21 @@ import {StyleSheet, StatusBar, Text} from 'react-native'
 import {Container} from 'native-base'
 import {Grid, Col, Row} from 'react-native-easy-grid'
 import VibrateButton from '../components/vibrateButton'
+import {Icon} from 'native-base'
 import {scaleFontSize} from '../helpers/responsive'
 
 import {withNamespaces} from 'react-i18next'
 
 import BattleButtons from '../components/Lobby/BattleButtons'
 import InBattleLobby from '../components/Lobby/InBattleLobby'
+import BottomProfileStats from '../components/Lobby/BottomProfileStats'
 
 class Lobby extends Component {
   state = {
     inBattle: false,
-    diceLeft: 3
+    diceLeft: 3,
+    playedBattles: '15',
+    percWin: '55%'
   }
 
   render() {
@@ -37,7 +41,7 @@ class Lobby extends Component {
               </VibrateButton>
             </Col>
           </Row>
-          <Row size={70}>
+          <Row size={55}>
             {this.state.inBattle ? (
               <InBattleLobby
                 navigation={navigation}
@@ -46,6 +50,13 @@ class Lobby extends Component {
             ) : (
               <BattleButtons navigation={navigation} />
             )}
+          </Row>
+          <Row size={15} style={styles.profileRowStyle}>
+            <BottomProfileStats
+              playedBattles={this.state.playedBattles}
+              percWin={this.state.percWin}
+              navigation={navigation}
+            />
           </Row>
         </Grid>
       </Container>
@@ -79,5 +90,19 @@ const styles = StyleSheet.create({
     fontFamily: 'MyriadPro-BoldCond',
     color: 'black',
     fontSize: scaleFontSize(30)
+  },
+  profileRowStyle: {
+    borderTopColor: '#95792A',
+    borderWidth: 5
+  },
+  profileButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    height: scaleFontSize(150)
+  },
+  icon: {
+    fontSize: scaleFontSize(100),
+    color: '#c8b273'
   }
 })
