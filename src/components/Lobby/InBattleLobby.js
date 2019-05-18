@@ -23,7 +23,7 @@ class InBattleLobby extends Component {
           digitStyle={styles.counterDigitStyle}
           digitTxtStyle={styles.counterTextStyle}
           timeToShow={['M', 'S']}
-          size={scaleFontSize(30)}
+          size={scaleFontSize(35)}
         />
         <Text style={styles.freeText}>
           {t('common:lobby.diceLeft')}

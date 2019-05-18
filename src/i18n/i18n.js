@@ -246,7 +246,7 @@ i18n
               'Folgen Sie uns auf Facebook und lassen Sie uns Ihre Meinung wissen. Das Gute und vor allem das Schlechte hilft uns, uns zu verbessern. Wir werden Verbesserungen und Fortschritte kommunizieren.',
             thanksText: 'Danke für die Hilfe!!',
             continueButton: 'Weitermachen',
-            notShow: 'Diese Nachricht nicht mehr anzeigen'
+            notShow: 'Diese Nachricht nicht\nmehr anzeigen'
           },
           profile: {
             personalTab: 'Persönlich',

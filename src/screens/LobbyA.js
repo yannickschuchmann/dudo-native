@@ -3,7 +3,6 @@ import {StyleSheet, StatusBar, Text} from 'react-native'
 import {Container} from 'native-base'
 import {Grid, Col, Row} from 'react-native-easy-grid'
 import VibrateButton from '../components/vibrateButton'
-import {Icon} from 'native-base'
 import {scaleFontSize} from '../helpers/responsive'
 
 import {withNamespaces} from 'react-i18next'
