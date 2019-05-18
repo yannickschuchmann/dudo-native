@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {StyleSheet, Text} from 'react-native'
 import VibrateButton from '../vibrateButton'
-import VibrateButtonLongPress from '../vibrateButtonLongPress'
+import {VibrateButtonLongPress} from '../vibrateButton'
 import {Col} from 'react-native-easy-grid'
 
 import {withNamespaces} from 'react-i18next'
