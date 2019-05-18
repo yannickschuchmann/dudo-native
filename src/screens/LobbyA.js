@@ -12,7 +12,7 @@ import InBattleLobby from '../components/Lobby/InBattleLobby'
 
 class Lobby extends Component {
   state = {
-    inBattle: true,
+    inBattle: false,
     diceLeft: 3
   }
 

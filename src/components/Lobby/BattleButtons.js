@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {StyleSheet, Text} from 'react-native'
-import {Col} from 'react-native-easy-grid'
+import {Col, Row} from 'react-native-easy-grid'
 import VibrateButton from '../vibrateButton'
 import {scaleFontSize} from '../../helpers/responsive'
 
@@ -12,24 +12,34 @@ class BattleButtons extends Component {
     return (
       <Col style={styles.columnStyle}>
         <Text style={styles.freeText}>{t('common:lobby.goToBattle')}</Text>
-        <VibrateButton
-          style={styles.buttonAlignment}
-          onPress={() => this.props.navigation.push('GameTable')}
-        >
-          <Text style={styles.buttonText}>{t('common:lobby.vsOne')}</Text>
-        </VibrateButton>
-        <VibrateButton
-          style={styles.buttonAlignment}
-          onPress={() => this.props.navigation.push('GameTable')}
-        >
-          <Text style={styles.buttonText}>{t('common:lobby.vsTwo')}</Text>
-        </VibrateButton>
-        <VibrateButton
-          style={styles.buttonAlignment}
-          onPress={() => this.props.navigation.push('GameTable')}
-        >
-          <Text style={styles.buttonText}>{t('common:lobby.vsThree')}</Text>
-        </VibrateButton>
+        <Row style={styles.rowStyle}>
+          <VibrateButton
+            style={styles.buttonAlignment}
+            onPress={() => this.props.navigation.push('GameTable')}
+          >
+            <Text style={styles.buttonText}>{t('common:lobby.vsFriends')}</Text>
+          </VibrateButton>
+          <VibrateButton
+            style={styles.buttonAlignment}
+            onPress={() => this.props.navigation.push('GameTable')}
+          >
+            <Text style={styles.buttonText}>{t('common:lobby.vsOne')}</Text>
+          </VibrateButton>
+        </Row>
+        <Row style={styles.rowStyle}>
+          <VibrateButton
+            style={styles.buttonAlignment}
+            onPress={() => this.props.navigation.push('GameTable')}
+          >
+            <Text style={styles.buttonText}>{t('common:lobby.vsTwo')}</Text>
+          </VibrateButton>
+          <VibrateButton
+            style={styles.buttonAlignment}
+            onPress={() => this.props.navigation.push('GameTable')}
+          >
+            <Text style={styles.buttonText}>{t('common:lobby.vsThree')}</Text>
+          </VibrateButton>
+        </Row>
       </Col>
     )
   }
@@ -39,27 +49,32 @@ export default withNamespaces(['common'], {wait: true})(BattleButtons)
 
 const styles = StyleSheet.create({
   columnStyle: {
-    justifyContent: 'space-around',
     alignItems: 'center'
+  },
+  rowStyle: {
+    width: '100%',
+    justifyContent: 'space-around'
   },
   buttonAlignment: {
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
     backgroundColor: '#c8b273',
-    height: scaleFontSize(70),
-    width: scaleFontSize(200),
+    height: scaleFontSize(150),
+    width: scaleFontSize(150),
     borderWidth: 5,
     borderColor: '#95792A'
   },
   freeText: {
     fontFamily: 'MyriadPro-BoldCond',
     color: 'white',
-    fontSize: scaleFontSize(30)
+    fontSize: scaleFontSize(30),
+    alignSelf: 'center'
   },
   buttonText: {
     fontFamily: 'MyriadPro-BoldCond',
     color: 'black',
-    fontSize: scaleFontSize(30)
+    fontSize: scaleFontSize(30),
+    textAlign: 'center'
   }
 })
