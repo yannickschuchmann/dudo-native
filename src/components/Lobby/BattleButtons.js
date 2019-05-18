@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     backgroundColor: '#c8b273',
-    height: scaleFontSize(150),
+    height: scaleFontSize(100),
     width: scaleFontSize(150),
     borderWidth: 5,
     borderColor: '#95792A'
