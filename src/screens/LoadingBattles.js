@@ -6,13 +6,13 @@ import {Grid, Row, Col} from 'react-native-easy-grid'
 import {withNamespaces} from 'react-i18next'
 
 class LoadingBattle extends Component {
-  state = {friendBattle: this.props.navigation.state.params.friendBattle}
   render() {
+    const friendBattle = this.props.navigation.getParam('friendBattle', null)
     return (
       <Container>
         <StatusBar hidden />
         <Grid>
-          {this.state.friendBattle ? (
+          {friendBattle ? (
             <Col>
               <Row>
                 <Text>Loading Friend Battle</Text>

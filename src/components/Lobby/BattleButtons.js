@@ -15,17 +15,21 @@ class BattleButtons extends Component {
         <Row style={styles.rowStyle}>
           <VibrateButton
             style={styles.buttonAlignment}
-            onPress={() =>
-              this.props.navigation.push('LoadingBattle', {friendBattle})
-            }
+            onPress={() => {
+              this.props.navigation.push('LoadingBattle', {
+                friendBattle: true
+              })
+            }}
           >
             <Text style={styles.buttonText}>{t('common:lobby.vsFriends')}</Text>
           </VibrateButton>
           <VibrateButton
             style={styles.buttonAlignment}
-            onPress={() =>
-              this.props.navigation.push('LoadingBattle', {friendBattle})
-            }
+            onPress={() => {
+              this.props.navigation.push('LoadingBattle', {
+                friendBattle: false
+              })
+            }}
           >
             <Text style={styles.buttonText}>{t('common:lobby.vsOne')}</Text>
           </VibrateButton>
@@ -33,17 +37,21 @@ class BattleButtons extends Component {
         <Row style={styles.rowStyle}>
           <VibrateButton
             style={styles.buttonAlignment}
-            onPress={() =>
-              this.props.navigation.push('LoadingBattle', {friendBattle})
-            }
+            onPress={() => {
+              this.props.navigation.push('LoadingBattle', {
+                friendBattle: false
+              })
+            }}
           >
             <Text style={styles.buttonText}>{t('common:lobby.vsTwo')}</Text>
           </VibrateButton>
           <VibrateButton
             style={styles.buttonAlignment}
-            onPress={() =>
-              this.props.navigation.push('LoadingBattle', {friendBattle})
-            }
+            onPress={() => {
+              this.props.navigation.push('LoadingBattle', {
+                friendBattle: false
+              })
+            }}
           >
             <Text style={styles.buttonText}>{t('common:lobby.vsThree')}</Text>
           </VibrateButton>
