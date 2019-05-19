@@ -1,36 +1,31 @@
 import React, {Component} from 'react'
-import {StyleSheet, StatusBar, Text} from 'react-native'
+import {StyleSheet, StatusBar} from 'react-native'
 import {Container} from 'native-base'
-import {Grid, Row, Col} from 'react-native-easy-grid'
 
-import {withNamespaces} from 'react-i18next'
+import LoadingFriendBattle from '../Loading/LoadingFriendBattle'
+import LoadingAnonBattle from '../Loading/LoadingAnonBattle'
 
 class LoadingBattle extends Component {
   render() {
     const friendBattle = this.props.navigation.getParam('friendBattle', null)
+    const {navigation} = this.props
     return (
-      <Container>
+      <Container style={styles.root}>
         <StatusBar hidden />
-        <Grid>
-          {friendBattle ? (
-            <Col>
-              <Row>
-                <Text>Loading Friend Battle</Text>
-              </Row>
-            </Col>
-          ) : (
-            <Col>
-              <Row>
-                <Text>Loading Anonymous Battle</Text>
-              </Row>
-            </Col>
-          )}
-        </Grid>
+        {friendBattle ? (
+          <LoadingFriendBattle navigation={navigation} />
+        ) : (
+          <LoadingAnonBattle navigation={navigation} />
+        )}
       </Container>
     )
   }
 }
 
-export default withNamespaces(['common'], {wait: true})(LoadingBattle)
+export default LoadingBattle
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  root: {
+    backgroundColor: 'black'
+  }
+})

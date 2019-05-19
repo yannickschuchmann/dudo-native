@@ -8,7 +8,7 @@ import {withNamespaces} from 'react-i18next'
 
 class BattleButtons extends Component {
   render() {
-    const {t, i18n, friendBattle} = this.props
+    const {t, i18n} = this.props
     return (
       <Col style={styles.columnStyle}>
         <Text style={styles.freeText}>{t('common:lobby.goToBattle')}</Text>

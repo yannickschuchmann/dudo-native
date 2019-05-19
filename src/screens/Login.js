@@ -55,7 +55,7 @@ class Login extends Component {
     await registerPushNotifications()
     const messageRead = await deviceStorage.getItem('message1')
     if (messageRead) {
-      this.props.navigation.push('Home')
+      this.props.navigation.push('Lobby')
     } else {
       this.props.navigation.push('UserCom')
     }
