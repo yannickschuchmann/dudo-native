@@ -16,7 +16,12 @@ class Lobby extends Component {
     inBattle: false,
     diceLeft: 3,
     playedBattles: '15',
-    percWin: '55%'
+    percWin: '55%',
+    until: 5
+  }
+
+  onCountDownFinish = () => {
+    this.setState({diceLeft: this.state.diceLeft - 1, until: this.state.until})
   }
 
   render() {
@@ -45,6 +50,8 @@ class Lobby extends Component {
               <InBattleLobby
                 navigation={navigation}
                 diceLeft={this.state.diceLeft}
+                onCountDownFinish={this.onCountDownFinish}
+                until={this.state.until}
               />
             ) : (
               <BattleButtons navigation={navigation} />

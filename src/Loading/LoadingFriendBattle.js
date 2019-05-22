@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
-import {StyleSheet, Text} from 'react-native'
-import {Icon} from 'native-base'
+import {StyleSheet} from 'react-native'
 import {Grid, Row, Col} from 'react-native-easy-grid'
 
-import VibrateButton from '../components/vibrateButton'
+import BackHeader from '../components/Headers/BackHeader'
 import FriendsList from '../components/Management/FriendsList'
 
 class LoadingFriendBattle extends Component {
@@ -11,18 +10,8 @@ class LoadingFriendBattle extends Component {
     return (
       <Grid>
         <Col>
-          <Row size={30}>
-            <Text style={{color: 'white'}}>Loading Friend Battle</Text>
-            <VibrateButton
-              transparent
-              onPress={() => {
-                this.props.navigation.goBack()
-              }}
-            >
-              <Icon style={styles.icon} name="arrow-back" />
-            </VibrateButton>
-          </Row>
-          <Row size={70}>
+          <BackHeader navigation={this.props.navigation} />
+          <Row>
             <FriendsList />
           </Row>
         </Col>

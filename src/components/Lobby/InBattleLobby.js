@@ -7,10 +7,6 @@ import {scaleFontSize} from '../../helpers/responsive'
 
 import {withNamespaces} from 'react-i18next'
 
-onDoneCountdown = () => {
-  Alert.alert('Countdown Finish.')
-}
-
 class InBattleLobby extends Component {
   render() {
     const {diceLeft, t, i18n} = this.props
@@ -18,11 +14,11 @@ class InBattleLobby extends Component {
       <Col style={styles.columnStyle}>
         <Text style={styles.freeText}>{t('common:lobby.goToBattle')}</Text>
         <CountDown
-          until={diceLeft * 30}
-          onFinish={this.onDoneCountdown}
+          until={this.props.until}
+          onFinish={this.props.onCountDownFinish}
           digitStyle={styles.counterDigitStyle}
           digitTxtStyle={styles.counterTextStyle}
-          timeToShow={['M', 'S']}
+          timeToShow={['S']}
           size={scaleFontSize(35)}
         />
         <Text style={styles.freeText}>
