@@ -14,14 +14,12 @@ import BottomProfileStats from '../components/Lobby/BottomProfileStats'
 class Lobby extends Component {
   state = {
     inBattle: false,
-    diceLeft: 3,
     playedBattles: '15',
-    percWin: '55%',
-    until: 5
+    percWin: '55%'
   }
 
-  onCountDownFinish = () => {
-    this.setState({diceLeft: this.state.diceLeft - 1, until: this.state.until})
+  onForfeit = () => {
+    this.setState({inBattle: false})
   }
 
   render() {
@@ -49,9 +47,7 @@ class Lobby extends Component {
             {this.state.inBattle ? (
               <InBattleLobby
                 navigation={navigation}
-                diceLeft={this.state.diceLeft}
-                onCountDownFinish={this.onCountDownFinish}
-                until={this.state.until}
+                onForfeit={this.onForfeit}
               />
             ) : (
               <BattleButtons navigation={navigation} />
