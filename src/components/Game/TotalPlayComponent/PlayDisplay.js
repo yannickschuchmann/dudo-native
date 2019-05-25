@@ -3,10 +3,10 @@ import {Contents} from 'expo'
 import {StyleSheet} from 'react-native'
 import {Col, Grid} from 'react-native-easy-grid'
 
-import PlayPicker from './Picker/PlayPicker'
+import PlayPicker from './PlayPicker'
 import PlayDecision from './PlayDecision'
 
-import {scaleFontSize} from '../../helpers/responsive'
+import {scaleFontSize} from '../../../helpers/responsive'
 
 export default class PlayDisplay extends Component {
   state = {

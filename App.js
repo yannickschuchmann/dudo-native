@@ -1,16 +1,16 @@
 import './src/reactotronConfig'
 import React from 'react'
-import { Platform, YellowBox } from 'react-native'
-import { AppLoading, Font, Notifications } from 'expo'
-import { createStackNavigator } from 'react-navigation'
+import {Platform, YellowBox} from 'react-native'
+import {AppLoading, Font, Notifications} from 'expo'
+import {createStackNavigator} from 'react-navigation'
 import Sentry from 'sentry-expo'
-import { InAppNotificationProvider } from './lib/react-native-in-app-notification'
+import {InAppNotificationProvider} from './lib/react-native-in-app-notification'
 import 'es6-symbol/implement'
 import axios from 'axios'
-import { withNamespaces } from 'react-i18next'
+import {withNamespaces} from 'react-i18next'
 import './src/i18n/i18n'
 
-import { cacheImages } from './src/helpers/caching'
+import {cacheImages} from './src/helpers/caching'
 import UserProvider from './src/components/userProvider'
 import Login from './src/screens/Login'
 import Home from './src/screens/Home'
@@ -56,9 +56,9 @@ const StackNavigation = createStackNavigator(
   }
 )
 
-const WrappedStack = ({ t }) => (
+const WrappedStack = ({t}) => (
   <AppStateHandler>
-    <StackNavigation screenProps={{ t }} />
+    <StackNavigation screenProps={{t}} />
   </AppStateHandler>
 )
 
@@ -72,12 +72,12 @@ export default class App extends React.Component {
     fontLoaded: false
   }
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     YellowBox.ignoreWarnings(['Require cycle'])
   }
 
-  async componentDidMount () {
+  async componentDidMount() {
     if (Platform.OS === 'android') {
       Notifications.createChannelAndroidAsync('table-updates', {
         name: 'Table updates',
@@ -109,9 +109,9 @@ export default class App extends React.Component {
       Roboto: require('native-base/Fonts/Roboto.ttf'),
       Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf')
     })
-    this.setState({ fontLoaded: true })
+    this.setState({fontLoaded: true})
   }
-  render () {
+  render() {
     return (
       <InAppNotificationProvider>
         <UserProvider>

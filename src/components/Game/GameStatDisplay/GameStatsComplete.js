@@ -5,7 +5,7 @@ import {Col, Row, Grid} from 'react-native-easy-grid'
 import {Icon} from 'native-base'
 
 import {withNamespaces} from 'react-i18next'
-import {scaleFontSize} from '../../helpers/responsive'
+import {scaleFontSize} from '../../../helpers/responsive'
 
 export class GameStatsComplete extends Component {
   render() {

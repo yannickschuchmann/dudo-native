@@ -71,7 +71,8 @@ i18n
             playerSays: 'dice:',
             obligatedRound: 'Juego Obligado.\nNo puedes ver tus dados',
             waitingFor: 'Esperando a  {{player}}',
-            wonTheGame: '{{player}} ganó!'
+            wonTheGame: '{{player}} ganó!',
+            goBackTables: 'Volver'
           },
           playButtons: {
             playButtonText: 'Jugar',
@@ -140,7 +141,8 @@ i18n
             playerSays: 'says:',
             obligatedRound: "Obligated Round.\nYou can' see your dices",
             waitingFor: 'Waiting for {{player}}',
-            wonTheGame: '{{player}} wins!'
+            wonTheGame: '{{player}} wins!',
+            goBackTables: 'Back'
           },
           playButtons: {
             playButtonText: 'Play',
@@ -210,7 +212,8 @@ i18n
             obligatedRound:
               'Obligatorisch Runde.\nDu kanst deine Würfel nichr sehen',
             waitingFor: 'Warten auf {{player}}',
-            wonTheGame: '{{player}} hat gewonnen!'
+            wonTheGame: '{{player}} hat gewonnen!',
+            goBackTables: 'Zuruck'
           },
           playButtons: {
             playButtonText: 'Spiel',

@@ -1,20 +1,16 @@
 import React, {Component} from 'react'
 import {
   ActivityIndicator,
-  NativeModules,
   StyleSheet,
   StatusBar,
   Text,
   View,
-  TouchableOpacity,
-  Vibration
+  TouchableOpacity
 } from 'react-native'
-const {ExponentHaptic = {}} = NativeModules
-import {Haptic} from 'expo'
-import {Icon, Container, Footer} from 'native-base'
+import {Button, Icon, Container, Footer} from 'native-base'
 import {Notifications} from 'expo'
 
-import {Row, Grid} from 'react-native-easy-grid'
+import {Row, Col, Grid} from 'react-native-easy-grid'
 import Modal from 'react-native-modalbox'
 import {withNamespaces} from 'react-i18next'
 
@@ -22,9 +18,9 @@ import {compose, find, propEq} from 'ramda'
 
 import GameTableHeader from '../components/Headers/GameTableHeader'
 import PlayerCarousel from '../components/Game/PlayerCarousel'
-import GameStatsComplete from '../components/Game/GameStatsComplete'
-import PlayDisplay from '../components/Game/PlayDisplay'
-import CupButton from '../components/Game/CupButton'
+import GameStatsComplete from '../components/Game/GameStatDisplay/GameStatsComplete'
+import PlayDisplay from '../components/Game/TotalPlayComponent/PlayDisplay'
+import CupButton from '../components/Game/CupButtonModals/CupButton'
 
 import DecisionMade from '../components/Game/EndOfRound/DecisionMade'
 import TableDiceList from '../components/Game/EndOfRound/TableDiceList'
@@ -51,7 +47,6 @@ class GameTable extends Component {
         table
       }
     }
-
     return null
   }
 
@@ -61,14 +56,12 @@ class GameTable extends Component {
       this.props.navigation.goBack()
       return
     }
-
     this.handleRoundEnd(table)
     this.handleHasSeen(table)
   }
 
   componentDidUpdate() {
     const {table} = this.state
-
     this.handleHasSeen(table)
     this.handleRoundEnd(table)
   }
@@ -121,7 +114,6 @@ class GameTable extends Component {
   renderDices() {
     const {cup} = this.state.table
     const diceIcons = []
-
     for (let type in cup) {
       for (let i = 0; i < cup[type]; i++) {
         diceIcons.push(
@@ -173,21 +165,21 @@ class GameTable extends Component {
     return (
       <Container style={styles.screenStyle}>
         <StatusBar hidden />
-        <GameTableHeader
-          onAddToTable={this.onAddToTable}
-          onBack={() => this.props.navigation.goBack()}
-          table={table}
-        />
+        <GameTableHeader onAddToTable={this.onAddToTable} table={table} />
         <Grid>
-          <Row size={27}>
+          <Row size={22}>
             <PlayerCarousel data={table.players} />
           </Row>
-          <Row size={25}>
+          <Row size={23}>
             <GameStatsComplete game={table.game} lastMove={table.last_move} />
           </Row>
-          <Row size={48}>
+          <Row size={40}>
             {this.props.globalState.isLoadingTables ? (
-              <ActivityIndicator size="small" color="#c8b273" />
+              <ActivityIndicator
+                size="small"
+                color="#c8b273"
+                style={styles.activityWheel}
+              />
             ) : table.meta.allowed_to_place_move ? (
               <PlayDisplay
                 playIsLoading={this.state.playIsLoading}
@@ -206,15 +198,28 @@ class GameTable extends Component {
               </View>
             )}
           </Row>
+
+          <Row Row size={15} style={styles.footerContainer}>
+            <Col style={styles.footerColBack}>
+              <Button
+                style={styles.goBackButton}
+                transparent
+                onPress={() => this.props.navigation.goBack()}
+              >
+                <Text style={styles.goBackButtonText}>
+                  {t('common:gameText:goBackTables')}
+                </Text>
+              </Button>
+            </Col>
+            <Col style={styles.footerColCupButton}>
+              <CupButton
+                onPress={() => {
+                  this.refs.modalDiceInCup.open()
+                }}
+              />
+            </Col>
+          </Row>
         </Grid>
-        <Footer style={styles.cupViewButtonContainer}>
-          <CupButton
-            style={styles.cupButton}
-            onPress={() => {
-              this.refs.modalDiceInCup.open()
-            }}
-          />
-        </Footer>
         <Modal
           style={styles.modalDiceInCup}
           position={'center'}
@@ -274,6 +279,11 @@ const styles = StyleSheet.create({
   screenStyle: {
     backgroundColor: 'black'
   },
+  activityWheel: {
+    flexDirection: 'row',
+    alignSelf: 'center',
+    justifyContent: 'center'
+  },
   waitingContainer: {
     backgroundColor: 'black',
     flex: 1,
@@ -285,11 +295,32 @@ const styles = StyleSheet.create({
     fontSize: scaleFontSize(25),
     textAlign: 'center'
   },
-  cupViewButtonContainer: {
+  footerContainer: {
     backgroundColor: 'black',
     borderTopColor: '#c8b273',
     borderTopWidth: 4,
-    flex: 0.2
+    flexDirection: 'row'
+  },
+  footerColBack: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  goBackButton: {
+    alignSelf: 'center',
+    borderColor: '#c8b273',
+    opacity: 1,
+    borderWidth: 2,
+    borderRadius: 5,
+    padding: '3%'
+  },
+  goBackButtonText: {
+    color: '#c8b273',
+    fontSize: scaleFontSize(25),
+    fontFamily: 'MyriadPro-BoldCond'
+  },
+  footerColCupButton: {
+    flex: 1,
+    justifyContent: 'center'
   },
   modalEndRound: {
     height: '90%',
@@ -335,5 +366,9 @@ const styles = StyleSheet.create({
     fontFamily: 'MyriadPro-BoldCond',
     color: 'white',
     textAlign: 'center'
+  },
+  icon: {
+    fontSize: scaleFontSize(30),
+    color: '#c8b273'
   }
 })

@@ -6,8 +6,8 @@ import {Col, Row} from 'react-native-easy-grid'
 
 import {withNamespaces} from 'react-i18next'
 
-import DiceAmountPicker from './DiceAmountPicker'
-import DiceTypePicker from './DiceTypePicker'
+import DiceAmountPicker from '../PickerComponent/DiceAmountPicker'
+import DiceTypePicker from '../PickerComponent/DiceTypePicker'
 
 import {scaleFontSize} from '../../../helpers/responsive'
 
