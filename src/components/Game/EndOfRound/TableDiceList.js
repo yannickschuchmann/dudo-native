@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
-import {Constants} from 'expo'
 import {StyleSheet, FlatList, View, Text} from 'react-native'
-import {ListItem} from 'react-native-elements'
+import {Avatar} from 'react-native-elements'
 import {Icon} from 'native-base'
-import {Grid, Col} from 'react-native-easy-grid'
 
 import {scaleFontSize} from '../../../helpers/responsive'
 
@@ -26,7 +24,12 @@ export default class TableDiceList extends Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.playerNameText}>{item.player}</Text>
+        <Avatar
+          containerStyle={{margin: '1%', marginLeft: '15%'}}
+          small
+          source={{uri: item.picture_url}}
+          rounded
+        />
         <View style={styles.diceContainer}>{diceIcons}</View>
       </View>
     )
