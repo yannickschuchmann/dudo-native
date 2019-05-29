@@ -178,7 +178,7 @@ class GameTable extends Component {
               <ActivityIndicator
                 size="small"
                 color="#c8b273"
-                style={styles.activityWheel}
+                style={styles.activityMonitor}
               />
             ) : table.meta.allowed_to_place_move ? (
               <PlayDisplay
@@ -198,7 +198,6 @@ class GameTable extends Component {
               </View>
             )}
           </Row>
-
           <Row Row size={15} style={styles.footerContainer}>
             <Col style={styles.footerColBack}>
               <Button
@@ -279,9 +278,9 @@ const styles = StyleSheet.create({
   screenStyle: {
     backgroundColor: 'black'
   },
-  activityWheel: {
-    flexDirection: 'row',
-    alignSelf: 'center',
+  activityMonitor: {
+    flex: 1,
+    alignItems: 'center',
     justifyContent: 'center'
   },
   waitingContainer: {

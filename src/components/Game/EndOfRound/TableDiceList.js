@@ -8,7 +8,7 @@ import {scaleFontSize} from '../../../helpers/responsive'
 export default class TableDiceList extends Component {
   renderItem = ({item}) => {
     const diceIcons = []
-
+    console.log(item)
     for (let type in item.cup) {
       for (let i = 0; i < item.cup[type]; i++) {
         diceIcons.push(
@@ -27,7 +27,7 @@ export default class TableDiceList extends Component {
         <Avatar
           containerStyle={{margin: '1%', marginLeft: '15%'}}
           small
-          source={{uri: item.picture_url}}
+          source={{uri: item.player_picture_url}}
           rounded
         />
         <View style={styles.diceContainer}>{diceIcons}</View>

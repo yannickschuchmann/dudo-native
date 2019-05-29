@@ -64,6 +64,22 @@ i18n
             continueButton: 'Continuar',
             notShow: 'No mostar más este mensaje'
           },
+          profile: {
+            personalTab: 'Personal',
+            battleTab: 'Batalla',
+            friendlyStats: {
+              winPercent: 'Porcentaje Ganado:',
+              winLose: 'Ratio Ganado/Perdido:',
+              dudoAcc: 'Certeza en Dudo:',
+              regainAcc: 'Certeza en Calzo:'
+            },
+            battleStats: {
+              comingSoon: '¡PERFIL DE BATALLA LLEGA PRONTO!',
+              goFacebookText:
+                'Anda a nuestro grupo de Facebook y cuéntenos qué te gustaría ver aquí. Todas las sugerencias son bienvenidas.',
+              goFacebookButton: 'A Faceboook'
+            }
+          },
           gameText: {
             diceAmount: 'Dados',
             roundNumber: 'Ronda',
@@ -134,6 +150,22 @@ i18n
             continueButton: 'Continue',
             notShow: "Don't show this message again"
           },
+          profile: {
+            personalTab: 'Personal',
+            battleTab: 'Battle',
+            friendlyStats: {
+              winPercent: 'Win Percentage:',
+              winLose: 'Win/Loss Ratio:',
+              dudoAcc: 'Dudo Accuracy:',
+              regainAcc: 'Spot On Accuracy:'
+            },
+            battleStats: {
+              comingSoon: 'BATTLE PROFILE COMING SOON!',
+              goFacebookText:
+                'Go to our Facebook Group and tell us what you would like to see here. All suggestions are welcomed.',
+              goFacebookButton: 'Go To Faceboook'
+            }
+          },
           gameText: {
             diceAmount: 'Dice',
             roundNumber: 'Round',
@@ -203,6 +235,22 @@ i18n
             thanksText: 'Danke für die Hilfe!!',
             continueButton: 'Weitermachen',
             notShow: 'Diese Nachricht nicht mehr anzeigen'
+          },
+          profile: {
+            personalTab: 'Persönlich',
+            battleTab: 'Kampf',
+            friendlyStats: {
+              winPercent: 'Gewinnprozentsatz:',
+              winLose: 'Gewinn/Verlust-Verhältnis:',
+              dudoAcc: 'Dudo-Genauigkeit:',
+              regainAcc: 'SpotOn-Genauigkeit:'
+            },
+            battleStats: {
+              comingSoon: 'KAMPFPROFIL KOMMT BALD!',
+              goFacebookText:
+                'Besuchen Sie unsere Facebook-Gruppe und teilen Sie uns mit, was Sie hier sehen möchten. Alle Vorschläge werden begrüßt.',
+              goFacebookButton: 'Gehe zu Facebook'
+            }
           },
           gameText: {
             diceAmount: 'Würfel',

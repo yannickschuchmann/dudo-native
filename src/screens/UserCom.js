@@ -1,12 +1,6 @@
 import React, {Component} from 'react'
 import {Constants} from 'expo'
-import {
-  ActivityIndicator,
-  Linking,
-  StyleSheet,
-  StatusBar,
-  Text
-} from 'react-native'
+import {Linking, StyleSheet, StatusBar, Text} from 'react-native'
 import {CheckBox} from 'react-native-elements'
 import {Container, Button} from 'native-base'
 import {Grid, Col, Row} from 'react-native-easy-grid'
@@ -54,7 +48,6 @@ class UserCom extends Component {
               </Row>
               <Row size={10}>
                 <Button
-                  style={styles.buttonContainer}
                   onPress={() =>
                     Linking.openURL(
                       'https://www.facebook.com/Dudo-Game-398225500942026'

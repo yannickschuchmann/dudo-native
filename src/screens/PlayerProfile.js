@@ -1,27 +1,31 @@
 import React, {Component} from 'react'
-import {Constants} from 'expo'
-import {
-  ActivityIndicator,
-  Text,
-  StyleSheet,
-  Image,
-  StatusBar
-} from 'react-native'
-import {Container, Button} from 'native-base'
-import {Grid, Row, Col} from 'react-native-easy-grid'
+import {ActivityIndicator, StyleSheet, StatusBar} from 'react-native'
+import {Container} from 'native-base'
+import {Grid, Row} from 'react-native-easy-grid'
+
 import AuthService from '../services/auth'
+import {cacheImages} from '../helpers/caching'
 import {withUser} from '../components/userProvider'
 
-import {withNamespaces} from 'react-i18next'
-import {scaleFontSize} from '../helpers/responsive'
+import PersonalBattleButtons from '../components/PlayerProfile/PersonalBattleButtons'
+import FriendlyProfile from '../components/PlayerProfile/friendlyProfile'
+import BattleProfile from '../components/PlayerProfile/battleProfile'
+import LanguageSelector from '../components/PlayerProfile/LanguageSelector'
+import ProfileBottomBar from '../components/PlayerProfile/ProfileBottomBar'
 
-import BackHeader from '../components/Headers/BackHeader'
-import LanguageSelector from '../components/Management/LanguageSelector'
-import {cacheImages} from '../helpers/caching'
-
-class PlayerProfile extends Component {
+class NewPlayerProfile extends Component {
   state = {
-    isLoading: true
+    isLoading: true,
+    isFriendProfile: true,
+    friendlyStats: {
+      matchesWon: 55,
+      totalMatches: 167,
+      kills: 14,
+      rightDudo: 16,
+      wrongDudo: 67,
+      diceRegain: 5,
+      totalRegain: 20
+    }
   }
 
   componentDidMount() {
@@ -34,79 +38,69 @@ class PlayerProfile extends Component {
     this.setState({isLoading: false})
   }
 
+  profileLogout = async () => {
+    await AuthService.logout()
+    this.props.navigation.push('Login')
+  }
+
+  onFriendPress = () => {
+    this.setState({isFriendProfile: true})
+  }
+
+  onBattlePress = () => {
+    this.setState({isFriendProfile: false})
+  }
+
   render() {
-    const {t, i18n} = this.props
     const {name, pic} = this.props.user
     return (
-      <Container style={styles.root}>
+      <Container style={{backgroundColor: 'black'}}>
         <StatusBar hidden />
-        <BackHeader navigation={this.props.navigation} />
         <Grid>
-          <Col size={60} style={{alignItems: 'center'}}>
-            <Row>
-              {this.state.isLoading ? (
-                <ActivityIndicator size="small" color="#c8b273" />
-              ) : (
-                <Image source={{uri: pic}} style={styles.image} />
-              )}
-            </Row>
-            <Row>
-              <Text style={styles.nameText}>{name}</Text>
-            </Row>
-          </Col>
-          <Row size={20} style={{justifyContent: 'center'}}>
+          <Row size={15}>
+            <PersonalBattleButtons
+              isFriendProfile={this.state.isFriendProfile}
+              onFriendPress={this.onFriendPress}
+              onBattlePress={this.onBattlePress}
+            />
+          </Row>
+          <Row size={60}>
+            {this.state.isLoading ? (
+              <ActivityIndicator
+                size="small"
+                color="#c8b273"
+                style={styles.activityMonitor}
+              />
+            ) : this.state.isFriendProfile ? (
+              <FriendlyProfile
+                name={name}
+                pic={pic}
+                friendlyStats={this.state.friendlyStats}
+              />
+            ) : (
+              <BattleProfile />
+            )}
+          </Row>
+          <Row size={10}>
             <LanguageSelector />
           </Row>
-          <Row size={20} style={{justifyContent: 'center'}}>
-            <Button
-              primary
-              style={styles.LogoutButton}
-              onPress={async () => {
-                await AuthService.logout()
-                this.props.navigation.push('Login')
-              }}
-            >
-              <Text style={styles.LogoutButtonText}>
-                {t('common:logoutText')}
-              </Text>
-            </Button>
+          <Row size={15}>
+            <ProfileBottomBar
+              profileLogout={this.profileLogout}
+              navigation={this.props.navigation}
+            />
           </Row>
         </Grid>
       </Container>
     )
   }
 }
-
 const styles = StyleSheet.create({
-  root: {
-    backgroundColor: 'black'
-  },
-  image: {
-    marginTop: scaleFontSize(10),
-    height: scaleFontSize(150),
-    width: scaleFontSize(150),
-    borderRadius: scaleFontSize(75)
-  },
-  LogoutButton: {
-    alignSelf: 'center',
-    justifyContent: 'center',
-    height: scaleFontSize(50),
-    width: scaleFontSize(200),
-    borderWidth: 1,
-    borderRadius: 2,
-    backgroundColor: 'red',
-    borderColor: 'rgba(255,255,255,1)'
-  },
-  LogoutButtonText: {
-    fontSize: scaleFontSize(20),
-    fontFamily: 'MyriadPro-BoldCond',
-    color: 'white'
-  },
-  nameText: {
-    fontSize: scaleFontSize(30),
-    fontFamily: 'MyriadPro-BoldCond',
-    color: 'white'
+  activityMonitor: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 })
 
-export default withNamespaces(['common'], {wait: true})(withUser(PlayerProfile))
+export default withUser(NewPlayerProfile)
