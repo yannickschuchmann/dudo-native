@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Text, StyleSheet} from 'react-native'
+import {Linking, Text, StyleSheet} from 'react-native'
 import {Row, Col} from 'react-native-easy-grid'
 import {Button} from 'native-base'
 
@@ -26,7 +26,7 @@ class BattleProfile extends Component {
             style={styles.buttonContainer}
             onPress={() =>
               Linking.openURL(
-                'https://www.facebook.com/Dudo-Game-398225500942026'
+                'https://www.facebook.com/Dudo-Game-398225500942026/?view_public_for=398225500942026'
               )
             }
           >
