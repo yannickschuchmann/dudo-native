@@ -11,11 +11,10 @@ export default class GameTableHeader extends Component {
         <Header style={styles.homeHeader}>
           <Grid>
             <Row>
-              <Col>
+              <Col size={80}>
                 <Title style={styles.headerTitle}>{table.name}</Title>
               </Col>
-              <Col />
-              <Col>
+              <Col size={20}>
                 <Button transparent onPress={onAddToTable}>
                   <Icon
                     style={styles.icon}
