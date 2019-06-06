@@ -156,7 +156,6 @@ const styles = StyleSheet.create({
     flex: 1,
     textAlign: 'center',
     fontSize: scaleFontSize(25),
-    fontFamily: 'Roboto-Bold',
     fontFamily: 'MyriadPro-BoldCond',
     color: '#C8B273',
     paddingLeft: 15,

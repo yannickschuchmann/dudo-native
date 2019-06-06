@@ -76,7 +76,9 @@ i18n
               comingSoon: '¡PERFIL DE BATALLA LLEGA PRONTO!',
               goFacebookText:
                 '¿Qué es perfil de batalla? Anda a nuestro grupo de Facebook para que te enteres y y nos digas que te gustaría ver ahí.',
-              goFacebookButton: 'A Faceboook'
+              goFacebookButton: 'A Faceboook',
+              iosMessage:
+                ' Si tienes iOS y Safari tendrás que cambiar tus ajustes de Safari para que pueda abrir la página de Facebook. O solo busca a Dudo en Facebook.'
             }
           },
           gameText: {
@@ -161,7 +163,9 @@ i18n
               comingSoon: 'BATTLE PROFILE COMING SOON!',
               goFacebookText:
                 'What is a battle profile? Go to our Facebook group so you can find out and tell us what you would like to see there.',
-              goFacebookButton: 'Go To Faceboook'
+              goFacebookButton: 'Go To Faceboook',
+              iosMessage:
+                'If you have iOS and Safari you will have to change your Safari settings so that you can open the Facebook page. Or you can just look for Dudo in Facebook'
             }
           },
           gameText: {
@@ -246,7 +250,9 @@ i18n
               comingSoon: 'KAMPFPROFIL KOMMT BALD!',
               goFacebookText:
                 'Was ist ein Kampfprofil? Besuchen Sie unsere Facebook-Gruppe, damit Sie herausfinden und uns mitteilen können, was Sie dort sehen möchten.',
-              goFacebookButton: 'Gehe zu Facebook'
+              goFacebookButton: 'Gehe zu Facebook',
+              iosMessage:
+                'Wenn Sie iOS und Safari verwenden, müssen Sie Ihre Safari-Einstellungen ändern, damit Sie die Facebook-Seite öffnen können. Oder suchen Sie einfach bei Facebook nach Dudo'
             }
           },
           gameText: {

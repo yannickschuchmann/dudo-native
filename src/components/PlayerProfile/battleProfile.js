@@ -10,42 +10,36 @@ class BattleProfile extends Component {
   render () {
     const { t } = this.props
     return (
-      <Col style={{ flex: 1 }}>
-        <Row style={styles.rowContainer} size={40}>
-          <Text style={styles.statText}>
-            {t('common:profile.battleStats.comingSoon')}
+      <Col style={styles.colContainer}>
+        <Text style={styles.statText}>
+          {t('common:profile.battleStats.comingSoon')}
+        </Text>
+        <Text style={styles.paragText1}>
+          {t('common:profile.battleStats.goFacebookText')}
+        </Text>
+        <Button
+          style={styles.buttonContainer}
+          onPress={() =>
+            Linking.openURL('https://www.facebook.com/dudogames')
+          }
+        >
+          <Text style={styles.buttonText}>
+            {t('common:profile.battleStats.goFacebookButton')}
           </Text>
-        </Row>
-        <Row style={styles.rowContainer} size={40}>
-          <Text style={styles.paragText}>
-            {t('common:profile.battleStats.goFacebookText')}
-          </Text>
-        </Row>
-        <Row style={styles.rowContainer} size={20}>
-          <Button
-            style={styles.buttonContainer}
-            onPress={() =>
-              Linking.openURL(
-                'https://www.facebook.com/dudogames'
-              )
-            }
-          >
-            <Text style={styles.buttonText}>
-              {t('common:profile.battleStats.goFacebookButton')}
-            </Text>
-          </Button>
-        </Row>
+        </Button>
+        <Text style={styles.paragText2}>
+          {t('common:profile.battleStats.iosMessage')}
+        </Text>
+
       </Col>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  rowContainer: {
+  colContainer: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: scaleFontSize(10)
+    margin: scaleFontSize(5)
   },
   statText: {
     flex: 1,
@@ -53,14 +47,26 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: scaleFontSize(35),
     fontFamily: 'MyriadPro-BoldCond',
-    margin: scaleFontSize(10),
-    textAlign: 'center'
+    textAlign: 'center',
+    marginTop: scaleFontSize(25)
   },
-  paragText: {
+  paragText1: {
+    flex: 1,
     color: 'white',
     fontSize: scaleFontSize(20),
     fontFamily: 'MyriadPro-BoldCond',
     textAlign: 'center'
+  },
+  paragText2: {
+    flex: 1,
+    color: 'white',
+    fontSize: scaleFontSize(15),
+    fontFamily: 'MyriadPro-BoldCond',
+    textAlign: 'center'
+  },
+  buttonContainer: {
+    alignSelf: 'center',
+    margin: scaleFontSize(20)
   },
   buttonText: {
     fontSize: scaleFontSize(25),
