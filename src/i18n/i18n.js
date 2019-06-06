@@ -55,12 +55,9 @@ i18n
             goBattle: 'A Jugar'
           },
           userCommunication: {
-            dudoTitle: 'Dudo v1.0',
-            buttonClick: 'Primero haz click en el Botón',
-            buttonText: 'Facebook - Dudo',
+            dudoTitle: 'Dudo v1.5',
             messageText:
-              'Por favor síguenos en Facebook y dejanos tu opinión. Lo bueno y en especial lo malo, todo nos ayuda a mejorar. Iremos comunicando mejoras y avances.',
-            thanksText: 'Gracias por la Ayuda!!',
+              'Esta es una versión intermedia en la que ahora les entregamos estadísticas personales sobre su juego. Estos datos los pueden ver en su perfil. Donde también verás que hay más cosas en las que estamos trabajando que podrás disfrutar pronto.',
             continueButton: 'Continuar',
             notShow: 'No mostar más este mensaje'
           },
@@ -78,7 +75,7 @@ i18n
             battleStats: {
               comingSoon: '¡PERFIL DE BATALLA LLEGA PRONTO!',
               goFacebookText:
-                'Anda a nuestro grupo de Facebook y cuéntenos qué te gustaría ver aquí. Todas las sugerencias son bienvenidas.',
+                '¿Qué es perfil de batalla? Anda a nuestro grupo de Facebook para que te enteres y y nos digas que te gustaría ver ahí.',
               goFacebookButton: 'A Faceboook'
             }
           },
@@ -144,13 +141,10 @@ i18n
           },
           userCommunication: {
             dudoTitle: 'Dudo v1.0',
-            buttonClick: 'First click the button',
-            buttonText: 'Facebook - Dudo',
             messageText:
-              'Please follow us on Facebook and give us your opinion. The good and especially the bad, anything helps us to improve. We will communicate improvements and progress.',
-            thanksText: 'Thanks for the help!!',
-            continueButton: 'Continue',
-            notShow: "Don't show this message again"
+              'This is an intermediate version in which we now give you personal statistics about your game. You can see this information in your profile. Where you will also see that there are more things that we are working on that you can enjoy soon.',
+            notShow: "Don't show this message again",
+            continueButton: 'Continue'
           },
           profile: {
             personalTab: 'Personal',
@@ -166,7 +160,7 @@ i18n
             battleStats: {
               comingSoon: 'BATTLE PROFILE COMING SOON!',
               goFacebookText:
-                'Go to our Facebook Group and tell us what you would like to see here. All suggestions are welcomed.',
+                'What is a battle profile? Go to our Facebook group so you can find out and tell us what you would like to see there.',
               goFacebookButton: 'Go To Faceboook'
             }
           },
@@ -232,17 +226,14 @@ i18n
           },
           userCommunication: {
             dudoTitle: 'Dudo v1.0',
-            buttonClick: 'Klicken Sie zuerst auf die Taste',
-            buttonText: 'Facebook - Dudo',
             messageText:
-              'Folgen Sie uns auf Facebook und lassen Sie uns Ihre Meinung wissen. Das Gute und vor allem das Schlechte hilft uns, uns zu verbessern. Wir werden Verbesserungen und Fortschritte kommunizieren.',
-            thanksText: 'Danke für die Hilfe!!',
-            continueButton: 'Weitermachen',
-            notShow: 'Diese Nachricht nicht mehr anzeigen'
+              'Dies ist eine Zwischenversion, in der wir Ihnen jetzt persönliche Statistiken über Ihr Spiel geben. Sie können diese Informationen in Ihrem Profil sehen. Wo Sie auch sehen werden, dass es weitere Dinge gibt, an denen wir arbeiten, die Sie bald genießen können.',
+            notShow: 'Diese Nachricht nicht mehr anzeigen',
+            continueButton: 'Fortsetzen'
           },
           profile: {
             personalTab: 'Persönlich',
-            battleTab: 'Battle',
+            battleTab: 'Kampf',
             statistics: {
               totalGames: 'Spiele:',
               gamesWon: 'Siege:',
@@ -252,9 +243,9 @@ i18n
               calzoAcc: 'SpotOn-Genauigkeit:'
             },
             battleStats: {
-              comingSoon: 'BATTLEPROFILE KOMMT BALD!',
+              comingSoon: 'KAMPFPROFIL KOMMT BALD!',
               goFacebookText:
-                'Besuchen Sie unsere Facebook-Gruppe und teilen Sie uns mit, was Sie hier sehen möchten. Alle Vorschläge werden begrüßt.',
+                'Was ist ein Kampfprofil? Besuchen Sie unsere Facebook-Gruppe, damit Sie herausfinden und uns mitteilen können, was Sie dort sehen möchten.',
               goFacebookButton: 'Gehe zu Facebook'
             }
           },

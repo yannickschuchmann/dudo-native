@@ -1,15 +1,15 @@
-import React, {Component} from 'react'
-import {StyleSheet, Text, Vibration} from 'react-native'
-import {Icon} from 'native-base'
+import React, { Component } from 'react'
+import { StyleSheet, Text } from 'react-native'
+import { Icon } from 'native-base'
 import VibrateButton from '../../vibrateButton'
-import {Col, Row} from 'react-native-easy-grid'
+import { Col, Row } from 'react-native-easy-grid'
 
-import {withNamespaces} from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 
 import DiceAmountPicker from '../PickerComponent/DiceAmountPicker'
 import DiceTypePicker from '../PickerComponent/DiceTypePicker'
 
-import {scaleFontSize} from '../../../helpers/responsive'
+import { scaleFontSize } from '../../../helpers/responsive'
 
 export class PlayPicker extends Component {
   state = {
@@ -20,24 +20,24 @@ export class PlayPicker extends Component {
   }
 
   onCheckPlay = async () => {
-    const {die, eyes} = this.state
-    const isSuccess = await this.props.onMove({type: 'raise', die, eyes})
+    const { die, eyes } = this.state
+    const isSuccess = await this.props.onMove({ type: 'raise', die, eyes })
     if (this._isMounted) {
-      this.setState({isSuccess: isSuccess})
+      this.setState({ isSuccess: isSuccess })
     }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this._isMounted = true
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     this._isMounted = false
   }
 
-  render() {
-    const {game, lastMove, t, i18n, playIsLoading} = this.props
-    const {die, eyes, isSuccess} = this.state
+  render () {
+    const { game, lastMove, t, i18n, playIsLoading } = this.props
+    const { die, eyes, isSuccess } = this.state
 
     return (
       <Col style={styles.rootContainer}>
@@ -45,7 +45,7 @@ export class PlayPicker extends Component {
           <DiceAmountPicker
             isSuccess={isSuccess}
             die={die}
-            onChange={die => this.setState({die, isSuccess: true})}
+            onChange={die => this.setState({ die, isSuccess: true })}
             totalDie={game.total_die}
           />
         </Row>
@@ -54,7 +54,7 @@ export class PlayPicker extends Component {
             isSuccess={isSuccess}
             eyes={eyes}
             lastMove={lastMove}
-            onChange={eyes => this.setState({eyes, isSuccess: true})}
+            onChange={eyes => this.setState({ eyes, isSuccess: true })}
           />
         </Row>
         <Row>
@@ -66,7 +66,7 @@ export class PlayPicker extends Component {
               style={styles.backButtonContainer}
               onPress={this.props.closePicker}
             >
-              <Icon style={styles.icon} name="arrow-back" />
+              <Icon style={styles.icon} name='arrow-back' />
             </VibrateButton>
           </Col>
           <Col size={80}>
@@ -90,7 +90,7 @@ export class PlayPicker extends Component {
   }
 }
 
-export default withNamespaces(['common'], {wait: true})(PlayPicker)
+export default withNamespaces(['common'], { wait: true })(PlayPicker)
 
 const styles = StyleSheet.create({
   rootContainer: {

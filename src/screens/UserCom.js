@@ -1,12 +1,11 @@
-import React, {Component} from 'react'
-import {Constants} from 'expo'
-import {Linking, StyleSheet, StatusBar, Text} from 'react-native'
-import {CheckBox} from 'react-native-elements'
-import {Container, Button} from 'native-base'
-import {Grid, Col, Row} from 'react-native-easy-grid'
-import {scaleFontSize} from '../helpers/responsive'
+import React, { Component } from 'react'
+import { StyleSheet, StatusBar, Text } from 'react-native'
+import { CheckBox } from 'react-native-elements'
+import { Container, Button } from 'native-base'
+import { Grid, Col, Row } from 'react-native-easy-grid'
+import { scaleFontSize } from '../helpers/responsive'
 
-import {withNamespaces} from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import deviceStorage from '../services/deviceStorage'
 
 class UserCom extends Component {
@@ -14,10 +13,10 @@ class UserCom extends Component {
     messageRead: false
   }
 
-  optOutCheck() {
+  optOutCheck () {
     this.state.messageRead
-      ? this.setState({messageRead: false})
-      : this.setState({messageRead: true})
+      ? this.setState({ messageRead: false })
+      : this.setState({ messageRead: true })
   }
 
   onContinue = () => {
@@ -27,10 +26,10 @@ class UserCom extends Component {
     this.props.navigation.push('Home')
   }
 
-  render() {
-    const {t, i18n} = this.props
+  render () {
+    const { t } = this.props
     return (
-      <Container style={{backgroundColor: 'black'}}>
+      <Container style={{ backgroundColor: 'black' }}>
         <StatusBar hidden />
         <Grid>
           <Row size={10} />
@@ -41,27 +40,9 @@ class UserCom extends Component {
                   {t('common:userCommunication.dudoTitle')}
                 </Text>
               </Row>
-              <Row size={20}>
+              <Row size={40}>
                 <Text style={styles.textParag}>
                   {t('common:userCommunication.messageText')}
-                </Text>
-              </Row>
-              <Row size={10}>
-                <Button
-                  onPress={() =>
-                    Linking.openURL(
-                      'https://www.facebook.com/Dudo-Game-398225500942026'
-                    )
-                  }
-                >
-                  <Text style={styles.buttonText}>
-                    {t('common:userCommunication.buttonText')}
-                  </Text>
-                </Button>
-              </Row>
-              <Row size={10}>
-                <Text style={styles.textTest}>
-                  {t('common:userCommunication.thanksText')}
                 </Text>
               </Row>
               <Row size={10}>
@@ -96,7 +77,7 @@ class UserCom extends Component {
   }
 }
 
-export default withNamespaces(['common'], {wait: true})(UserCom)
+export default withNamespaces(['common'], { wait: true })(UserCom)
 
 const styles = StyleSheet.create({
   justifyAll: {
@@ -108,7 +89,7 @@ const styles = StyleSheet.create({
     flex: 1,
     textAlign: 'center',
     fontSize: scaleFontSize(23),
-    fontFamily: 'Roboto-Bold',
+
     fontFamily: 'MyriadPro-BoldCond',
     color: '#C8B273',
     paddingLeft: 15,

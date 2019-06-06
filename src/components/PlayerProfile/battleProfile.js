@@ -1,16 +1,16 @@
-import React, {Component} from 'react'
-import {Linking, Text, StyleSheet} from 'react-native'
-import {Row, Col} from 'react-native-easy-grid'
-import {Button} from 'native-base'
+import React, { Component } from 'react'
+import { Linking, Text, StyleSheet } from 'react-native'
+import { Row, Col } from 'react-native-easy-grid'
+import { Button } from 'native-base'
 
-import {withNamespaces} from 'react-i18next'
-import {scaleFontSize} from '../../helpers/responsive'
+import { withNamespaces } from 'react-i18next'
+import { scaleFontSize } from '../../helpers/responsive'
 
 class BattleProfile extends Component {
-  render() {
-    const {t} = this.props
+  render () {
+    const { t } = this.props
     return (
-      <Col style={{flex: 1}}>
+      <Col style={{ flex: 1 }}>
         <Row style={styles.rowContainer} size={40}>
           <Text style={styles.statText}>
             {t('common:profile.battleStats.comingSoon')}
@@ -70,4 +70,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withNamespaces(['common'], {wait: true})(BattleProfile)
+export default withNamespaces(['common'], { wait: true })(BattleProfile)

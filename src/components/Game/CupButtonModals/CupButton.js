@@ -1,15 +1,14 @@
-import React, {Component} from 'react'
-import {StyleSheet} from 'react-native'
-import {Image} from 'react-native'
+import React, { Component } from 'react'
+import { StyleSheet, Image } from 'react-native'
 import VibrateButton from '../../vibrateButton'
 
-import {scaleFontSize} from '../../../helpers/responsive'
+import { scaleFontSize } from '../../../helpers/responsive'
 
 export default class CupButton extends Component {
-  render() {
+  render () {
     return (
       <VibrateButton
-        style={{alignSelf: 'center'}}
+        style={{ alignSelf: 'center' }}
         transparent
         onPress={this.props.onPress}
       >

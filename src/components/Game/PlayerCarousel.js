@@ -1,11 +1,11 @@
-import React, {Component} from 'react'
-import {ActivityIndicator, View, Text, FlatList, StyleSheet} from 'react-native'
-import {Avatar} from 'react-native-elements'
-import {Card} from 'native-base'
-import {pluck} from 'ramda'
+import React, { Component } from 'react'
+import { ActivityIndicator, View, Text, FlatList, StyleSheet } from 'react-native'
+import { Avatar } from 'react-native-elements'
+import { Card } from 'native-base'
+import { pluck } from 'ramda'
 
-import {cacheImages} from '../../helpers/caching'
-import {scaleFontSize} from '../../helpers/responsive'
+import { cacheImages } from '../../helpers/caching'
+import { scaleFontSize } from '../../helpers/responsive'
 
 class PlayerCarousel extends Component {
   isUnmounted = false
@@ -13,15 +13,15 @@ class PlayerCarousel extends Component {
     isLoading: true
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.prefetchImages()
   }
 
-  componentDidUpdate() {
+  componentDidUpdate () {
     this.prefetchImages()
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     this.isUnmounted = true
   }
 
@@ -29,11 +29,11 @@ class PlayerCarousel extends Component {
     await cacheImages(pluck('picture_url', this.props.data))
 
     if (!this.isUnmounted) {
-      this.setState({isLoading: false})
+      this.setState({ isLoading: false })
     }
   }
 
-  renderItem = ({item}) => (
+  renderItem = ({ item }) => (
     <Card
       style={[
         styles.basePlayer,
@@ -42,9 +42,9 @@ class PlayerCarousel extends Component {
       ]}
     >
       <Avatar
-        containerStyle={{marginTop: '10%'}}
+        containerStyle={{ marginTop: '10%' }}
         medium
-        source={{uri: item.picture_url}}
+        source={{ uri: item.picture_url }}
         rounded
       />
       <Text
@@ -61,11 +61,11 @@ class PlayerCarousel extends Component {
     </Card>
   )
 
-  render() {
+  render () {
     return (
       <View style={styles.listContiner}>
         {this.state.isLoading ? (
-          <ActivityIndicator size="small" color="#c8b273" />
+          <ActivityIndicator size='small' color='#c8b273' />
         ) : (
           <FlatList
             horizontal

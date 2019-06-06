@@ -1,13 +1,12 @@
-import React, {Component} from 'react'
-import {Constants} from 'expo'
-import {StyleSheet, SafeAreaView} from 'react-native'
-import {Header, Title, Button, Icon} from 'native-base'
-import {Grid, Col, Row} from 'react-native-easy-grid'
+import React, { Component } from 'react'
+import { StyleSheet, SafeAreaView } from 'react-native'
+import { Header, Title, Button, Icon } from 'native-base'
+import { Grid, Col, Row } from 'react-native-easy-grid'
 
-import {scaleFontSize} from '../../helpers/responsive'
+import { scaleFontSize } from '../../helpers/responsive'
 
 export default class HomeHeader extends Component {
-  render() {
+  render () {
     return (
       <SafeAreaView>
         <Header style={styles.homeHeader}>
@@ -24,7 +23,7 @@ export default class HomeHeader extends Component {
                     this.props.navigation.push('PlayerProfile')
                   }}
                 >
-                  <Icon style={styles.icon} name="user" type="EvilIcons" />
+                  <Icon style={styles.icon} name='user' type='EvilIcons' />
                 </Button>
               </Col>
             </Row>

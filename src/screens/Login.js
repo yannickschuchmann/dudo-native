@@ -1,5 +1,4 @@
-import React, {Component} from 'react'
-import {Constants} from 'expo'
+import React, { Component } from 'react'
 import {
   ActivityIndicator,
   StyleSheet,
@@ -7,32 +6,32 @@ import {
   StatusBar,
   Text
 } from 'react-native'
-import {withNamespaces} from 'react-i18next'
-import {Container, Button} from 'native-base'
-import {Grid, Col, Row} from 'react-native-easy-grid'
+import { withNamespaces } from 'react-i18next'
+import { Container, Button } from 'native-base'
+import { Grid, Col, Row } from 'react-native-easy-grid'
 import AuthService from '../services/auth'
 import deviceStorage from '../services/deviceStorage'
-import {registerPushNotifications} from '../services/pushNotifications'
+import { registerPushNotifications } from '../services/pushNotifications'
 
-import {scaleFontSize} from '../helpers/responsive'
+import { scaleFontSize } from '../helpers/responsive'
 
 class Login extends Component {
   state = {
     loading: true
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.tryLogin()
   }
 
   tryLogin = async () => {
     try {
-      const {isValid, token} = await AuthService.checkFacebook()
+      const { isValid, token } = await AuthService.checkFacebook()
       if (isValid) {
         await this.onAuth(token)
       } else {
         await AuthService.logout()
-        this.setState({loading: false})
+        this.setState({ loading: false })
       }
     } catch (err) {
       console.error(err)
@@ -40,13 +39,13 @@ class Login extends Component {
   }
 
   onLogin = async () => {
-    this.setState({loading: true})
-    const {type, token} = await AuthService.loginFacebook()
+    this.setState({ loading: true })
+    const { type, token } = await AuthService.loginFacebook()
 
     if (type === 'success') {
       await this.onAuth(token)
     } else {
-      this.setState({loading: false})
+      this.setState({ loading: false })
     }
   }
 
@@ -61,11 +60,11 @@ class Login extends Component {
     }
   }
 
-  render() {
-    const {t, i18n} = this.props
+  render () {
+    const { t, i18n } = this.props
     const loading = (
       <Button primary style={styles.facebookLoginButton}>
-        <ActivityIndicator size="small" color="#c8b273" />
+        <ActivityIndicator size='small' color='#c8b273' />
       </Button>
     )
     const loginButton = (
@@ -81,7 +80,7 @@ class Login extends Component {
     )
 
     return (
-      <Container style={{backgroundColor: 'black'}}>
+      <Container style={{ backgroundColor: 'black' }}>
         <StatusBar hidden />
         <Grid>
           <Row size={10} />
@@ -115,7 +114,7 @@ class Login extends Component {
   }
 }
 
-export default withNamespaces(['common'], {wait: true})(Login)
+export default withNamespaces(['common'], { wait: true })(Login)
 
 const styles = StyleSheet.create({
   justifyAll: {

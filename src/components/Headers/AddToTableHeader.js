@@ -1,14 +1,13 @@
-import React, {Component} from 'react'
-import {Constants} from 'expo'
-import {StyleSheet, Text, SafeAreaView} from 'react-native'
-import {Header, Button, Icon, Title} from 'native-base'
-import {Grid, Col, Row} from 'react-native-easy-grid'
+import React, { Component } from 'react'
+import { StyleSheet, Text, SafeAreaView } from 'react-native'
+import { Header, Button, Icon, Title } from 'native-base'
+import { Grid, Col, Row } from 'react-native-easy-grid'
 
-import {scaleFontSize} from '../../helpers/responsive'
+import { scaleFontSize } from '../../helpers/responsive'
 
 export default class AddToTableHeader extends Component {
-  render() {
-    const {onAdd, navigation, selectedUsers, table} = this.props
+  render () {
+    const { onAdd, navigation, selectedUsers, table } = this.props
     return (
       <SafeAreaView>
         <Header style={styles.homeHeader}>
@@ -16,7 +15,7 @@ export default class AddToTableHeader extends Component {
             <Row>
               <Col size={20}>
                 <Button transparent onPress={() => navigation.goBack()}>
-                  <Icon style={styles.icon} name="arrow-back" />
+                  <Icon style={styles.icon} name='arrow-back' />
                 </Button>
               </Col>
               <Col size={55}>

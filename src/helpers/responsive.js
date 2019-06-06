@@ -1,4 +1,4 @@
-import {Dimensions} from 'react-native'
+import { Dimensions } from 'react-native'
 
 SCREEN_WIDTH = Dimensions.get('window').width // get current width
 SCALE = 375 // constant, 375 is standard width of  iphone 6 / 7 / 8

@@ -1,11 +1,11 @@
-import React, {Component} from 'react'
-import {StyleSheet, SafeAreaView} from 'react-native'
-import {Header, Button, Icon, Title} from 'native-base'
-import {Grid, Col, Row} from 'react-native-easy-grid'
-import {scaleFontSize} from '../../helpers/responsive'
+import React, { Component } from 'react'
+import { StyleSheet, SafeAreaView } from 'react-native'
+import { Header, Button, Icon, Title } from 'native-base'
+import { Grid, Col, Row } from 'react-native-easy-grid'
+import { scaleFontSize } from '../../helpers/responsive'
 export default class GameTableHeader extends Component {
-  render() {
-    const {onAddToTable, table} = this.props
+  render () {
+    const { onAddToTable, table } = this.props
     return (
       <SafeAreaView>
         <Header style={styles.homeHeader}>
@@ -19,8 +19,8 @@ export default class GameTableHeader extends Component {
                 <Button transparent onPress={onAddToTable}>
                   <Icon
                     style={styles.icon}
-                    name="account-plus-outline"
-                    type="MaterialCommunityIcons"
+                    name='account-plus-outline'
+                    type='MaterialCommunityIcons'
                   />
                 </Button>
               </Col>

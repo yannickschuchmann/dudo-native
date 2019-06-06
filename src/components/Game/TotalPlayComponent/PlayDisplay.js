@@ -1,12 +1,9 @@
-import React, {Component} from 'react'
-import {Contents} from 'expo'
-import {StyleSheet} from 'react-native'
-import {Col, Grid} from 'react-native-easy-grid'
+import React, { Component } from 'react'
+import { StyleSheet } from 'react-native'
+import { Col, Grid } from 'react-native-easy-grid'
 
 import PlayPicker from './PlayPicker'
 import PlayDecision from './PlayDecision'
-
-import {scaleFontSize} from '../../../helpers/responsive'
 
 export default class PlayDisplay extends Component {
   state = {
@@ -14,14 +11,14 @@ export default class PlayDisplay extends Component {
   }
 
   onPressPlay = () => {
-    this.setState({pressedPlay: true})
+    this.setState({ pressedPlay: true })
   }
 
   onClosePicker = () => {
-    this.setState({pressedPlay: false})
+    this.setState({ pressedPlay: false })
   }
 
-  render() {
+  render () {
     return (
       <Grid>
         <Col style={styles.rightStatsContainer}>

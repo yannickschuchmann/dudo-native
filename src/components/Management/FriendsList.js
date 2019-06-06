@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import {
   ActivityIndicator,
   StyleSheet,
@@ -7,16 +7,15 @@ import {
   Text,
   Share
 } from 'react-native'
-import {SearchBar} from 'react-native-elements'
-import {Button} from 'native-base'
-import {Grid, Row} from 'react-native-easy-grid'
-import {assoc, compose, curry, filter, map, pluck, propEq, when} from 'ramda'
+import { SearchBar } from 'react-native-elements'
+import { Button } from 'native-base'
+import { Grid, Row } from 'react-native-easy-grid'
+import { assoc, compose, curry, filter, map, pluck, propEq, when } from 'ramda'
 
-import {withNamespaces} from 'react-i18next'
-import {cacheImages} from '../../helpers/caching'
+import { withNamespaces } from 'react-i18next'
 import api from '../../services/api'
 import FriendsItem from './FriendsItem'
-import {scaleFontSize} from '../../helpers/responsive'
+import { scaleFontSize } from '../../helpers/responsive'
 
 export class FriendsList extends Component {
   isUnmounted = false
@@ -29,11 +28,11 @@ export class FriendsList extends Component {
     query: ''
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.fetchUsers()
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     this.isUnmounted = true
   }
 
@@ -50,7 +49,7 @@ export class FriendsList extends Component {
     }
   }
 
-  //Managing Search Logic
+  // Managing Search Logic
   handleSearch = query => {
     this.setState({
       query
@@ -64,12 +63,12 @@ export class FriendsList extends Component {
       return name.indexOf(query) > -1
     })
 
-  toggleSwitch = ({item, selected}) => {
+  toggleSwitch = ({ item, selected }) => {
     const alter = curry((selected, id, items) =>
       map(when(propEq('id', id), assoc('selected', selected)), items)
     )
     const users = alter(selected, item.id, this.state.users)
-    this.setState({users})
+    this.setState({ users })
     this.props.onChange(
       compose(
         pluck('id'),
@@ -79,7 +78,7 @@ export class FriendsList extends Component {
   }
 
   renderHeader = () => {
-    const {t, i18n} = this.props
+    const { t, i18n } = this.props
     return (
       <SearchBar
         round
@@ -150,7 +149,7 @@ export class FriendsList extends Component {
     </Grid>
   )
 
-  renderItem = ({item}) => (
+  renderItem = ({ item }) => (
     <FriendsItem item={item} toggleSwitch={this.toggleSwitch} />
   )
 
@@ -158,12 +157,11 @@ export class FriendsList extends Component {
     return <View style={styles.itemSeparator} />
   }
 
-  render() {
-    const {isLoading, users} = this.state
-    const {t, i18n} = this.props
+  render () {
+    const { isLoading, users } = this.state
     return isLoading ? (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="small" color="#c8b273" />
+        <ActivityIndicator size='small' color='#c8b273' />
       </View>
     ) : users.length > 0 ? (
       this.renderList()
@@ -173,7 +171,7 @@ export class FriendsList extends Component {
   }
 }
 
-export default withNamespaces(['common'], {wait: true})(FriendsList)
+export default withNamespaces(['common'], { wait: true })(FriendsList)
 
 const styles = StyleSheet.create({
   loadingContainer: {

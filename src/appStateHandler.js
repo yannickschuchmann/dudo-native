@@ -1,8 +1,8 @@
 import React from 'react'
-import {AppState} from 'react-native'
-import {compose} from 'ramda'
-import {withGlobalState} from './components/globalStateProvider'
-import {withUser} from './components/userProvider'
+import { AppState } from 'react-native'
+import { compose } from 'ramda'
+import { withGlobalState } from './components/globalStateProvider'
+import { withUser } from './components/userProvider'
 import api from './services/api'
 
 class AppStateHandler extends React.Component {
@@ -10,12 +10,12 @@ class AppStateHandler extends React.Component {
     appState: AppState.currentState
   }
 
-  componentDidMount() {
-    AppState.addEventListener('change', this._handleAppStateChange);
+  componentDidMount () {
+    AppState.addEventListener('change', this._handleAppStateChange)
   }
 
-  componentWillUnmount() {
-    AppState.removeEventListener('change', this._handleAppStateChange);
+  componentWillUnmount () {
+    AppState.removeEventListener('change', this._handleAppStateChange)
   }
 
   _handleAppStateChange = async (nextAppState) => {
@@ -24,7 +24,7 @@ class AppStateHandler extends React.Component {
         await this.fetchTables()
       }
     }
-    this.setState({appState: nextAppState});
+    this.setState({ appState: nextAppState })
   }
 
   fetchTables = async () => {

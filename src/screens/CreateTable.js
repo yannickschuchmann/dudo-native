@@ -1,8 +1,7 @@
-import React, {Component} from 'react'
-import {Constants} from 'expo'
-import {StyleSheet, StatusBar} from 'react-native'
-import {Container} from 'native-base'
-import {Grid, Row} from 'react-native-easy-grid'
+import React, { Component } from 'react'
+import { StyleSheet, StatusBar } from 'react-native'
+import { Container } from 'native-base'
+import { Grid, Row } from 'react-native-easy-grid'
 
 import BackHeader from '../components/Headers/BackHeader'
 import TableSetupSection from '../components/Management/TableSetupSection'
@@ -10,7 +9,7 @@ import FriendsList from '../components/Management/FriendsList'
 import api from '../services/api'
 
 export default class CreateTable extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
@@ -25,19 +24,19 @@ export default class CreateTable extends Component {
   }
 
   onSubmit = async () => {
-    const {name, user_ids} = this.state
+    const { name, user_ids } = this.state
 
     await this.validate()
     if (this.isValid()) {
-      this.setState({isCreating: true})
-      await api.post('/api/tables', {table: {name, user_ids}})
+      this.setState({ isCreating: true })
+      await api.post('/api/tables', { table: { name, user_ids } })
       this.props.navigation.goBack()
     }
   }
 
   isValid = () => {
     return !Object.values(this.state.errors).reduce((prev, curr) => {
-      return prev ? prev : curr
+      return prev || curr
     })
   }
 
@@ -47,22 +46,22 @@ export default class CreateTable extends Component {
         name: !this.state.name,
         user_ids: !this.state.user_ids.length === 0
       }
-      this.setState({errors}, resolve)
+      this.setState({ errors }, resolve)
     })
 
   onNameChange = name =>
     this.setState({
       name,
-      errors: {...this.state.errors, name: false}
+      errors: { ...this.state.errors, name: false }
     })
 
   onUserIdsChange = user_ids =>
     this.setState({
       user_ids,
-      errors: {...this.state.errors, user_ids: false}
+      errors: { ...this.state.errors, user_ids: false }
     })
 
-  render() {
+  render () {
     return (
       <Container style={styles.root}>
         <StatusBar hidden />
@@ -79,7 +78,7 @@ export default class CreateTable extends Component {
             />
           </Row>
           <Row size={70}>
-            <FriendsList onChange={user_ids => this.setState({user_ids})} />
+            <FriendsList onChange={user_ids => this.setState({ user_ids })} />
           </Row>
         </Grid>
       </Container>

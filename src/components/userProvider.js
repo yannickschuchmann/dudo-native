@@ -8,15 +8,15 @@ export default class UserProvider extends React.Component {
     auth: null
   }
 
-  componentDidMount() {
+  componentDidMount () {
     AuthService.subscribe(this.onAuthChange)
   }
 
   onAuthChange = auth => {
-    this.setState({auth})
+    this.setState({ auth })
   }
 
-  render() {
+  render () {
     return (
       <UserContext.Provider value={this.state.auth}>
         {this.props.children}

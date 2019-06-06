@@ -1,21 +1,20 @@
-import React, {Component} from 'react'
-import {Constants} from 'expo'
-import {StyleSheet, View, Text} from 'react-native'
-import {Button, Input} from 'native-base'
-import {Row} from 'react-native-easy-grid'
+import React, { Component } from 'react'
+import { StyleSheet, View, Text } from 'react-native'
+import { Button, Input } from 'native-base'
+import { Row } from 'react-native-easy-grid'
 
-import {withNamespaces} from 'react-i18next'
-import {scaleFontSize} from '../../helpers/responsive'
+import { withNamespaces } from 'react-i18next'
+import { scaleFontSize } from '../../helpers/responsive'
 
 export class TableSetupSection extends Component {
-  render() {
-    const {t, i18n} = this.props
+  render () {
+    const { t } = this.props
     return (
-      <View style={{width: '100%'}}>
+      <View style={{ width: '100%' }}>
         <Row style={styles.inputContainer}>
           <Input
             placeholder={t('common:tableNamePlaceholder')}
-            placeholderTextColor="#95792a"
+            placeholderTextColor='#95792a'
             style={styles.textInput}
             onChangeText={this.props.onNameChange}
             value={this.props.name}
@@ -40,7 +39,7 @@ export class TableSetupSection extends Component {
   }
 }
 
-export default withNamespaces(['common'], {wait: true})(TableSetupSection)
+export default withNamespaces(['common'], { wait: true })(TableSetupSection)
 
 const styles = StyleSheet.create({
   root: {

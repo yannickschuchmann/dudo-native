@@ -1,7 +1,7 @@
 import React from 'react'
-import {compose, length, pathEq, reject, values} from 'ramda'
-import {withNamespaces} from 'react-i18next'
-import {Notifications} from 'expo'
+import { compose, length, pathEq, reject, values } from 'ramda'
+import { withNamespaces } from 'react-i18next'
+import { Notifications } from 'expo'
 
 export const GlobalStateContext = React.createContext({})
 
@@ -30,7 +30,7 @@ class GlobalStateProvider extends React.Component {
       this.setState(
         {
           tables: tables.reduce((acc, current, index) => {
-            acc[current.id] = {...current, order: index}
+            acc[current.id] = { ...current, order: index }
             return acc
           }, {})
         },
@@ -55,11 +55,11 @@ class GlobalStateProvider extends React.Component {
 
   setIsLoadingTables = isLoadingTables => (
     new Promise(resolve => (
-      this.setState({isLoadingTables}, resolve)
+      this.setState({ isLoadingTables }, resolve)
     ))
   )
 
-  render() {
+  render () {
     const value = {
       globalState: this.state,
       actions: {
@@ -76,7 +76,7 @@ class GlobalStateProvider extends React.Component {
   }
 }
 
-export default compose(withNamespaces(['common'], {wait: true}))(
+export default compose(withNamespaces(['common'], { wait: true }))(
   GlobalStateProvider
 )
 

@@ -41,12 +41,27 @@ class FriendlyProfile extends Component {
             <Text style={styles.statText}>{name}</Text>
           </Row>
         </Row>
-        <StatisticRow>{t('common:profile.statistics.totalGames')} {statistics.total_games}</StatisticRow>
-        <StatisticRow>{t('common:profile.statistics.gamesWon')} {statistics.games_won}</StatisticRow>
-        <StatisticRow>{t('common:profile.statistics.winPercent')} {winPercent} %</StatisticRow>
-        <StatisticRow>{t('common:profile.statistics.winLose')} {winLose}</StatisticRow>
-        <StatisticRow>{t('common:profile.statistics.dudoAcc')} {dudoAcc} %</StatisticRow>
-        <StatisticRow>{t('common:profile.statistics.calzoAcc')} {calzoAcc} %</StatisticRow>
+        <Row>
+          <StatisticRow>
+            {t('common:profile.statistics.totalGames')}{' '}
+            {statistics.total_games}
+          </StatisticRow>
+          <StatisticRow>
+            {t('common:profile.statistics.gamesWon')} {statistics.games_won}
+          </StatisticRow>
+        </Row>
+        <StatisticRow>
+          {t('common:profile.statistics.winPercent')} {winPercent} %
+        </StatisticRow>
+        <StatisticRow>
+          {t('common:profile.statistics.winLose')} {winLose}
+        </StatisticRow>
+        <StatisticRow>
+          {t('common:profile.statistics.dudoAcc')} {dudoAcc} %
+        </StatisticRow>
+        <StatisticRow>
+          {t('common:profile.statistics.calzoAcc')} {calzoAcc} %
+        </StatisticRow>
       </Col>
     )
   }
@@ -70,8 +85,8 @@ const styles = StyleSheet.create({
   },
   image: {
     margin: scaleFontSize(10),
-    height: scaleFontSize(50),
-    width: scaleFontSize(50),
+    height: scaleFontSize(40),
+    width: scaleFontSize(40),
     borderRadius: scaleFontSize(4)
   }
 })

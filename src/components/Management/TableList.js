@@ -1,12 +1,11 @@
-import React, {Component} from 'react'
-import {Constants} from 'expo'
-import {StyleSheet, FlatList, View} from 'react-native'
-import {ListItem, Icon} from 'react-native-elements'
+import React, { Component } from 'react'
+import { StyleSheet, FlatList } from 'react-native'
+import { ListItem, Icon } from 'react-native-elements'
 
-import {scaleFontSize} from '../../helpers/responsive'
+import { scaleFontSize } from '../../helpers/responsive'
 
 export default class TableList extends Component {
-  renderItem = ({item}) => (
+  renderItem = ({ item }) => (
     <ListItem
       containerStyle={[
         styles.container,
@@ -17,8 +16,8 @@ export default class TableList extends Component {
         !item.meta.has_seen && styles.tableNameTextNotSeen
       ]}
       title={item.name}
-      hideChevron={true}
-      leftIcon={this.renderAsterisk({item})}
+      hideChevron
+      leftIcon={this.renderAsterisk({ item })}
       onPress={() => this.props.onPress(item.id)}
       badge={{
         value: item.players.length,
@@ -32,19 +31,19 @@ export default class TableList extends Component {
     />
   )
 
-  renderAsterisk = ({item}) => {
+  renderAsterisk = ({ item }) => {
     if (item.meta.allowed_to_place_move) {
       return (
         <Icon
-          name="arrow-right-drop-circle"
-          type="material-community"
+          name='arrow-right-drop-circle'
+          type='material-community'
           iconStyle={styles.allowedToMove}
         />
       )
     }
   }
 
-  render() {
+  render () {
     return (
       <FlatList
         data={this.props.data}

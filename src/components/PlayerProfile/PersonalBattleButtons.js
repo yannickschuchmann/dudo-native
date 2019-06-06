@@ -1,13 +1,13 @@
-import React, {Component} from 'react'
-import {Text, StyleSheet} from 'react-native'
-import {Row, Col} from 'react-native-easy-grid'
+import React, { Component } from 'react'
+import { Text, StyleSheet } from 'react-native'
+import { Row, Col } from 'react-native-easy-grid'
 import VibrateButton from '../vibrateButton'
-import {withNamespaces} from 'react-i18next'
-import {scaleFontSize} from '../../helpers/responsive'
+import { withNamespaces } from 'react-i18next'
+import { scaleFontSize } from '../../helpers/responsive'
 
 class PersonalBattleButtons extends Component {
-  render() {
-    const {t, i18n} = this.props
+  render () {
+    const { t } = this.props
     return (
       <Row style={styles.profileButtonRow}>
         <Col>
@@ -74,4 +74,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withNamespaces(['common'], {wait: true})(PersonalBattleButtons)
+export default withNamespaces(['common'], { wait: true })(PersonalBattleButtons)

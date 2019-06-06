@@ -1,13 +1,12 @@
-import React, {Component} from 'react'
-import {Constants} from 'expo'
-import {StyleSheet, SafeAreaView} from 'react-native'
-import {Header, Button, Title, Icon} from 'native-base'
-import {Grid, Col, Row} from 'react-native-easy-grid'
+import React, { Component } from 'react'
+import { StyleSheet, SafeAreaView } from 'react-native'
+import { Header, Button, Title, Icon } from 'native-base'
+import { Grid, Col, Row } from 'react-native-easy-grid'
 
-import {scaleFontSize} from '../../helpers/responsive'
+import { scaleFontSize } from '../../helpers/responsive'
 
 export default class BackHeader extends Component {
-  render() {
+  render () {
     return (
       <SafeAreaView>
         <Header style={styles.homeHeader}>
@@ -20,7 +19,7 @@ export default class BackHeader extends Component {
                     this.props.navigation.goBack()
                   }}
                 >
-                  <Icon style={styles.icon} name="arrow-back" />
+                  <Icon style={styles.icon} name='arrow-back' />
                 </Button>
               </Col>
               <Col style={styles.columnTitleStyle}>

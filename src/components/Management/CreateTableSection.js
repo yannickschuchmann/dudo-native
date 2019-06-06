@@ -1,15 +1,14 @@
-import React, {Component} from 'react'
-import {Constants} from 'expo'
-import {StyleSheet, Text} from 'react-native'
-import {Button} from 'native-base'
-import {Col, Row} from 'react-native-easy-grid'
+import React, { Component } from 'react'
+import { StyleSheet, Text } from 'react-native'
+import { Button } from 'native-base'
+import { Col, Row } from 'react-native-easy-grid'
 
-import {withNamespaces} from 'react-i18next'
-import {scaleFontSize} from '../../helpers/responsive'
+import { withNamespaces } from 'react-i18next'
+import { scaleFontSize } from '../../helpers/responsive'
 
 export class CreateTableSection extends Component {
-  render() {
-    const {t, i18n} = this.props
+  render () {
+    const { t } = this.props
 
     return (
       <Row>
@@ -34,7 +33,7 @@ export class CreateTableSection extends Component {
   }
 }
 
-export default withNamespaces(['common'], {wait: true})(CreateTableSection)
+export default withNamespaces(['common'], { wait: true })(CreateTableSection)
 
 const styles = StyleSheet.create({
   topRowContainer: {

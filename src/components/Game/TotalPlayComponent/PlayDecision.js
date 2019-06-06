@@ -1,14 +1,14 @@
-import React, {Component} from 'react'
-import {View, StyleSheet, Text} from 'react-native'
+import React, { Component } from 'react'
+import { StyleSheet, Text } from 'react-native'
 import VibrateButton from '../../vibrateButton'
-import {Col} from 'react-native-easy-grid'
+import { Col } from 'react-native-easy-grid'
 
-import {withNamespaces} from 'react-i18next'
-import {scaleFontSize} from '../../../helpers/responsive'
+import { withNamespaces } from 'react-i18next'
+import { scaleFontSize } from '../../../helpers/responsive'
 
 export class PlayDecision extends Component {
-  render() {
-    const {t, i18n, allowedToDudoCalzo, playIsLoading} = this.props
+  render () {
+    const { t, allowedToDudoCalzo, playIsLoading } = this.props
     return (
       <Col>
         <VibrateButton
@@ -26,7 +26,7 @@ export class PlayDecision extends Component {
           block
           danger
           disabled={!allowedToDudoCalzo || !!playIsLoading}
-          onPress={() => this.props.onMove({type: 'dudo'})}
+          onPress={() => this.props.onMove({ type: 'dudo' })}
           style={styles.buttonContainer}
         >
           <Text style={styles.buttonText}>
@@ -39,7 +39,7 @@ export class PlayDecision extends Component {
           block
           success
           disabled={!allowedToDudoCalzo || !!playIsLoading}
-          onPress={() => this.props.onMove({type: 'calzo'})}
+          onPress={() => this.props.onMove({ type: 'calzo' })}
           style={styles.buttonContainer}
         >
           <Text style={styles.buttonText}>
@@ -53,7 +53,7 @@ export class PlayDecision extends Component {
   }
 }
 
-export default withNamespaces(['common'], {wait: true})(PlayDecision)
+export default withNamespaces(['common'], { wait: true })(PlayDecision)
 
 const styles = StyleSheet.create({
   buttonContainer: {

@@ -1,10 +1,10 @@
-import React, {Component} from 'react'
-import {Text, StyleSheet} from 'react-native'
-import {Row, Col} from 'react-native-easy-grid'
+import React, { Component } from 'react'
+import { Text, StyleSheet } from 'react-native'
+import { Row, Col } from 'react-native-easy-grid'
 
 import VibrateButton from '../vibrateButton'
-import {withNamespaces} from 'react-i18next'
-import {scaleFontSize} from '../../helpers/responsive'
+import { withNamespaces } from 'react-i18next'
+import { scaleFontSize } from '../../helpers/responsive'
 import deviceStorage from '../../services/deviceStorage'
 
 export class LanguageSelector extends Component {
@@ -13,8 +13,8 @@ export class LanguageSelector extends Component {
     deviceStorage.saveItem('lng', lng)
   }
 
-  render() {
-    const {t} = this.props
+  render () {
+    const { t } = this.props
     return (
       <Row style={styles.centerButtons}>
         <Col>
@@ -55,7 +55,7 @@ export class LanguageSelector extends Component {
   }
 }
 
-export default withNamespaces(['common'], {wait: true})(LanguageSelector)
+export default withNamespaces(['common'], { wait: true })(LanguageSelector)
 
 const styles = StyleSheet.create({
   centerButtons: {
