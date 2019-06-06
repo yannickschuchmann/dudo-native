@@ -1,6 +1,6 @@
 import i18n from 'i18next'
-import {reactI18nextModule} from 'react-i18next'
-import {Localization} from 'expo-localization'
+import { reactI18nextModule } from 'react-i18next'
+import { Localization } from 'expo-localization'
 import deviceStorage from '../services/deviceStorage'
 
 // creating a language detection plugin using expo
@@ -67,11 +67,13 @@ i18n
           profile: {
             personalTab: 'Personal',
             battleTab: 'Batalla',
-            friendlyStats: {
+            statistics: {
+              totalGames: 'Partidos:',
+              gamesWon: 'Triunfos:',
               winPercent: 'Porcentaje Ganado:',
               winLose: 'Ratio Ganado/Perdido:',
               dudoAcc: 'Certeza en Dudo:',
-              regainAcc: 'Certeza en Calzo:'
+              calzoAcc: 'Certeza en Calzo:'
             },
             battleStats: {
               comingSoon: '¡PERFIL DE BATALLA LLEGA PRONTO!',
@@ -153,11 +155,13 @@ i18n
           profile: {
             personalTab: 'Personal',
             battleTab: 'Battle',
-            friendlyStats: {
+            statistics: {
+              totalGames: 'Games:',
+              gamesWon: 'Wins:',
               winPercent: 'Win Percentage:',
               winLose: 'Win/Loss Ratio:',
               dudoAcc: 'Dudo Accuracy:',
-              regainAcc: 'Spot On Accuracy:'
+              calzoAcc: 'Spot On Accuracy:'
             },
             battleStats: {
               comingSoon: 'BATTLE PROFILE COMING SOON!',
@@ -220,7 +224,7 @@ i18n
           lobby: {
             welcomeText: 'Du bist in der Lobby',
             goToTables: 'Zu den Tischen',
-            goToBattle: 'Kampfspiel',
+            goToBattle: 'Battlemode',
             vsOne: 'vs. 1',
             vsTwo: 'vs. 2',
             vsThree: 'vs .3',
@@ -238,15 +242,17 @@ i18n
           },
           profile: {
             personalTab: 'Persönlich',
-            battleTab: 'Kampf',
-            friendlyStats: {
+            battleTab: 'Battle',
+            statistics: {
+              totalGames: 'Spiele:',
+              gamesWon: 'Siege:',
               winPercent: 'Gewinnprozentsatz:',
               winLose: 'Gewinn/Verlust-Verhältnis:',
               dudoAcc: 'Dudo-Genauigkeit:',
-              regainAcc: 'SpotOn-Genauigkeit:'
+              calzoAcc: 'SpotOn-Genauigkeit:'
             },
             battleStats: {
-              comingSoon: 'KAMPFPROFIL KOMMT BALD!',
+              comingSoon: 'BATTLEPROFILE KOMMT BALD!',
               goFacebookText:
                 'Besuchen Sie unsere Facebook-Gruppe und teilen Sie uns mit, was Sie hier sehen möchten. Alle Vorschläge werden begrüßt.',
               goFacebookButton: 'Gehe zu Facebook'

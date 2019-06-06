@@ -8,7 +8,6 @@ import {scaleFontSize} from '../../../helpers/responsive'
 export default class TableDiceList extends Component {
   renderItem = ({item}) => {
     const diceIcons = []
-    console.log(item)
     for (let type in item.cup) {
       for (let i = 0; i < item.cup[type]; i++) {
         diceIcons.push(

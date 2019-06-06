@@ -1,11 +1,11 @@
-import React, {Component} from 'react'
-import {ActivityIndicator, StyleSheet, StatusBar} from 'react-native'
-import {Container} from 'native-base'
-import {Grid, Row} from 'react-native-easy-grid'
+import React, { Component } from 'react'
+import { ActivityIndicator, StyleSheet, StatusBar } from 'react-native'
+import { Container } from 'native-base'
+import { Grid, Row } from 'react-native-easy-grid'
 
 import AuthService from '../services/auth'
-import {cacheImages} from '../helpers/caching'
-import {withUser} from '../components/userProvider'
+import { cacheImages } from '../helpers/caching'
+import { withUser } from '../components/userProvider'
 
 import PersonalBattleButtons from '../components/PlayerProfile/PersonalBattleButtons'
 import FriendlyProfile from '../components/PlayerProfile/friendlyProfile'
@@ -13,30 +13,32 @@ import BattleProfile from '../components/PlayerProfile/battleProfile'
 import LanguageSelector from '../components/PlayerProfile/LanguageSelector'
 import ProfileBottomBar from '../components/PlayerProfile/ProfileBottomBar'
 
+import api from '../services/api'
+
 class NewPlayerProfile extends Component {
   state = {
     isLoading: true,
     isFriendProfile: true,
-    friendlyStats: {
-      matchesWon: 55,
-      totalMatches: 167,
-      kills: 14,
-      rightDudo: 16,
-      wrongDudo: 67,
-      diceRegain: 5,
-      totalRegain: 20
+    statistics: {
+      table: {}
     }
   }
 
-  componentDidMount() {
-    this.prefetchImage()
+  componentDidMount () {
+    this.fetchInformation()
   }
 
-  prefetchImage = async () => {
-    await cacheImages([this.props.user.pic])
-
-    this.setState({isLoading: false})
+  fetchInformation = async () => {
+    await this.prefetchImage()
+    const res = await this.fetchStats()
+    this.setState({
+      isLoading: false,
+      statistics: res.data
+    })
   }
+
+  prefetchImage = () => cacheImages([this.props.user.pic])
+  fetchStats = () => api.get(`/api/statistics`)
 
   profileLogout = async () => {
     await AuthService.logout()
@@ -44,17 +46,17 @@ class NewPlayerProfile extends Component {
   }
 
   onFriendPress = () => {
-    this.setState({isFriendProfile: true})
+    this.setState({ isFriendProfile: true })
   }
 
   onBattlePress = () => {
-    this.setState({isFriendProfile: false})
+    this.setState({ isFriendProfile: false })
   }
 
-  render() {
-    const {name, pic} = this.props.user
+  render () {
+    const { name, pic } = this.props.user
     return (
-      <Container style={{backgroundColor: 'black'}}>
+      <Container style={{ backgroundColor: 'black' }}>
         <StatusBar hidden />
         <Grid>
           <Row size={15}>
@@ -67,15 +69,15 @@ class NewPlayerProfile extends Component {
           <Row size={60}>
             {this.state.isLoading ? (
               <ActivityIndicator
-                size="small"
-                color="#c8b273"
+                size='small'
+                color='#c8b273'
                 style={styles.activityMonitor}
               />
             ) : this.state.isFriendProfile ? (
               <FriendlyProfile
                 name={name}
                 pic={pic}
-                friendlyStats={this.state.friendlyStats}
+                statistics={this.state.statistics.table}
               />
             ) : (
               <BattleProfile />
