@@ -52,7 +52,7 @@ class Login extends Component {
   onAuth = async token => {
     const auth = await AuthService.authenticate(token)
     await registerPushNotifications()
-    const messageRead = await deviceStorage.getItem('message1')
+    const messageRead = await deviceStorage.getItem('message2')
     if (messageRead) {
       this.props.navigation.push('Home')
     } else {
@@ -61,7 +61,7 @@ class Login extends Component {
   }
 
   render () {
-    const { t, i18n } = this.props
+    const { t } = this.props
     const loading = (
       <Button primary style={styles.facebookLoginButton}>
         <ActivityIndicator size='small' color='#c8b273' />

@@ -21,7 +21,7 @@ class UserCom extends Component {
 
   onContinue = () => {
     if (this.state.messageRead) {
-      deviceStorage.saveItem('message1', true)
+      deviceStorage.saveItem('message2', true)
     }
     this.props.navigation.push('Home')
   }
