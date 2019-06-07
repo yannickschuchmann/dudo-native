@@ -142,7 +142,7 @@ i18n
             goBattle: 'Go Play'
           },
           userCommunication: {
-            dudoTitle: 'Dudo v1.0',
+            dudoTitle: 'Dudo v1.5',
             messageText:
               'This is an intermediate version in which we now give you personal statistics about your game. You can see this information in your profile. Where you will also see that there are more things that we are working on that you can enjoy soon.',
             notShow: "Don't show this message again",
@@ -229,7 +229,7 @@ i18n
             goBattle: 'Geh Spielen'
           },
           userCommunication: {
-            dudoTitle: 'Dudo v1.0',
+            dudoTitle: 'Dudo v1.5',
             messageText:
               'Dies ist eine Zwischenversion, in der wir Ihnen jetzt persönliche Statistiken über Ihr Spiel geben. Sie können diese Informationen in Ihrem Profil sehen. Wo Sie auch sehen werden, dass es weitere Dinge gibt, an denen wir arbeiten, die Sie bald genießen können.',
             notShow: 'Diese Nachricht nicht mehr anzeigen',
