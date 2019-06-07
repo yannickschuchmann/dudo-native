@@ -16,22 +16,20 @@ const StatisticRow = ({ children }) => (
 class FriendlyProfile extends Component {
   render () {
     const { t, name, pic, statistics } = this.props
-
-    const winPercent = Math.round(
+    const winPercent = (
       (statistics.games_won / statistics.total_games) * 100
-    )
+    ).toFixed(1)
     const winLose = (
       statistics.games_won /
       (statistics.total_games - statistics.games_won)
     ).toFixed(2)
-    const dudoAcc = Math.round(
-      (statistics.correct_dudo /
-        statistics.total_dudo) *
-        100
-    )
-    const calzoAcc = Math.round(
-      (statistics.correct_calzo / statistics.total_calzo) * 100
-    )
+    const dudoAcc = (
+      (statistics.correct_dudo / statistics.total_dudo) * 100
+    ).toFixed(1)
+    const calzoAcc = (
+      (statistics.correct_calzo / statistics.total_calzo) *
+      100
+    ).toFixed(1)
 
     return (
       <Col style={{ flex: 1 }}>
