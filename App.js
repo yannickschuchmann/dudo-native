@@ -20,7 +20,6 @@ import GameTable from './src/screens/GameTable'
 import AddToTable from './src/screens/AddToTable'
 import UserCom from './src/screens/UserCom'
 import GlobalStateProvider from './src/components/globalStateProvider'
-import AppStateHandler from './src/appStateHandler'
 axios.defaults.baseURL = 'https://api.dudogames.com'
 
 Sentry.config(
@@ -58,9 +57,7 @@ const StackNavigation = createStackNavigator(
 )
 
 const WrappedStack = ({ t }) => (
-  <AppStateHandler>
-    <StackNavigation screenProps={{ t }} />
-  </AppStateHandler>
+  <StackNavigation screenProps={{ t }} />
 )
 
 const ReloadAppOnLanguageChange = withNamespaces('common', {

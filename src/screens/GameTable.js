@@ -41,10 +41,12 @@ class GameTable extends Component {
 
   static getDerivedStateFromProps(props, state) {
     const {tableId} = props.navigation.state.params
+    const {isLoading} = props.globalState
     const table = props.globalState.tables[tableId]
-    if (table !== state.table) {
+    if (table !== state.table || isLoading !== state.isLoading) {
       return {
-        table
+        table,
+        isLoading
       }
     }
     return null
@@ -66,16 +68,6 @@ class GameTable extends Component {
     this.handleRoundEnd(table)
   }
 
-  fetchTables = async () => {
-    try {
-      const res = await api.get(`/api/tables`)
-      this.props.actions.setTables(res.data)
-      this.setState({isLoading: false})
-    } catch (e) {
-      console.error(e)
-    }
-  }
-
   handleRoundEnd = table => {
     if (table.round_result && this.refs.modalRoundEnd) {
       this.refs.modalRoundEnd.open()
@@ -84,30 +76,13 @@ class GameTable extends Component {
 
   handleHasSeen = async table => {
     if (!table.meta.has_seen) {
-      try {
-        response = await api.patch(`/api/tables/${table.id}/view`, {
-          table_view: {
-            has_seen: true
-          }
-        })
-        Notifications.setBadgeNumberAsync(
-          response.data.unseen_table_views_count || 0
-        )
-      } catch (e) {}
+      this.props.actions.setTableMeta(table.id, {has_seen: true})
     }
   }
 
   handleHasSeenRoundResult = async table => {
-    if (table.round_result) {
-      try {
-        response = await api.patch(`/api/tables/${table.id}/view`, {
-          table_view: {
-            has_seen_last_round_result: true
-          }
-        })
-      } catch (e) {
-        console.error(e)
-      }
+    if (!table.meta.has_seen_round_result) {
+      // this.props.actions.setTableMeta(table.id, {has_seen_seen_round_result: true})
     }
   }
 
@@ -159,7 +134,7 @@ class GameTable extends Component {
   }
 
   render() {
-    const {table} = this.state
+    const {isLoading, table} = this.state
     const {t} = this.props
     const currentPlayer = find(propEq('is_current', true), table.players)
     return (
@@ -174,7 +149,7 @@ class GameTable extends Component {
             <GameStatsComplete game={table.game} lastMove={table.last_move} />
           </Row>
           <Row size={40}>
-            {this.props.globalState.isLoadingTables ? (
+            {isLoading ? (
               <ActivityIndicator
                 size="small"
                 color="#c8b273"

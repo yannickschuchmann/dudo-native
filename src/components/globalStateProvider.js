@@ -2,22 +2,53 @@ import React from 'react'
 import { compose, length, pathEq, reject, values } from 'ramda'
 import { withNamespaces } from 'react-i18next'
 import { Notifications } from 'expo'
+import firebase from '../services/firebase'
+import firestore from '../services/firestore'
 
 export const GlobalStateContext = React.createContext({})
 
 class GlobalStateProvider extends React.Component {
   state = {
-    tables: {}
+    tables: {},
+    isLoading: true
+  }
+
+  componentWillMount () {
+    this.subscribeFirebase()
+  }
+
+  componentWillUnmount () {
+    if (this.removeFirebaseListener) {
+      this.removeFirebaseListener()
+    }
+  }
+
+  subscribeFirebase = () => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.user = user
+        this.removeFirebaseListener = firestore
+          .collection(`users/${user.uid}/tables`)
+          .onSnapshot({
+            next: this.onTablesSnapshot,
+            error: error => console.error(error)
+          })
+      }
+    })
+  }
+
+  onTablesSnapshot = (snapshot) => {
+    const tables = snapshot.docs.map(doc => doc.data())
+    this.setTables(tables)
   }
 
   setTables = tables => {
     const setNotificationBadgeNumber = () => {
-      unseenTableCount = compose(
+      const unseenTableCount = compose(
         length,
         reject(pathEq(['meta', 'has_seen'], true)),
         values
       )(this.state.tables)
-
       Notifications.setBadgeNumberAsync(unseenTableCount)
     }
 
@@ -29,6 +60,7 @@ class GlobalStateProvider extends React.Component {
     return new Promise(resolve => {
       this.setState(
         {
+          isLoading: false,
           tables: tables.reduce((acc, current, index) => {
             acc[current.id] = { ...current, order: index }
             return acc
@@ -53,11 +85,12 @@ class GlobalStateProvider extends React.Component {
     })
   }
 
-  setIsLoadingTables = isLoadingTables => (
-    new Promise(resolve => (
-      this.setState({ isLoadingTables }, resolve)
-    ))
-  )
+  setTableMeta = (tableId, meta) => {
+    if (this.user) {
+      const ref = firestore.collection(`users/${this.user.uid}/tables`).doc(String(tableId))
+      ref.set({ meta }, { merge: true })
+    }
+  }
 
   render () {
     const value = {
@@ -65,7 +98,7 @@ class GlobalStateProvider extends React.Component {
       actions: {
         setTables: this.setTables,
         setTable: this.setTable,
-        setIsLoadingTables: this.setIsLoadingTables
+        setTableMeta: this.setTableMeta
       }
     }
     return (

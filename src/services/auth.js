@@ -1,27 +1,28 @@
 import deviceStorage from './deviceStorage'
 import axios from 'axios'
-import jwt_decode from 'jwt-decode'
+import jwtDecode from 'jwt-decode'
+import firebase from './firebase'
 
 import api from './api'
-import {compose, equals, find, prop, propEq} from 'ramda';
-import Sentry from 'sentry-expo';
+import { compose, equals, find, prop, propEq } from 'ramda'
+import Sentry from 'sentry-expo'
 const config = require('../../app.json')
 
-const singleton = Symbol()
-const singletonEnforcer = Symbol()
+const singleton = Symbol('')
+const singletonEnforcer = Symbol('')
 
 const PERMISSIONS = ['public_profile', 'email', 'user_friends']
 
 class AuthService {
   subscriptions = []
 
-  constructor(enforcer) {
+  constructor (enforcer) {
     if (enforcer !== singletonEnforcer) {
       throw new Error('Cannot construct singleton')
     }
   }
 
-  static get instance() {
+  static get instance () {
     if (!this[singleton]) {
       this[singleton] = new AuthService(singletonEnforcer)
     }
@@ -29,7 +30,7 @@ class AuthService {
     return this[singleton]
   }
 
-  subscribe(callback) {
+  subscribe (callback) {
     if (!callback) {
       throw new Error('No callback provided')
     }
@@ -55,7 +56,7 @@ class AuthService {
         await deviceStorage.saveItem('fb_expires_at', expires)
       }
 
-      return {type, token, expires}
+      return { type, token, expires }
     } catch (e) {
       console.log('Login Error', e)
     }
@@ -80,7 +81,7 @@ class AuthService {
           access_token: token
         }
       })
-      const {data} = response.data
+      const { data } = response.data
 
       if (response.status == 200 && data) {
         const allPermissionsGranted = PERMISSIONS.reduce((allGranted, permission) => {
@@ -91,7 +92,7 @@ class AuthService {
       } else {
         return false
       }
-    } catch(e) {
+    } catch (e) {
       Sentry.captureException(e)
       return false
     }
@@ -103,11 +104,11 @@ class AuthService {
 
     const expiresAtDate = new Date(expiresAt * 1000)
     const nowInOneHour = new Date(new Date().getTime() + 1000 * 60 * 60)
-    
-    const isValid = 
-      expiresAt && 
-      token && 
-      expiresAtDate > nowInOneHour && 
+
+    const isValid =
+      expiresAt &&
+      token &&
+      expiresAtDate > nowInOneHour &&
       await this.checkFacebookPermissions(token)
 
     return {
@@ -122,10 +123,14 @@ class AuthService {
         access_token: token
       }
     })
-    const {jwt} = res.data
+    const { jwt, firebase: firebaseToken } = res.data
     deviceStorage.saveItem('jwt', jwt)
-    const data = jwt_decode(jwt)
+    const data = jwtDecode(jwt)
+
     api.setJWT(jwt)
+    firebase.auth().signInWithCustomToken(firebaseToken).catch(function (error) {
+      console.error(error)
+    })
 
     this.subscriptions.forEach(callback => {
       callback(data)
