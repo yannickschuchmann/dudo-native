@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {Notifications} from 'expo'
+import React, { Component } from 'react'
+import { Notifications } from 'expo'
 
 import {
   ActivityIndicator,
@@ -9,32 +9,26 @@ import {
   Text,
   View
 } from 'react-native'
-import {Container} from 'native-base'
-import {withInAppNotification} from '../../lib/react-native-in-app-notification'
-import {Grid, Row} from 'react-native-easy-grid'
-import {StackActions, NavigationActions} from 'react-navigation'
-import {withNamespaces} from 'react-i18next'
-import {compose, sortBy, prop} from 'ramda'
+import { Container } from 'native-base'
+import { withInAppNotification } from '../../lib/react-native-in-app-notification'
+import { Grid, Row } from 'react-native-easy-grid'
+import { StackActions, NavigationActions } from 'react-navigation'
+import { withNamespaces } from 'react-i18next'
+import { compose, sortBy, prop } from 'ramda'
 
 import HomeHeader from '../components/Headers/HomeHeader'
 import CreateTableSection from '../components/Management/CreateTableSection'
 import TableList from '../components/Management/TableList'
-import {scaleFontSize} from '../helpers/responsive'
+import { scaleFontSize } from '../helpers/responsive'
 
-import api from '../services/api'
-import {withGlobalState} from '../components/globalStateProvider'
+import { withGlobalState } from '../components/globalStateProvider'
 
 class Home extends Component {
-  state = {
-    isLoading: true
-  }
-
-  componentDidMount() {
-    this.fetchTables()
+  componentDidMount () {
     this.setupListeners()
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     this.listeners.forEach(listener => listener.remove())
   }
 
@@ -46,7 +40,6 @@ class Home extends Component {
       this.props.navigation.addListener(
         'willFocus',
         async () => {
-          await this.fetchTables()
           if (Platform.OS === 'android') {
             Notifications.dismissAllNotificationsAsync()
           }
@@ -55,9 +48,7 @@ class Home extends Component {
     ]
   }
 
-  handleNotification = async ({data, origin, ...rest}) => {
-    await this.fetchTables()
-
+  handleNotification = async ({ data, origin, ...rest }) => {
     if (origin === 'received' && Platform.OS === 'ios') {
       this.props.showNotification({
         title: data.title,
@@ -75,28 +66,19 @@ class Home extends Component {
     const action = StackActions.reset({
       index: 1,
       actions: [
-        NavigationActions.navigate({routeName: 'Home'}),
+        NavigationActions.navigate({ routeName: 'Home' }),
         NavigationActions.navigate({
           routeName: 'GameTable',
-          params: {tableId}
+          params: { tableId }
         })
       ]
     })
     this.props.navigation.dispatch(action)
   }
 
-  fetchTables = async () => {
-    try {
-      const res = await api.get(`/api/tables`)
-      this.props.actions.setTables(res.data)
-      this.setState({isLoading: false})
-    } catch (e) {
-      console.error(e)
-    }
-  }
-
-  render() {
-    const {navigation, t} = this.props
+  render () {
+    const { navigation, t } = this.props
+    const { isLoading } = this.props.globalState
     const tables = sortBy(
       prop('order'),
       Object.values(this.props.globalState.tables)
@@ -110,9 +92,9 @@ class Home extends Component {
             <CreateTableSection navigation={navigation} />
           </Row>
           <Row Row size={80}>
-            {this.state.isLoading ? (
+            {isLoading ? (
               <View style={styles.centeredContainer}>
-                <ActivityIndicator size="small" color="#c8b273" />
+                <ActivityIndicator size='small' color='#c8b273' />
               </View>
             ) : tables.length === 0 ? (
               <View style={styles.centeredContainer}>
@@ -122,7 +104,7 @@ class Home extends Component {
               </View>
             ) : (
               <TableList
-                onPress={id => navigation.push('GameTable', {tableId: id})}
+                onPress={id => navigation.push('GameTable', { tableId: id })}
                 data={tables}
               />
             )}
@@ -135,7 +117,7 @@ class Home extends Component {
 
 export default compose(
   withGlobalState,
-  withNamespaces(['common'], {wait: true}),
+  withNamespaces(['common'], { wait: true }),
   withInAppNotification
 )(Home)
 
