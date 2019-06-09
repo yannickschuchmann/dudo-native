@@ -24,7 +24,6 @@ export default class AddToTable extends Component {
           table: { user_ids }
         }
       )
-      this.props.navigation.state.params.updateTable(res.data)
       this.props.navigation.goBack()
     } catch (e) {
       console.error(e)

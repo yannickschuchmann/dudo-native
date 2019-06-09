@@ -29,6 +29,7 @@ class GlobalStateProvider extends React.Component {
         this.user = user
         this.removeFirebaseListener = firestore
           .collection(`users/${user.uid}/tables`)
+          .orderBy('updated_at', 'desc')
           .onSnapshot({
             next: this.onTablesSnapshot,
             error: error => console.error(error)
@@ -67,20 +68,6 @@ class GlobalStateProvider extends React.Component {
           }, {})
         },
         afterHook(resolve)
-      )
-    })
-  }
-
-  setTable = table => {
-    return new Promise(resolve => {
-      this.setState(
-        {
-          tables: {
-            ...this.state.tables,
-            [table.id]: table
-          }
-        },
-        resolve
       )
     })
   }

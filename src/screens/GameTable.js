@@ -64,12 +64,12 @@ class GameTable extends Component {
 
   componentDidUpdate() {
     const {table} = this.state
-    this.handleHasSeen(table)
     this.handleRoundEnd(table)
+    this.handleHasSeen(table)
   }
 
   handleRoundEnd = table => {
-    if (table.round_result && this.refs.modalRoundEnd) {
+    if (table.round_result && !table.meta.has_seen && this.refs.modalRoundEnd) {
       this.refs.modalRoundEnd.open()
     }
   }
@@ -77,12 +77,6 @@ class GameTable extends Component {
   handleHasSeen = async table => {
     if (!table.meta.has_seen) {
       this.props.actions.setTableMeta(table.id, {has_seen: true})
-    }
-  }
-
-  handleHasSeenRoundResult = async table => {
-    if (!table.meta.has_seen_round_result) {
-      // this.props.actions.setTableMeta(table.id, {has_seen_seen_round_result: true})
     }
   }
 
@@ -104,20 +98,13 @@ class GameTable extends Component {
     return diceIcons
   }
 
-  onUpdateTable = table => {
-    this.props.actions.setTable(table)
-  }
-
   onAddToTable = () => {
     this.props.navigation.push('AddToTable', {
-      updateTable: this.onUpdateTable,
       table: this.state.table
     })
   }
 
-  onModalClose = async () => {
-    await this.handleHasSeenRoundResult(this.state.table)
-  }
+  onModalClose = () => {}
 
   onMove = async value => {
     let isSuccess = false
@@ -126,7 +113,6 @@ class GameTable extends Component {
       const res = await api.post(`/api/tables/${this.state.table.id}/moves`, {
         value
       })
-      this.onUpdateTable(res.data)
       isSuccess = true
     } catch (e) {}
     this.setState({playIsLoading: null})
