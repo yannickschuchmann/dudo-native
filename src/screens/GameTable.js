@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import {
   ActivityIndicator,
   StyleSheet,
@@ -7,14 +7,14 @@ import {
   View,
   TouchableOpacity
 } from 'react-native'
-import {Button, Icon, Container, Footer} from 'native-base'
-import {Notifications} from 'expo'
+import { Button, Container } from 'native-base'
+import { Notifications } from 'expo'
 
-import {Row, Col, Grid} from 'react-native-easy-grid'
+import { Row, Col, Grid } from 'react-native-easy-grid'
 import Modal from 'react-native-modalbox'
-import {withNamespaces} from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 
-import {compose, find, propEq} from 'ramda'
+import { compose, find, propEq } from 'ramda'
 
 import GameTableHeader from '../components/Headers/GameTableHeader'
 import PlayerCarousel from '../components/Game/PlayerCarousel'
@@ -22,13 +22,15 @@ import GameStatsComplete from '../components/Game/GameStatDisplay/GameStatsCompl
 import PlayDisplay from '../components/Game/TotalPlayComponent/PlayDisplay'
 import CupButton from '../components/Game/CupButtonModals/CupButton'
 
+import DiceCupModal from '../components/Game/CupButtonModals/DiceCupModal'
+
 import DecisionMade from '../components/Game/EndOfRound/DecisionMade'
 import TableDiceList from '../components/Game/EndOfRound/TableDiceList'
 
 import api from '../services/api'
 
-import {scaleFontSize} from '../helpers/responsive'
-import {withGlobalState} from '../components/globalStateProvider'
+import { scaleFontSize } from '../helpers/responsive'
+import { withGlobalState } from '../components/globalStateProvider'
 
 class GameTable extends Component {
   state = {
@@ -36,11 +38,12 @@ class GameTable extends Component {
     isOpen: false,
     isDisabled: false,
     playIsLoading: null,
-    moveError: false
+    moveError: false,
+    diceCupOpen: false
   }
 
-  static getDerivedStateFromProps(props, state) {
-    const {tableId} = props.navigation.state.params
+  static getDerivedStateFromProps (props, state) {
+    const { tableId } = props.navigation.state.params
     const table = props.globalState.tables[tableId]
     if (table !== state.table) {
       return {
@@ -50,8 +53,8 @@ class GameTable extends Component {
     return null
   }
 
-  componentDidMount() {
-    const {table} = this.state
+  componentDidMount () {
+    const { table } = this.state
     if (!table) {
       this.props.navigation.goBack()
       return
@@ -60,8 +63,8 @@ class GameTable extends Component {
     this.handleHasSeen(table)
   }
 
-  componentDidUpdate() {
-    const {table} = this.state
+  componentDidUpdate () {
+    const { table } = this.state
     this.handleHasSeen(table)
     this.handleRoundEnd(table)
   }
@@ -70,7 +73,7 @@ class GameTable extends Component {
     try {
       const res = await api.get(`/api/tables`)
       this.props.actions.setTables(res.data)
-      this.setState({isLoading: false})
+      this.setState({ isLoading: false })
     } catch (e) {
       console.error(e)
     }
@@ -111,24 +114,6 @@ class GameTable extends Component {
     }
   }
 
-  renderDices() {
-    const {cup} = this.state.table
-    const diceIcons = []
-    for (let type in cup) {
-      for (let i = 0; i < cup[type]; i++) {
-        diceIcons.push(
-          <Icon
-            style={styles.diceInCup}
-            name={`dice-${type}`}
-            type="MaterialCommunityIcons"
-            key={`${type}-${i}`}
-          />
-        )
-      }
-    }
-    return diceIcons
-  }
-
   onUpdateTable = table => {
     this.props.actions.setTable(table)
   }
@@ -146,7 +131,7 @@ class GameTable extends Component {
 
   onMove = async value => {
     let isSuccess = false
-    this.setState({playIsLoading: value.type})
+    this.setState({ playIsLoading: value.type })
     try {
       const res = await api.post(`/api/tables/${this.state.table.id}/moves`, {
         value
@@ -154,13 +139,21 @@ class GameTable extends Component {
       this.onUpdateTable(res.data)
       isSuccess = true
     } catch (e) {}
-    this.setState({playIsLoading: null})
+    this.setState({ playIsLoading: null })
     return isSuccess
   }
 
-  render() {
-    const {table} = this.state
-    const {t} = this.props
+  cupModalOpenClose = () => {
+    if (!this.state.diceCupOpen) {
+      this.setState({ diceCupOpen: true })
+    } else {
+      this.setState({ diceCupOpen: false })
+    }
+  }
+
+  render () {
+    const { table } = this.state
+    const { t } = this.props
     const currentPlayer = find(propEq('is_current', true), table.players)
     return (
       <Container style={styles.screenStyle}>
@@ -171,13 +164,16 @@ class GameTable extends Component {
             <PlayerCarousel data={table.players} />
           </Row>
           <Row size={23}>
-            <GameStatsComplete game={table.game} lastMove={table.last_move} />
+            <GameStatsComplete
+              game={table.game}
+              lastMove={table.last_move}
+            />
           </Row>
           <Row size={40}>
             {this.props.globalState.isLoadingTables ? (
               <ActivityIndicator
-                size="small"
-                color="#c8b273"
+                size='small'
+                color='#c8b273'
                 style={styles.activityMonitor}
               />
             ) : table.meta.allowed_to_place_move ? (
@@ -212,26 +208,17 @@ class GameTable extends Component {
             </Col>
             <Col style={styles.footerColCupButton}>
               <CupButton
-                onPress={() => {
-                  this.refs.modalDiceInCup.open()
-                }}
+                onPress={
+                  (() => this.cupModalOpenClose())
+                }
               />
             </Col>
           </Row>
         </Grid>
-        <Modal
-          style={styles.modalDiceInCup}
-          position={'center'}
-          ref={'modalDiceInCup'}
-        >
-          {table.meta.is_active && table.cup ? (
-            this.renderDices()
-          ) : (
-            <Text style={styles.waitingText}>
-              {t('common:gameText:obligatedRound')}
-            </Text>
-          )}
-        </Modal>
+        <DiceCupModal
+          isOpen={this.state.diceCupOpen}
+          tableData={table}
+        />
         {table.round_result && (
           <Modal
             style={[
@@ -271,7 +258,7 @@ class GameTable extends Component {
 
 export default compose(
   withGlobalState,
-  withNamespaces(['common'], {wait: true})
+  withNamespaces(['common'], { wait: true })
 )(GameTable)
 
 const styles = StyleSheet.create({
@@ -333,18 +320,6 @@ const styles = StyleSheet.create({
   },
   modalLose: {
     backgroundColor: 'rgba(255,0,0,0.45)'
-  },
-  modalDiceInCup: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'black',
-    height: '70%',
-    width: '90%'
-  },
-  diceInCup: {
-    color: 'rgba(200,178,115,1)',
-    fontSize: scaleFontSize(65)
   },
   buttonContainer: {
     flexDirection: 'row',

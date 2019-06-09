@@ -1,14 +1,14 @@
-import React, {Component} from 'react'
-import {Text, StyleSheet} from 'react-native'
-import {Row, Col} from 'react-native-easy-grid'
+import React, { Component } from 'react'
+import { Text, StyleSheet } from 'react-native'
+import { Row, Col } from 'react-native-easy-grid'
 
 import VibrateButton from '../vibrateButton'
-import {withNamespaces} from 'react-i18next'
-import {scaleFontSize} from '../../helpers/responsive'
+import { withNamespaces } from 'react-i18next'
+import { scaleFontSize } from '../../helpers/responsive'
 
 class ProfileBottomBar extends Component {
-  render() {
-    const {t, i18n} = this.props
+  render () {
+    const { t } = this.props
     return (
       <Row style={styles.centerButtons}>
         <Col size={40}>
@@ -17,12 +17,17 @@ class ProfileBottomBar extends Component {
             style={styles.goBackButton}
             onPress={() => this.props.navigation.goBack()}
           >
-            <Text style={styles.buttonText}>Back</Text>
+            <Text style={styles.buttonText}>
+              {t('common:gameText:goBackTables')}
+            </Text>
           </VibrateButton>
         </Col>
         <Col size={60}>
           <VibrateButton transparent style={styles.logoutButton}>
-            <Text onPress={this.props.profileLogout} style={styles.buttonText}>
+            <Text
+              onPress={this.props.profileLogout}
+              style={styles.buttonText}
+            >
               {t('common:logoutText')}
             </Text>
           </VibrateButton>
@@ -61,4 +66,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withNamespaces(['common'], {wait: true})(ProfileBottomBar)
+export default withNamespaces(['common'], { wait: true })(ProfileBottomBar)
