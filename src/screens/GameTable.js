@@ -41,10 +41,12 @@ class GameTable extends Component {
 
   static getDerivedStateFromProps(props, state) {
     const {tableId} = props.navigation.state.params
+    const {isLoading} = props.globalState
     const table = props.globalState.tables[tableId]
-    if (table !== state.table) {
+    if (table !== state.table || isLoading !== state.isLoading) {
       return {
-        table
+        table,
+        isLoading
       }
     }
     return null
@@ -62,52 +64,19 @@ class GameTable extends Component {
 
   componentDidUpdate() {
     const {table} = this.state
-    this.handleHasSeen(table)
     this.handleRoundEnd(table)
-  }
-
-  fetchTables = async () => {
-    try {
-      const res = await api.get(`/api/tables`)
-      this.props.actions.setTables(res.data)
-      this.setState({isLoading: false})
-    } catch (e) {
-      console.error(e)
-    }
+    this.handleHasSeen(table)
   }
 
   handleRoundEnd = table => {
-    if (table.round_result && this.refs.modalRoundEnd) {
+    if (table.round_result && !table.meta.has_seen && this.refs.modalRoundEnd) {
       this.refs.modalRoundEnd.open()
     }
   }
 
   handleHasSeen = async table => {
     if (!table.meta.has_seen) {
-      try {
-        response = await api.patch(`/api/tables/${table.id}/view`, {
-          table_view: {
-            has_seen: true
-          }
-        })
-        Notifications.setBadgeNumberAsync(
-          response.data.unseen_table_views_count || 0
-        )
-      } catch (e) {}
-    }
-  }
-
-  handleHasSeenRoundResult = async table => {
-    if (table.round_result) {
-      try {
-        response = await api.patch(`/api/tables/${table.id}/view`, {
-          table_view: {
-            has_seen_last_round_result: true
-          }
-        })
-      } catch (e) {
-        console.error(e)
-      }
+      this.props.actions.setTableMeta(table.id, {has_seen: true})
     }
   }
 
@@ -129,20 +98,13 @@ class GameTable extends Component {
     return diceIcons
   }
 
-  onUpdateTable = table => {
-    this.props.actions.setTable(table)
-  }
-
   onAddToTable = () => {
     this.props.navigation.push('AddToTable', {
-      updateTable: this.onUpdateTable,
       table: this.state.table
     })
   }
 
-  onModalClose = async () => {
-    await this.handleHasSeenRoundResult(this.state.table)
-  }
+  onModalClose = () => {}
 
   onMove = async value => {
     let isSuccess = false
@@ -151,7 +113,6 @@ class GameTable extends Component {
       const res = await api.post(`/api/tables/${this.state.table.id}/moves`, {
         value
       })
-      this.onUpdateTable(res.data)
       isSuccess = true
     } catch (e) {}
     this.setState({playIsLoading: null})
@@ -159,7 +120,7 @@ class GameTable extends Component {
   }
 
   render() {
-    const {table} = this.state
+    const {isLoading, table} = this.state
     const {t} = this.props
     const currentPlayer = find(propEq('is_current', true), table.players)
     return (
@@ -174,7 +135,7 @@ class GameTable extends Component {
             <GameStatsComplete game={table.game} lastMove={table.last_move} />
           </Row>
           <Row size={40}>
-            {this.props.globalState.isLoadingTables ? (
+            {isLoading ? (
               <ActivityIndicator
                 size="small"
                 color="#c8b273"
