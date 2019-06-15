@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Text, StyleSheet } from 'react-native'
 import { Row, Col } from 'react-native-easy-grid'
+import { Icon } from 'native-base'
+
 import VibrateButton from '../vibrateButton'
 import { withNamespaces } from 'react-i18next'
 import { scaleFontSize } from '../../helpers/responsive'
@@ -10,30 +12,51 @@ class PersonalBattleButtons extends Component {
     const { t } = this.props
     return (
       <Row style={styles.profileButtonRow}>
-        <Col>
+        <Col size={35}>
           <VibrateButton
             style={[
               styles.profileButtons,
-              this.props.isFriendProfile && styles.selectedButton
+              this.props.isFriendProfile &&
+                !this.props.isSettings &&
+                styles.selectedButton
             ]}
-            onPress={() => this.props.onFriendPress()}
+            onPress={this.props.onFriendPress}
           >
             <Text style={styles.buttonText}>
               {t('common:profile.personalTab')}
             </Text>
           </VibrateButton>
         </Col>
-        <Col>
+        <Col size={35}>
           <VibrateButton
             style={[
               styles.profileButtons,
-              !this.props.isFriendProfile && styles.selectedButton
+              !this.props.isFriendProfile &&
+                !this.props.isSettings &&
+                styles.selectedButton
             ]}
-            onPress={() => this.props.onBattlePress()}
+            onPress={this.props.onBattlePress}
           >
             <Text style={styles.buttonText}>
               {t('common:profile.battleTab')}
             </Text>
+          </VibrateButton>
+        </Col>
+        <Col size={30}>
+          <VibrateButton
+            style={[
+              styles.settingsButton,
+              !this.props.isFriendProfile &&
+                this.props.isSettings &&
+                styles.settingsButtonSelected
+            ]}
+            onPress={this.props.onSettingsPress}
+          >
+            <Icon
+              style={styles.settingsIcon}
+              name='settings'
+              type='MaterialCommunityIcons'
+            />
           </VibrateButton>
         </Col>
       </Row>
@@ -46,8 +69,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   profileButtons: {
-    marginTop: '10%',
-    width: scaleFontSize(150),
+    width: scaleFontSize(120),
     height: scaleFontSize(60),
     justifyContent: 'center',
     alignSelf: 'center',
@@ -57,8 +79,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#95792A'
   },
   selectedButton: {
-    marginTop: '10%',
-    width: scaleFontSize(150),
+    width: scaleFontSize(120),
     height: scaleFontSize(60),
     justifyContent: 'center',
     alignSelf: 'center',
@@ -69,8 +90,33 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'black',
-    fontSize: scaleFontSize(30),
+    fontSize: scaleFontSize(25),
     fontFamily: 'MyriadPro-BoldCond'
+  },
+  settingsButton: {
+    justifyContent: 'center',
+    alignSelf: 'center',
+    borderColor: '#c8b273',
+    borderWidth: 2,
+    borderRadius: 5,
+    backgroundColor: '#95792A',
+    height: scaleFontSize(60),
+    width: scaleFontSize(80)
+  },
+  settingsButtonSelected: {
+    justifyContent: 'center',
+    alignSelf: 'center',
+    borderColor: '#95792A',
+    borderWidth: 2,
+    borderRadius: 5,
+    backgroundColor: 'white',
+    height: scaleFontSize(60),
+    width: scaleFontSize(80),
+    color: 'black'
+  },
+  settingsIcon: {
+    color: 'black',
+    fontSize: scaleFontSize(27)
   }
 })
 

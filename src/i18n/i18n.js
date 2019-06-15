@@ -72,6 +72,10 @@ i18n
               dudoAcc: 'Certeza en Dudo:',
               calzoAcc: 'Certeza en Calzo:'
             },
+            settings: {
+              leftHand: 'Mano Izquierda',
+              rightHand: 'Mano Derecha'
+            },
             battleStats: {
               comingSoon: '¡PERFIL DE BATALLA LLEGA PRONTO!',
               goFacebookText:
@@ -159,6 +163,10 @@ i18n
               dudoAcc: 'Dudo Accuracy:',
               calzoAcc: 'Spot On Accuracy:'
             },
+            settings: {
+              leftHand: 'Left Hand',
+              rightHand: 'Right Hand'
+            },
             battleStats: {
               comingSoon: 'BATTLE PROFILE COMING SOON!',
               goFacebookText:
@@ -245,6 +253,10 @@ i18n
               winLose: 'Gewinn/Verlust-Verhältnis:',
               dudoAcc: 'Dudo-Genauigkeit:',
               calzoAcc: 'SpotOn-Genauigkeit:'
+            },
+            settings: {
+              leftHand: 'Linke Hand',
+              rightHand: 'Rechte Hand'
             },
             battleStats: {
               comingSoon: 'KAMPFPROFIL KOMMT BALD!',

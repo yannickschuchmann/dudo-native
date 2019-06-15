@@ -8,9 +8,9 @@ import { cacheImages } from '../helpers/caching'
 import { withUser } from '../components/userProvider'
 
 import PersonalBattleButtons from '../components/PlayerProfile/PersonalBattleButtons'
-import FriendlyProfile from '../components/PlayerProfile/friendlyProfile'
-import BattleProfile from '../components/PlayerProfile/battleProfile'
-import LanguageSelector from '../components/PlayerProfile/LanguageSelector'
+import FriendlyProfile from '../components/PlayerProfile/FriendlyProfile'
+import BattleProfile from '../components/PlayerProfile/BattleProfile'
+import SettingsProfile from '../components/PlayerProfile/SettingsProfile'
 import ProfileBottomBar from '../components/PlayerProfile/ProfileBottomBar'
 
 import api from '../services/api'
@@ -19,6 +19,7 @@ class NewPlayerProfile extends Component {
   state = {
     isLoading: true,
     isFriendProfile: true,
+    isSettings: false,
     statistics: {
       table: {}
     }
@@ -46,11 +47,15 @@ class NewPlayerProfile extends Component {
   }
 
   onFriendPress = () => {
-    this.setState({ isFriendProfile: true })
+    this.setState({ isFriendProfile: true, isSettings: false })
   }
 
   onBattlePress = () => {
-    this.setState({ isFriendProfile: false })
+    this.setState({ isFriendProfile: false, isSettings: false })
+  }
+
+  onSettingsPress = () => {
+    this.setState({ isFriendProfile: false, isSettings: true })
   }
 
   render () {
@@ -62,29 +67,30 @@ class NewPlayerProfile extends Component {
           <Row size={15}>
             <PersonalBattleButtons
               isFriendProfile={this.state.isFriendProfile}
+              isSettings={this.state.isSettings}
               onFriendPress={this.onFriendPress}
               onBattlePress={this.onBattlePress}
+              onSettingsPress={this.onSettingsPress}
             />
           </Row>
-          <Row size={60}>
+          <Row size={70}>
             {this.state.isLoading ? (
               <ActivityIndicator
                 size='small'
                 color='#c8b273'
                 style={styles.activityMonitor}
               />
-            ) : this.state.isFriendProfile ? (
+            ) : this.state.isFriendProfile && !this.state.isSettings ? (
               <FriendlyProfile
                 name={name}
                 pic={pic}
                 statistics={this.state.statistics.table}
               />
-            ) : (
+            ) : !this.state.isFriendProfile && !this.state.isSettings ? (
               <BattleProfile />
-            )}
-          </Row>
-          <Row size={10}>
-            <LanguageSelector />
+            ) : !this.state.isFriendProfile && this.state.isSettings ? (
+              <SettingsProfile />
+            ) : null}
           </Row>
           <Row size={15}>
             <ProfileBottomBar

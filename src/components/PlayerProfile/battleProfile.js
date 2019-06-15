@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Linking, Text, StyleSheet } from 'react-native'
-import { Row, Col } from 'react-native-easy-grid'
+import { Col } from 'react-native-easy-grid'
 import { Button } from 'native-base'
 
 import { withNamespaces } from 'react-i18next'

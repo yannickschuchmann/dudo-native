@@ -3,12 +3,16 @@ import React from 'react'
 import { Platform, YellowBox } from 'react-native'
 import { AppLoading, Font, Notifications } from 'expo'
 import { createStackNavigator } from 'react-navigation'
+import { Provider } from 'react-redux'
 import Sentry from 'sentry-expo'
 import { InAppNotificationProvider } from './lib/react-native-in-app-notification'
 import 'es6-symbol/implement'
 import axios from 'axios'
 import { withNamespaces } from 'react-i18next'
 import './src/i18n/i18n'
+
+import { PersistGate } from 'redux-persist/integration/react'
+import { store, persistor } from './src/store/store'
 
 import { cacheImages } from './src/helpers/caching'
 import UserProvider from './src/components/userProvider'
@@ -37,7 +41,6 @@ const StackNavigation = createStackNavigator(
     GameTable: {
       screen: GameTable
     },
-
     Home: {
       screen: Home
     },
@@ -115,7 +118,11 @@ export default class App extends React.Component {
         <UserProvider>
           {this.state.fontLoaded ? (
             <GlobalStateProvider>
-              <ReloadAppOnLanguageChange />
+              <Provider store={store}>
+                <PersistGate loading={<AppLoading />} persistor={persistor}>
+                  <ReloadAppOnLanguageChange />
+                </PersistGate>
+              </Provider>
             </GlobalStateProvider>
           ) : (
             <AppLoading />

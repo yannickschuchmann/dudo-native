@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { Text, StyleSheet } from 'react-native'
 import { Row, Col } from 'react-native-easy-grid'
 
-import VibrateButton from '../vibrateButton'
+import VibrateButton from '../../vibrateButton'
 import { withNamespaces } from 'react-i18next'
-import { scaleFontSize } from '../../helpers/responsive'
-import deviceStorage from '../../services/deviceStorage'
+import { scaleFontSize } from '../../../helpers/responsive'
+import deviceStorage from '../../../services/deviceStorage'
 
 export class LanguageSelector extends Component {
   onPress = lng => () => {
@@ -59,7 +59,7 @@ export default withNamespaces(['common'], { wait: true })(LanguageSelector)
 
 const styles = StyleSheet.create({
   centerButtons: {
-    alignItems: 'center'
+    alignItems: 'flex-end'
   },
   langButton: {
     width: scaleFontSize(100),
