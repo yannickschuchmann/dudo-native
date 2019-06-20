@@ -4,7 +4,8 @@ import {
   StyleSheet,
   Image,
   StatusBar,
-  Text
+  Text,
+  ImageBackground
 } from 'react-native'
 import { withNamespaces } from 'react-i18next'
 import { Container, Button } from 'native-base'
@@ -62,6 +63,7 @@ class Login extends Component {
 
   render () {
     const { t } = this.props
+    const backgroundImage = '../assets/screen-background.png'
     const loading = (
       <Button primary style={styles.facebookLoginButton}>
         <ActivityIndicator size='small' color='#c8b273' />
@@ -80,36 +82,41 @@ class Login extends Component {
     )
 
     return (
-      <Container style={{ backgroundColor: 'black' }}>
-        <StatusBar hidden />
-        <Grid>
-          <Row size={10} />
-          <Row size={30}>
-            <Row style={styles.justifyAll}>
-              <Image
-                source={require('../assets/dudoLogo.png')}
-                style={styles.image}
-              />
+      <ImageBackground
+        source={require(backgroundImage)}
+        style={styles.root}
+      >
+        <Container style={styles.container}>
+          <StatusBar hidden />
+          <Grid>
+            <Row size={10} />
+            <Row size={30}>
+              <Row style={styles.justifyAll}>
+                <Image
+                  source={require('../assets/dudoLogo.png')}
+                  style={styles.image}
+                />
+              </Row>
             </Row>
-          </Row>
-          <Row size={50}>
-            <Col style={styles.justifyAll}>
-              <Row>{this.state.loading ? loading : loginButton}</Row>
-              <Row>
-                <Text style={styles.facebookLoginButtonText}>
-                  {t('common:login.weDontPost')}
-                </Text>
-              </Row>
-              <Row style={styles.friendsRow}>
-                <Text style={styles.friendsText}>
-                  {t('common:login.loginFriends')}
-                </Text>
-              </Row>
-            </Col>
-          </Row>
-          <Row size={10} />
-        </Grid>
-      </Container>
+            <Row size={50}>
+              <Col style={styles.justifyAll}>
+                <Row>{this.state.loading ? loading : loginButton}</Row>
+                <Row>
+                  <Text style={styles.facebookLoginButtonText}>
+                    {t('common:login.weDontPost')}
+                  </Text>
+                </Row>
+                <Row style={styles.friendsRow}>
+                  <Text style={styles.friendsText}>
+                    {t('common:login.loginFriends')}
+                  </Text>
+                </Row>
+              </Col>
+            </Row>
+            <Row size={10} />
+          </Grid>
+        </Container>
+      </ImageBackground>
     )
   }
 }
@@ -117,6 +124,16 @@ class Login extends Component {
 export default withNamespaces(['common'], { wait: true })(Login)
 
 const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  container: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'transparent'
+  },
   justifyAll: {
     flex: 1,
     alignItems: 'center',

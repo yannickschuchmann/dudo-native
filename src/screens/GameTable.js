@@ -5,7 +5,8 @@ import {
   StatusBar,
   Text,
   View,
-  TouchableOpacity
+  TouchableOpacity,
+  ImageBackground
 } from 'react-native'
 import {Button, Icon, Container, Footer} from 'native-base'
 import {Notifications} from 'expo'
@@ -132,80 +133,92 @@ class GameTable extends Component {
     const {isLoading, table} = this.state
     const {t, navigation} = this.props
     const currentPlayer = find(propEq('is_current', true), table.players)
+    const backgroundImage = '../assets/screen-background.png'
     return (
-      <Container style={styles.screenStyle}>
-        <StatusBar hidden />
-        <GameTableHeader onAddToTable={this.onAddToTable} table={table} />
-        <Grid>
-          <Row size={22}>
-            <PlayerCarousel data={table.players} />
-          </Row>
-          <Row size={23}>
-            <GameStatsComplete game={table.game} lastMove={table.last_move} />
-          </Row>
-          <Row size={40}>
-            {isLoading ? (
-              <ActivityIndicator
-                size="small"
-                color="#c8b273"
-                style={styles.activityMonitor}
-              />
-            ) : table.meta.allowed_to_place_move ? (
-              <PlayDisplay
-                playIsLoading={this.state.playIsLoading}
-                onMove={this.onMove}
+      <ImageBackground
+        source={require(backgroundImage)}
+        style={styles.root}
+      >
+        <Container style={styles.container}>
+          <StatusBar hidden />
+          <GameTableHeader onAddToTable={this.onAddToTable} table={table} />
+          <Grid>
+            <Row size={22}>
+              <PlayerCarousel data={table.players} />
+            </Row>
+            <Row size={23}>
+              <GameStatsComplete
                 game={table.game}
-                allowedToDudoCalzo={table.meta.allowed_to_dudo_calzo}
                 lastMove={table.last_move}
               />
-            ) : (
-              <View style={styles.waitingContainer}>
-                <Text style={styles.waitingText}>
-                  {t('common:gameText:waitingFor', {
-                    player: currentPlayer.name
-                  })}
-                </Text>
-              </View>
-            )}
-          </Row>
-          <Row Row size={15} style={styles.footerContainer}>
-            <GameTableFooter navigation={navigation} onPress={this.cupModalOpenClose} />
-          </Row>
-        </Grid>
-        <DiceCupModal isOpen={this.state.diceCupOpen} tableData={table} />
-        {table.round_result && (
-          <Modal
-            style={[
-              styles.modalEndRound,
-              table.round_result.status === 'regained' && styles.modalWin,
-              table.round_result.status === 'lost' && styles.modalLose
-            ]}
-            position={'center'}
-            onClosed={this.onModalClose}
-            ref={'modalRoundEnd'}
-            swipeToClose={false}
-          >
-            <Grid>
-              <Row size={30}>
-                <DecisionMade {...table.round_result} />
-              </Row>
-              <Row size={55}>
-                <TableDiceList cups={table.round_result.cups} />
-              </Row>
-              <Row size={15} style={styles.buttonContainer}>
-                <TouchableOpacity
-                  onPress={() => this.refs.modalRoundEnd.close()}
-                  style={styles.continueButton}
-                >
-                  <Text style={styles.continueButtonText}>
-                    {t('common:gameDecisions.continueGame')}
+            </Row>
+            <Row size={40}>
+              {isLoading ? (
+                <ActivityIndicator
+                  size="small"
+                  color="#c8b273"
+                  style={styles.activityMonitor}
+                />
+              ) : table.meta.allowed_to_place_move ? (
+                <PlayDisplay
+                  playIsLoading={this.state.playIsLoading}
+                  onMove={this.onMove}
+                  game={table.game}
+                  allowedToDudoCalzo={table.meta.allowed_to_dudo_calzo}
+                  lastMove={table.last_move}
+                />
+              ) : (
+                <View style={styles.waitingContainer}>
+                  <Text style={styles.waitingText}>
+                    {t('common:gameText:waitingFor', {
+                      player: currentPlayer.name
+                    })}
                   </Text>
-                </TouchableOpacity>
-              </Row>
-            </Grid>
-          </Modal>
-        )}
-      </Container>
+                </View>
+              )}
+            </Row>
+            <Row Row size={15} style={styles.footerContainer}>
+              <GameTableFooter
+                navigation={navigation}
+                onPress={this.cupModalOpenClose}
+              />
+            </Row>
+          </Grid>
+          <DiceCupModal isOpen={this.state.diceCupOpen} tableData={table} />
+          {table.round_result && (
+            <Modal
+              style={[
+                styles.modalEndRound,
+                table.round_result.status === 'regained' && styles.modalWin,
+                table.round_result.status === 'lost' && styles.modalLose
+              ]}
+              position={'center'}
+              onClosed={this.onModalClose}
+              ref={'modalRoundEnd'}
+              swipeToClose={false}
+            >
+              <Grid>
+                <Row size={30}>
+                  <DecisionMade {...table.round_result} />
+                </Row>
+                <Row size={55}>
+                  <TableDiceList cups={table.round_result.cups} />
+                </Row>
+                <Row size={15} style={styles.buttonContainer}>
+                  <TouchableOpacity
+                    onPress={() => this.refs.modalRoundEnd.close()}
+                    style={styles.continueButton}
+                  >
+                    <Text style={styles.continueButtonText}>
+                      {t('common:gameDecisions.continueGame')}
+                    </Text>
+                  </TouchableOpacity>
+                </Row>
+              </Grid>
+            </Modal>
+          )}
+        </Container>
+      </ImageBackground>
     )
   }
 }
@@ -216,8 +229,15 @@ export default compose(
 )(GameTable)
 
 const styles = StyleSheet.create({
-  screenStyle: {
-    backgroundColor: 'black'
+  root: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  container: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'transparent'
   },
   activityMonitor: {
     flex: 1,
@@ -225,7 +245,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   waitingContainer: {
-    backgroundColor: 'black',
+    backgroundColor: 'transparent',
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
@@ -236,7 +256,7 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   footerContainer: {
-    backgroundColor: 'black',
+    backgroundColor: 'transparent',
     borderTopColor: '#c8b273',
     borderTopWidth: 4,
     flexDirection: 'row'
@@ -254,18 +274,7 @@ const styles = StyleSheet.create({
   modalLose: {
     backgroundColor: 'rgba(255,0,0,0.45)'
   },
-  modalDiceInCup: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'black',
-    height: '70%',
-    width: '90%'
-  },
-  diceInCup: {
-    color: 'rgba(200,178,115,1)',
-    fontSize: scaleFontSize(65)
-  },
+
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'center',

@@ -84,14 +84,14 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'black'
+    backgroundColor: 'transparent'
   },
   basePlayer: {
     justifyContent: 'space-between',
     alignItems: 'center',
     minWidth: scaleFontSize(80),
     maxWidth: scaleFontSize(100),
-    backgroundColor: 'black',
+    backgroundColor: 'transparent',
     borderColor: 'rgba(200,178,114,1)'
   },
   basePlayerText: {

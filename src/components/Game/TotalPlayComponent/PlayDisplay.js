@@ -21,7 +21,7 @@ export default class PlayDisplay extends Component {
   render () {
     return (
       <Grid>
-        <Col style={styles.rightStatsContainer}>
+        <Col style={styles.container}>
           {this.state.pressedPlay ? (
             <PlayPicker
               playIsLoading={this.props.playIsLoading}
@@ -44,8 +44,8 @@ export default class PlayDisplay extends Component {
   }
 }
 const styles = StyleSheet.create({
-  rightStatsContainer: {
-    backgroundColor: 'black',
+  container: {
+    backgroundColor: 'transparent',
     flex: 1
   }
 })

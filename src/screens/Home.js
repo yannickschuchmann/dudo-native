@@ -7,7 +7,8 @@ import {
   StyleSheet,
   StatusBar,
   Text,
-  View
+  View,
+  ImageBackground
 } from 'react-native'
 import { Container } from 'native-base'
 import { withInAppNotification } from '../../lib/react-native-in-app-notification'
@@ -77,6 +78,7 @@ class Home extends Component {
   }
 
   render () {
+    const backgroundImage = '../assets/screen-background.png'
     const { navigation, t } = this.props
     const { isLoading } = this.props.globalState
     const tables = sortBy(
@@ -84,33 +86,40 @@ class Home extends Component {
       Object.values(this.props.globalState.tables)
     )
     return (
-      <Container style={styles.screenStyle}>
-        <StatusBar hidden />
-        <HomeHeader navigation={navigation} />
-        <Grid>
-          <Row size={20}>
-            <CreateTableSection navigation={navigation} />
-          </Row>
-          <Row Row size={80}>
-            {isLoading ? (
-              <View style={styles.centeredContainer}>
-                <ActivityIndicator size='small' color='#c8b273' />
-              </View>
-            ) : tables.length === 0 ? (
-              <View style={styles.centeredContainer}>
-                <Text style={styles.noTablesText}>
-                  {t('common:noTablesText')}
-                </Text>
-              </View>
-            ) : (
-              <TableList
-                onPress={id => navigation.push('GameTable', { tableId: id })}
-                data={tables}
-              />
-            )}
-          </Row>
-        </Grid>
-      </Container>
+      <ImageBackground
+        source={require(backgroundImage)}
+        style={styles.root}
+      >
+        <Container style={styles.container}>
+          <StatusBar hidden />
+          <HomeHeader navigation={navigation} />
+          <Grid>
+            <Row size={20}>
+              <CreateTableSection navigation={navigation} />
+            </Row>
+            <Row Row size={80}>
+              {isLoading ? (
+                <View style={styles.centeredContainer}>
+                  <ActivityIndicator size='small' color='#c8b273' />
+                </View>
+              ) : tables.length === 0 ? (
+                <View style={styles.centeredContainer}>
+                  <Text style={styles.noTablesText}>
+                    {t('common:noTablesText')}
+                  </Text>
+                </View>
+              ) : (
+                <TableList
+                  onPress={id =>
+                    navigation.push('GameTable', { tableId: id })
+                  }
+                  data={tables}
+                />
+              )}
+            </Row>
+          </Grid>
+        </Container>
+      </ImageBackground>
     )
   }
 }
@@ -122,8 +131,15 @@ export default compose(
 )(Home)
 
 const styles = StyleSheet.create({
-  screenStyle: {
-    backgroundColor: 'black'
+  root: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  container: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'transparent'
   },
   centeredContainer: {
     flex: 1,

@@ -94,7 +94,8 @@ export default withNamespaces(['common'], { wait: true })(PlayPicker)
 
 const styles = StyleSheet.create({
   rootContainer: {
-    padding: '3%'
+    padding: '3%',
+    backgroundColor: 'transparent'
   },
   buttonContainer: {
     flex: 0.9,

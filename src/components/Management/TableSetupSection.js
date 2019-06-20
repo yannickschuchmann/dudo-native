@@ -43,7 +43,7 @@ export default withNamespaces(['common'], { wait: true })(TableSetupSection)
 
 const styles = StyleSheet.create({
   root: {
-    backgroundColor: 'black',
+    backgroundColor: 'transparent',
     flex: 1
   },
   inputContainer: {

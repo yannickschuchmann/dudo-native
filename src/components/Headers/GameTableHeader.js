@@ -33,7 +33,7 @@ export default class GameTableHeader extends Component {
 
 const styles = StyleSheet.create({
   homeHeader: {
-    backgroundColor: 'black',
+    backgroundColor: 'transparent',
     borderBottomColor: '#c8b273',
     borderBottomWidth: 2
   },

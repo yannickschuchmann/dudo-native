@@ -53,7 +53,8 @@ class GameTableFooter extends Component {
 const styles = StyleSheet.create({
   footerColBack: {
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: 'transparent'
   },
   goBackButton: {
     alignSelf: 'center',

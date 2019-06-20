@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, StatusBar, Text } from 'react-native'
+import { StyleSheet, StatusBar, Text, ImageBackground } from 'react-native'
 import { CheckBox } from 'react-native-elements'
 import { Container, Button } from 'native-base'
 import { Grid, Col, Row } from 'react-native-easy-grid'
@@ -28,51 +28,57 @@ class UserCom extends Component {
 
   render () {
     const { t } = this.props
+    const backgroundImage = '../assets/screen-background.png'
     return (
-      <Container style={{ backgroundColor: 'black' }}>
-        <StatusBar hidden />
-        <Grid>
-          <Row size={10} />
-          <Row size={90}>
-            <Col style={styles.justifyAll}>
-              <Row size={10}>
-                <Text style={styles.textTest}>
-                  {t('common:userCommunication.dudoTitle')}
-                </Text>
-              </Row>
-              <Row size={40}>
-                <Text style={styles.textParag}>
-                  {t('common:userCommunication.messageText')}
-                </Text>
-              </Row>
-              <Row size={10}>
-                <Button
-                  style={styles.buttonContainer}
-                  warning
-                  onPress={this.onContinue}
-                >
-                  <Text style={styles.otherButtonText}>
-                    {t('common:userCommunication.continueButton')}
+      <ImageBackground
+        source={require(backgroundImage)}
+        style={styles.root}
+      >
+        <Container style={styles.container}>
+          <StatusBar hidden />
+          <Grid>
+            <Row size={10} />
+            <Row size={90}>
+              <Col style={styles.justifyAll}>
+                <Row size={10}>
+                  <Text style={styles.textTest}>
+                    {t('common:userCommunication.dudoTitle')}
                   </Text>
-                </Button>
-              </Row>
-              <Row size={10}>
-                <Text style={styles.optOutText}>
-                  {t('common:userCommunication.notShow')}
-                </Text>
-                <CheckBox
-                  containerStyle={{
-                    backgroundColor: 'black',
-                    borderColor: 'black'
-                  }}
-                  checked={this.state.messageRead}
-                  onPress={() => this.optOutCheck()}
-                />
-              </Row>
-            </Col>
-          </Row>
-        </Grid>
-      </Container>
+                </Row>
+                <Row size={40}>
+                  <Text style={styles.textParag}>
+                    {t('common:userCommunication.messageText')}
+                  </Text>
+                </Row>
+                <Row size={10}>
+                  <Button
+                    style={styles.buttonContainer}
+                    warning
+                    onPress={this.onContinue}
+                  >
+                    <Text style={styles.otherButtonText}>
+                      {t('common:userCommunication.continueButton')}
+                    </Text>
+                  </Button>
+                </Row>
+                <Row size={10}>
+                  <Text style={styles.optOutText}>
+                    {t('common:userCommunication.notShow')}
+                  </Text>
+                  <CheckBox
+                    containerStyle={{
+                      backgroundColor: 'black',
+                      borderColor: 'black'
+                    }}
+                    checked={this.state.messageRead}
+                    onPress={() => this.optOutCheck()}
+                  />
+                </Row>
+              </Col>
+            </Row>
+          </Grid>
+        </Container>
+      </ImageBackground>
     )
   }
 }
@@ -80,6 +86,16 @@ class UserCom extends Component {
 export default withNamespaces(['common'], { wait: true })(UserCom)
 
 const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  container: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'transparent'
+  },
   justifyAll: {
     flex: 1,
     alignItems: 'center',

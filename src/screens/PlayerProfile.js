@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ActivityIndicator, StyleSheet, StatusBar } from 'react-native'
+import { ActivityIndicator, StyleSheet, StatusBar, ImageBackground } from 'react-native'
 import { Container } from 'native-base'
 import { Grid, Row } from 'react-native-easy-grid'
 
@@ -60,50 +60,66 @@ class NewPlayerProfile extends Component {
 
   render () {
     const { name, pic } = this.props.user
+    const backgroundImage = '../assets/screen-background.png'
     return (
-      <Container style={{ backgroundColor: 'black' }}>
-        <StatusBar hidden />
-        <Grid>
-          <Row size={15}>
-            <PersonalBattleButtons
-              isFriendProfile={this.state.isFriendProfile}
-              isSettings={this.state.isSettings}
-              onFriendPress={this.onFriendPress}
-              onBattlePress={this.onBattlePress}
-              onSettingsPress={this.onSettingsPress}
-            />
-          </Row>
-          <Row size={70}>
-            {this.state.isLoading ? (
-              <ActivityIndicator
-                size='small'
-                color='#c8b273'
-                style={styles.activityMonitor}
+      <ImageBackground
+        source={require(backgroundImage)}
+        style={styles.root}
+      >
+        <Container style={styles.container}>
+          <StatusBar hidden />
+          <Grid>
+            <Row size={15}>
+              <PersonalBattleButtons
+                isFriendProfile={this.state.isFriendProfile}
+                isSettings={this.state.isSettings}
+                onFriendPress={this.onFriendPress}
+                onBattlePress={this.onBattlePress}
+                onSettingsPress={this.onSettingsPress}
               />
-            ) : this.state.isFriendProfile && !this.state.isSettings ? (
-              <FriendlyProfile
-                name={name}
-                pic={pic}
-                statistics={this.state.statistics.table}
+            </Row>
+            <Row size={70}>
+              {this.state.isLoading ? (
+                <ActivityIndicator
+                  size='small'
+                  color='#c8b273'
+                  style={styles.activityMonitor}
+                />
+              ) : this.state.isFriendProfile && !this.state.isSettings ? (
+                <FriendlyProfile
+                  name={name}
+                  pic={pic}
+                  statistics={this.state.statistics.table}
+                />
+              ) : !this.state.isFriendProfile && !this.state.isSettings ? (
+                <BattleProfile />
+              ) : !this.state.isFriendProfile && this.state.isSettings ? (
+                <SettingsProfile />
+              ) : null}
+            </Row>
+            <Row size={15}>
+              <ProfileBottomBar
+                profileLogout={this.profileLogout}
+                navigation={this.props.navigation}
               />
-            ) : !this.state.isFriendProfile && !this.state.isSettings ? (
-              <BattleProfile />
-            ) : !this.state.isFriendProfile && this.state.isSettings ? (
-              <SettingsProfile />
-            ) : null}
-          </Row>
-          <Row size={15}>
-            <ProfileBottomBar
-              profileLogout={this.profileLogout}
-              navigation={this.props.navigation}
-            />
-          </Row>
-        </Grid>
-      </Container>
+            </Row>
+          </Grid>
+        </Container>
+      </ImageBackground>
     )
   }
 }
 const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  container: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'transparent'
+  },
   activityMonitor: {
     flex: 1,
     alignItems: 'center',

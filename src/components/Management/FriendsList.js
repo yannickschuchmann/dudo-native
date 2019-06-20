@@ -109,7 +109,7 @@ export class FriendsList extends Component {
           ItemSeparatorComponent={this.renderSeparator}
         />
       </Row>
-      <Row size={15}>{this.renderInviteFriends()}</Row>
+      <Row size={15} style={{ backgroundColor: 'transparent' }}>{this.renderInviteFriends()}</Row>
     </Grid>
   )
 

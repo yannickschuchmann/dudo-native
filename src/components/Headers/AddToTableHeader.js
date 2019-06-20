@@ -42,9 +42,9 @@ export default class AddToTableHeader extends Component {
 
 const styles = StyleSheet.create({
   homeHeader: {
-    backgroundColor: 'black',
     borderBottomColor: '#c8b273',
-    borderBottomWidth: 2
+    borderBottomWidth: 2,
+    backgroundColor: 'transparent'
   },
   headerTitle: {
     fontFamily: 'MyriadPro-BoldCond',
