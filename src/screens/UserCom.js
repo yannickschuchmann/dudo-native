@@ -28,7 +28,7 @@ class UserCom extends Component {
 
   render () {
     const { t } = this.props
-    const backgroundImage = '../assets/screen-background.png'
+    const backgroundImage = '../assets/screen-background.jpg'
     return (
       <ImageBackground
         source={require(backgroundImage)}
@@ -37,45 +37,39 @@ class UserCom extends Component {
         <Container style={styles.container}>
           <StatusBar hidden />
           <Grid>
-            <Row size={10} />
-            <Row size={90}>
-              <Col style={styles.justifyAll}>
-                <Row size={10}>
-                  <Text style={styles.textTest}>
-                    {t('common:userCommunication.dudoTitle')}
+            <Col style={styles.justifyAll}>
+              <Row style={styles.titleContainer}>
+                <Text style={styles.titleText}>
+                  {t('common:userCommunication.dudoTitle')}
+                </Text>
+              </Row>
+              <Row>
+                <Text style={styles.messageText}>
+                  {t('common:userCommunication.messageText')}
+                </Text>
+              </Row>
+              <Row style={styles.buttonRow}>
+                <Button
+                  style={styles.buttonContainer}
+                  warning
+                  onPress={this.onContinue}
+                >
+                  <Text style={styles.buttonText}>
+                    {t('common:userCommunication.continueButton')}
                   </Text>
-                </Row>
-                <Row size={40}>
-                  <Text style={styles.textParag}>
-                    {t('common:userCommunication.messageText')}
-                  </Text>
-                </Row>
-                <Row size={10}>
-                  <Button
-                    style={styles.buttonContainer}
-                    warning
-                    onPress={this.onContinue}
-                  >
-                    <Text style={styles.otherButtonText}>
-                      {t('common:userCommunication.continueButton')}
-                    </Text>
-                  </Button>
-                </Row>
-                <Row size={10}>
-                  <Text style={styles.optOutText}>
-                    {t('common:userCommunication.notShow')}
-                  </Text>
-                  <CheckBox
-                    containerStyle={{
-                      backgroundColor: 'black',
-                      borderColor: 'black'
-                    }}
-                    checked={this.state.messageRead}
-                    onPress={() => this.optOutCheck()}
-                  />
-                </Row>
-              </Col>
-            </Row>
+                </Button>
+              </Row>
+              <Row style={styles.optOutRow}>
+                <Text style={styles.optOutText}>
+                  {t('common:userCommunication.notShow')}
+                </Text>
+                <CheckBox
+                  containerStyle={styles.checkBox}
+                  checked={this.state.messageRead}
+                  onPress={() => this.optOutCheck()}
+                />
+              </Row>
+            </Col>
           </Grid>
         </Container>
       </ImageBackground>
@@ -101,40 +95,52 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  textParag: {
+  titleContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  titleText: {
+    fontSize: scaleFontSize(25),
+    backgroundColor: 'transparent',
+    color: 'white',
+    fontFamily: 'Bangers-Regular'
+  },
+  messageText: {
     flex: 1,
     textAlign: 'center',
-    fontSize: scaleFontSize(23),
-
-    fontFamily: 'MyriadPro-BoldCond',
-    color: '#C8B273',
-    paddingLeft: 15,
-    paddingRight: 15
+    fontSize: scaleFontSize(22),
+    fontFamily: 'Bangers-Regular',
+    color: '#F58B27',
+    padding: scaleFontSize(5)
   },
-  textTest: {
-    fontSize: scaleFontSize(30),
-    backgroundColor: 'transparent',
-    color: '#C8B273',
-    fontFamily: 'MyriadPro-BoldCond',
-    padding: 5
+  buttonRow: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  buttonContainer: {
+    flex: 0.5,
+    backgroundColor: '#F58B27',
+    justifyContent: 'center'
   },
   buttonText: {
-    fontSize: scaleFontSize(25),
-    fontFamily: 'MyriadPro-BoldCond',
-    color: 'white',
-    padding: 5
+    fontSize: scaleFontSize(22),
+    fontFamily: 'Bangers-Regular',
+    color: 'black'
+  },
+  optOutRow: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   optOutText: {
-    fontSize: scaleFontSize(25),
-    fontFamily: 'MyriadPro-BoldCond',
-    color: 'white',
-    paddingTop: 5,
-    paddingLeft: 15
+    fontSize: scaleFontSize(20),
+    fontFamily: 'Bangers-Regular',
+    color: 'white'
   },
-  otherButtonText: {
-    fontSize: scaleFontSize(25),
-    fontFamily: 'MyriadPro-BoldCond',
-    color: 'black',
-    padding: 5
+  checkBox: {
+    backgroundColor: 'black',
+    borderColor: 'black'
   }
 })

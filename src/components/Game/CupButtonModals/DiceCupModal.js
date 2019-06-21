@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text } from 'react-native'
+import { StyleSheet, Text, Image, View } from 'react-native'
 import Modal from 'react-native-modalbox'
 import { Icon } from 'native-base'
 
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     width: '90%'
   },
   diceInCup: {
-    color: 'rgba(200,178,115,1)',
+    color: 'white',
     fontSize: scaleFontSize(65)
   },
   waitingText: {

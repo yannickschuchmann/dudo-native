@@ -14,7 +14,7 @@ export class TableSetupSection extends Component {
         <Row style={styles.inputContainer}>
           <Input
             placeholder={t('common:tableNamePlaceholder')}
-            placeholderTextColor='#95792a'
+            placeholderTextColor='grey'
             style={styles.textInput}
             onChangeText={this.props.onNameChange}
             value={this.props.name}
@@ -51,24 +51,25 @@ const styles = StyleSheet.create({
     marginLeft: '5%',
     marginRight: '5%'
   },
-  buttonContainer: {
-    marginTop: '1%',
-    justifyContent: 'flex-end',
-    marginRight: '5%'
-  },
   textInput: {
-    borderBottomColor: 'rgba(200,178,115,1)',
+    borderBottomColor: '#F58B27',
     borderBottomWidth: 2,
-    color: 'rgba(200,178,115,1)'
+    color: 'white'
+  },
+  buttonContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   startGameButton: {
-    backgroundColor: 'rgba(149,121,42,1)',
-    paddingLeft: '2%',
-    paddingRight: '2%'
+    flex: 0.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F58B27'
   },
   startGameButtonText: {
     fontSize: scaleFontSize(30),
-    fontFamily: 'MyriadPro-BoldCond',
-    color: 'white'
+    fontFamily: 'Bangers-Regular',
+    color: 'black'
   }
 })

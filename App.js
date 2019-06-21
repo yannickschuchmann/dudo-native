@@ -90,6 +90,7 @@ export default class App extends React.Component {
 
     await cacheImages([require('./src/assets/dudoLogo.png')])
     await Font.loadAsync({
+      'Bangers-Regular': require('./src/assets/fonts/Bangers-Regular.ttf'),
       'MyriadPro-BoldCond': require('./src/assets/fonts/Myriad-Pro-Bold-Condensed.ttf'),
       'RobotoCondensed-Light': require('./src/assets/fonts/RobotoCondensed-Light.ttf'),
       'RobotoCondensed-Regular': require('./src/assets/fonts/RobotoCondensed-Regular.ttf'),

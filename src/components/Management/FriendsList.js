@@ -83,7 +83,8 @@ export class FriendsList extends Component {
       <SearchBar
         round
         placeholder={t('common:searchBarText')}
-        placeholderTextColor={'#95792A'}
+        searchIcon={false}
+        placeholderTextColor={'black'}
         containerStyle={styles.searchContainer}
         inputContainerStyle={styles.searchInputContainer}
         inputStyle={styles.searchInputText}
@@ -100,7 +101,7 @@ export class FriendsList extends Component {
           {this.props.t('common:friendsListText')}
         </Text>
       </Row>
-      <Row size={65}>
+      <Row size={60}>
         <FlatList
           data={this.filterByQuery(this.state.users)}
           keyExtractor={item => item.id.toString()}
@@ -109,7 +110,7 @@ export class FriendsList extends Component {
           ItemSeparatorComponent={this.renderSeparator}
         />
       </Row>
-      <Row size={15} style={{ backgroundColor: 'transparent' }}>{this.renderInviteFriends()}</Row>
+      <Row size={20} style={{ backgroundColor: 'transparent' }}>{this.renderInviteFriends()}</Row>
     </Grid>
   )
 
@@ -161,7 +162,7 @@ export class FriendsList extends Component {
     const { isLoading, users } = this.state
     return isLoading ? (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size='small' color='#c8b273' />
+        <ActivityIndicator size='small' color='#F58B27' />
       </View>
     ) : users.length > 0 ? (
       this.renderList()
@@ -180,22 +181,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   searchContainer: {
-    backgroundColor: '#95792A'
+    backgroundColor: '#F58B27'
   },
   searchInputText: {
     color: 'black',
-    backgroundColor: '#C8B273'
+    backgroundColor: '#f5ab65'
   },
   itemSeparator: {
     height: 1,
     width: '86%',
-    backgroundColor: '#c8b273',
+    backgroundColor: '#F58B27',
     marginLeft: '14%'
   },
   createTableButton: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: 'rgba(149,121,42,1)',
+    backgroundColor: '#F58B27',
     borderRadius: 10,
     marginTop: '2%',
     marginLeft: '5%',
@@ -203,25 +204,26 @@ const styles = StyleSheet.create({
   },
   createButtonText: {
     fontSize: scaleFontSize(30),
-    fontFamily: 'MyriadPro-BoldCond',
+    fontFamily: 'Bangers-Regular',
     textAlign: 'center',
-    color: 'white'
+    color: 'black'
   },
   textTest: {
     fontSize: scaleFontSize(30),
     backgroundColor: 'transparent',
-    color: '#C8B273',
-    fontFamily: 'MyriadPro-BoldCond',
+    color: 'black',
+    fontFamily: 'Bangers-Regular',
     padding: 5,
     textAlign: 'center'
   },
   friendsListText: {
     flex: 1,
     flexWrap: 'wrap',
-    fontSize: scaleFontSize(15),
+    fontSize: scaleFontSize(18),
     backgroundColor: 'transparent',
-    color: '#C8B273',
+    color: 'white',
     padding: '5%',
-    textAlign: 'center'
+    textAlign: 'center',
+    fontFamily: 'Bangers-Regular'
   }
 })

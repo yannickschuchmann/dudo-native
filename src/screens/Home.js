@@ -10,15 +10,13 @@ import {
   View,
   ImageBackground
 } from 'react-native'
-import { Container } from 'native-base'
+import { Container, Button } from 'native-base'
 import { withInAppNotification } from '../../lib/react-native-in-app-notification'
 import { Grid, Row } from 'react-native-easy-grid'
 import { StackActions, NavigationActions } from 'react-navigation'
 import { withNamespaces } from 'react-i18next'
 import { compose, sortBy, prop } from 'ramda'
-
 import HomeHeader from '../components/Headers/HomeHeader'
-import CreateTableSection from '../components/Management/CreateTableSection'
 import TableList from '../components/Management/TableList'
 import { scaleFontSize } from '../helpers/responsive'
 
@@ -78,7 +76,7 @@ class Home extends Component {
   }
 
   render () {
-    const backgroundImage = '../assets/screen-background.png'
+    const backgroundImage = '../assets/screen-background.jpg'
     const { navigation, t } = this.props
     const { isLoading } = this.props.globalState
     const tables = sortBy(
@@ -94,13 +92,15 @@ class Home extends Component {
           <StatusBar hidden />
           <HomeHeader navigation={navigation} />
           <Grid>
-            <Row size={20}>
-              <CreateTableSection navigation={navigation} />
+            <Row size={20} style={styles.titleRow}>
+              <Text style={styles.titleText}>
+                {t('common:tablesText')}
+              </Text>
             </Row>
-            <Row Row size={80}>
+            <Row size={65}>
               {isLoading ? (
                 <View style={styles.centeredContainer}>
-                  <ActivityIndicator size='small' color='#c8b273' />
+                  <ActivityIndicator size='small' color='white' />
                 </View>
               ) : tables.length === 0 ? (
                 <View style={styles.centeredContainer}>
@@ -116,6 +116,18 @@ class Home extends Component {
                   data={tables}
                 />
               )}
+            </Row>
+            <Row size={15} style={styles.createButtonRow}>
+              <Button
+                style={styles.createTableButton}
+                onPress={() => {
+                  this.props.navigation.push('CreateTable')
+                }}
+              >
+                <Text style={styles.createButtonText}>
+                  {t('common:createText')}
+                </Text>
+              </Button>
             </Row>
           </Grid>
         </Container>
@@ -141,14 +153,27 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: 'transparent'
   },
-  centeredContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+  titleRow: {
+    justifyContent: 'center',
+    alignItems: 'center'
   },
-  noTablesText: {
-    color: '#c8b273',
-    fontSize: scaleFontSize(15),
-    textAlign: 'center'
+  titleText: {
+    color: 'white',
+    fontFamily: 'Bangers-Regular',
+    fontSize: scaleFontSize(30)
+  },
+  createButtonRow: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  createTableButton: {
+    flex: 0.5,
+    backgroundColor: '#F58B27',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  createButtonText: {
+    fontFamily: 'Bangers-Regular',
+    fontSize: scaleFontSize(30)
   }
 })

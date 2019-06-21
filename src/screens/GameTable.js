@@ -133,7 +133,7 @@ class GameTable extends Component {
     const {isLoading, table} = this.state
     const {t, navigation} = this.props
     const currentPlayer = find(propEq('is_current', true), table.players)
-    const backgroundImage = '../assets/screen-background.png'
+    const backgroundImage = '../assets/screen-background.jpg'
     return (
       <ImageBackground
         source={require(backgroundImage)}
@@ -274,7 +274,6 @@ const styles = StyleSheet.create({
   modalLose: {
     backgroundColor: 'rgba(255,0,0,0.45)'
   },
-
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'center',

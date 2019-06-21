@@ -37,13 +37,13 @@ export default class BackHeader extends Component {
 const styles = StyleSheet.create({
   homeHeader: {
     backgroundColor: 'transparent',
-    borderBottomColor: '#c8b273',
+    borderBottomColor: '#F58B27',
     borderBottomWidth: 2
   },
   headerTitle: {
-    fontFamily: 'MyriadPro-BoldCond',
-    color: '#c8b273',
-    fontSize: scaleFontSize(30)
+    fontFamily: 'Bangers-Regular',
+    color: 'white',
+    fontSize: scaleFontSize(35)
   },
   columnStyle: {
     flex: 1,
@@ -57,6 +57,6 @@ const styles = StyleSheet.create({
   },
   icon: {
     fontSize: scaleFontSize(30),
-    color: '#c8b273'
+    color: 'white'
   }
 })

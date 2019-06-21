@@ -60,7 +60,7 @@ class NewPlayerProfile extends Component {
 
   render () {
     const { name, pic } = this.props.user
-    const backgroundImage = '../assets/screen-background.png'
+    const backgroundImage = '../assets/screen-background.jpg'
     return (
       <ImageBackground
         source={require(backgroundImage)}

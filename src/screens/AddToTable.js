@@ -32,7 +32,7 @@ export default class AddToTable extends Component {
 
   render () {
     const table = this.getTable()
-    const backgroundImage = '../assets/screen-background.png'
+    const backgroundImage = '../assets/screen-background.jpg'
     return (
       <ImageBackground
         source={require(backgroundImage)}

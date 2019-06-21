@@ -21,7 +21,6 @@ export default class FriendsItem extends React.Component {
         hideChevron={true}
         containerStyle={styles.container}
         switchButton
-        trackColor={'#95792A'}
         switched={item.selected}
         onSwitch={selected => this.props.toggleSwitch({item, selected})}
       />
@@ -34,8 +33,8 @@ const styles = StyleSheet.create({
     borderTopWidth: 0
   },
   tableNameText: {
-    color: '#c8b273',
-    fontFamily: 'MyriadPro-BoldCond',
+    color: 'white',
+    fontFamily: 'Bangers-Regular',
     fontSize: scaleFontSize(20)
   }
 })

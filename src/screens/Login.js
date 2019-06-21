@@ -63,7 +63,7 @@ class Login extends Component {
 
   render () {
     const { t } = this.props
-    const backgroundImage = '../assets/screen-background.png'
+    const backgroundImage = '../assets/screen-background.jpg'
     const loading = (
       <Button primary style={styles.facebookLoginButton}>
         <ActivityIndicator size='small' color='#c8b273' />

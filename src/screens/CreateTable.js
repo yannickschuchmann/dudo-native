@@ -62,7 +62,7 @@ export default class CreateTable extends Component {
     })
 
   render () {
-    const backgroundImage = '../assets/screen-background.png'
+    const backgroundImage = '../assets/screen-background.jpg'
     return (
       <ImageBackground
         source={require(backgroundImage)}
