@@ -44,25 +44,29 @@ const styles = StyleSheet.create({
   goBackButton: {
     alignSelf: 'center',
     justifyContent: 'center',
-    borderColor: '#c8b273',
-    borderWidth: 2,
-    borderRadius: 5,
+    backgroundColor: '#F58B27',
+    borderColor: '#d96004',
+    borderBottomWidth: 2,
+    borderLeftWidth: 2,
+    borderRadius: 2,
     width: scaleFontSize(100),
     height: scaleFontSize(60)
   },
   logoutButton: {
     alignSelf: 'center',
     justifyContent: 'center',
-    borderColor: '#c8b273',
-    borderWidth: 2,
-    borderRadius: 5,
+    backgroundColor: '#F58B27',
+    borderColor: '#d96004',
+    borderBottomWidth: 2,
+    borderLeftWidth: 2,
+    borderRadius: 2,
     width: scaleFontSize(150),
     height: scaleFontSize(60)
   },
   buttonText: {
     fontSize: scaleFontSize(25),
-    fontFamily: 'MyriadPro-BoldCond',
-    color: '#c8b273'
+    fontFamily: 'Bangers-Regular',
+    color: 'black'
   }
 })
 

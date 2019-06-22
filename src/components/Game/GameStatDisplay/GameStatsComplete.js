@@ -68,14 +68,22 @@ export default withNamespaces(['common'], {wait: true})(GameStatsComplete)
 
 const styles = StyleSheet.create({
   leftStatsContainer: {
-    backgroundColor: '#95792A',
+    backgroundColor: '#F58B27',
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    borderColor: '#d96004',
+    borderBottomWidth: 2,
+    borderLeftWidth: 2,
+    borderRadius: 2
   },
   rightStatsContainer: {
-    backgroundColor: '#C8B273',
+    backgroundColor: '#F58B27',
     flex: 1,
-    flexDirection: 'column'
+    flexDirection: 'column',
+    borderColor: '#d96004',
+    borderBottomWidth: 2,
+    borderLeftWidth: 2,
+    borderRadius: 2
   },
   leftColStyle: {
     flex: 1,
@@ -90,12 +98,12 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   statText: {
-    fontSize: scaleFontSize(30),
-    fontFamily: 'MyriadPro-BoldCond'
+    fontSize: scaleFontSize(25),
+    fontFamily: 'Bangers-Regular'
   },
   diceStyle: {
     fontSize: scaleFontSize(60),
-    fontFamily: 'MyriadPro-BoldCond',
+    fontFamily: 'Bangers-Regular',
     marginBottom: '4%'
   },
   centerItems: {

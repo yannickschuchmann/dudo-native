@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import { Button } from 'native-base'
 import { Row, Col } from 'react-native-easy-grid'
@@ -12,7 +12,7 @@ class GameTableFooter extends Component {
     const { navigation, t, onPress, switchValue } = this.props
     return (
       switchValue ? (
-        <Row>
+        <View style={styles.rowContainer}>
           <Col style={styles.footerColBack}>
             <Button
               style={styles.goBackButton}
@@ -27,9 +27,9 @@ class GameTableFooter extends Component {
           <Col style={styles.footerColCupButton}>
             <CupButton onPress={onPress} />
           </Col>
-        </Row>
+        </View>
       ) : (
-        <Row>
+        <View>
           <Col style={styles.footerColCupButton}>
             <CupButton onPress={onPress} />
           </Col>
@@ -44,7 +44,7 @@ class GameTableFooter extends Component {
               </Text>
             </Button>
           </Col>
-        </Row>
+        </View>
       )
     )
   }
@@ -52,22 +52,29 @@ class GameTableFooter extends Component {
 
 const styles = StyleSheet.create({
   footerColBack: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'transparent'
   },
+  rowContainer: {
+    flex: 1,
+    flexDirection: 'row'
+  },
   goBackButton: {
+    justifyContent: 'center',
     alignSelf: 'center',
-    borderColor: '#c8b273',
-    opacity: 1,
-    borderWidth: 2,
-    borderRadius: 5,
-    padding: '3%'
+    backgroundColor: '#F58B27',
+    borderColor: '#d96004',
+    borderBottomWidth: 2,
+    borderLeftWidth: 2,
+    borderRadius: 2,
+    width: scaleFontSize(100)
   },
   goBackButtonText: {
-    color: '#c8b273',
+    color: 'black',
     fontSize: scaleFontSize(25),
-    fontFamily: 'MyriadPro-BoldCond'
+    fontFamily: 'Bangers-Regular'
   },
   footerColCupButton: {
     flex: 1,

@@ -65,7 +65,11 @@ const styles = StyleSheet.create({
     flex: 0.5,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F58B27'
+    backgroundColor: '#F58B27',
+    borderColor: '#d96004',
+    borderBottomWidth: 2,
+    borderLeftWidth: 2,
+    borderRadius: 2
   },
   startGameButtonText: {
     fontSize: scaleFontSize(30),

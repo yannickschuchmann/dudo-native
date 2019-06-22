@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     color: 'white',
     fontSize: scaleFontSize(35),
-    fontFamily: 'MyriadPro-BoldCond',
+    fontFamily: 'Bangers-Regular',
     textAlign: 'center',
     marginTop: scaleFontSize(25)
   },
@@ -54,23 +54,27 @@ const styles = StyleSheet.create({
     flex: 1,
     color: 'white',
     fontSize: scaleFontSize(20),
-    fontFamily: 'MyriadPro-BoldCond',
+    fontFamily: 'Bangers-Regular',
     textAlign: 'center'
   },
   paragText2: {
     flex: 1,
     color: 'white',
     fontSize: scaleFontSize(15),
-    fontFamily: 'MyriadPro-BoldCond',
+    fontFamily: 'Bangers-Regular',
     textAlign: 'center'
   },
   buttonContainer: {
     alignSelf: 'center',
-    margin: scaleFontSize(20)
+    margin: scaleFontSize(20),
+    borderColor: 'white',
+    borderBottomWidth: 2,
+    borderLeftWidth: 2,
+    borderRadius: 2
   },
   buttonText: {
     fontSize: scaleFontSize(25),
-    fontFamily: 'MyriadPro-BoldCond',
+    fontFamily: 'Bangers-Regular',
     color: 'white',
     padding: 5
   }

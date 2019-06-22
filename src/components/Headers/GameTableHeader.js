@@ -10,7 +10,7 @@ export default class GameTableHeader extends Component {
       <SafeAreaView>
         <Header style={styles.homeHeader}>
           <Grid>
-            <Row>
+            <Row style={styles.headerContainer}>
               <Col size={70}>
                 <Title style={styles.headerTitle}>{table.name}</Title>
               </Col>
@@ -34,16 +34,20 @@ export default class GameTableHeader extends Component {
 const styles = StyleSheet.create({
   homeHeader: {
     backgroundColor: 'transparent',
-    borderBottomColor: '#c8b273',
+    borderBottomColor: '#F58B27',
     borderBottomWidth: 2
   },
+  headerContainer: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   headerTitle: {
-    fontFamily: 'MyriadPro-BoldCond',
-    color: '#c8b273',
+    fontFamily: 'Bangers-Regular',
+    color: 'white',
     fontSize: scaleFontSize(30)
   },
   icon: {
     fontSize: scaleFontSize(30),
-    color: '#c8b273'
+    color: 'white'
   }
 })

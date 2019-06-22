@@ -11,7 +11,7 @@ export default class BackHeader extends Component {
       <SafeAreaView>
         <Header style={styles.homeHeader}>
           <Grid>
-            <Row>
+            <Row style={styles.headerContainer}>
               <Col style={styles.columnStyle}>
                 <Button
                   transparent
@@ -39,6 +39,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     borderBottomColor: '#F58B27',
     borderBottomWidth: 2
+  },
+  headerContainer: {
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   headerTitle: {
     fontFamily: 'Bangers-Regular',

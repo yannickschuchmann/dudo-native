@@ -59,9 +59,10 @@ const styles = StyleSheet.create({
     fontSize: scaleFontSize(65)
   },
   waitingText: {
-    color: '#c8b273',
+    color: 'white',
     fontSize: scaleFontSize(25),
-    textAlign: 'center'
+    textAlign: 'center',
+    fontFamily: 'Bangers-Regular'
   }
 })
 

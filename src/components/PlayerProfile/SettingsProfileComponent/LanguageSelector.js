@@ -66,14 +66,15 @@ const styles = StyleSheet.create({
     height: scaleFontSize(50),
     alignSelf: 'center',
     borderColor: 'white',
-    borderWidth: 2,
-    borderRadius: 5
+    borderBottomWidth: 2,
+    borderLeftWidth: 2,
+    borderRadius: 2
   },
   langText: {
     flex: 1,
     textAlign: 'center',
-    color: 'white',
     fontSize: scaleFontSize(20),
-    fontFamily: 'MyriadPro-BoldCond'
+    fontFamily: 'Bangers-Regular',
+    color: 'black'
   }
 })

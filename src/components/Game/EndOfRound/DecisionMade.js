@@ -81,17 +81,17 @@ const styles = StyleSheet.create({
   },
   headlineText: {
     fontSize: scaleFontSize(30),
-    fontFamily: 'MyriadPro-BoldCond',
+    fontFamily: 'Bangers-Regular',
     color: 'rgba(200,178,115,1)'
   },
   sublineText: {
     fontSize: scaleFontSize(15),
-    fontFamily: 'MyriadPro-BoldCond',
+    fontFamily: 'Bangers-Regular',
     color: 'rgba(200,178,115,1)'
   },
   decisionText: {
     fontSize: scaleFontSize(35),
-    fontFamily: 'MyriadPro-BoldCond',
+    fontFamily: 'Bangers-Regular',
     color: 'rgba(200,178,115,1)'
   },
   diceStyle: {

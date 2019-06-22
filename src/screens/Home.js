@@ -153,6 +153,10 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: 'transparent'
   },
+  centeredContainer: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   titleRow: {
     justifyContent: 'center',
     alignItems: 'center'
@@ -170,7 +174,11 @@ const styles = StyleSheet.create({
     flex: 0.5,
     backgroundColor: '#F58B27',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    borderColor: '#d96004',
+    borderBottomWidth: 2,
+    borderLeftWidth: 2,
+    borderRadius: 2
   },
   createButtonText: {
     fontFamily: 'Bangers-Regular',

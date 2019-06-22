@@ -18,158 +18,169 @@ import FriendsItem from './FriendsItem'
 import { scaleFontSize } from '../../helpers/responsive'
 
 export class FriendsList extends Component {
-  isUnmounted = false
-  static defaultProps = {
-    players: []
-  }
-  state = {
-    isLoading: true,
-    users: [],
-    query: ''
-  }
+         isUnmounted = false
+         static defaultProps = {
+           players: []
+         }
+         state = {
+           isLoading: true,
+           users: [],
+           query: ''
+         }
 
-  componentDidMount () {
-    this.fetchUsers()
-  }
+         componentDidMount () {
+           this.fetchUsers()
+         }
 
-  componentWillUnmount () {
-    this.isUnmounted = true
-  }
+         componentWillUnmount () {
+           this.isUnmounted = true
+         }
 
-  fetchUsers = async () => {
-    const res = await api.get(`/api/users`)
-    const skippingIds = pluck('id', this.props.players)
-    const users = filter(user => !skippingIds.includes(user.id), res.data)
+         fetchUsers = async () => {
+           const res = await api.get(`/api/users`)
+           const skippingIds = pluck('id', this.props.players)
+           const users = filter(
+             user => !skippingIds.includes(user.id),
+             res.data
+           )
 
-    if (!this.isUnmounted) {
-      this.setState({
-        isLoading: false,
-        users
-      })
-    }
-  }
+           if (!this.isUnmounted) {
+             this.setState({
+               isLoading: false,
+               users
+             })
+           }
+         }
 
-  // Managing Search Logic
-  handleSearch = query => {
-    this.setState({
-      query
-    })
-  }
+         // Managing Search Logic
+         handleSearch = query => {
+           this.setState({
+             query
+           })
+         }
 
-  filterByQuery = () =>
-    this.state.users.filter(user => {
-      const name = user.name.toLowerCase()
-      const query = this.state.query.toLowerCase()
-      return name.indexOf(query) > -1
-    })
+         filterByQuery = () =>
+           this.state.users.filter(user => {
+             const name = user.name.toLowerCase()
+             const query = this.state.query.toLowerCase()
+             return name.indexOf(query) > -1
+           })
 
-  toggleSwitch = ({ item, selected }) => {
-    const alter = curry((selected, id, items) =>
-      map(when(propEq('id', id), assoc('selected', selected)), items)
-    )
-    const users = alter(selected, item.id, this.state.users)
-    this.setState({ users })
-    this.props.onChange(
-      compose(
-        pluck('id'),
-        filter(propEq('selected', true))
-      )(users)
-    )
-  }
+         toggleSwitch = ({ item, selected }) => {
+           const alter = curry((selected, id, items) =>
+             map(
+               when(propEq('id', id), assoc('selected', selected)),
+               items
+             )
+           )
+           const users = alter(selected, item.id, this.state.users)
+           this.setState({ users })
+           this.props.onChange(
+             compose(
+               pluck('id'),
+               filter(propEq('selected', true))
+             )(users)
+           )
+         }
 
-  renderHeader = () => {
-    const { t, i18n } = this.props
-    return (
-      <SearchBar
-        round
-        placeholder={t('common:searchBarText')}
-        searchIcon={false}
-        placeholderTextColor={'black'}
-        containerStyle={styles.searchContainer}
-        inputContainerStyle={styles.searchInputContainer}
-        inputStyle={styles.searchInputText}
-        onChangeText={this.handleSearch}
-        autoCorrect={false}
-      />
-    )
-  }
+         renderHeader = () => {
+           const { t, i18n } = this.props
+           return (
+             <SearchBar
+               round
+               placeholder={t('common:searchBarText')}
+               searchIcon={false}
+               placeholderTextColor={'black'}
+               containerStyle={styles.searchContainer}
+               inputContainerStyle={styles.searchInputContainer}
+               inputStyle={styles.searchInputText}
+               onChangeText={this.handleSearch}
+               autoCorrect={false}
+             />
+           )
+         }
 
-  renderList = () => (
-    <Grid>
-      <Row size={20}>
-        <Text style={styles.friendsListText}>
-          {this.props.t('common:friendsListText')}
-        </Text>
-      </Row>
-      <Row size={60}>
-        <FlatList
-          data={this.filterByQuery(this.state.users)}
-          keyExtractor={item => item.id.toString()}
-          ListHeaderComponent={this.renderHeader}
-          renderItem={this.renderItem}
-          ItemSeparatorComponent={this.renderSeparator}
-        />
-      </Row>
-      <Row size={20} style={{ backgroundColor: 'transparent' }}>{this.renderInviteFriends()}</Row>
-    </Grid>
-  )
+         renderList = () => (
+           <Grid>
+             <Row size={20}>
+               <Text style={styles.friendsListText}>
+                 {this.props.t('common:friendsListText')}
+               </Text>
+             </Row>
+             <Row size={65}>
+               <FlatList
+                 data={this.filterByQuery(this.state.users)}
+                 keyExtractor={item => item.id.toString()}
+                 ListHeaderComponent={this.renderHeader}
+                 renderItem={this.renderItem}
+                 ItemSeparatorComponent={this.renderSeparator}
+               />
+             </Row>
+             <Row size={15} style={styles.buttonContainer}>
+               {this.renderInviteFriends()}
+             </Row>
+           </Grid>
+         )
 
-  onShare = async () => {
-    try {
-      const result = await Share.share({
-        message: 'dudogames.com/play-now'
-      })
+         onShare = async () => {
+           try {
+             const result = await Share.share({
+               message: 'dudogames.com/play-now'
+             })
 
-      if (result.action === Share.sharedAction) {
-        if (result.activityType) {
-        } else {
-        }
-      } else if (result.action === Share.dismissedAction) {
-      }
-    } catch (error) {
-      alert(error.message)
-    }
-  }
+             if (result.action === Share.sharedAction) {
+               if (result.activityType) {
+               } else {
+               }
+             } else if (result.action === Share.dismissedAction) {
+             }
+           } catch (error) {
+             alert(error.message)
+           }
+         }
 
-  renderInviteFriends = () => (
-    <Button style={styles.createTableButton} onPress={this.onShare}>
-      <Text style={styles.createButtonText}>
-        {this.props.t('common:inviteFriends')}
-      </Text>
-    </Button>
-  )
+         renderInviteFriends = () => (
+           <Button
+             style={styles.inviteFriendButton}
+             onPress={this.onShare}
+           >
+             <Text style={styles.inviteFriendText}>
+               {this.props.t('common:inviteFriends')}
+             </Text>
+           </Button>
+         )
 
-  renderNoFriends = () => (
-    <Grid>
-      <Row>
-        <Text style={styles.textTest}>
-          {this.props.t('common:noFriendsText')}
-        </Text>
-      </Row>
-      <Row>{this.renderInviteFriends()}</Row>
-    </Grid>
-  )
+         renderNoFriends = () => (
+           <Grid>
+             <Row>
+               <Text style={styles.textTest}>
+                 {this.props.t('common:noFriendsText')}
+               </Text>
+             </Row>
+             <Row>{this.renderInviteFriends()}</Row>
+           </Grid>
+         )
 
-  renderItem = ({ item }) => (
-    <FriendsItem item={item} toggleSwitch={this.toggleSwitch} />
-  )
+         renderItem = ({ item }) => (
+           <FriendsItem item={item} toggleSwitch={this.toggleSwitch} />
+         )
 
-  renderSeparator = () => {
-    return <View style={styles.itemSeparator} />
-  }
+         renderSeparator = () => {
+           return <View style={styles.itemSeparator} />
+         }
 
-  render () {
-    const { isLoading, users } = this.state
-    return isLoading ? (
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size='small' color='#F58B27' />
-      </View>
-    ) : users.length > 0 ? (
-      this.renderList()
-    ) : (
-      this.renderNoFriends()
-    )
-  }
+         render () {
+           const { isLoading, users } = this.state
+           return isLoading ? (
+             <View style={styles.loadingContainer}>
+               <ActivityIndicator size='small' color='#F58B27' />
+             </View>
+           ) : users.length > 0 ? (
+             this.renderList()
+           ) : (
+             this.renderNoFriends()
+           )
+         }
 }
 
 export default withNamespaces(['common'], { wait: true })(FriendsList)
@@ -193,16 +204,20 @@ const styles = StyleSheet.create({
     backgroundColor: '#F58B27',
     marginLeft: '14%'
   },
-  createTableButton: {
-    flex: 1,
+  buttonContainer: {
+    justifyContent: 'center',
+    alignSelf: 'center'
+  },
+  inviteFriendButton: {
+    flex: 0.6,
     justifyContent: 'center',
     backgroundColor: '#F58B27',
-    borderRadius: 10,
-    marginTop: '2%',
-    marginLeft: '5%',
-    marginRight: '5%'
+    borderColor: '#d96004',
+    borderBottomWidth: 2,
+    borderLeftWidth: 2,
+    borderRadius: 2
   },
-  createButtonText: {
+  inviteFriendText: {
     fontSize: scaleFontSize(30),
     fontFamily: 'Bangers-Regular',
     textAlign: 'center',

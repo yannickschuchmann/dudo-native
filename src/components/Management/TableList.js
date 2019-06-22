@@ -24,7 +24,7 @@ export default class TableList extends Component {
                      badge={{
                        value: item.players.length,
                        textStyle: {
-                         color: 'white'
+                         color: 'black'
                        },
                        containerStyle: {
                          backgroundColor: '#F58B27'

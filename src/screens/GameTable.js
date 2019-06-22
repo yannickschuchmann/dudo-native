@@ -156,7 +156,7 @@ class GameTable extends Component {
               {isLoading ? (
                 <ActivityIndicator
                   size="small"
-                  color="#c8b273"
+                  color="#F58B27"
                   style={styles.activityMonitor}
                 />
               ) : table.meta.allowed_to_place_move ? (
@@ -251,14 +251,15 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   waitingText: {
-    color: '#c8b273',
+    color: 'white',
     fontSize: scaleFontSize(25),
+    fontFamily: 'Bangers-Regular',
     textAlign: 'center'
   },
   footerContainer: {
     backgroundColor: 'transparent',
-    borderTopColor: '#c8b273',
-    borderTopWidth: 4,
+    borderTopColor: '#F58B27',
+    borderTopWidth: 2,
     flexDirection: 'row'
   },
   modalEndRound: {
@@ -290,7 +291,7 @@ const styles = StyleSheet.create({
   },
   continueButtonText: {
     fontSize: scaleFontSize(20),
-    fontFamily: 'MyriadPro-BoldCond',
+    fontFamily: 'Bangers-Regular',
     color: 'white',
     textAlign: 'center'
   },

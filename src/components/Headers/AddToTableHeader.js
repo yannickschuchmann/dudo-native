@@ -12,7 +12,7 @@ export default class AddToTableHeader extends Component {
       <SafeAreaView>
         <Header style={styles.homeHeader}>
           <Grid>
-            <Row>
+            <Row style={styles.headerContainer}>
               <Col size={20}>
                 <Button transparent onPress={() => navigation.goBack()}>
                   <Icon style={styles.icon} name='arrow-back' />
@@ -42,21 +42,26 @@ export default class AddToTableHeader extends Component {
 
 const styles = StyleSheet.create({
   homeHeader: {
-    borderBottomColor: '#c8b273',
-    borderBottomWidth: 2,
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    borderBottomColor: '#F58B27',
+    borderBottomWidth: 2
+  },
+  headerContainer: {
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   headerTitle: {
-    fontFamily: 'MyriadPro-BoldCond',
-    color: '#c8b273',
+    fontFamily: 'Bangers-Regular',
+    color: 'white',
     fontSize: scaleFontSize(30)
   },
   icon: {
-    color: '#c8b273',
+    color: 'white',
     fontSize: scaleFontSize(30)
   },
   addText: {
-    color: '#c8b273',
-    fontSize: scaleFontSize(20)
+    color: 'white',
+    fontSize: scaleFontSize(20),
+    fontFamily: 'Bangers-Regular'
   }
 })

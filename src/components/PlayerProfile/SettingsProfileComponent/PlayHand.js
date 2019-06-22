@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   handSelectIcon: {
-    color: '#c8b273',
+    color: 'white',
     fontSize: 40
   },
   leftHand: {
@@ -81,9 +81,9 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start'
   },
   handButtonText: {
-    color: '#c8b273',
+    color: 'white',
     fontSize: scaleFontSize(20),
-    fontFamily: 'MyriadPro-BoldCond'
+    fontFamily: 'Bangers-Regular'
   }
 })
 

@@ -92,12 +92,15 @@ const styles = StyleSheet.create({
     minWidth: scaleFontSize(80),
     maxWidth: scaleFontSize(100),
     backgroundColor: 'transparent',
-    borderColor: 'rgba(200,178,114,1)'
+    borderColor: '#d96004',
+    borderBottomWidth: 2,
+    borderLeftWidth: 2,
+    borderRadius: 2
   },
   basePlayerText: {
-    fontFamily: 'MyriadPro-BoldCond',
+    fontFamily: 'Bangers-Regular',
     textAlign: 'center',
-    color: 'rgba(200,178,114,1)',
+    color: '#F58B27',
     fontSize: scaleFontSize(20)
   },
   currentPlayer: {
@@ -105,11 +108,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     minWidth: scaleFontSize(80),
     maxWidth: scaleFontSize(100),
-    backgroundColor: 'rgba(200,178,114,1)',
-    borderColor: '#95792A'
+    backgroundColor: '#F58B27',
+    borderColor: 'white',
+    borderBottomWidth: 2,
+    borderLeftWidth: 2,
+    borderRadius: 2
   },
   currentPlayerText: {
-    fontFamily: 'MyriadPro-BoldCond',
+    fontFamily: 'Bangers-Regular',
     textAlign: 'center',
     color: 'black',
     fontSize: scaleFontSize(20)
@@ -120,12 +126,12 @@ const styles = StyleSheet.create({
     minWidth: scaleFontSize(80),
     maxWidth: scaleFontSize(100),
     backgroundColor: 'grey',
-    borderColor: 'white'
+    borderColor: '#d96004'
   },
   nonActivePlayerText: {
-    fontFamily: 'MyriadPro-BoldCond',
+    fontFamily: 'Bangers-Regular',
     textAlign: 'center',
-    color: 'white',
+    color: '#d96004',
     fontSize: scaleFontSize(20)
   }
 })

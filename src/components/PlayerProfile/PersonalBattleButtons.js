@@ -73,9 +73,10 @@ const styles = StyleSheet.create({
     height: scaleFontSize(60),
     justifyContent: 'center',
     alignSelf: 'center',
-    borderColor: 'white',
-    borderWidth: 2,
-    borderRadius: 5,
+    borderColor: '#d96004',
+    borderBottomWidth: 2,
+    borderLeftWidth: 2,
+    borderRadius: 2,
     backgroundColor: '#F58B27'
   },
   selectedButton: {
@@ -83,9 +84,10 @@ const styles = StyleSheet.create({
     height: scaleFontSize(60),
     justifyContent: 'center',
     alignSelf: 'center',
-    borderColor: '#F58B27',
-    borderWidth: 2,
-    borderRadius: 5,
+    borderColor: '#d96004',
+    borderBottomWidth: 2,
+    borderLeftWidth: 2,
+    borderRadius: 2,
     backgroundColor: 'white'
   },
   buttonText: {
@@ -96,9 +98,10 @@ const styles = StyleSheet.create({
   settingsButton: {
     justifyContent: 'center',
     alignSelf: 'center',
-    borderColor: 'white',
-    borderWidth: 2,
-    borderRadius: 5,
+    borderColor: '#d96004',
+    borderBottomWidth: 2,
+    borderLeftWidth: 2,
+    borderRadius: 2,
     backgroundColor: '#F58B27',
     height: scaleFontSize(60),
     width: scaleFontSize(80)
@@ -106,9 +109,10 @@ const styles = StyleSheet.create({
   settingsButtonSelected: {
     justifyContent: 'center',
     alignSelf: 'center',
-    borderColor: '#F58B27',
-    borderWidth: 2,
-    borderRadius: 5,
+    borderColor: '#d96004',
+    borderBottomWidth: 2,
+    borderLeftWidth: 2,
+    borderRadius: 2,
     backgroundColor: 'white',
     height: scaleFontSize(60),
     width: scaleFontSize(80),

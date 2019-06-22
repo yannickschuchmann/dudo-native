@@ -70,10 +70,10 @@ const styles = StyleSheet.create({
     margin: scaleFontSize(5),
     flex: 1,
     alignItems: 'center',
-    opacity: 1,
-    borderWidth: 1,
+    borderBottomWidth: 2,
+    borderLeftWidth: 2,
     borderRadius: 2,
-    borderColor: 'rgba(255,255,255,1)',
+    borderColor: 'white',
     backgroundColor: 'rgba(245,139,39,.3)'
   },
   statText: {
