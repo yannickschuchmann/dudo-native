@@ -73,12 +73,13 @@ const styles = StyleSheet.create({
     opacity: 1,
     borderWidth: 1,
     borderRadius: 2,
-    borderColor: 'rgba(255,255,255,1)'
+    borderColor: 'rgba(255,255,255,1)',
+    backgroundColor: 'rgba(245,139,39,.3)'
   },
   statText: {
     color: 'white',
-    fontSize: scaleFontSize(25),
-    fontFamily: 'MyriadPro-BoldCond',
+    fontSize: scaleFontSize(22),
+    fontFamily: 'Bangers-Regular',
     margin: scaleFontSize(10)
   },
   image: {

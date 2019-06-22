@@ -82,7 +82,7 @@ class NewPlayerProfile extends Component {
               {this.state.isLoading ? (
                 <ActivityIndicator
                   size='small'
-                  color='#c8b273'
+                  color='#F58B27'
                   style={styles.activityMonitor}
                 />
               ) : this.state.isFriendProfile && !this.state.isSettings ? (

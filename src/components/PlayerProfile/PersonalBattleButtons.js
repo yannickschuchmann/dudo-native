@@ -73,17 +73,17 @@ const styles = StyleSheet.create({
     height: scaleFontSize(60),
     justifyContent: 'center',
     alignSelf: 'center',
-    borderColor: '#c8b273',
+    borderColor: 'white',
     borderWidth: 2,
     borderRadius: 5,
-    backgroundColor: '#95792A'
+    backgroundColor: '#F58B27'
   },
   selectedButton: {
     width: scaleFontSize(120),
     height: scaleFontSize(60),
     justifyContent: 'center',
     alignSelf: 'center',
-    borderColor: '#95792A',
+    borderColor: '#F58B27',
     borderWidth: 2,
     borderRadius: 5,
     backgroundColor: 'white'
@@ -91,22 +91,22 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'black',
     fontSize: scaleFontSize(25),
-    fontFamily: 'MyriadPro-BoldCond'
+    fontFamily: 'Bangers-Regular'
   },
   settingsButton: {
     justifyContent: 'center',
     alignSelf: 'center',
-    borderColor: '#c8b273',
+    borderColor: 'white',
     borderWidth: 2,
     borderRadius: 5,
-    backgroundColor: '#95792A',
+    backgroundColor: '#F58B27',
     height: scaleFontSize(60),
     width: scaleFontSize(80)
   },
   settingsButtonSelected: {
     justifyContent: 'center',
     alignSelf: 'center',
-    borderColor: '#95792A',
+    borderColor: '#F58B27',
     borderWidth: 2,
     borderRadius: 5,
     backgroundColor: 'white',

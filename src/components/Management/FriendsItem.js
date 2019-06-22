@@ -35,6 +35,6 @@ const styles = StyleSheet.create({
   tableNameText: {
     color: 'white',
     fontFamily: 'Bangers-Regular',
-    fontSize: scaleFontSize(20)
+    fontSize: scaleFontSize(20),
   }
 })

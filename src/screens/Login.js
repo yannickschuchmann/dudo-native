@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 import { withNamespaces } from 'react-i18next'
 import { Container, Button } from 'native-base'
-import { Grid, Col, Row } from 'react-native-easy-grid'
+import { Grid, Row } from 'react-native-easy-grid'
 import AuthService from '../services/auth'
 import deviceStorage from '../services/deviceStorage'
 import { registerPushNotifications } from '../services/pushNotifications'
@@ -64,22 +64,6 @@ class Login extends Component {
   render () {
     const { t } = this.props
     const backgroundImage = '../assets/screen-background.jpg'
-    const loading = (
-      <Button primary style={styles.facebookLoginButton}>
-        <ActivityIndicator size='small' color='#c8b273' />
-      </Button>
-    )
-    const loginButton = (
-      <Button primary style={styles.facebookLoginButton} onPress={this.onLogin}>
-        <Image
-          source={require('../assets/flogo.png')}
-          style={styles.buttonImage}
-        />
-        <Text style={styles.facebookLoginButtonText}>
-          {t('common:login.continueWithFacebook')}
-        </Text>
-      </Button>
-    )
 
     return (
       <ImageBackground
@@ -89,31 +73,44 @@ class Login extends Component {
         <Container style={styles.container}>
           <StatusBar hidden />
           <Grid>
-            <Row size={10} />
-            <Row size={30}>
-              <Row style={styles.justifyAll}>
-                <Image
-                  source={require('../assets/dudoLogo.png')}
-                  style={styles.image}
-                />
-              </Row>
+            <Row size={50} style={styles.dudoLogoContainer}>
+              <Image
+                source={require('../assets/dudoLogo.png')}
+                style={styles.dudoLogo}
+                resizeMode='contain'
+              />
             </Row>
-            <Row size={50}>
-              <Col style={styles.justifyAll}>
-                <Row>{this.state.loading ? loading : loginButton}</Row>
-                <Row>
-                  <Text style={styles.facebookLoginButtonText}>
-                    {t('common:login.weDontPost')}
+            <Row size={10} style={styles.facebookButtonContainer}>
+              {this.state.loading ? (
+                <Button style={styles.facebookButton}>
+                  <ActivityIndicator size='small' color='#F58B27' />
+                </Button>
+              ) : (
+                <Button
+                  onPress={this.onLogin}
+                  style={styles.facebookButton}
+                >
+                  <Image
+                    source={require('../assets/flogo.png')}
+                    style={styles.facebookLogo}
+                    resizeMode='contain'
+                  />
+                  <Text style={styles.facebookButtonText}>
+                    {t('common:login.continueWithFacebook')}
                   </Text>
-                </Row>
-                <Row style={styles.friendsRow}>
-                  <Text style={styles.friendsText}>
-                    {t('common:login.loginFriends')}
-                  </Text>
-                </Row>
-              </Col>
+                </Button>
+              )}
             </Row>
-            <Row size={10} />
+            <Row size={20} style={styles.textContainer}>
+              <Text style={styles.screenTextFB}>
+                {t('common:login.weDontPost')}
+              </Text>
+            </Row>
+            <Row size={20} style={styles.textContainer}>
+              <Text style={styles.screenTextFriends}>
+                {t('common:login.loginFriends')}
+              </Text>
+            </Row>
           </Grid>
         </Container>
       </ImageBackground>
@@ -134,48 +131,47 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: 'transparent'
   },
-  justifyAll: {
-    flex: 1,
-    alignItems: 'center',
+  dudoLogoContainer: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  dudoLogo: {
+    height: scaleFontSize(150)
+  },
+  facebookButtonContainer: {
     justifyContent: 'center'
   },
-  cardItemContainer: {
-    backgroundColor: 'blue'
-  },
-  image: {
-    marginTop: 25,
-    height: scaleFontSize(170),
-    width: scaleFontSize(300)
-  },
-  buttonImage: {
-    height: scaleFontSize(30),
-    width: scaleFontSize(30)
-  },
-  facebookLoginButton: {
-    flexDirection: 'row',
+  facebookButton: {
+    borderRadius: 0,
+    borderWidth: 2,
+    borderColor: 'white',
     alignSelf: 'center',
     justifyContent: 'center',
-    height: scaleFontSize(50),
     width: scaleFontSize(300),
-    opacity: 1,
-    borderWidth: 1,
-    borderRadius: 2,
     backgroundColor: '#4267B2',
     borderColor: 'rgba(255,255,255,1)'
   },
-  facebookLoginButtonText: {
-    fontSize: scaleFontSize(20),
-    fontFamily: 'Roboto-Bold',
-    color: 'white',
-    padding: scaleFontSize(8)
+  facebookLogo: {
+    height: scaleFontSize(40)
   },
-  friendsText: {
-    flex: 1,
-    textAlign: 'center',
-    fontSize: scaleFontSize(25),
-    fontFamily: 'MyriadPro-BoldCond',
-    color: '#C8B273',
-    paddingLeft: 15,
-    paddingRight: 15
+  facebookButtonText: {
+    color: 'white',
+    fontFamily: 'Bangers-Regular',
+    fontSize: scaleFontSize(20)
+  },
+  textContainer: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  screenTextFB: {
+    color: 'white',
+    fontFamily: 'Bangers-Regular',
+    fontSize: scaleFontSize(20)
+  },
+  screenTextFriends: {
+    color: '#F58B27',
+    fontFamily: 'Bangers-Regular',
+    fontSize: scaleFontSize(20),
+    textAlign: 'center'
   }
 })

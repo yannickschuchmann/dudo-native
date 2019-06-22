@@ -23,7 +23,11 @@ export default class HomeHeader extends Component {
                     this.props.navigation.push('PlayerProfile')
                   }}
                 >
-                  <Icon style={styles.icon} name='user' type='EvilIcons' />
+                  <Icon
+                    style={styles.icon}
+                    name='kebab-vertical'
+                    type='Octicons'
+                  />
                 </Button>
               </Col>
             </Row>
@@ -56,7 +60,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end'
   },
   icon: {
-    fontSize: scaleFontSize(40),
+    fontSize: scaleFontSize(30),
     color: 'white'
   }
 })

@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     fontSize: scaleFontSize(22)
   },
   tableNameTextNotSeen: {
-    color: 'white',
+    color: 'black',
     fontFamily: 'Bangers-Regular',
     fontSize: scaleFontSize(22)
   },
