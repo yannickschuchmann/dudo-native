@@ -74,7 +74,9 @@ const styles = StyleSheet.create({
   goBackButtonText: {
     color: 'black',
     fontSize: scaleFontSize(25),
-    fontFamily: 'Bangers-Regular'
+    fontFamily: 'Bangers-Regular',
+    width: '100%',
+    textAlign: 'center'
   },
   footerColCupButton: {
     flex: 1,

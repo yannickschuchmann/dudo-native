@@ -146,13 +146,13 @@ class GameTable extends Component {
             <Row size={22}>
               <PlayerCarousel data={table.players} />
             </Row>
-            <Row size={23}>
+            <Row size={15}>
               <GameStatsComplete
                 game={table.game}
                 lastMove={table.last_move}
               />
             </Row>
-            <Row size={40}>
+            <Row size={43}>
               {isLoading ? (
                 <ActivityIndicator
                   size="small"

@@ -164,7 +164,9 @@ const styles = StyleSheet.create({
   titleText: {
     color: 'white',
     fontFamily: 'Bangers-Regular',
-    fontSize: scaleFontSize(30)
+    fontSize: scaleFontSize(30),
+    textAlign: 'center',
+    width: '100%'
   },
   createButtonRow: {
     justifyContent: 'center',
@@ -182,6 +184,8 @@ const styles = StyleSheet.create({
   },
   createButtonText: {
     fontFamily: 'Bangers-Regular',
-    fontSize: scaleFontSize(30)
+    fontSize: scaleFontSize(30),
+    textAlign: 'center',
+    width: '100%'
   }
 })

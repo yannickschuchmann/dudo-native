@@ -32,23 +32,18 @@ export class GameStatsComplete extends Component {
           </Col>
         </Col>
         <Col style={styles.rightStatsContainer}>
-          <Row size={40}>
-            <Col style={styles.centerItems}>
-              <Text style={styles.statText}>{lastMove.initiator.name}</Text>
-            </Col>
-            <Col style={styles.alignLeftItems}>
-              <Text style={styles.statText}>
-                {t('common:gameText.playerSays')}
-              </Text>
-            </Col>
+          <Row size={40} style={styles.centerItems}>
+            <Text style={styles.statText}>
+              {lastMove.initiator.name} {t('common:gameText.playerSays')}
+            </Text>
           </Row>
           <Row size={60}>
             {lastMove.eyes && (
               <React.Fragment>
-                <Col style={styles.centerItems}>
+                <Col>
                   <Text style={styles.diceStyle}>{lastMove.die}</Text>
                 </Col>
-                <Col style={styles.alignLeftItems}>
+                <Col>
                   <Icon
                     style={styles.diceStyle}
                     name={`dice-${lastMove.eyes}`}
@@ -74,7 +69,8 @@ const styles = StyleSheet.create({
     borderColor: '#d96004',
     borderBottomWidth: 2,
     borderLeftWidth: 2,
-    borderRadius: 2
+    borderRadius: 2,
+    width: '100%'
   },
   rightStatsContainer: {
     backgroundColor: '#F58B27',
@@ -83,7 +79,8 @@ const styles = StyleSheet.create({
     borderColor: '#d96004',
     borderBottomWidth: 2,
     borderLeftWidth: 2,
-    borderRadius: 2
+    borderRadius: 2,
+    width: '100%'
   },
   leftColStyle: {
     flex: 1,
@@ -99,11 +96,14 @@ const styles = StyleSheet.create({
   },
   statText: {
     fontSize: scaleFontSize(25),
-    fontFamily: 'Bangers-Regular'
+    fontFamily: 'Bangers-Regular',
+    textAlign: 'center'
   },
   diceStyle: {
-    fontSize: scaleFontSize(60),
+    textAlign: 'center',
+    fontSize: scaleFontSize(50),
     fontFamily: 'Bangers-Regular',
+    width: '100%',
     marginBottom: '4%'
   },
   centerItems: {

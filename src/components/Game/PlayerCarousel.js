@@ -101,7 +101,9 @@ const styles = StyleSheet.create({
     fontFamily: 'Bangers-Regular',
     textAlign: 'center',
     color: '#F58B27',
-    fontSize: scaleFontSize(20)
+    fontSize: scaleFontSize(20),
+    textAlign: 'center',
+    width: '100%'
   },
   currentPlayer: {
     justifyContent: 'space-between',
@@ -118,7 +120,9 @@ const styles = StyleSheet.create({
     fontFamily: 'Bangers-Regular',
     textAlign: 'center',
     color: 'black',
-    fontSize: scaleFontSize(20)
+    fontSize: scaleFontSize(20),
+    textAlign: 'center',
+    width: '100%'
   },
   nonActivePlayer: {
     justifyContent: 'space-between',
@@ -131,8 +135,10 @@ const styles = StyleSheet.create({
   nonActivePlayerText: {
     fontFamily: 'Bangers-Regular',
     textAlign: 'center',
-    color: '#d96004',
-    fontSize: scaleFontSize(20)
+    color: 'black',
+    fontSize: scaleFontSize(20),
+    textAlign: 'center',
+    width: '100%'
   }
 })
 
