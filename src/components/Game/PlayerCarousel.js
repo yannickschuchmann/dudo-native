@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
   nonActivePlayerText: {
     fontFamily: 'Bangers-Regular',
     textAlign: 'center',
-    color: 'black',
+    color: '#404040',
     fontSize: scaleFontSize(20),
     textAlign: 'center',
     width: '100%'

@@ -13,47 +13,44 @@ export class GameStatsComplete extends Component {
 
     return (
       <Grid>
-        <Col style={styles.leftStatsContainer}>
-          <Col style={styles.leftColStyle}>
+        <Row size={30}>
+          <Col style={styles.statCol}>
             <Text style={styles.statText}>
-              {t('common:gameText.diceAmount')}
-            </Text>
-            <Text style={styles.statText}>
-              {t('common:gameText.roundNumber')}
-            </Text>
-            <Text style={styles.statText}>
-              {t('common:gameText.playerAmount')}
+              {t('common:gameText.diceAmount')} {game.total_die}
             </Text>
           </Col>
-          <Col style={styles.rightColStyle}>
-            <Text style={styles.statText}>{game.total_die}</Text>
-            <Text style={styles.statText}>{game.rounds_count}</Text>
-            <Text style={styles.statText}>{game.active_players_count}</Text>
-          </Col>
-        </Col>
-        <Col style={styles.rightStatsContainer}>
-          <Row size={40} style={styles.centerItems}>
+          <Col style={styles.statCol}>
             <Text style={styles.statText}>
-              {lastMove.initiator.name} {t('common:gameText.playerSays')}
+              {t('common:gameText.roundNumber')} {game.rounds_count}
             </Text>
-          </Row>
-          <Row size={60}>
+          </Col>
+          <Col style={styles.statCol}>
+            <Text style={styles.statText}>
+              {t('common:gameText.playerAmount')} {game.active_players_count}
+            </Text>
+          </Col>
+        </Row>
+        <Row size={25} style={styles.nameRow}>
+          <Text style={styles.statText}>
+            {lastMove.initiator.name} {t('common:gameText.playerSays')}
+          </Text>
+        </Row>
+        <Row size={45} style={styles.playRow}>
+          <Col style={{alignItems:'flex-end'}}>
+            <Text style={styles.numberStyle}>{lastMove.die}</Text>
+          </Col>
+          <Col>
             {lastMove.eyes && (
               <React.Fragment>
-                <Col>
-                  <Text style={styles.diceStyle}>{lastMove.die}</Text>
-                </Col>
-                <Col>
-                  <Icon
-                    style={styles.diceStyle}
-                    name={`dice-${lastMove.eyes}`}
-                    type="MaterialCommunityIcons"
-                  />
-                </Col>
+                <Icon
+                  style={styles.diceStyle}
+                  name={`dice-${lastMove.eyes}`}
+                  type="MaterialCommunityIcons"
+                />
               </React.Fragment>
             )}
-          </Row>
-        </Col>
+          </Col>
+        </Row>
       </Grid>
     )
   }
@@ -62,56 +59,42 @@ export class GameStatsComplete extends Component {
 export default withNamespaces(['common'], {wait: true})(GameStatsComplete)
 
 const styles = StyleSheet.create({
-  leftStatsContainer: {
-    backgroundColor: '#F58B27',
-    flex: 1,
-    flexDirection: 'row',
-    borderColor: '#d96004',
-    borderBottomWidth: 2,
-    borderLeftWidth: 2,
-    borderRadius: 2,
-    width: '100%'
+  statCol: {
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    backgroundColor: '#d96004',
+    borderColor: '#F58B27',
+    borderTopWidth: 2,
+    borderBottomWidth: 2
   },
-  rightStatsContainer: {
-    backgroundColor: '#F58B27',
-    flex: 1,
-    flexDirection: 'column',
-    borderColor: '#d96004',
-    borderBottomWidth: 2,
-    borderLeftWidth: 2,
-    borderRadius: 2,
-    width: '100%'
+  nameRow: {
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    backgroundColor: '#d96004'
   },
-  leftColStyle: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    left: '10%'
-  },
-  rightColStyle: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center'
+  playRow: {
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    backgroundColor: '#d96004',
+    borderColor: '#F58B27',
+    borderBottomWidth: 2
   },
   statText: {
     fontSize: scaleFontSize(25),
     fontFamily: 'Bangers-Regular',
-    textAlign: 'center'
-  },
-  diceStyle: {
     textAlign: 'center',
+    width: '100%',
+    color: 'white'
+  },
+  numberStyle: {
     fontSize: scaleFontSize(50),
     fontFamily: 'Bangers-Regular',
-    width: '100%',
-    marginBottom: '4%'
+    color: 'white',
+    width: '20%'
   },
-  centerItems: {
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  alignLeftItems: {
-    alignItems: 'flex-start',
-    justifyContent: 'center'
+  diceStyle: {
+    fontSize: scaleFontSize(50),
+    fontFamily: 'Bangers-Regular',
+    color: 'white'
   }
 })

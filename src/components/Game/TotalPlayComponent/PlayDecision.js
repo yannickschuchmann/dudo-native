@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text } from 'react-native'
 import VibrateButton from '../../vibrateButton'
-import { Col } from 'react-native-easy-grid'
+import { Grid, Row, Col } from 'react-native-easy-grid'
 
 import { withNamespaces } from 'react-i18next'
 import { scaleFontSize } from '../../../helpers/responsive'
@@ -10,45 +10,43 @@ export class PlayDecision extends Component {
   render () {
     const { t, allowedToDudoCalzo, playIsLoading } = this.props
     return (
-      <Col>
-        <VibrateButton
-          block
-          primary
-          disabled={!!playIsLoading}
-          style={styles.buttonContainer}
-          onPress={this.props.onPlay}
-        >
-          <Text style={styles.buttonText}>
-            {t('common:playButtons.playButtonText')}
-          </Text>
-        </VibrateButton>
-        <VibrateButton
-          block
-          danger
-          disabled={!allowedToDudoCalzo || !!playIsLoading}
-          onPress={() => this.props.onMove({ type: 'dudo' })}
-          style={styles.buttonContainer}
-        >
-          <Text style={styles.buttonText}>
-            {playIsLoading == 'dudo'
-              ? t('common:loadingGame')
-              : t('common:playButtons.dudoButtonText')}
-          </Text>
-        </VibrateButton>
-        <VibrateButton
-          block
-          success
-          disabled={!allowedToDudoCalzo || !!playIsLoading}
-          onPress={() => this.props.onMove({ type: 'calzo' })}
-          style={styles.buttonContainer}
-        >
-          <Text style={styles.buttonText}>
-            {playIsLoading == 'calzo'
-              ? t('common:loadingGame')
-              : t('common:playButtons.spotOnButtonText')}
-          </Text>
-        </VibrateButton>
-      </Col>
+      <Grid>
+        <Row style={styles.rowContainer}>
+          <VibrateButton
+            disabled={!allowedToDudoCalzo || !!playIsLoading}
+            onPress={() => this.props.onMove({ type: 'dudo' })}
+            style={styles.dudoButton}
+          >
+            <Text style={styles.buttonText}>
+              {playIsLoading === 'dudo'
+                ? t('common:loadingGame')
+                : t('common:playButtons.dudoButtonText')}
+            </Text>
+          </VibrateButton>
+          <VibrateButton
+            disabled={!allowedToDudoCalzo || !!playIsLoading}
+            onPress={() => this.props.onMove({ type: 'calzo' })}
+            style={styles.calzoButton}
+          >
+            <Text style={styles.buttonText}>
+              {playIsLoading === 'calzo'
+                ? t('common:loadingGame')
+                : t('common:playButtons.spotOnButtonText')}
+            </Text>
+          </VibrateButton>
+        </Row>
+        <Row style={styles.rowContainer}>
+          <VibrateButton
+            disabled={!!playIsLoading}
+            onPress={this.props.onPlay}
+            style={styles.playButton}
+          >
+            <Text style={styles.buttonText}>
+              {t('common:playButtons.playButtonText')}
+            </Text>
+          </VibrateButton>
+        </Row>
+      </Grid>
     )
   }
 }
@@ -56,15 +54,32 @@ export class PlayDecision extends Component {
 export default withNamespaces(['common'], { wait: true })(PlayDecision)
 
 const styles = StyleSheet.create({
-  buttonContainer: {
-    marginTop: '3%',
-    marginLeft: '5%',
-    marginRight: '5%',
-    height: '27%'
+  rowContainer: {
+    justifyContent: 'space-around'
+  },
+  calzoButton: {
+    backgroundColor: 'green',
+    flex: 0.4,
+    height: '70%',
+    marginTop: '3%'
+  },
+  dudoButton: {
+    backgroundColor: 'red',
+    flex: 0.4,
+    height: '70%',
+    marginTop: '3%'
+  },
+  playButton: {
+    backgroundColor: 'blue',
+    flex: 0.9,
+    height: '70%',
+    marginTop: '3%'
   },
   buttonText: {
     fontSize: scaleFontSize(30),
-    fontFamily: 'MyriadPro-BoldCond',
-    color: 'white'
+    fontFamily: 'Bangers-Regular',
+    color: 'white',
+    width: '100%',
+    textAlign: 'center'
   }
 })

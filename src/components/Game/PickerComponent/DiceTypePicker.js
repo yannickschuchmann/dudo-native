@@ -27,8 +27,8 @@ export default class DiceTypePicker extends Component {
   render() {
     return (
       <Row>
-        <Col size={11} />
-        <Col size={25}>
+        <Col size={16} />
+        <Col size={24}>
           <TouchableOpacity onPress={this.decreaseAmount}>
             <Image
               style={[
@@ -55,7 +55,7 @@ export default class DiceTypePicker extends Component {
             />
           </ImageBackground>
         </Col>
-        <Col size={25}>
+        <Col size={24}>
           <TouchableOpacity onPress={this.incrementAmount}>
             <Image
               style={[
@@ -66,7 +66,7 @@ export default class DiceTypePicker extends Component {
             />
           </TouchableOpacity>
         </Col>
-        <Col />
+        <Col size={11} />
       </Row>
     )
   }
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     transform: [{rotateZ: '180deg'}]
   },
   diceTypeSaid: {
-    color: '#95792A',
+    color: '#F58B27',
     fontSize: 50
   },
   moveError: {

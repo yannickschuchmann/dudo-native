@@ -143,16 +143,16 @@ class GameTable extends Component {
           <StatusBar hidden />
           <GameTableHeader onAddToTable={this.onAddToTable} table={table} />
           <Grid>
-            <Row size={22}>
+            <Row size={25}>
               <PlayerCarousel data={table.players} />
             </Row>
-            <Row size={15}>
+            <Row size={22}>
               <GameStatsComplete
                 game={table.game}
                 lastMove={table.last_move}
               />
             </Row>
-            <Row size={43}>
+            <Row size={38}>
               {isLoading ? (
                 <ActivityIndicator
                   size="small"

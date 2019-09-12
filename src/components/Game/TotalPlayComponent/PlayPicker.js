@@ -36,11 +36,11 @@ export class PlayPicker extends Component {
   }
 
   render () {
-    const { game, lastMove, t, i18n, playIsLoading } = this.props
+    const { game, lastMove, t, playIsLoading } = this.props
     const { die, eyes, isSuccess } = this.state
 
     return (
-      <Col style={styles.rootContainer}>
+      <Col>
         <Row>
           <DiceAmountPicker
             isSuccess={isSuccess}
@@ -57,33 +57,25 @@ export class PlayPicker extends Component {
             onChange={eyes => this.setState({ eyes, isSuccess: true })}
           />
         </Row>
-        <Row>
-          <Col size={20}>
-            <VibrateButton
-              block
-              danger
-              disabled={!!playIsLoading}
-              style={styles.backButtonContainer}
-              onPress={this.props.closePicker}
-            >
-              <Icon style={styles.icon} name='arrow-back' />
-            </VibrateButton>
-          </Col>
-          <Col size={80}>
-            <VibrateButton
-              block
-              primary
-              disabled={!!playIsLoading}
-              style={styles.buttonContainer}
-              onPress={this.onCheckPlay}
-            >
-              <Text style={styles.buttonText}>
-                {playIsLoading == 'raise'
-                  ? t('common:loadingGame')
-                  : t('common:playButtons.playButtonText')}
-              </Text>
-            </VibrateButton>
-          </Col>
+        <Row style={styles.buttonRow}>
+          <VibrateButton
+            disabled={!!playIsLoading}
+            style={styles.backButtonContainer}
+            onPress={this.props.closePicker}
+          >
+            <Icon style={styles.icon} name='arrow-back' />
+          </VibrateButton>
+          <VibrateButton
+            disabled={!!playIsLoading}
+            style={styles.buttonContainer}
+            onPress={this.onCheckPlay}
+          >
+            <Text style={styles.buttonText}>
+              {playIsLoading === 'raise'
+                ? t('common:loadingGame')
+                : t('common:playButtons.playButtonText')}
+            </Text>
+          </VibrateButton>
         </Row>
       </Col>
     )
@@ -93,27 +85,28 @@ export class PlayPicker extends Component {
 export default withNamespaces(['common'], { wait: true })(PlayPicker)
 
 const styles = StyleSheet.create({
-  rootContainer: {
-    padding: '3%',
-    backgroundColor: 'transparent'
-  },
-  buttonContainer: {
-    flex: 0.9,
-    alignItems: 'center'
-  },
-  buttonText: {
-    fontSize: scaleFontSize(30),
-    fontFamily: 'MyriadPro-BoldCond',
-    color: 'white'
-  },
-  icon: {
-    fontSize: scaleFontSize(30),
-    color: 'white',
-    alignItems: 'center'
+  buttonRow: {
+    justifyContent: 'space-around'
   },
   backButtonContainer: {
-    flex: 0.9,
-    alignItems: 'center',
-    marginRight: '5%'
+    width: '20%',
+    height: '90%',
+    justifyContent: 'center',
+    backgroundColor: '#8b0000'
+  },
+  icon: {
+    fontSize: scaleFontSize(30)
+  },
+  buttonContainer: {
+    width: '75%',
+    height: '90%',
+    justifyContent: 'center',
+    backgroundColor: 'blue'
+  },
+  buttonText: {
+    width: '25%',
+    color: 'white',
+    fontFamily: 'Bangers-Regular',
+    fontSize: scaleFontSize(30)
   }
 })

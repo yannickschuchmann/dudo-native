@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import {
   StyleSheet,
   Text,
@@ -7,9 +7,9 @@ import {
   ImageBackground,
   Vibration
 } from 'react-native'
-import {Col, Row} from 'react-native-easy-grid'
+import { Col, Row } from 'react-native-easy-grid'
 
-import {scaleFontSize} from '../../../helpers/responsive'
+import { scaleFontSize } from '../../../helpers/responsive'
 
 export default class DiceAmountPicker extends Component {
   incrementAmount = () => {
@@ -24,11 +24,11 @@ export default class DiceAmountPicker extends Component {
     this.props.onChange(prevAmount)
   }
 
-  render() {
+  render () {
     return (
-      <Row>
-        <Col size={11} />
-        <Col size={25}>
+      <Row style={{ alignItems: 'center' }}>
+        <Col size={16} />
+        <Col size={24}>
           <TouchableOpacity onPress={this.decreaseAmount}>
             <Image
               style={[
@@ -55,7 +55,7 @@ export default class DiceAmountPicker extends Component {
             </Text>
           </ImageBackground>
         </Col>
-        <Col size={25}>
+        <Col size={24}>
           <TouchableOpacity onPress={this.incrementAmount}>
             <Image
               style={[
@@ -66,7 +66,7 @@ export default class DiceAmountPicker extends Component {
             />
           </TouchableOpacity>
         </Col>
-        <Col />
+        <Col size={11} />
       </Row>
     )
   }
@@ -82,13 +82,14 @@ const styles = StyleSheet.create({
   pickerContainerRight: {
     height: scaleFontSize(65),
     width: scaleFontSize(65),
-    transform: [{rotateZ: '180deg'}]
+    transform: [{ rotateZ: '180deg' }]
   },
   picketAmountText: {
     fontSize: scaleFontSize(50),
-    fontFamily: 'MyriadPro-BoldCond',
-    color: '#95792A',
-    top: '5%'
+    fontFamily: 'Bangers-Regular',
+    color: '#F58B27',
+    top: '3%',
+    width: '45%'
   },
   moveError: {
     tintColor: 'red'
