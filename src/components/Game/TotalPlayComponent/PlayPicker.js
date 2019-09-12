@@ -104,7 +104,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue'
   },
   buttonText: {
-    width: '25%',
+    width: '100%',
+    textAlign: 'center',
     color: 'white',
     fontFamily: 'Bangers-Regular',
     fontSize: scaleFontSize(30)
